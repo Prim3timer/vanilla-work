@@ -60,7 +60,7 @@ const response = await fetch(`${myUrl}/workout-users`, {
 });
 
 const users = await response.json();
-const user = users.find((user) => user._id === userId);
+const user = users.find((user) => user._id === "6a68f0d6ca0c4f40594d43a9");
 console.log(user);
 
 // greeting.innerHTML = `welcome, ${user.username}`;

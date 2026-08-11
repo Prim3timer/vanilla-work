@@ -103,6 +103,7 @@ populate();
 
 const editUser = async (e) => {
   e.preventDefault();
+  console.log(myUrl);
   const userId = localStorage.getItem("workoutUserId");
   console.log(userId);
   const response = await fetch(`${myUrl}/workout-users`, {

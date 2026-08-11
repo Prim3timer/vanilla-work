@@ -73,9 +73,9 @@ const exes = [
   fourthExercise,
   fifthExercise,
 ];
+const userId = "6a68f0d6ca0c4f40594d43a9";
 const populate = async () => {
   //   const userId = localStorage.getItem("workoutUserId");
-  const userId = "6a68f0d6ca0c4f40594d43a9";
   console.log(userId);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
@@ -104,7 +104,6 @@ populate();
 const editUser = async (e) => {
   e.preventDefault();
   console.log(myUrl);
-  const userId = localStorage.getItem("workoutUserId");
   console.log(userId);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",

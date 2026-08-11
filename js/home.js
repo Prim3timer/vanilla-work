@@ -63,7 +63,7 @@ const users = await response.json();
 const user = users.find((user) => user._id === userId);
 console.log(user);
 
-greeting.innerHTML = `welcome, ${user.username}`;
+// greeting.innerHTML = `welcome, ${user.username}`;
 let round = 1;
 const { exercise, interval, exercisesDuration, numberOfRounds } =
   user.workSettings;

@@ -51,7 +51,8 @@ alertWindow.style.top = "40%";
 let integrityCheck = 0;
 alertWindow.style.fontSize = "1.5rem";
 alertWindow.className = "no-verify-window";
-const userId = localStorage.getItem("workoutUserId");
+// const userId = localStorage.getItem("workoutUserId");
+const userId = "6a68f0d6ca0c4f40594d43a9";
 const response = await fetch(`${myUrl}/workout-users`, {
   method: "GET",
   headers: {
@@ -60,7 +61,7 @@ const response = await fetch(`${myUrl}/workout-users`, {
 });
 
 const users = await response.json();
-const user = users.find((user) => user._id === "6a68f0d6ca0c4f40594d43a9");
+const user = users.find((user) => user._id === userId);
 console.log(user);
 
 // greeting.innerHTML = `welcome, ${user.username}`;
@@ -122,6 +123,7 @@ let rewind = document.createElement("button");
 let forward = document.createElement("button");
 let roundUp = document.createElement("button");
 const homePage = () => {
+  console.log(myUrl);
   //   rounder.innerHTML = round;
   firstCont.id = "fer";
   firstCont.style.display = "flex";
@@ -356,6 +358,7 @@ const saveWork = async () => {
     mark: (anExercise / (exercise.length * numberOfRounds)) * 100,
   };
   console.log(workDets);
+  console.log(myUrl);
   const response = await fetch(`${myUrl}/performance`, {
     method: "POST",
     headers: {

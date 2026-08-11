@@ -74,7 +74,8 @@ const exes = [
   fifthExercise,
 ];
 const populate = async () => {
-  const userId = localStorage.getItem("workoutUserId");
+  //   const userId = localStorage.getItem("workoutUserId");
+  const userId = "6a68f0d6ca0c4f40594d43a9";
   console.log(userId);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
@@ -84,7 +85,7 @@ const populate = async () => {
   });
   const users = await response.json();
 
-  const user = users.find((user) => user._id === "6a68f0d6ca0c4f40594d43a9");
+  const user = users.find((user) => user._id === userId);
   console.log(users);
   const { workSettings } = user;
   console.log(workSettings);

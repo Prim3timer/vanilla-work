@@ -134,6 +134,7 @@
     padding: .5rem  0 0 .5rem;;
   width: 100vw;
   background-color: darkslateblue;
+  /* opacity: .2; */
   /* padding-bottom: 6rem; */
 }
 
@@ -191,9 +192,10 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .settings, .login, .activity, .register, .forgot,  .reset-password, .user-setting {
-  padding-top: 1rem;
+.performance, .login, .activity, .register, .settings, .forgot,  .reset-password, .user-setting {
   display: flex;
+  padding-top: 2rem;
+  /* display: flex; */
   width: 100vw;
 }
 
@@ -218,9 +220,9 @@ flex-direction: column;
   /* background-color: red;  */
  }
 
- .settings p, h3 {
+ .settings h3{
   text-align: center;
-  margin: 1rem;
+  margin-bottom: .2rem;
  }
 
  .reset-buttons {
@@ -401,6 +403,11 @@ color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: red;
+ }
+
+ .user h3 {
+  margin-top: 10rem;
  }
 
  .no-verify-window {

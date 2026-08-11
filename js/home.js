@@ -1,6 +1,21 @@
 import myUrl from "./myUrl.js";
 let ID;
 let sec = 0;
+const timeClocking = (sec) => {
+  return ` ${
+    sec > 3600
+      ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
+      : sec < 10
+        ? `:0${sec % 60}`
+        : sec < 60
+          ? ` :${sec % 60}`
+          : sec % 60 >= 10
+            ? `${Math.floor(sec / 60)}:${sec % 60}`
+            : sec < 10
+              ? 0`${sec % 60}`
+              : `${Math.floor(sec / 60)}:0${sec % 60}`
+  }`;
+};
 const greeting = document.getElementsByClassName("p");
 greeting.className = "greeting";
 let pauser = document.createElement("button");
@@ -103,6 +118,9 @@ rounder.className = "indicator";
 rounder.id = "round";
 cycle.innerHTML = sec;
 dashboard.append(cycle, rounder, jogup);
+let rewind = document.createElement("button");
+let forward = document.createElement("button");
+let roundUp = document.createElement("button");
 const homePage = () => {
   //   rounder.innerHTML = round;
   firstCont.id = "fer";
@@ -118,13 +136,10 @@ const homePage = () => {
   };
   pauser.id = "halter";
   pauser.innerHTML = `<i class="fa-solid fa-play">`;
-  let rewind = document.createElement("button");
   rewind.innerHTML = `<i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i>`;
   rewind.id = "backer";
-  let forward = document.createElement("button");
   forward.id = "foward";
   forward.innerHTML = `<i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i>`;
-  let roundUp = document.createElement("button");
   roundUp.id = "round-up";
   roundUp.innerHTML = `R <i class="fa-solid fa-forward-fast">`;
 
@@ -245,19 +260,7 @@ function general(currentItem, formerItem, nextItem) {
       }
 
       // pausing the app.
-      cycle.innerHTML = ` ${
-        sec > 3600
-          ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
-          : sec < 10
-            ? `:0${sec % 60}`
-            : sec < 60
-              ? ` :${sec % 60}`
-              : sec % 60 >= 10
-                ? `${Math.floor(sec / 60)}:${sec % 60}`
-                : sec < 10
-                  ? 0`${sec % 60}`
-                  : `${Math.floor(sec / 60)}:0${sec % 60}`
-      }`;
+      cycle.innerHTML = timeClocking(sec);
       if (controls.pause === true) {
         return;
       } else {
@@ -482,5 +485,37 @@ pauser.addEventListener("click", () => {
     pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
   }
 });
+
+roundUp.addEventListener("click", () => {
+  if (round === numberOfRounds) {
+    round = 0;
+    rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+  }
+  if (round < numberOfRounds) {
+    round++;
+    rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+  }
+});
+
+rewind.addEventListener("click", decreaser);
+
+function decreaser(e) {
+  sec -= 1;
+  setInterval(() => {
+    if (sec < 1) sec = 0;
+    cycle.innerHTML = timeClocking(sec);
+  }, 10);
+}
+
+let increaser = (e) => {
+  sec += 1;
+  setInterval(() => {
+    if (sec > exercisesDuration + interval - 1)
+      sec = exercisesDuration + interval;
+    cycle.innerHTML = timeClocking(sec);
+  }, 10);
+};
+
+forward.addEventListener("click", increaser);
 
 export { homePage };

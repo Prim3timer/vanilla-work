@@ -8,17 +8,17 @@ console.log(mainContainer);
 const navbar = document.getElementsByClassName("navbar")[0];
 
 const homePageDets = homePage();
-const aboutPageDets = performance();
+const performanceDets = performance();
 const settingsPageDets = settingsPage();
 const userPageDets = usersPage();
-console.log(userPageDets);
+console.log(performanceDets);
 
 const navLinks = document.getElementsByClassName("nav-link");
 
 function ElementCatcher(elements, matcher) {
   const containers = [
     homePageDets,
-    aboutPageDets,
+    performanceDets,
     settingsPageDets,
     userPageDets,
   ];

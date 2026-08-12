@@ -192,7 +192,7 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .login, .activity, .register, .settings, .forgot,  .reset-password, .user-setting {
+.performance, .login, .activity, .register, .users, .settings, .forgot,  .reset-password, .user-setting {
   display: flex;
   padding-top: 2rem;
   /* display: flex; */
@@ -403,11 +403,11 @@ color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: red;
+  padding-top: 0rem;
  }
 
- .user h3 {
-  margin-top: 10rem;
+ .performance-header {
+  float: left;
  }
 
  .no-verify-window {
@@ -439,7 +439,7 @@ table th {
 
  }
 
- .performance {
+ .performance, .users {
   flex-direction: column;
   align-items: center;
   

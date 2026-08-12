@@ -192,14 +192,14 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .login, .activity, .register, .users, .settings, .forgot,  .reset-password, .user-setting {
+.performance, .login, .activity, .register, .user-settings, .users, .settings, .forgot,  .reset-password, .user-setting {
   display: flex;
   padding-top: 2rem;
   /* display: flex; */
   width: 100vw;
 }
 
-.settings {
+.settings, .user-settings {
   flex-direction: column;
    justify-content: flex-start;
    align-items: center;

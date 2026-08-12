@@ -1,20 +1,21 @@
 import myUrl from "./myUrl.js";
+import { mainSettings } from "./userSettings.js";
+import { ElementCatcher } from "./genFunc.js";
 
-// const usersPage = () => {
-//   const userBox = document.createElement("div");
-//   userBox.className = "users";
-//   const usersHeader = document.createElement("h3");
-//   usersHeader.innerHTML = "users";
-//   userBox.appendChild(usersHeader);
+const usersettingsPage = mainSettings();
+console.log(mainSettings());
 
-//   return userBox;
-// };
+const mainContainer = document.getElementById("main-page");
 const userBox = document.createElement("div");
 userBox.className = "users";
 const usersHeader = document.createElement("h3");
 usersHeader.innerHTML = "users";
 const entryCount = document.createElement("h3");
 userBox.append(usersHeader);
+
+const containers = [mainSettings()];
+
+const instanceer = new ElementCatcher(containers, mainContainer);
 
 const response = await fetch(`${myUrl}/workout-users`, {
   method: "GET",
@@ -73,8 +74,8 @@ const usersPage = () => {
         second: "numeric",
       });
     }
-    settingsAnchor.innerHTML = "settings";
-    settingsAnchor.href = "userSetting.html";
+    settingsAnchor.innerHTML = "user settings";
+    settingsAnchor.addEventListener("click", instanceer.shower);
     usersList.append(nameElement, rolesElement, joined, settingsElement);
     table.append(usersList);
   }

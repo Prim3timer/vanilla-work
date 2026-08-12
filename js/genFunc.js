@@ -15,4 +15,24 @@ const timeClocking = (sec) => {
   }`;
 };
 
-export { timeClocking };
+function ElementCatcher(pages, mainContainer) {
+  this.shower = async function (e) {
+    const result = await pages;
+    console.log(pages);
+    e.preventDefault();
+    const oneElement = result.map((content) => {
+      if (this.innerHTML == content.firstElementChild.innerHTML) {
+        if (mainContainer.children.length > 0) {
+          mainContainer.firstElementChild.replaceWith(content);
+          return;
+        } else {
+          mainContainer.appendChild(content);
+          return;
+        }
+      }
+      return pages;
+    });
+  };
+}
+
+export { timeClocking, ElementCatcher };

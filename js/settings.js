@@ -73,7 +73,7 @@ const exes = [
   fourthExercise,
   fifthExercise,
 ];
-const userId = "6a68f0d6ca0c4f40594d43a9";
+const userId = "6a6695c18889470e03c937ec";
 const populate = async () => {
   //   const userId = localStorage.getItem("workoutUserId");
   console.log(userId);
@@ -86,9 +86,8 @@ const populate = async () => {
   const users = await response.json();
 
   const user = users.find((user) => user._id === userId);
-  console.log(users);
+  console.log(user);
   const { workSettings } = user;
-  console.log(workSettings);
   exes[0].value = workSettings.exercise[0] || "";
   exes[1].value = workSettings.exercise[1] || "";
   exes[2].value = workSettings.exercise[2] || "";

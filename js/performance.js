@@ -6,7 +6,7 @@ let globalUser = {};
 
 const entryCount = document.createElement("span");
 
-const userId = "6a68f0d6ca0c4f40594d43a9";
+const userId = "6a6695c18889470e03c937ec";
 
 const performanceMain = document.createElement("div");
 performanceMain.className = "performance";
@@ -117,6 +117,7 @@ const deleteEntry = async () => {
         const dets = document.createElement("tr");
         dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
         tableBody.appendChild(dets);
+        // perfy is a document in the performance cluster in the database.
         const perfy = entryFilterate[i];
         console.log(tableBody.children);
         const { workSettings } = globalUser;
@@ -198,43 +199,6 @@ const getData = async () => {
   const filteredData = perfData.filter((data) => data.userId === userId);
   entryCount.innerHTML = `(${filteredData.length} entries)`;
 
-  const showDetWindow = () => {
-    let detsWindow = document.createElement("div");
-    detsWindow.style.padding = ".5rem";
-    let detsExHeader = document.createElement("h4");
-    let detsExList = document.createElement("ol");
-    let closure = document.createElement("p");
-    closure.style.position = "absolute";
-    closure.style.top = "0px";
-    closure.style.right = "0px";
-    closure.addEventListener("click", () => {
-      detsWindow.className = "no-verify-window";
-    });
-    closure.style.position = "abolute";
-    closure.innerHTML = `<i class="fa-solid fa-x"></i>`;
-
-    detsWindow.className = "dets-verify-window";
-    detsWindow.appendChild(closure);
-    detsWindow.appendChild(detsExHeader);
-    detsWindow.appendChild(detsExList);
-    let detNumberOfRounds = document.createElement("p");
-    let detExDuration = document.createElement("p");
-    let detsInterval = document.createElement("p");
-    detsExList.replaceChildren();
-    detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
-    detsInterval.innerHTML = `interval b/w exercises: ${perfy.exerciseTimings[2].interval}`;
-    detExDuration.innerHTML = `duration of each exercise: ${perfy.exerciseTimings[1].exercisesDuration}`;
-    detsExHeader.innerHTML = `Exercises Done`;
-    performanceMain.appendChild(detsWindow);
-    detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
-    perfy.exerciseDets.map((exercise) => {
-      const listItem = document.createElement("li");
-      listItem.innerHTML = exercise;
-      detsExList.append(listItem);
-    });
-    // console.log(perfy);
-  };
-
   for (let i = 0; i < filteredData.length; i++) {
     const dets = document.createElement("tr");
     dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
@@ -243,22 +207,31 @@ const getData = async () => {
     console.log(perfy);
     const { duration } = perfy.exerciseTimings[0];
     const showDetWindow = () => {
+      let detsWindowCover = document.createElement("section");
       let detsWindow = document.createElement("div");
       detsWindow.style.padding = ".5rem";
       let detsDuration = document.createElement("p");
       let detsExHeader = document.createElement("h4");
       let detsExList = document.createElement("ol");
+
+      perfy.exerciseDets.map((exercise) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = exercise;
+        detsExList.append(listItem);
+      });
+      // console
       let closure = document.createElement("p");
       closure.style.position = "absolute";
       closure.style.top = "0px";
       closure.style.right = "0px";
       closure.addEventListener("click", () => {
-        detsWindow.className = "no-verify-window";
+        // detsWindow.className = "no-verify-window";
+        detsWindowCover.className = "no-verify-window";
       });
       closure.style.position = "abolute";
       closure.innerHTML = `<i class="fa-solid fa-x"></i>`;
-
-      detsWindow.className = "dets-verify-window";
+      detsWindowCover.className = "dets-verify-window";
+      detsWindow.className = "inner-dets-verify-window";
       detsWindow.appendChild(detsDuration);
       detsWindow.appendChild(closure);
       detsWindow.appendChild(detsExHeader);
@@ -266,20 +239,23 @@ const getData = async () => {
       let detNumberOfRounds = document.createElement("p");
       let detExDuration = document.createElement("p");
       let detsInterval = document.createElement("p");
-      detsExList.replaceChildren();
+      // detsExList.replaceChildren();
       detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
       detsInterval.innerHTML = `interval b/w exercises: ${perfy.exerciseTimings[2].interval}`;
       detExDuration.innerHTML = `duration of each exercise: ${perfy.exerciseTimings[1].exercisesDuration}`;
       detsDuration.innerHTML = `duration: ${timeClocking(duration)}`;
-      detsExHeader.innerHTML = `exercises done:`;
-      performanceMain.appendChild(detsWindow);
+      detsExHeader.innerHTML = `exercises list:`;
       detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
-      perfy.exerciseDets.map((exercise) => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = exercise;
-        detsExList.append(listItem);
-      });
-      // console.log(perfy);
+      console.log(detsWindowCover);
+      if (detsWindowCover.contains(detsWindow)) {
+        console.log("yes");
+        detsWindow.remove();
+        detsWindowCover.appendChild(detsWindow);
+      } else {
+        console.log("no");
+        detsWindowCover.appendChild(detsWindow);
+      }
+      performanceMain.appendChild(detsWindowCover);
     };
 
     const { workSettings } = user;
@@ -340,9 +316,9 @@ const getData = async () => {
 
 getData();
 
-const performance = () => {
+const performancePage = () => {
   console.log(performanceMain);
   return performanceMain;
 };
 
-export { performance };
+export { performancePage };

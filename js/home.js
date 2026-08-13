@@ -39,7 +39,7 @@ let integrityCheck = 0;
 alertWindow.style.fontSize = "1.5rem";
 alertWindow.className = "no-verify-window";
 // const userId = localStorage.getItem("workoutUserId");
-const userId = "6a68f0d6ca0c4f40594d43a9";
+const userId = "6a6695c18889470e03c937ec";
 const response = await fetch(`${myUrl}/workout-users`, {
   method: "GET",
   headers: {

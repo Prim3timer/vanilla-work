@@ -1,8 +1,8 @@
 import myUrl from "./myUrl.js";
 const signUp = document.createElement("div");
 signUp.className = "register";
+const linker = document.createElement("p");
 const signUpHeader = document.createElement("h3");
-const linker = document.createElement("linker");
 const regForm = document.createElement("form");
 const usernameLabel = document.createElement("label");
 usernameLabel.innerHTML = "username";
@@ -33,6 +33,7 @@ regForm.append(usernameLabel, emailLabel, passwordLabel, confirmPasswordLabel);
 regForm.className = "reg-form";
 signUpHeader.innerHTML = "sign up";
 signUp.appendChild(signUpHeader);
+signUp.appendChild(linker);
 signUp.append(regForm, regbutton);
 
 const serviceId = "service_d1lfnf9";
@@ -74,7 +75,7 @@ const createUserDets = async () => {
 
     console.log(userDets);
     if (passwordInput.value === confirmPasswordInput.value) {
-      linker.innerHTML = `A link has been sent to ${trimmedEmail}. Head over there to verify your email`;
+      linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
       const response = await fetch(`${myUrl}/workout-register`, {
         method: "POST",
         headers: {

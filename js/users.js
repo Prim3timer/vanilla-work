@@ -65,14 +65,15 @@ const usersPage = () => {
     for (let j = 0; j < 4; j++) {
       nameElement.innerHTML = users[i].username;
       rolesElement.innerHTML = Object.keys(users[i].roles).join(", ");
-      joined.innerHTML = new Date(users[i].joined).toLocaleString("en-US", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric",
-      });
+      // joined.innerHTML = new Date(users[i].joined).toLocaleString("en-US", {
+      //   day: "numeric",
+      //   month: "long",
+      //   year: "numeric",
+      //   hour: "numeric",
+      //   minute: "numeric",
+      //   second: "numeric",
+      // });
+      joined.innerHTML = users[i]._id;
     }
     settingsAnchor.innerHTML = "user settings";
     settingsAnchor.addEventListener("click", instanceer.shower);

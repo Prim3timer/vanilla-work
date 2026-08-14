@@ -342,7 +342,11 @@ const saveWork = async () => {
     date: new Date(),
     userId,
     exerciseDets: exercise,
-    mark: (anExercise / (exercise.length * numberOfRounds)) * 100,
+    mark:
+      // do not exceed 100% no matter how many times an exercise is repeated.
+      anExercise / (exercise.length * numberOfRounds) <= 1
+        ? (anExercise / (exercise.length * numberOfRounds)) * 100
+        : 100,
   };
   console.log(workDets);
   console.log(myUrl);

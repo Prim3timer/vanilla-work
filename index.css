@@ -247,6 +247,10 @@ flex-direction: column;
 .reset-buttons >* {
   flex: 0 1  40%
 }
+
+.no-reply {
+  display: none;
+}
  .reply {
   background-color: gainsboro;
   color: darkslateblue;

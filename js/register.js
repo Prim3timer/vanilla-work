@@ -1,5 +1,6 @@
 import myUrl from "./myUrl.js";
 const signUp = document.createElement("div");
+
 signUp.className = "register";
 const linker = document.createElement("p");
 const signUpHeader = document.createElement("h3");
@@ -75,7 +76,7 @@ const createUserDets = async () => {
 
     console.log(userDets);
     if (passwordInput.value === confirmPasswordInput.value) {
-      linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
+      linker.innerHTML = `A link has been sent to "~~~${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
       const response = await fetch(`${myUrl}/workout-register`, {
         method: "POST",
         headers: {

@@ -5,6 +5,7 @@ import { usersPage } from "./users.js";
 import { ElementCatcher } from "./genFunc.js";
 import { register } from "./register.js";
 import myUrl from "./myUrl.js";
+import { forgotPage } from "./forgotPassword.js";
 
 const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
@@ -14,6 +15,7 @@ const urlParams = new URLSearchParams(verifyUrl);
 const email = urlParams.get("email");
 const issuedTime = urlParams.get("elapsed");
 console.log(email, issuedTime);
+// console.log(forgotPage());
 
 const getVerified = async () => {
   if (email) {
@@ -35,6 +37,7 @@ const getVerified = async () => {
           },
         },
       );
+
       const reply = await updateUser.json();
       const replyElement = document.getElementsByClassName("no-reply")[0];
       replyElement.className = "reply";
@@ -55,15 +58,19 @@ const containers = [
   settingsPage(),
   usersPage(),
   register(),
+  forgotPage(),
 ];
 
 const instanceer = new ElementCatcher(containers, mainContainer);
 const webpages = navbar.children;
 const regLink = document.getElementsByClassName("reg-link")[0];
-// console.log(signUp);
+const forgotMain = document.getElementsByClassName("forgot-password")[0];
+console.log(forgotMain);
 
 webpages[0].addEventListener("click", instanceer.shower);
 webpages[1].addEventListener("click", instanceer.shower);
 webpages[2].addEventListener("click", instanceer.shower);
 webpages[3].addEventListener("click", instanceer.shower);
+// webpages[5].addEventListener("click", instanceer.shower);
 regLink.addEventListener("click", instanceer.shower);
+forgotMain.addEventListener("click", instanceer.shower);

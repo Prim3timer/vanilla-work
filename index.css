@@ -14,8 +14,7 @@
  body {
    /* background-color: yellowgreen; */
    display: flex;
-   min-height: 100vh;
-   /* border: 4px solid red; */
+   /* min-height: 100vh; */
    min-width: 100%;
    /* border-bottom: 2px solid red; */
 
@@ -25,15 +24,30 @@
   
   #fer {
     padding-top: 1rem;
-    display: grid;
+    display: flex;
     /* width: 100%;  */
     flex-grow: 1;
-    /* background-color: aquamarine; */
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    /* height: 100vw; */
     
   }
+
+  #home-page {
+    padding: 1rem 0;
+    display: flex;
+   /* height:100vh; */
+   align-items: center;
+   justify-content: flex-end;
+   /* height: auto; */
+  }
   
+  #main-page {
+    /* background-color: red; */
+    display: flex;
+    height: 100vh;
+
+  }
   
   button {
     background-color: bisque;
@@ -192,20 +206,47 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .login, .activity, .register, .user-settings, .users, .settings, .forgot,  .reset-password, .user-setting {
+.performance, .login, .activity, .register, .user-settings, .users, .settings, .forgot,  .reset-password, .user-setting, #forgot-main, .change-password {
   display: flex;
   padding-top: 2rem;
   /* display: flex; */
   width: 100vw;
 }
 
-.settings, .user-settings {
+.settings, .user-settings, #forgot-main, .change-password {
   flex-direction: column;
    justify-content: flex-start;
    align-items: center;
    width: 100vw;
-   /* background-color: red; */
+  }
+
+  .forgot-form {
+    display: flex;
+    /* justify-content: center; */
+    row-gap: 1rem;
+    /* margin: 4rem 0; */
+    /* background-color: darkslateblue; */
+  }
+
+  .forgot-button {
+     background-color: darkslateblue;
+     color: white;
+     width: 20rem;
+  }
+  
+  
+  .login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  height: 100vh;
  }
+
+
+
+
 
  .user-setting-buttons {
   display: flex;
@@ -275,6 +316,10 @@ flex-direction: column;
   align-items: center;
 }
 
+#forgot-main {
+  row-gap: 1rem;
+}
+
 .forgot-form {
     display: flex;
     max-width: 300px;
@@ -336,11 +381,6 @@ flex-direction: column;
   font-weight: bold;
  }
 
- .login {
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
- }
 
  .login-button {
   font-size: 1.2  rem;
@@ -354,11 +394,15 @@ flex-direction: column;
   flex-direction: column;
 }
 
-.login-form input {
+.login-form input, .email-input {
    width: 60vw;
    max-width: 300px !important;
    padding: .2rem;
 
+ }
+
+ .forgot-button {
+  width: 15rem;
  }
 
  table {
@@ -557,7 +601,7 @@ table th {
    align-items: center;
    /* place-content: center; */
    color: purple;
-   width: 15rem;
+   width: 0rem;
    font-size: 0.01px;
    border-radius: 5px;  
    padding: 1rem;
@@ -601,11 +645,12 @@ table th {
  }
 
  #jog-up {
-   flex: 0 1 25%;
+   flex: 0 1 35%;  
    min-height: 3rem;
+   /* margin-left: 1rem; */
    font-size: 1rem;
    padding: .5rem;
-   width: 10rem;
+   width: 25rem;
  }
 
 

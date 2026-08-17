@@ -1,4 +1,4 @@
-import { timeClocking } from "./genFunc.js";
+import { timeClocking, timeClockings } from "./genFunc.js";
 import myUrl from "./myUrl.js";
 
 let globalData = [];
@@ -72,7 +72,7 @@ const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
 
 dHeader.innerHTML = "duraton (hr:min:s)";
-rHeader.innerHTML = "rounds completed";
+rHeader.innerHTML = "round on";
 exHeader.innerHTML = "completed (%)";
 exDetsHeader.innerHTML = "exercises/set";
 // markHeader.innerHTML = "mark (%)";
@@ -213,6 +213,7 @@ const getData = async () => {
       let detsDuration = document.createElement("p");
       let detsExHeader = document.createElement("h4");
       let detsExList = document.createElement("ol");
+      let numberOfExercises = document.createElement("p");
 
       perfy.exerciseDets.map((exercise) => {
         const listItem = document.createElement("li");
@@ -236,15 +237,19 @@ const getData = async () => {
       detsWindow.appendChild(closure);
       detsWindow.appendChild(detsExHeader);
       detsWindow.appendChild(detsExList);
+      detsWindow.appendChild(numberOfExercises);
       let detNumberOfRounds = document.createElement("p");
       let detExDuration = document.createElement("p");
       let detsInterval = document.createElement("p");
       // detsExList.replaceChildren();
+      const betweenExes = perfy.exerciseTimings[2].interval;
+      const exerciseLength = perfy.exerciseTimings[1].exercisesDuration;
       detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
-      detsInterval.innerHTML = `interval b/w exercises: ${perfy.exerciseTimings[2].interval}`;
-      detExDuration.innerHTML = `duration of each exercise: ${perfy.exerciseTimings[1].exercisesDuration}`;
-      detsDuration.innerHTML = `duration: ${timeClocking(duration)}`;
+      detsInterval.innerHTML = `interval b/w exercises: ${timeClockings(betweenExes)}`;
+      detExDuration.innerHTML = `duration of each exercise: ${timeClockings(exerciseLength)}`;
+      detsDuration.innerHTML = `duration: ${timeClockings(duration)}`;
       detsExHeader.innerHTML = `exercises list:`;
+      numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
       detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
       console.log(detsWindowCover);
       if (detsWindowCover.contains(detsWindow)) {

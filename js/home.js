@@ -93,6 +93,7 @@ const dashboard = document.createElement("div");
 dashboard.className = "indicator-container";
 // dashboard.style.backgroundColor = "yellow";
 const firstCont = document.createElement("div");
+firstCont.className = "home-page";
 const statusContainer = document.createElement("section");
 statusContainer.id = "status-container";
 statusContainer.append(dashboard);
@@ -112,7 +113,7 @@ let roundUp = document.createElement("button");
 const homePage = () => {
   console.log(myUrl);
   //   rounder.innerHTML = round;
-  firstCont.id = "fer";
+  firstCont.id = "home-page";
   firstCont.style.display = "flex";
   firstCont.style.flexDirection = "column";
   firstCont.style.width = "100vw";
@@ -142,7 +143,6 @@ const homePage = () => {
   buttonsCont.style.flex = "0 1 15%";
   buttonsCont.style.width = "90vw";
 
-  console.log(firstCont);
   const firstContent = document.createElement("p");
   firstCont.append(firstContent);
 
@@ -157,7 +157,6 @@ const homePage = () => {
 
   firstContent.innerHTML = "home";
   firstContent.style.visibility = "hidden";
-  console.log(firstCont);
   return firstCont;
 };
 
@@ -175,10 +174,13 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.boxShadow = "0em 0em 0em";
     formerItem.style.zIndex = pIndex - 1;
 
+    jogup.style.transitionProperty = "scale(2) translateX(40px) flex width";
     jogup.style.transform = "scale(2) translateX(40px)";
     jogup.style.color = "yellow";
     jogup.style.backgroundColor = "green";
     jogup.style.border = "2px solid green";
+    jogup.style.flex = "0 0 8rem";
+    jogup.style.width = "25rem";
     jogup.style.boxShadow = "0.6em 0.6em .6em gray";
 
     // change the content of the set element back to  the 'round' variable
@@ -205,6 +207,7 @@ function general(currentItem, formerItem, nextItem) {
         currentItem.style.zIndex = pIndex;
 
         const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
+        console.log(exerciseIndex);
         const indexDiff =
           exercise.length - exercise.indexOf(currentItem.innerHTML);
         const indexSum =
@@ -267,20 +270,16 @@ function general(currentItem, formerItem, nextItem) {
         //cycle element's color goes back to normal after warning.
       } else cycle.style.color = "purple";
 
-      // if sec = 35 and controls.complete = 'yes', resolve the promise
+      // if one exercise is complete, change controls.complete to "yes" and if controls.complete = 'yes', resolve the promise
       if (sec > exercisesDuration + interval) {
         complete = "yes";
         if (complete === "yes") {
           resolve(console.log("resolved"));
-          // console.log(integrityCheck, exercisesDuration + interval);
-          console.log(integrityCheck, sec - 1);
           if (integrityCheck / (exercisesDuration + interval) < 1) {
             anExercise = anExercise;
             console.log("don't add");
           } else {
             anExercise++;
-            console.log("add");
-            console.log(anExercise);
           }
           clearInterval(ID);
         } else reject("not resolved");
@@ -290,10 +289,11 @@ function general(currentItem, formerItem, nextItem) {
       // rate of sec change
       if (sec > 4) {
         cycle.style.transitionProperty =
-          "font-size, height, border, grid-template-columns";
-        cycle.style.transitionDuration = "1s";
+          "font-size, height, width, border, grid-template-columns";
+        cycle.style.transitionDuration = "2s";
         cycle.style.fontSize = sec > 10000 ? "3.5rem" : "4.5rem";
         cycle.style.height = "6rem";
+        cycle.style.width = "15rem";
         cycle.style.border = "2px solid brown";
         cycle.style.gridTemplateColumns = "5.5rem";
         cycle.transitTimingFunction = "ease-in";
@@ -301,7 +301,7 @@ function general(currentItem, formerItem, nextItem) {
 
         rounder.style.transitionProperty =
           "font-size, height, border-right, border-top, border-bottom, flex";
-        rounder.style.transitionDuration = ".9s, .6s, .6s, .6s, .6s, .8s";
+        rounder.style.transitionDuration = "2s, 2s, .6s, .6s, 2s, 1.5s";
         // rounder.style.transitionDuration = '.5s'
         rounder.style.transitTimingFunction = "ease-in";
 
@@ -310,13 +310,13 @@ function general(currentItem, formerItem, nextItem) {
         rounder.style.borderRight = "2px solid brown";
         rounder.style.borderTop = "2px solid brown";
         rounder.style.borderBottom = "2px solid brown";
-        rounder.style.flex = "0 1 55%";
+        rounder.style.flex = "0 1 20rem";
         // rounder.style.transitionDelay = '.1s'
 
         dashboard.style.transitionProperty = "flex";
         dashboard.style.transitionDuration = "1.2s";
         // dashboard.transitTimingFunction = 'ease-in'
-        dashboard.style.flex = "0 1 60%";
+        dashboard.style.flex = "0 1 20%";
         // dashboard.style.transitionDelay = '.2s'
       }
     }, 1000);
@@ -382,15 +382,13 @@ let reality = async () => {
       for (let j = 0; j < elements.length; j++) {
         elements[j].addEventListener("click", () => {
           i = elements.indexOf(elements[j]) - 1;
-          //   const { interval, exercisesDuration } = user.workSettings;
           // get to the end of the exercise so the next one can quickly begin
-          // console.log(integrityCheck, interval + exercisesDuration);
           console.log(integrityCheck);
           sec = interval + exercisesDuration;
           // reverse many other events at the push of any axercise
           elements.map((element) => {
             if (
-              // if any exercise is Active, reverse it
+              // if any exercise is Active, deactivate it
               element.style.color == "yellow" &&
               element.style.backgroundColor == "green"
             ) {
@@ -399,7 +397,7 @@ let reality = async () => {
               element.style.transform = "scale(1)";
               element.style.boxShadow = "0em 0em 0em";
             } else if (
-              // is any exercise is in transition to invactive state, make it fully inactive
+              // if any exercise is in transition to invactive state, make it instantly inactive
               element.style.backgroundColor == "darkorange"
               // elements.indexOf(element) != i - 1
             ) {
@@ -410,7 +408,7 @@ let reality = async () => {
         });
       }
 
-      // looping through the elements in the elements array
+      // looping through the elements in the exercise array
       await general(currentItemIndex, formerIemIndex, nextItemIndex);
     }
   } catch (error) {
@@ -423,7 +421,7 @@ let reality = async () => {
     if (round == numberOfRounds - 1) {
       go.innerHTML = `the home stretch!`;
       RoundInspector = 10000;
-    } else if (round === 5) {
+    } else if (round === numberOfRounds) {
       RoundInspector = 15000;
 
       go.innerHTML = "one more round!";

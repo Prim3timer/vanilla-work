@@ -119,7 +119,8 @@ const getVerified = async () => {
       },
     });
     const users = await response.json();
-    greeting.innerHTML = `Hi, ${guestId && users.find((user) => user._id === guestId).username}`;
+    greeting.innerHTML =
+      guestId && `Hi, ${users.find((user) => user._id === guestId)?.username}`;
     if (email) {
       const foundUser = users.find((user) => user.email === email);
       if (foundUser) {

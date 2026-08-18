@@ -27,11 +27,6 @@ forgotForm.append(emailLabel);
 forgotMain.append(forgotForm, forgotButton);
 
 const changePageCont = [changePage()];
-const instanceer = new ElementCatcher(
-  changePageCont,
-  mainContainer,
-  emailValue.value,
-);
 
 function ElementCatcher(pages, mainContainer) {
   this.shower = async function (e) {
@@ -66,6 +61,12 @@ function ElementCatcher(pages, mainContainer) {
   };
 }
 
+const instanceer = new ElementCatcher(
+  changePageCont,
+  mainContainer,
+  // emailValue.value,
+);
+
 const addEmail = async () => {
   console.log(emailValue.value);
   const email = emailValue.value.trim().toLocaleLowerCase();
@@ -75,13 +76,13 @@ const addEmail = async () => {
       "Content-Type": "application/json",
     },
   });
+
   const users = await response.json();
   const foundUser = users.find((user) => user.email === email);
-
-  //   if (foundUser) {
-  //   } else {
-  //     console.log("the email entered does not match any in our database");
-  //   }
+  if (foundUser) {
+  } else {
+    console.log("the email entered does not match any in our database");
+  }
   console.log(foundUser);
 };
 

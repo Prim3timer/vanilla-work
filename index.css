@@ -538,6 +538,7 @@ table th {
   opacity: .8;
 }
 
+
 .hide-nav-links {
   display: none;
 }
@@ -551,7 +552,7 @@ table th {
    /* padding: .5rem; */
    align-items: center;
    column-gap: 1rem;
-   width: 100%;
+   width: 80%;
    padding: 0 2rem;
    margin-top: .5rem;
    height: 6rem;
@@ -564,9 +565,9 @@ table th {
  .indicator-container {
    display: flex;
    align-items: center;
-   justify-content: flex-start;
+   /* justify-content: center; */
    /* background-color: blue; */
-   height: 5rem;
+   height: 10rem;
    /* flex: 0 1 65% */
    flex: 0 1 0%
  }
@@ -632,7 +633,7 @@ table th {
 
  .exercise,
  #jog-up {
-   height: 50%;
+   height: 30%;
    display: flex;
    color: sandybrown;
    background-color: maroon;

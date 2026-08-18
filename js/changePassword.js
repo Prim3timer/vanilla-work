@@ -1,7 +1,5 @@
 import myUrl from "./myUrl.js";
 
-let currentUser;
-
 const changePassword = document.createElement("div");
 const changePasswordHeader = document.createElement("h3");
 changePasswordHeader.innerHTML = "create password";
@@ -13,6 +11,7 @@ confrimButton.className = "forgot-button";
 confrimButton.innerHTML = "confirm";
 
 const username = document.createElement("h4");
+// username.style.backgroundColor = "red";
 
 const changeForm = document.createElement("form");
 changeForm.append(username);
@@ -37,8 +36,13 @@ changeForm.append(passwordLabel, confirmPasswordLabel);
 changePassword.append(changeForm);
 changePassword.appendChild(confrimButton);
 
+console.log(username);
 const getCred = async (e) => {
-  e.preventDefault();
+  console.log("hiiii");
+  // e.preventDefault();
+  const verifyUrl = document.location.search;
+  const urlParams = new URLSearchParams(verifyUrl);
+  const email = urlParams.get("email");
   try {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",
@@ -47,13 +51,9 @@ const getCred = async (e) => {
       },
     });
     const users = await response.json();
-    const verifyUrl = document.location.search;
-    const urlParams = new URLSearchParams(verifyUrl);
-    const email = urlParams.get("email");
     console.log(email);
     const foundUser = users.find((user) => user.email === email);
     if (foundUser) {
-      currentUser = foundUser;
       username.innerHTML = `username: ${foundUser.username}`;
     }
   } catch (error) {
@@ -100,6 +100,7 @@ const gratherCred = async (e) => {
 };
 
 window.addEventListener("load", getCred);
+// window.onload = getCred;
 confrimButton.addEventListener("click", gratherCred);
 const changePage = () => {
   return changePassword;

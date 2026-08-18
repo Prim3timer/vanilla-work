@@ -32,19 +32,26 @@ const timeClockings = (sec) => {
   }`;
 };
 
-function ElementCatcher(pages, mainContainer) {
+function ElementCatcher(pages, mainContainer, guestId) {
   this.shower = async function (e) {
     e.preventDefault();
     const result = await pages;
     console.log(pages);
     const oneElement = result.map((content) => {
-      if (this.innerHTML == content.firstElementChild.innerHTML) {
-        if (mainContainer.children.length > 0) {
-          mainContainer.firstElementChild.replaceWith(content);
-          return;
-        } else {
-          mainContainer.appendChild(content);
-          return;
+      if (
+        guestId ||
+        this.innerHTML == "forgot password" ||
+        this.innerHTML == "sign up"
+      ) {
+        if (this.innerHTML == content.firstElementChild.innerHTML) {
+          console.log(content);
+          if (mainContainer.children.length > 0) {
+            mainContainer.firstElementChild.replaceWith(content);
+            return;
+          } else {
+            mainContainer.appendChild(content);
+            return;
+          }
         }
       }
       return pages;

@@ -3,6 +3,8 @@ import { timeClocking } from "./genFunc.js";
 let ID;
 let sec = 0;
 
+console.log(sec)
+
 const greeting = document.getElementsByClassName("p");
 greeting.className = "greeting";
 let pauser = document.createElement("button");

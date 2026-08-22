@@ -40,8 +40,7 @@ alertWindow.style.top = "40%";
 let integrityCheck = 0;
 alertWindow.style.fontSize = "1.5rem";
 alertWindow.className = "no-verify-window";
-// const userId = localStorage.getItem("workoutUserId");
-const userId = "6a6695c18889470e03c937ec";
+const userId = localStorage.getItem("workoutUserId") || "6a6695c18889470e03c937ec";
 const response = await fetch(`${myUrl}/workout-users`, {
   method: "GET",
   headers: {
@@ -83,9 +82,14 @@ console.log(elements[0]);
 const noExAlertElement = document.createElement("p");
 noExAlertElement.style.minWidth = "80%";
 noExAlertElement.innerHTML =
-  "you have not chosen any exercises yet. Head to Settings to make entry";
+  `you have not chosen any exercises yet. click on "settings" tabe to make entry`;
 if (exerciseCont.children.length === 0) {
   exerciseCont.appendChild(noExAlertElement);
+  exerciseCont.style.backgroundColor = "darkslateBlue";
+  exerciseCont.style.justifyContent = "center";
+  exerciseCont.style.alignItems = "center";
+  exerciseCont.style.color = "white"
+  exerciseCont.style.fontSize = "1.5rem";
 }
 
 goContainer.append(go, saver);
@@ -175,6 +179,9 @@ function general(currentItem, formerItem, nextItem) {
     formerItem.style.color = "yellow";
     formerItem.style.boxShadow = "0em 0em 0em";
     formerItem.style.zIndex = pIndex - 1;
+    
+
+
 
     jogup.style.transitionProperty = "scale(2) translateX(40px) flex width";
     jogup.style.transform = "scale(2) translateX(40px)";
@@ -207,6 +214,8 @@ function general(currentItem, formerItem, nextItem) {
         // It is used to make the current excersise appear above
         //  previous and next excercises
         currentItem.style.zIndex = pIndex;
+        currentItem.style.left = `${sec * Math.sin(sec * 4 * Math.PI)}px`
+
 
         const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
         console.log(exerciseIndex);

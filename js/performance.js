@@ -6,7 +6,7 @@ let globalUser = {};
 
 const entryCount = document.createElement("span");
 
-const userId = "6a6695c18889470e03c937ec";
+const userId = localStorage.getItem("workoutUserId") || "6a6695c18889470e03c937ec";
 
 const performanceMain = document.createElement("div");
 performanceMain.className = "performance";

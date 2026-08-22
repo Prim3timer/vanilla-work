@@ -50,13 +50,12 @@ function ElementCatcher(pages, mainContainer, guestId) {
             return;
           } else {
             mainContainer.appendChild(content);
-            return;
+            return content;
           }
         }
       }
-      return pages;
+      return content;
     });
-  };
 }
-
+}
 export { timeClocking, timeClockings, ElementCatcher };

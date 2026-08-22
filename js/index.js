@@ -6,10 +6,22 @@ import { ElementCatcher } from "./genFunc.js";
 import { register } from "./register.js";
 import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
+import { loginPage } from "./login.js";
 
+console.log(loginPage())
 const greeting = document.getElementsByClassName("greeting")[0];
+greeting.style.position = "fixed";
+greeting.style.backgroundColor = "gainsboro";
+greeting.style.padding = ".5rem";
+greeting.style.borderRadius = "5px";
 const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
+
+const submitButton = loginPage().getElementsByClassName("sign-up-anchor")[0];
+
+// console.log(loginPages())
+
+// mainContainer.appendChild(greeting)
 
 // navbar dynamic children
 const homeLInk = document.createElement("a");
@@ -30,8 +42,8 @@ const logoutLInk = document.createElement("a");
 logoutLInk.innerHTML = "logout";
 logoutLInk.id = "logout";
 const verifyUrl = document.location.search;
-const guestId = localStorage.getItem("userSettingsId");
-const loginPage = document.getElementsByClassName("login")[0];
+const guestId = localStorage.getItem("workoutUserId");
+// const loginPage = document.getElementsByClassName("login")[0];
 console.log(greeting);
 const urlParams = new URLSearchParams(verifyUrl);
 const email = urlParams.get("email");
@@ -39,9 +51,9 @@ const issuedTime = urlParams.get("elapsed");
 console.log(email, issuedTime);
 // console.log(forgotPage());
 
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
-const submitButton = document.getElementsByClassName("sign-up-anchor")[0];
+const usernameInput = loginPage().querySelector("#username");
+const passwordInput = loginPage().querySelector("#password");
+console.log(usernameInput.value, passwordInput.value)
 
 const handleRefresh = async (e) => {
   if (guestId) {
@@ -51,7 +63,7 @@ const handleRefresh = async (e) => {
     // mainContainer.insertBefore(navbar);
     // console.log(mainContainer);
 
-    if (mainContainer.children.length > 0) {
+    if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
       mainContainer.firstElementChild.replaceWith(homePage());
       return;
     } else {
@@ -61,16 +73,16 @@ const handleRefresh = async (e) => {
   } else {
     if (mainContainer.children.length > 0) {
       // greeting.innerHTML = `hi, ${reply.name}`;
-      mainContainer.firstElementChild.replaceWith(loginPage);
+      mainContainer.firstElementChild.replaceWith(loginPage());
       return;
     } else {
-      mainContainer.appendChild(loginPage);
+      mainContainer.appendChild(loginPage());
       return;
     }
   }
 };
 
-// handleRefresh();
+handleRefresh();
 console.log(submitButton);
 
 const login = async (e) => {
@@ -91,7 +103,7 @@ const login = async (e) => {
     const reply = await response.json();
     console.log(reply.id);
     if (reply.id) {
-      localStorage.setItem("userSettingsId", reply.id);
+      localStorage.setItem("workoutUserId", reply.id);
       if (mainContainer.children.length > 0) {
         mainContainer.firstElementChild.replaceWith(homePage());
         greeting.innerHTML = `hi, ${reply.name}`;
@@ -110,7 +122,17 @@ const login = async (e) => {
 
 submitButton.addEventListener("click", login);
 
+const containers = [
+  homePage(),
+  performancePage(),
+  settingsPage(),
+  usersPage(),
+  register(),
+  forgotPage(),
+];
+
 const getVerified = async () => {
+  
   try {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",
@@ -153,16 +175,10 @@ const getVerified = async () => {
 
 getVerified();
 
-const containers = [
-  homePage(),
-  performancePage(),
-  settingsPage(),
-  usersPage(),
-  register(),
-  forgotPage(),
-];
+
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
+
 const webpages = navbar.children;
 console.log(navbar.children);
 const regLink = document.getElementsByClassName("reg-link")[0];
@@ -182,12 +198,15 @@ const logoutAnchor = document.getElementById("logout");
 const getToHomePage = (e) => {
   e.preventDefault();
   localStorage.removeItem("userSettingsId");
-  mainContainer.firstElementChild.replaceWith(loginPage);
+  if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId")) {
+  mainContainer.firstElementChild.replaceWith(loginPage());
+  localStorage.removeItem("workoutUserId");
   greeting.innerHTML = "";
   const navFirst = document.createElement("h4");
   navFirst.innerHTML = "Aerobics";
   navFirst.style.color = "white";
   navbar.replaceChildren();
   navbar.appendChild(navFirst);
+  } else mainContainer.appendChild(loginPage())
 };
 logoutAnchor.addEventListener("click", getToHomePage);

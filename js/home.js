@@ -521,4 +521,5 @@ let increaser = (e) => {
 
 forward.addEventListener("click", increaser);
 
+
 export { homePage };

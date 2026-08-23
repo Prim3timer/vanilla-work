@@ -17,30 +17,60 @@ greeting.style.borderRadius = "5px";
 const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
 
+     const navFirst = document.createElement("h4");
+  navFirst.innerHTML = "Aerobics Lab";
+  navFirst.style.color = "white";
+  navFirst.style.fontSize = "1.5rem";
+
+console.log(navbar);
+
+const homeLInk = document.createElement("a");
+homeLInk.innerHTML = "home";
+homeLInk.id = "home";
+
+const perfLInk = document.createElement("a");
+perfLInk.innerHTML = "performance";
+perfLInk.id = "about";
+
+const settinsLInk = document.createElement("a");
+settinsLInk.innerHTML = "settings";
+settinsLInk.id = "settings";
+
+const usersLInk = document.createElement("a");
+usersLInk.innerHTML = "users";
+usersLInk.id = "users";
+
+const logoutLInk = document.createElement("a");
+logoutLInk.innerHTML = "logout";
+logoutLInk.id = "logout";
+
+
+
 const submitButton = loginPage().getElementsByClassName("sign-up-anchor")[0];
+
 
 // console.log(loginPages())
 
 // mainContainer.appendChild(greeting)
 
 // navbar dynamic children
-const homeLInk = document.createElement("a");
-homeLInk.innerHTML = "home";
-homeLInk.id = "home";
-homeLInk.className = "nav-link";
-console.log(homeLInk);
-const perfLInk = document.createElement("a");
-perfLInk.innerHTML = "performance";
-perfLInk.id = "about";
-const settinsLInk = document.createElement("a");
-settinsLInk.innerHTML = "settings";
-settinsLInk.id = "settings";
-const usersLInk = document.createElement("a");
-usersLInk.innerHTML = "users";
-usersLInk.id = "users";
-const logoutLInk = document.createElement("a");
-logoutLInk.innerHTML = "logout";
-logoutLInk.id = "logout";
+// const homeLInk = document.createElement("a");
+// homeLInk.innerHTML = "home";
+// homeLInk.id = "home";
+// homeLInk.className = "nav-link";
+// console.log(homeLInk);
+// const perfLInk = document.createElement("a");
+// perfLInk.innerHTML = "performance";
+// perfLInk.id = "about";
+// const settinsLInk = document.createElement("a");
+// settinsLInk.innerHTML = "settings";
+// settinsLInk.id = "settings";
+// const usersLInk = document.createElement("a");
+// usersLInk.innerHTML = "users";
+// usersLInk.id = "users";
+// const logoutLInk = document.createElement("a");
+// logoutLInk.innerHTML = "logout";
+// logoutLInk.id = "logout";
 const verifyUrl = document.location.search;
 const guestId = localStorage.getItem("workoutUserId");
 // const loginPage = document.getElementsByClassName("login")[0];
@@ -57,13 +87,11 @@ console.log(usernameInput.value, passwordInput.value)
 
 const handleRefresh = async (e) => {
   if (guestId) {
-    // navbar.replaceChildren();
-    // navbar.children.className = "no-verify-window";
-    // navbar.append(homeLInk, perfLInk, settinsLInk, usersLInk, logoutLInk);
-    // mainContainer.insertBefore(navbar);
-    // console.log(mainContainer);
+  navbar.replaceChildren();
+  navbar.append(homeLInk, perfLInk, settinsLInk, usersLInk, logoutLInk);
 
     if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
+
       mainContainer.firstElementChild.replaceWith(homePage());
       return;
     } else {
@@ -71,8 +99,12 @@ const handleRefresh = async (e) => {
       return;
     }
   } else {
+     // insert the business name in the navbar
+   
+  navbar.replaceChildren();
+  navbar.appendChild(navFirst);
     if (mainContainer.children.length > 0) {
-      // greeting.innerHTML = `hi, ${reply.name}`;
+     
       mainContainer.firstElementChild.replaceWith(loginPage());
       return;
     } else {
@@ -107,6 +139,10 @@ const login = async (e) => {
       if (mainContainer.children.length > 0) {
         mainContainer.firstElementChild.replaceWith(homePage());
         greeting.innerHTML = `hi, ${reply.name}`;
+        
+         // insert the nav links into the navbar
+   navbar.replaceChildren();
+  navbar.append(homeLInk, perfLInk, settinsLInk, usersLInk, logoutLInk);
         return;
       } else {
         mainContainer.appendChild(homePage());
@@ -202,9 +238,6 @@ const getToHomePage = (e) => {
   mainContainer.firstElementChild.replaceWith(loginPage());
   localStorage.removeItem("workoutUserId");
   greeting.innerHTML = "";
-  const navFirst = document.createElement("h4");
-  navFirst.innerHTML = "Aerobics";
-  navFirst.style.color = "white";
   navbar.replaceChildren();
   navbar.appendChild(navFirst);
   } else mainContainer.appendChild(loginPage())

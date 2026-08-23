@@ -30,8 +30,7 @@ selectElement.className = "roles-select";
 // selectElement.value = "roles";
 selectCont.append(selectLabel);
 
-// const userId = localStorage.getItem("userSettingsId");
-const userId = "	6a7ee5c484d045f83bf85e10";
+const userId = localStorage.getItem("userSettingsId");
 
 // these are the breaks
 const usernameBreak = document.createElement("br");

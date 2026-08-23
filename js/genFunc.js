@@ -21,7 +21,7 @@ const timeClockings = (sec) => {
     sec > 3600
       ? `${Math.floor(sec / 3600)}hrs, ${Math.floor((sec % 3600) / 60)}min, ${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)}s `
       : sec < 10
-        ? `:${sec % 60}s`
+        ? `${sec % 60}s`
         : sec < 60
           ? ` ${sec % 60}s`
           : sec % 60 >= 10
@@ -41,7 +41,8 @@ function ElementCatcher(pages, mainContainer, guestId) {
       if (
         guestId ||
         this.innerHTML == "forgot password" ||
-        this.innerHTML == "sign up"
+        this.innerHTML == "sign up" ||
+        this.innerHTML == "user settings"
       ) {
         if (this.innerHTML == content.firstElementChild.innerHTML) {
           console.log(content);

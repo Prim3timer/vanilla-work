@@ -29,9 +29,24 @@ const submitButton = document.createElement("button");
 submitButton.className = "sign-up-anchor";
 submitButton.innerHTML = "home"
 
-loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, submitButton);
+const loginLinks = document.createElement("section");
+loginLinks.className = "login-links";
+const forgotPasswordLink = document.createElement("a");
+forgotPasswordLink.className = "forgot-password";
+forgotPasswordLink.innerHTML = "forgot password";
+forgotPasswordLink.href = "";
+loginLinks.append(forgotPasswordLink);
+const signUpLink = document.createElement("a");
+signUpLink.className = "reg-link";
+signUpLink.href = "";
+signUpLink.innerHTML = "sign up";
+const needAnaccount = document.createElement("p");
+needAnaccount.innerHTML = "need an account?";
+loginLinks.append(forgotPasswordLink, needAnaccount, signUpLink);
 
-loginMain.append(loginForm);
+loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, submitButton,);
+
+loginMain.append(loginForm,  loginLinks);
 
 const loginPage = () => {
     return loginMain;

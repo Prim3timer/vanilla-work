@@ -64,7 +64,7 @@ const createUserDets = async () => {
       name: userNameInput.value.trim(),
       email: emailInput.value.trim().toLowerCase(),
       biz,
-      link: `http://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
+      link: `https://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
     };
 
     const mailSent = await emailjs.send(

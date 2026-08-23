@@ -99,7 +99,7 @@ const dashboard = document.createElement("div");
 dashboard.className = "indicator-container";
 // dashboard.style.backgroundColor = "yellow";
 const firstCont = document.createElement("div");
-firstCont.className = "home-page";
+firstCont.className = "home";
 const statusContainer = document.createElement("section");
 statusContainer.id = "status-container";
 statusContainer.append(dashboard);

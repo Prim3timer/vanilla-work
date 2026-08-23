@@ -16,7 +16,7 @@ emailLabel.innerHTML = "What is your email address?";
 const emailValue = document.createElement("input");
 emailValue.className = "email-input";
 const forgotButton = document.createElement("button");
-forgotButton.innerHTML = "create password";
+forgotButton.innerHTML = "continue";
 forgotButton.className = "forgot-button";
 
 // these are the breaks ha.

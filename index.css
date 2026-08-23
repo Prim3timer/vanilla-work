@@ -11,15 +11,13 @@
    /* background-color: yellowgreen; */
  }
 
- body {
-   /* background-color: yellowgreen; */
-   display: flex;
-   /* min-height: 100vh; */
-   min-width: 100%;
-   /* border-bottom: 2px solid red; */
+ 
+ html, body, #main-page {
+  margin: 0;
+  height: 100%;
+}
 
-   overflow-x: auto;
-  }
+
   
   
   #fer {
@@ -34,21 +32,16 @@
   }
 
   #home-page {
-    padding: 1rem 0;
     display: flex;
-   height: 100vh !important;
-   align-items: center;
-  /* background-color: yellowgreen; */
-   height: auto;
-   flex-grow: 1;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
   }
 
-  #main-page {
-    /* background-color: red; */
+  /* #main-page {
     display: flex;
     height: 100vh;
-
-  }
+  } */
   
   button {
     background-color: bisque;
@@ -209,18 +202,24 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .login, .activity, .register, .user-settings, .users, .settings, .forgot,  .reset-password, .user-setting, #forgot-main, .change-password, .login-form {
+.performance, .login, .activity, .register, .user-settings, .settings, .forgot,  .reset-password, .user-setting, #forgot-main, .change-password, .login-form {
   display: flex;
   padding-top: 2rem;
-  /* display: flex; */
   width: 100vw;
 }
 
-.settings, .user-settings, #forgot-main, .change-password, .login, .login-form{
+.settings, .user-settings, #forgot-main, .change-password, .login, .login-form {
   flex-direction: column;
    justify-content: flex-start;
    align-items: center;
    width: 100vw;
+  }
+
+  .home {
+    justify-content: center;
+    padding: 10rem 0;
+    align-items: center;
+    width: 100vh;
   }
 
   .forgot-form {
@@ -360,7 +359,7 @@ flex-direction: column;
 
 .greeting {
   position: absolute;
-  top: 3rem;
+  top: 2rem;
   left: 1rem;
 }
 
@@ -467,14 +466,6 @@ color: white;
  }
 
 
- .users {
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 0rem;
- }
-
  .performance-header {
   display: inline;
   float: left;
@@ -510,13 +501,35 @@ table th {
 
  }
 
- .performance, .users {
+ .performance {
   flex-direction: column;
   align-items: center;
   
   width: 10rem;
   width: 100vw;
  }
+
+ .users {
+  font-display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  width: 100vw;
+  padding-top: 2rem;
+  /* background-color: red; */
+  height: 100vh;
+ }
+
+ table {
+  max-width: 80vw;
+  align-self: center;
+  justify-self: center;
+ }
+
+ .users h3 {
+  text-align: center;
+ }
+
 
  .exercise-settings-form {
   display: flex;

@@ -52,7 +52,7 @@ function ElementCatcher(pages, mainContainer, guestId, motherShip, replyElement)
         //   console.log("it is it!")
         // }
         console.log(replyElement)
-        if (this.innerHTML == content.firstElementChild.innerHTML) {
+        if (this.innerHTML == content.className) {
           console.log(roles.includes(5150))
           localStorage.setItem("current-page",content.firstElementChild.innerHTML )
           if (mainContainer.children.length > 0) {

@@ -29,7 +29,7 @@ const usersPage = () => {
   console.log(users);
   entryCount.innerHTML = `(${users.length})`;
   // const userBox = document.getElementsByClassName("users")[0];
-  userBox.style.marginTop = "3rem";
+  // userBox.style.marginTop = "3rem";
   const table = document.createElement("table");
   const tableBody = document.createElement("tbody");
   const headerRow = document.createElement("tr");

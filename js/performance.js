@@ -100,13 +100,12 @@ const deleteEntry = async () => {
     const response = await fetch(`${myUrl}/performance/${itemId}`, {
       method: "DELETE",
     });
-    console.log(response);
     if (response) {
       const reply = await response.json();
       const filterate = globalData.filter((data) => data.userId === userId);
       const entryFilterate = filterate.filter((entry) => entry._id != itemId);
       globalData = entryFilterate;
-      console.log(reply);
+  
 
       tableBody.replaceChildren();
       tableBody.appendChild(headerRow);
@@ -119,13 +118,11 @@ const deleteEntry = async () => {
         tableBody.appendChild(dets);
         // perfy is a document in the performance cluster in the database.
         const perfy = entryFilterate[i];
-        console.log(tableBody.children);
         const { workSettings } = globalUser;
         const roundCount = document.createElement("td");
         const { duration } = perfy.exerciseTimings[0];
         roundCount.innerHTML = timeClocking(duration);
         const endurance = document.createElement("td");
-        console.log(perfy.exerciseTimings[3]);
         endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
         const exCount = document.createElement("td");
         const exDet = document.createElement("td");
@@ -151,7 +148,6 @@ const deleteEntry = async () => {
 
         const getId = async (id) => {
           itemId = id;
-          console.log(itemId);
           verifyWindow.className = "verify-window";
           verifyWindowButtonCont.className = "verify-button-cont";
         };
@@ -188,13 +184,10 @@ const getData = async () => {
   });
   const users = await response2.json();
   const user = users.find((user) => user._id == userId);
-  console.log(user);
   globalUser = user;
-  console.log(user.workSettings);
   const foundUserRoles = Object.keys(user.roles);
   yesButton.addEventListener("click", deleteEntry);
   let perfData = await response.json();
-  console.log(perfData);
   globalData = perfData;
   const filteredData = perfData.filter((data) => data.userId === userId);
   entryCount.innerHTML = `(${filteredData.length} entries)`;
@@ -204,7 +197,6 @@ const getData = async () => {
     dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
     tableBody.appendChild(dets);
     const perfy = filteredData[i];
-    console.log(perfy);
     const { duration } = perfy.exerciseTimings[0];
     const showDetWindow = () => {
       let detsWindowCover = document.createElement("section");
@@ -251,7 +243,6 @@ const getData = async () => {
       detsExHeader.innerHTML = `exercises list:`;
       numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
       detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
-      console.log(detsWindowCover);
       if (detsWindowCover.contains(detsWindow)) {
         console.log("yes");
         detsWindow.remove();
@@ -265,13 +256,11 @@ const getData = async () => {
 
     const { workSettings } = user;
     const roundCount = document.createElement("td");
-    console.log(5 % 2);
 
     roundCount.innerHTML = timeClocking(duration);
     roundCount.addEventListener("click", showDetWindow);
     const endurance = document.createElement("td");
     endurance.addEventListener("click", showDetWindow);
-    console.log(perfy);
     endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
     const exCount = document.createElement("td");
     exCount.addEventListener("click", showDetWindow);
@@ -302,7 +291,6 @@ const getData = async () => {
 
     const getId = async (id) => {
       itemId = id;
-      console.log(itemId);
       verifyWindowButtonCont.className = "verify-button-cont";
       verifyWindow.className = "verify-window ";
     };
@@ -313,7 +301,6 @@ const getData = async () => {
 
     performanceMain.append(table);
   }
-
   const navbar = document.getElementsByClassName("navbar")[0];
   const getDatas = document.getElementsByClassName("get-data")[0];
   const perfContainer = document.createElement("section");
@@ -322,7 +309,6 @@ const getData = async () => {
 getData();
 
 const performancePage = () => {
-  console.log(performanceMain);
   return performanceMain;
 };
 

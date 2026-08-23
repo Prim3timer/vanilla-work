@@ -11,9 +11,10 @@ import { loginPage } from "./login.js";
 console.log(loginPage())
 const greeting = document.getElementsByClassName("greeting")[0];
 greeting.style.position = "fixed";
-greeting.style.backgroundColor = "gainsboro";
 greeting.style.padding = ".5rem";
 greeting.style.borderRadius = "5px";
+
+const motherShip = document.getElementById("root")
 const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
 
@@ -71,19 +72,30 @@ const containers = [
   forgotPage(),
 ];
 
+const instanceer = new ElementCatcher(containers, mainContainer, guestId);
+
 const handleRefresh = async (e) => {
  console.log(document); 
 
-  if (guestId) {
-  navbar.replaceChildren();
+ const currentPage = localStorage.getItem("current-page")
+ const getCurrentPage = containers.find((page) => page.firstElementChild.innerHTML === currentPage)
+ console.log(currentPage)
+ if (guestId) {
+   navbar.replaceChildren();
+  // reassign the eventlistener to the pages.
+    homeLInk.addEventListener("click", instanceer.shower)
+   perfLInk.addEventListener("click", instanceer.shower)
+   settingsLInk.addEventListener("click", instanceer.shower)
+   usersLInk.addEventListener("click", instanceer.shower)
   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
 
+  console.log(getCurrentPage)
     if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
 
-      mainContainer.firstElementChild.replaceWith(homePage());
+      mainContainer.firstElementChild.replaceWith(getCurrentPage);
       return;
     } else {
-      mainContainer.appendChild(homePage());
+      mainContainer.appendChild(getCurrentPage);
       return;
     }
   } else {
@@ -100,7 +112,7 @@ const handleRefresh = async (e) => {
 
 handleRefresh();
 console.log(submitButton);
-const instanceer = new ElementCatcher(containers, mainContainer, guestId);
+
 
 const login = async (e) => {
   e.preventDefault();
@@ -126,8 +138,14 @@ const login = async (e) => {
         performancePage().addEventListener("click", instanceer.shower);
         greeting.innerHTML = `hi, ${reply.name}`;
         
-         // insert the nav links into the navbar
+        const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
+        // insert the nav links into the navbar
    navbar.replaceChildren();
+   homeLInk.addEventListener("click", instanceerInner.shower)
+   perfLInk.addEventListener("click", instanceerInner.shower)
+   settingsLInk.addEventListener("click", instanceerInner.shower)
+   usersLInk.addEventListener("click", instanceerInner.shower)
+  
   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
         return;
       } else {
@@ -173,12 +191,19 @@ const getVerified = async () => {
         );
 
         const reply = await updateUser.json();
-        const replyElement = document.getElementsByClassName("no-reply")[0];
+        const replyElement = document.createElement("h4");
         replyElement.className = "reply";
-        replyElement.style.backgroundColor = "gainsboro";
+        // replyElement.style.backgroundColor = "gainsboro";
+        replyElement.style.color = "black";
         replyElement.style.padding = ".5rem";
+        replyElement.style.position = "fixed";
         replyElement.style.borderRadius = "5px";
-        replyElement.innerHTML = reply;
+        replyElement.style.top = "5rem";
+        replyElement.style.justifySelf = "center"
+        replyElement.innerHTML = `<i class="fa-solid fa-check" style="color: green;
+        font-size: 1.5rem;
+        font-weight: bold;"></i> ${reply}`;
+        motherShip.insertBefore(replyElement, mainContainer)
         console.log(reply);
       }
     }
@@ -196,18 +221,17 @@ getVerified();
 const webpages = navbar.children;
 console.log(navbar.children);
 const regLink = loginPage().getElementsByClassName("reg-link")[0];
-const forgotMain = loginPage().getElementsByClassName("forgot-password")[0];
-console.log(webpages[0], webpages[1], webpages[2], webpages[3], regLink, forgotMain);
+const forgotMain = loginPage().getElementsByClassName("forgot-password")[0]
 
-  webpages[0].addEventListener("click", instanceer.shower);
-  webpages[1]?.addEventListener("click", instanceer.shower);
-  webpages[2]?.addEventListener("click", instanceer.shower);
-  webpages[3]?.addEventListener("click", instanceer.shower);
+  // webpages[0].addEventListener("click", instanceer.shower);
+  // webpages[1]?.addEventListener("click", instanceer.shower);
+  // webpages[2]?.addEventListener("click", instanceer.shower);
+  // webpages[3]?.addEventListener("click", instanceer.shower);
   // webpages[5].addEventListener("click", instanceer.shower);
   regLink?.addEventListener("click", instanceer.shower);
   forgotMain?.addEventListener("click", instanceer.shower);
 
-const logoutAnchor = document.getElementById("logout");
+
 
 const getToHomePage = (e) => {
   e.preventDefault();
@@ -215,9 +239,10 @@ const getToHomePage = (e) => {
   if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId")) {
   mainContainer.firstElementChild.replaceWith(loginPage());
   localStorage.removeItem("workoutUserId");
+  localStorage.removeItem("current-page");
   greeting.innerHTML = "";
   navbar.replaceChildren();
   navbar.appendChild(navFirst);
   } else mainContainer.appendChild(loginPage())
 };
-logoutAnchor?.addEventListener("click", getToHomePage);
+logoutLInk.addEventListener("click", getToHomePage);

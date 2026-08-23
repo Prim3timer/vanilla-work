@@ -34,6 +34,7 @@ const timeClockings = (sec) => {
 
 function ElementCatcher(pages, mainContainer, guestId) {
   this.shower = async function (e) {
+    console.log(guestId)
     e.preventDefault();
     const result = await pages;
     console.log(pages);
@@ -42,12 +43,13 @@ function ElementCatcher(pages, mainContainer, guestId) {
         guestId ||
         this.innerHTML == "forgot password" ||
         this.innerHTML == "sign up" ||
-        this.innerHTML == "user settings"
+        this.innerHTML == "user settings" 
       ) {
         if (this.innerHTML == content.firstElementChild.innerHTML) {
-          console.log(content.firstElementChild.innerHTML);
           if (mainContainer.children.length > 0) {
             mainContainer.firstElementChild.replaceWith(content);
+            localStorage.setItem("current-page",content.firstElementChild.innerHTML )
+            console.log(content.firstElementChild.innerHTML);
             return;
           } else {
             mainContainer.appendChild(content);

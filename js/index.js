@@ -32,9 +32,9 @@ const perfLInk = document.createElement("a");
 perfLInk.innerHTML = "performance";
 perfLInk.id = "about";
 
-const settinsLInk = document.createElement("a");
-settinsLInk.innerHTML = "settings";
-settinsLInk.id = "settings";
+const settingsLInk = document.createElement("a");
+settingsLInk.innerHTML = "settings";
+settingsLInk.id = "settings";
 
 const usersLInk = document.createElement("a");
 usersLInk.innerHTML = "users";
@@ -48,29 +48,6 @@ logoutLInk.id = "logout";
 
 const submitButton = loginPage().getElementsByClassName("sign-up-anchor")[0];
 
-
-// console.log(loginPages())
-
-// mainContainer.appendChild(greeting)
-
-// navbar dynamic children
-// const homeLInk = document.createElement("a");
-// homeLInk.innerHTML = "home";
-// homeLInk.id = "home";
-// homeLInk.className = "nav-link";
-// console.log(homeLInk);
-// const perfLInk = document.createElement("a");
-// perfLInk.innerHTML = "performance";
-// perfLInk.id = "about";
-// const settinsLInk = document.createElement("a");
-// settinsLInk.innerHTML = "settings";
-// settinsLInk.id = "settings";
-// const usersLInk = document.createElement("a");
-// usersLInk.innerHTML = "users";
-// usersLInk.id = "users";
-// const logoutLInk = document.createElement("a");
-// logoutLInk.innerHTML = "logout";
-// logoutLInk.id = "logout";
 const verifyUrl = document.location.search;
 const guestId = localStorage.getItem("workoutUserId");
 // const loginPage = document.getElementsByClassName("login")[0];
@@ -85,10 +62,21 @@ const usernameInput = loginPage().querySelector("#username");
 const passwordInput = loginPage().querySelector("#password");
 console.log(usernameInput.value, passwordInput.value)
 
+const containers = [
+  homePage(),
+  performancePage(),
+  settingsPage(),
+  usersPage(),
+  register(),
+  forgotPage(),
+];
+
 const handleRefresh = async (e) => {
+ console.log(document); 
+
   if (guestId) {
   navbar.replaceChildren();
-  navbar.append(homeLInk, perfLInk, settinsLInk, usersLInk, logoutLInk);
+  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
 
     if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
 
@@ -100,22 +88,19 @@ const handleRefresh = async (e) => {
     }
   } else {
      // insert the business name in the navbar
-   
   navbar.replaceChildren();
   navbar.appendChild(navFirst);
     if (mainContainer.children.length > 0) {
-     
       mainContainer.firstElementChild.replaceWith(loginPage());
-      return;
     } else {
       mainContainer.appendChild(loginPage());
-      return;
     }
   }
 };
 
 handleRefresh();
 console.log(submitButton);
+const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
 const login = async (e) => {
   e.preventDefault();
@@ -138,11 +123,12 @@ const login = async (e) => {
       localStorage.setItem("workoutUserId", reply.id);
       if (mainContainer.children.length > 0) {
         mainContainer.firstElementChild.replaceWith(homePage());
+        performancePage().addEventListener("click", instanceer.shower);
         greeting.innerHTML = `hi, ${reply.name}`;
         
          // insert the nav links into the navbar
    navbar.replaceChildren();
-  navbar.append(homeLInk, perfLInk, settinsLInk, usersLInk, logoutLInk);
+  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
         return;
       } else {
         mainContainer.appendChild(homePage());
@@ -158,14 +144,7 @@ const login = async (e) => {
 
 submitButton.addEventListener("click", login);
 
-const containers = [
-  homePage(),
-  performancePage(),
-  settingsPage(),
-  usersPage(),
-  register(),
-  forgotPage(),
-];
+
 
 const getVerified = async () => {
   
@@ -213,21 +192,20 @@ getVerified();
 
 
 
-const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
 const webpages = navbar.children;
 console.log(navbar.children);
-const regLink = document.getElementsByClassName("reg-link")[0];
-const forgotMain = document.getElementsByClassName("forgot-password")[0];
-console.log(forgotMain);
+const regLink = loginPage().getElementsByClassName("reg-link")[0];
+const forgotMain = loginPage().getElementsByClassName("forgot-password")[0];
+console.log(webpages[0], webpages[1], webpages[2], webpages[3], regLink, forgotMain);
 
-webpages[0].addEventListener("click", instanceer.shower);
-webpages[1].addEventListener("click", instanceer.shower);
-webpages[2].addEventListener("click", instanceer.shower);
-webpages[3].addEventListener("click", instanceer.shower);
-// webpages[5].addEventListener("click", instanceer.shower);
-regLink?.addEventListener("click", instanceer.shower);
-forgotMain?.addEventListener("click", instanceer.shower);
+  webpages[0].addEventListener("click", instanceer.shower);
+  webpages[1]?.addEventListener("click", instanceer.shower);
+  webpages[2]?.addEventListener("click", instanceer.shower);
+  webpages[3]?.addEventListener("click", instanceer.shower);
+  // webpages[5].addEventListener("click", instanceer.shower);
+  regLink?.addEventListener("click", instanceer.shower);
+  forgotMain?.addEventListener("click", instanceer.shower);
 
 const logoutAnchor = document.getElementById("logout");
 
@@ -242,4 +220,4 @@ const getToHomePage = (e) => {
   navbar.appendChild(navFirst);
   } else mainContainer.appendChild(loginPage())
 };
-logoutAnchor.addEventListener("click", getToHomePage);
+logoutAnchor?.addEventListener("click", getToHomePage);

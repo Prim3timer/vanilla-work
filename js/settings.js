@@ -87,6 +87,7 @@ const populate = async () => {
 
   const user = users.find((user) => user._id === userId);
   console.log(user);
+  if (user) {
   const { workSettings } = user;
   exes[0].value = workSettings.exercise[0] || "";
   exes[1].value = workSettings.exercise[1] || "";
@@ -97,6 +98,7 @@ const populate = async () => {
   exerciseDurationInput.value = workSettings.exercisesDuration || "";
   numberOfRoundsInput.value = workSettings.numberOfRounds || "";
 };
+}
 
 populate();
 

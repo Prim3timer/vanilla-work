@@ -45,7 +45,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
         this.innerHTML == "user settings"
       ) {
         if (this.innerHTML == content.firstElementChild.innerHTML) {
-          console.log(content);
+          console.log(content.firstElementChild.innerHTML);
           if (mainContainer.children.length > 0) {
             mainContainer.firstElementChild.replaceWith(content);
             return;

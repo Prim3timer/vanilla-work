@@ -23,6 +23,9 @@ const navbar = document.getElementsByClassName("navbar")[0];
   navFirst.style.color = "white";
   navFirst.style.fontSize = "1.5rem";
 
+  const alertMessage = document.createElement("h4")
+
+
 console.log(navbar);
 
 const homeLInk = document.createElement("a");
@@ -77,7 +80,7 @@ const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 const handleRefresh = async (e) => {
  console.log(document); 
 
- const currentPage = localStorage.getItem("current-page")
+ const currentPage = localStorage.getItem("current-page") || "home"
  const getCurrentPage = containers.find((page) => page.firstElementChild.innerHTML === currentPage)
  console.log(currentPage)
  if (guestId) {
@@ -130,15 +133,16 @@ const login = async (e) => {
       body: JSON.stringify(cred),
     });
     const reply = await response.json();
-    console.log(reply.id);
+    console.log(reply);
     if (reply.id) {
       localStorage.setItem("workoutUserId", reply.id);
       if (mainContainer.children.length > 0) {
         mainContainer.firstElementChild.replaceWith(homePage());
         performancePage().addEventListener("click", instanceer.shower);
         greeting.innerHTML = `hi, ${reply.name}`;
+        localStorage.setItem("roles", JSON.stringify(reply.roles))
         
-        const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
+        const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id, motherShip, alertMessage);
         // insert the nav links into the navbar
    navbar.replaceChildren();
    homeLInk.addEventListener("click", instanceerInner.shower)

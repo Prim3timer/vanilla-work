@@ -128,30 +128,6 @@ yesButton.addEventListener("click", async (e) => {
   }
 });
 
-// function ElementCatcher(pages) {
-//   console.log(homePageDets);
-//   this.shower = async function (e) {
-//     const result = await pages;
-//     e.preventDefault();
-//     const oneElement = result.map((content) => {
-//       if (this.innerHTML == content.firstElementChild.innerHTML) {
-//         console.log(content);
-//         if (mainContainer.children.length > 0) {
-//           mainContainer.firstElementChild.replaceWith(content);
-//           return;
-//         } else {
-//           mainContainer.appendChild(content);
-//           return;
-//         }
-//         console.log(mainContainer.childNodes.length);
-//       }
-//       return containers;
-//     });
-//   };
-// }
-
-// const instanceer = new ElementCatcher(pages);
-
 userSettingsMain.append(userSettingsForm, formBreak, buttonsContainer);
 const mainSettings = () => {
   return userSettingsMain;

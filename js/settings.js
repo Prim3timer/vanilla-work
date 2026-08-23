@@ -73,9 +73,9 @@ const exes = [
   fourthExercise,
   fifthExercise,
 ];
-const userId = "6a6695c18889470e03c937ec";
+// const userId = "6a6695c18889470e03c937ec";
+const userId = localStorage.getItem("workoutUserId");
 const populate = async () => {
-  //   const userId = localStorage.getItem("workoutUserId");
   console.log(userId);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",

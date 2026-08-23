@@ -82,7 +82,7 @@ console.log(elements[0]);
 const noExAlertElement = document.createElement("p");
 noExAlertElement.style.minWidth = "80%";
 noExAlertElement.innerHTML =
-  `you have not chosen any exercises yet. click on "settings" tabe to make entry`;
+  `you have not chosen any exercises yet. click on "settings" tab to make entry`;
 if (exerciseCont.children.length === 0) {
   exerciseCont.appendChild(noExAlertElement);
   exerciseCont.style.backgroundColor = "darkslateBlue";

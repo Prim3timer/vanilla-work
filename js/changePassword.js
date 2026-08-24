@@ -3,7 +3,7 @@ import myUrl from "./myUrl.js";
 const changePassword = document.createElement("div");
 const changePasswordHeader = document.createElement("h3");
 changePasswordHeader.innerHTML = "create password";
-changePassword.className = "continue";
+changePassword.className = "forgot";
 changePassword.append(changePasswordHeader);
 
 const confrimButton = document.createElement("button");

@@ -33,28 +33,28 @@ const timeClockings = (sec) => {
 };
 
 function ElementCatcher(pages, mainContainer, guestId, motherShip, replyElement) {
- const roles =  JSON.parse(localStorage.getItem("roles"))
- this.shower = async function (e) {
+  this.shower = async function (e) {
+   const roles =  JSON.parse(localStorage.getItem("roles"))
+   e.preventDefault();
     console.log(roles)
     console.log(guestId)
-    e.preventDefault();
     const result = await pages;
     console.log(pages);
     const oneElement = result.map((content) => {
       if (
         guestId ||
-        this.innerHTML == "forgot password" ||
-        this.innerHTML == "sign up" ||
+        this.innerHTML == "forgot" ||
+        this.innerHTML == "reg-link" ||
         this.innerHTML == "user settings" 
       ) {
         // if (content.firstElementChild.innerHTML == "users"){
         //   console.log(content.firstElementChild.innerHTML)
         //   console.log("it is it!")
         // }
-        console.log(replyElement)
         if (this.innerHTML == content.className) {
+          console.log(this.innerHTML, content.className)
           console.log(roles.includes(5150))
-          localStorage.setItem("current-page",content.firstElementChild.innerHTML )
+          localStorage.setItem("current-page",content.className)
           if (mainContainer.children.length > 0) {
             
             mainContainer.firstElementChild.replaceWith(content);

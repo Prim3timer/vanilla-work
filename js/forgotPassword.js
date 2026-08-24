@@ -8,15 +8,14 @@ const forgotMainHeader = document.createElement("h3");
 forgotMainHeader.className = "forgot-main-hear";
 forgotMainHeader.innerHTML = "forgot password";
 forgotMain.append(forgotMainHeader);
-
 const forgotForm = document.createElement("form");
-forgotForm.className = "forgot-form";
+forgotForm.className = "forgot";
 const emailLabel = document.createElement("label");
 emailLabel.innerHTML = "What is your email address?";
 const emailValue = document.createElement("input");
 emailValue.className = "email-input";
 const forgotButton = document.createElement("button");
-forgotButton.innerHTML = "continue";
+forgotButton.innerHTML = "forgot";
 forgotButton.className = "forgot-button";
 
 // these are the breaks ha.
@@ -47,7 +46,8 @@ function ElementCatcher(pages, mainContainer) {
       window.history.pushState({}, "", url);
     }
     const oneElement = result.map((content) => {
-      if (this.innerHTML == content.firstElementChild.innerHTML) {
+      console.log(this.innerHTML, content.className)
+      if (this.innerHTML == content.className) {
         if (mainContainer.children.length > 0) {
           mainContainer.firstElementChild.replaceWith(content);
           return;

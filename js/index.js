@@ -83,7 +83,8 @@ const handleRefresh = async (e) => {
  const currentPage = localStorage.getItem("current-page") || "home"
  const getCurrentPage = containers.find((page) => page.firstElementChild.innerHTML === currentPage)
  console.log(currentPage)
- if (guestId) {
+ if (guestId || currentPage == "forgot") {
+  console.log(currentPage)
    navbar.replaceChildren();
   // reassign the eventlistener to the pages.
     homeLInk.addEventListener("click", instanceer.shower)
@@ -142,7 +143,7 @@ const login = async (e) => {
         greeting.innerHTML = `hi, ${reply.name}`;
         localStorage.setItem("roles", JSON.stringify(reply.roles))
         
-        const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id, motherShip, alertMessage);
+        const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
         // insert the nav links into the navbar
    navbar.replaceChildren();
    homeLInk.addEventListener("click", instanceerInner.shower)

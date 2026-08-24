@@ -31,7 +31,7 @@ emailLabel.append(emailBreak, emailInput);
 passwordLabel.append(passwordBreak, passwordInput);
 confirmPasswordLabel.append(confirmPasswordBreak, confirmPasswordInput);
 regForm.append(usernameLabel, emailLabel, passwordLabel, confirmPasswordLabel);
-regForm.className = "reg-form";
+regForm.className = "reg-link";
 signUpHeader.innerHTML = "sign up";
 signUp.appendChild(signUpHeader);
 signUp.appendChild(linker);

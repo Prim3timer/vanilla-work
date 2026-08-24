@@ -32,19 +32,20 @@ submitButton.innerHTML = "home"
 const loginLinks = document.createElement("section");
 loginLinks.className = "login-links";
 const forgotPasswordLink = document.createElement("a");
-forgotPasswordLink.className = "forgot-password";
-forgotPasswordLink.innerHTML = "forgot password";
+forgotPasswordLink.className = "forgot";
+forgotPasswordLink.innerHTML = "forgot";
 forgotPasswordLink.href = "";
 loginLinks.append(forgotPasswordLink);
 const signUpLink = document.createElement("a");
 signUpLink.className = "reg-link";
 signUpLink.href = "";
-signUpLink.innerHTML = "sign up";
+signUpLink.innerHTML = "reg-link";
 const needAnaccount = document.createElement("p");
 needAnaccount.innerHTML = "need an account?";
 loginLinks.append(forgotPasswordLink, needAnaccount, signUpLink);
 
 loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, submitButton,);
+
 
 loginMain.append(loginForm,  loginLinks);
 

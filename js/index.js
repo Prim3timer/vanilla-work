@@ -77,14 +77,14 @@ const containers = [
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
-const handleRefresh = async (e) => {
+const handleRefresh = async () => {
  console.log(document); 
 
- const currentPage = localStorage.getItem("current-page") || "home"
- const getCurrentPage = containers.find((page) => page.firstElementChild.innerHTML === currentPage)
- console.log(currentPage)
- if (guestId || currentPage == "forgot") {
-  console.log(currentPage)
+ const currentPageInnerText = localStorage.getItem("current-page") || "home"
+ const getCurrentPage = containers.find((page) => page.firstElementChild.innerHTML === currentPageInnerText)
+ console.log(currentPageInnerText)
+ if (guestId || currentPageInnerText == "forgot") {
+  console.log(currentPageInnerText)
    navbar.replaceChildren();
   // reassign the eventlistener to the pages.
     homeLInk.addEventListener("click", instanceer.shower)
@@ -226,13 +226,9 @@ getVerified();
 const webpages = navbar.children;
 console.log(navbar.children);
 const regLink = loginPage().getElementsByClassName("reg-link")[0];
-const forgotMain = loginPage().getElementsByClassName("forgot-password")[0]
+const forgotMain = loginPage().getElementsByClassName("forgot")[0]
+console.log(forgotMain)
 
-  // webpages[0].addEventListener("click", instanceer.shower);
-  // webpages[1]?.addEventListener("click", instanceer.shower);
-  // webpages[2]?.addEventListener("click", instanceer.shower);
-  // webpages[3]?.addEventListener("click", instanceer.shower);
-  // webpages[5].addEventListener("click", instanceer.shower);
   regLink?.addEventListener("click", instanceer.shower);
   forgotMain?.addEventListener("click", instanceer.shower);
 

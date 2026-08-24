@@ -75,7 +75,7 @@ const usersPage = () => {
       // });
       joined.innerHTML = users[i]._id;
     }
-    settingsAnchor.innerHTML = "user settings";
+    settingsAnchor.innerHTML = "usersettings";
     settingsAnchor.addEventListener("click", instanceer.shower);
     usersList.append(nameElement, rolesElement, joined, settingsElement);
     table.append(usersList);

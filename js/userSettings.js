@@ -3,7 +3,7 @@ import { usersPage } from "./users.js";
 
 const mainContainer = document.getElementById("main-page");
 const userSettingsMain = document.createElement("div");
-userSettingsMain.className = "user-setting";
+userSettingsMain.className = "usersettings";
 const userSettingsHeader = document.createElement("h3");
 userSettingsHeader.innerHTML = "user settings";
 userSettingsMain.appendChild(userSettingsHeader);

@@ -32,7 +32,7 @@ const timeClockings = (sec) => {
   }`;
 };
 
-function ElementCatcher(pages, mainContainer, guestId, motherShip, replyElement) {
+function ElementCatcher(pages, mainContainer, guestId) {
   this.shower = async function (e) {
    const roles =  JSON.parse(localStorage.getItem("roles"))
    e.preventDefault();
@@ -45,7 +45,7 @@ function ElementCatcher(pages, mainContainer, guestId, motherShip, replyElement)
         guestId ||
         this.innerHTML == "forgot" ||
         this.innerHTML == "reg-link" ||
-        this.innerHTML == "user settings" 
+        this.innerHTML == "usersettings" 
       ) {
         // if (content.firstElementChild.innerHTML == "users"){
         //   console.log(content.firstElementChild.innerHTML)

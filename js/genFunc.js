@@ -39,22 +39,19 @@ function ElementCatcher(pages, mainContainer, guestId) {
     console.log(roles)
     console.log(guestId)
     const result = await pages;
-    console.log(pages);
     const oneElement = result.map((content) => {
+      console.log(content.className);
       if (
         guestId ||
         this.innerHTML == "forgot" ||
         this.innerHTML == "reg-link" ||
         this.innerHTML == "usersettings" 
       ) {
-        // if (content.firstElementChild.innerHTML == "users"){
-        //   console.log(content.firstElementChild.innerHTML)
-        //   console.log("it is it!")
-        // }
-        if (this.innerHTML == content.className) {
+        if (this.id == content.className) {
+          console.log(content.className)
           console.log(this.innerHTML, content.className)
           console.log(roles.includes(5150))
-          localStorage.setItem("current-page",content.className)
+          localStorage.setItem("current-page", content.className)
           if (mainContainer.children.length > 0) {
             
             mainContainer.firstElementChild.replaceWith(content);
@@ -70,4 +67,16 @@ function ElementCatcher(pages, mainContainer, guestId) {
     });
 }
 }
-export { timeClocking, timeClockings, ElementCatcher };
+
+const getSpecificPage = (e, page, mainContainer) => {
+    e.preventDefault()
+     if (mainContainer.children.length > 0) {
+            mainContainer.firstElementChild.replaceWith(page());
+            return;
+          } else {
+            mainContainer.appendChild(page());
+          }
+  }
+
+  let genId
+export { timeClocking, timeClockings, ElementCatcher, getSpecificPage, genId };

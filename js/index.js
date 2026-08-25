@@ -2,7 +2,7 @@ import { homePage } from "./home.js";
 import { performancePage } from "./performance.js";
 import { settingsPage } from "./settings.js";
 import { usersPage } from "./users.js";
-import { ElementCatcher } from "./genFunc.js";
+import { ElementCatcher, getSpecificPage } from "./genFunc.js";
 import { register } from "./register.js";
 import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
@@ -17,6 +17,7 @@ greeting.style.borderRadius = "5px";
 const motherShip = document.getElementById("root")
 const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
+ const replyElement = document.createElement("h4");
 
      const navFirst = document.createElement("h4");
   navFirst.innerHTML = "Aerobics Lab";
@@ -31,10 +32,11 @@ console.log(navbar);
 const homeLInk = document.createElement("a");
 homeLInk.innerHTML = "home";
 homeLInk.id = "home";
+// homeLInk.className = "home"
 
 const perfLInk = document.createElement("a");
 perfLInk.innerHTML = "performance";
-perfLInk.id = "about";
+perfLInk.id = "performance";
 
 const settingsLInk = document.createElement("a");
 settingsLInk.innerHTML = "settings";
@@ -55,6 +57,11 @@ const submitButton = loginPage().getElementsByClassName("sign-up-anchor")[0];
 const verifyUrl = document.location.search;
 const guestId = localStorage.getItem("workoutUserId");
 // const loginPage = document.getElementsByClassName("login")[0];
+
+  const url = window.location.href
+const urlParamsPrompt = new URLSearchParams(url)
+const message = urlParamsPrompt.get("prompt") || ""
+
 console.log(greeting);
 const urlParams = new URLSearchParams(verifyUrl);
 const email = urlParams.get("email");
@@ -67,7 +74,7 @@ const passwordInput = loginPage().querySelector("#password");
 console.log(usernameInput.value, passwordInput.value)
 
 const containers = [
-  homePage(),
+ await  homePage(),
   performancePage(),
   settingsPage(),
   usersPage(),
@@ -81,9 +88,9 @@ const handleRefresh = async () => {
  console.log(document); 
 
  const currentPageInnerText = localStorage.getItem("current-page") || "home"
- const getCurrentPage = containers.find((page) => page.firstElementChild.innerHTML === currentPageInnerText)
+ const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
  console.log(currentPageInnerText)
- if (guestId || currentPageInnerText == "forgot") {
+ if (guestId) {
   console.log(currentPageInnerText)
    navbar.replaceChildren();
   // reassign the eventlistener to the pages.
@@ -152,6 +159,13 @@ const login = async (e) => {
    usersLInk.addEventListener("click", instanceerInner.shower)
   
   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+  // remove the email parameter from the url
+  const url = new URL(window.location.href)
+  url.searchParams.delete("email")
+  url.searchParams.delete("prompt")
+  replyElement.innerHTML = "  "
+
+  window.history.replaceState({}, document.title, url.toString())
         return;
       } else {
         mainContainer.appendChild(homePage());
@@ -182,7 +196,22 @@ const getVerified = async () => {
     greeting.innerHTML = guestId
       ? `Hi, ${users.find((user) => user._id === guestId).username}`
       : "";
-    if (email) {
+
+      
+     
+        replyElement.style.color = "black";
+        replyElement.style.padding = ".5rem";
+        replyElement.style.position = "fixed";
+        replyElement.style.borderRadius = "5px";
+        replyElement.style.top = "5rem";
+        replyElement.style.justifySelf = "center"
+      motherShip.insertBefore(replyElement, mainContainer)
+
+      if (email && message) {
+      console.log(message)
+      replyElement.innerHTML = message
+    }
+    else if (email ) {
       const foundUser = users.find((user) => user.email === email);
       if (foundUser) {
         const updateUser = await fetch(
@@ -192,26 +221,22 @@ const getVerified = async () => {
             headers: {
               "Content-Type": "application/json",
             },
-          },
+          }, 
         );
+      
+console.log(message)
 
         const reply = await updateUser.json();
-        const replyElement = document.createElement("h4");
         replyElement.className = "reply";
         // replyElement.style.backgroundColor = "gainsboro";
-        replyElement.style.color = "black";
-        replyElement.style.padding = ".5rem";
-        replyElement.style.position = "fixed";
-        replyElement.style.borderRadius = "5px";
-        replyElement.style.top = "5rem";
-        replyElement.style.justifySelf = "center"
+      
         replyElement.innerHTML = `<i class="fa-solid fa-check" style="color: green;
         font-size: 1.5rem;
         font-weight: bold;"></i> ${reply}`;
         motherShip.insertBefore(replyElement, mainContainer)
         console.log(reply);
       }
-    }
+    } 
   } catch (error) {
     console.log(error);
   }
@@ -223,14 +248,16 @@ getVerified();
 
 
 
-const webpages = navbar.children;
-console.log(navbar.children);
+console.log(forgotPage())
 const regLink = loginPage().getElementsByClassName("reg-link")[0];
-const forgotMain = loginPage().getElementsByClassName("forgot")[0]
+const forgotMain = loginPage().getElementsByClassName("forgot-password")[0]
 console.log(forgotMain)
+console.log(regLink)
 
-  regLink?.addEventListener("click", instanceer.shower);
-  forgotMain?.addEventListener("click", instanceer.shower);
+
+
+  regLink?.addEventListener("click", (e) => getSpecificPage(e, register, mainContainer));
+  forgotMain?.addEventListener("click", (e) => getSpecificPage(e, forgotPage, mainContainer));
 
 
 

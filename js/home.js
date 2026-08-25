@@ -1,5 +1,5 @@
 import myUrl from "./myUrl.js";
-import { timeClocking } from "./genFunc.js";
+import { timeClocking, genId } from "./genFunc.js";
 let ID;
 let sec = 0;
 

@@ -4,6 +4,11 @@ const loginHeader = document.createElement("h3");
 loginHeader.innerHTML = "login";
 loginMain.append(loginHeader);
 
+const url = window.location.href
+const urlParams = new URLSearchParams(url)
+const message = urlParams.get("prompt") || ""
+console.log(message)
+
 const loginForm = document.createElement("form");
 loginForm.className = "login-form";
 const usernameLabel = document.createElement("label");
@@ -27,19 +32,20 @@ passwordInput.placeholder = "Enter your password";
 
 const submitButton = document.createElement("button");
 submitButton.className = "sign-up-anchor";
-submitButton.innerHTML = "home"
+submitButton.innerHTML = "submit"
 
 const loginLinks = document.createElement("section");
 loginLinks.className = "login-links";
 const forgotPasswordLink = document.createElement("a");
-forgotPasswordLink.className = "forgot";
-forgotPasswordLink.innerHTML = "forgot";
+forgotPasswordLink.className = "forgot-password";
+forgotPasswordLink.id = "forgot-password"
+forgotPasswordLink.innerHTML = "forgot password";
 forgotPasswordLink.href = "";
 loginLinks.append(forgotPasswordLink);
 const signUpLink = document.createElement("a");
 signUpLink.className = "reg-link";
 signUpLink.href = "";
-signUpLink.innerHTML = "reg-link";
+signUpLink.innerHTML = "create account";
 const needAnaccount = document.createElement("p");
 needAnaccount.innerHTML = "need an account?";
 loginLinks.append(forgotPasswordLink, needAnaccount, signUpLink);

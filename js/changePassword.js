@@ -1,20 +1,23 @@
+import { loginPage } from "./login.js";
 import myUrl from "./myUrl.js";
-
+const mainContainer = document.getElementById("main-page")
 const changePassword = document.createElement("div");
 const changePasswordHeader = document.createElement("h3");
 changePasswordHeader.innerHTML = "create password";
-changePassword.className = "forgot";
+changePassword.className = "change-password";
 changePassword.append(changePasswordHeader);
 
 const confrimButton = document.createElement("button");
 confrimButton.className = "forgot-button";
 confrimButton.innerHTML = "confirm";
-
-const username = document.createElement("h4");
-// username.style.backgroundColor = "red";
+const alertMessage = document.createElement("h3")
+changePassword.append(alertMessage)
+// alertMessage.innerHTML = "alert-message"
+const usernameElement = document.createElement("h4");
+// usernameElement.style.backgroundColor = "red";
 
 const changeForm = document.createElement("form");
-changeForm.append(username);
+changeForm.append(usernameElement);
 changeForm.className = "forgot-form";
 const passwordLabel = document.createElement("label");
 passwordLabel.innerHTML = "new password";
@@ -36,7 +39,6 @@ changeForm.append(passwordLabel, confirmPasswordLabel);
 changePassword.append(changeForm);
 changePassword.appendChild(confrimButton);
 
-console.log(username);
 const getCred = async (e) => {
   console.log("hiiii");
   // e.preventDefault();
@@ -69,8 +71,8 @@ const gratherCred = async (e) => {
 
   const password = passwordInput.value;
   const confirmPassword = confirmPasswordInput.value;
-  if (!password === confirmPassword) {
-    console.log("password do not match");
+  if (password !== confirmPassword) {
+    alertMessage.innerHTML = "passwords do not match"
   } else {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",
@@ -82,7 +84,7 @@ const gratherCred = async (e) => {
     const foundUser = users.find((user) => user.email === email);
     if (foundUser) {
       const response2 = await fetch(
-        `${myUrl}/workout-users/user-setting/${foundUser._id}`,
+        `${myUrl}/workout-users/reset-password/${foundUser._id}`,
         {
           method: "PATCH",
           headers: {
@@ -93,6 +95,15 @@ const gratherCred = async (e) => {
           }),
         },
       );
+         const url = new URL(window.location.href);
+      url.searchParams.set("prompt", "your password has been updated");
+       window.history.replaceState({}, "", url);
+          if (mainContainer.children.length > 0) {
+            mainContainer.firstElementChild.replaceWith(loginPage());
+            return;
+          } else {
+            mainContainer.appendChild(loginPage());
+          }
 
       console.log(passwordInput.value);
     }
@@ -102,7 +113,8 @@ const gratherCred = async (e) => {
 window.addEventListener("load", getCred);
 // window.onload = getCred;
 confrimButton.addEventListener("click", gratherCred);
-const changePage = () => {
+const changePage = (username) => {
+  usernameElement.innerHTML = `username: ${username}`
   return changePassword;
 };
 

@@ -202,13 +202,13 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .login, .activity, .register, .user-settings, .settings, .forgot,  .reset-password, .user-setting, #forgot-main, .change-password, .login-form {
+.performance, .login, .activity, .user-settings, .settings, .forgot,  .reset-password, .user-setting, .change-password, .login-form {
   display: flex;
   padding-top: 2rem;
   width: 100vw;
 }
 
-.settings, .user-settings, #forgot-main, .change-password, .login, .login-form {
+.settings, .user-settings, .change-password, .login, .login-form {
   flex-direction: column;
    justify-content: flex-start;
    align-items: center;
@@ -302,7 +302,7 @@ flex-direction: column;
   display: none;
 }
  .reply {
-  /* background-color: gainsboro; */
+  background-color: gainsboro;
   color: darkslateblue;
   padding: .5rem;
  }
@@ -325,8 +325,18 @@ flex-direction: column;
   align-items: center;
 }
 
-#forgot-main {
+#forgot-main, .register, .change-password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   row-gap: 1rem;
+}
+
+input {
+  padding: .2rem;
+  font-size: 1.5rem;
 }
 
 .forgot-form {
@@ -337,11 +347,6 @@ flex-direction: column;
     margin: 1rem 0 0 0;
     
   }
-
-  /* .reset-password {
-    background-color: yellow;
-  }
-   */
   
   .reset-password-form {
     display: flex;
@@ -406,12 +411,13 @@ flex-direction: column;
 .login-form input, .email-input {
    width: 60vw;
    max-width: 300px !important;
-   padding: .2rem;
+   /* padding: .2rem; */
 
  }
 
  .forgot-button {
   width: 15rem;
+  margin-top: 1rem;
  }
 
  table {

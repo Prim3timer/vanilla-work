@@ -37,10 +37,10 @@ signUp.appendChild(signUpHeader);
 signUp.appendChild(linker);
 signUp.append(regForm, regbutton);
 
-const serviceId = "service_d1lfnf9";
+const serviceId = "service_rjtqd2f";
 const biz = "aerobics guide";
-const templateId = "template_2ho80e4";
-const publicKey = "f5fHgbJA_Fp-FHsdN";
+const templateId = "template_cvnsvfd";
+const publicKey = "2mxlvdK-Ge0PIlmNb";
 
 const trimmedUsername = userNameInput.value.trim();
 const trimmedPassword = passwordInput.value.trim();
@@ -64,7 +64,7 @@ const createUserDets = async () => {
       name: userNameInput.value.trim(),
       email: emailInput.value.trim().toLowerCase(),
       biz,
-      link: `http://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
+      link: `https://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
     };
 
     const mailSent = await emailjs.send(

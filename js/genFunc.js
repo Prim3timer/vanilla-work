@@ -40,7 +40,6 @@ function ElementCatcher(pages, mainContainer, guestId) {
     console.log(guestId)
     const result = await pages;
     const oneElement = result.map((content) => {
-      console.log(content.className);
       if (
         guestId ||
         this.innerHTML == "forgot" ||
@@ -48,6 +47,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
+          console.log(this.id);
           console.log(content.className)
           console.log(this.innerHTML, content.className)
           console.log(roles.includes(5150))
@@ -55,7 +55,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
           if (mainContainer.children.length > 0) {
             
             mainContainer.firstElementChild.replaceWith(content);
-            console.log(content.firstElementChild.innerHTML);
+            // console.log(content.firstElementChild.innerHTML);
             return;
           } else {
             mainContainer.appendChild(content);
@@ -78,5 +78,4 @@ const getSpecificPage = (e, page, mainContainer) => {
           }
   }
 
-  let genId
-export { timeClocking, timeClockings, ElementCatcher, getSpecificPage, genId };
+export { timeClocking, timeClockings, ElementCatcher, getSpecificPage };

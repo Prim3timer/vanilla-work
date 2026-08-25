@@ -74,7 +74,7 @@ const passwordInput = loginPage().querySelector("#password");
 console.log(usernameInput.value, passwordInput.value)
 
 const containers = [
- await  homePage(),
+  homePage(),
   performancePage(),
   settingsPage(),
   usersPage(),
@@ -91,7 +91,9 @@ const handleRefresh = async () => {
  const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
  console.log(currentPageInnerText)
  if (guestId) {
+  console.log(guestId)
   console.log(currentPageInnerText)
+  console.log(getCurrentPage)
    navbar.replaceChildren();
   // reassign the eventlistener to the pages.
     homeLInk.addEventListener("click", instanceer.shower)
@@ -106,6 +108,7 @@ const handleRefresh = async () => {
       mainContainer.firstElementChild.replaceWith(getCurrentPage);
       return;
     } else {
+      console.log(getCurrentPage)
       mainContainer.appendChild(getCurrentPage);
       return;
     }
@@ -145,8 +148,10 @@ const login = async (e) => {
     if (reply.id) {
       localStorage.setItem("workoutUserId", reply.id);
       if (mainContainer.children.length > 0) {
-        mainContainer.firstElementChild.replaceWith(homePage());
-        performancePage().addEventListener("click", instanceer.shower);
+        console.log(mainContainer.firstElementChild)
+        mainContainer.firstElementChild.replaceWith(homePage(reply.id));
+
+        // performancePage().addEventListener("click", instanceer.shower);
         greeting.innerHTML = `hi, ${reply.name}`;
         localStorage.setItem("roles", JSON.stringify(reply.roles))
         

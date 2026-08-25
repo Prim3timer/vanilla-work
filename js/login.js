@@ -4,10 +4,7 @@ const loginHeader = document.createElement("h3");
 loginHeader.innerHTML = "login";
 loginMain.append(loginHeader);
 
-const url = window.location.href
-const urlParams = new URLSearchParams(url)
-const message = urlParams.get("prompt") || ""
-console.log(message)
+
 
 const loginForm = document.createElement("form");
 loginForm.className = "login-form";

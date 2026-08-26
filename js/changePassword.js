@@ -13,11 +13,9 @@ confrimButton.innerHTML = "confirm";
 const alertMessage = document.createElement("h3")
 changePassword.append(alertMessage)
 // alertMessage.innerHTML = "alert-message"
-const usernameElement = document.createElement("h4");
 // usernameElement.style.backgroundColor = "red";
 
 const changeForm = document.createElement("form");
-changeForm.append(usernameElement);
 changeForm.className = "forgot-form";
 const passwordLabel = document.createElement("label");
 passwordLabel.innerHTML = "new password";
@@ -114,7 +112,7 @@ window.addEventListener("load", getCred);
 // window.onload = getCred;
 confrimButton.addEventListener("click", gratherCred);
 const changePage = (username) => {
-  usernameElement.innerHTML = `username: ${username}`
+  changePasswordHeader.innerHTML = `${username} create new password`;
   return changePassword;
 };
 

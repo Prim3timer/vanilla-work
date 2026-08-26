@@ -306,9 +306,9 @@ const getData = async () => {
   const perfContainer = document.createElement("section");
 };
 
-getData();
 
-const performancePage = () => {
+const performancePage = (id) => {
+  getData(id);
   return performanceMain;
 };
 

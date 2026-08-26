@@ -20,9 +20,9 @@ const navbar = document.getElementsByClassName("navbar")[0];
  const replyElement = document.createElement("h4");
 
      const navFirst = document.createElement("h4");
-  navFirst.innerHTML = "Aerobics Lab";
-  navFirst.style.color = "white";
-  navFirst.style.fontSize = "1.5rem";
+  navFirst.innerHTML = "Aerobics Guide";
+  navFirst.className = "title-element"
+
 
   const alertMessage = document.createElement("h4")
 
@@ -235,8 +235,11 @@ console.log(message)
         replyElement.className = "reply";
         // replyElement.style.backgroundColor = "gainsboro";
       
-        replyElement.innerHTML = `<i class="fa-solid fa-check" style="color: green;
+        replyElement.innerHTML = `<i class="fa-solid fa-check" style="color: white;
         font-size: 1.5rem;
+        background-color: green;
+        padding: .2rem;
+        border-radius: 5px;
         font-weight: bold;"></i> ${reply}`;
         motherShip.insertBefore(replyElement, mainContainer)
         console.log(reply);

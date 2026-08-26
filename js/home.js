@@ -7,11 +7,6 @@ const firstCont = document.createElement("div");
 const firstContent = document.createElement("p");
 firstCont.className = "home";
   firstCont.id = "home-page";
-  firstCont.style.display = "flex";
-  firstCont.style.flexDirection = "column";
-  firstCont.style.width = "100vw";
-  firstCont.style.justifyContent = "flex-start";
- 
   firstContent.innerHTML = "home";
 console.log(sec)
 

@@ -168,7 +168,7 @@ const deleteEntry = async () => {
   }
 };
 
-const getData = async () => {
+const getData = async (id) => {
   tableBody.appendChild(headerRow);
   const response = await fetch(`${myUrl}/performance`, {
     method: "GET",

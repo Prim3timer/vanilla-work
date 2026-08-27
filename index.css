@@ -15,7 +15,7 @@
 
 .navbar, #main-page, #footer, .greeting {
     display: grid;
-    place-content: center;
+    /* place-content: center; */
     grid-template-columns: 100%;
 }
 
@@ -50,10 +50,11 @@
 }
 
   #home-page {
+    padding-top: 1rem;
     display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  max-height: 80vh;
+  justify-content: center;
+  /* max-height: 90vh; */
   width: 100%;
   /* background-color: red; */
   }
@@ -734,6 +735,7 @@ table th {
   }
 
   #home-page {
+    padding-top: 0;
     justify-content: center;
   }
 

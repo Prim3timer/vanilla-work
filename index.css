@@ -50,6 +50,7 @@
   #home-page {
     display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   /* min-height: 100vh; */
   width: 100%;
   }
@@ -119,6 +120,7 @@
     justify-content: center;
     /* background-color: yellow; */
     height: 3.5rem;
+    margin-top: 1.5rem;
     
   }
   
@@ -130,7 +132,7 @@
   
   #buttons>* {
     font-size: 1.5rem;
-    flex: 0 1  15%;
+    flex: 0 1  20%;
     align-content: center;
     justify-content: center;
     height: 3rem;
@@ -602,8 +604,138 @@ table th {
 }
 
 
+#status-container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  overflow-x: auto;
+  min-width: 95vw;
+  overflow: visible;
+  height: 35vh;
+}
 
- #status-container {
+#footer {
+  color: white;
+  text-align: center;
+}
+
+
+.indicator-container {
+  row-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  /* row-gap: 2rem; */
+   align-items: center;
+   /* justify-content: center; */
+   /* height: 10rem; */
+   /* flex: 0 1 65% */
+   flex: 0 1 0%
+ }
+
+   #round {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   /* font-size: 3rem; */
+   /* height: 5rem; */
+   white-space: nowrap;
+   max-height: 20%;
+   flex: 0 0 0%;
+   margin-right: .5rem;
+   /* padding: 0 1rem; */
+   background-color: goldenrod;
+   border-radius: 0 5px 5px 0;
+   border: none;
+
+ }
+
+
+  #jog-up {
+   /* flex: 0 1 35%;   */
+   height: 3rem;
+   /* margin-left: 1rem; */
+   font-size: 1rem;
+   padding: .5rem;
+   width: 100px;
+   border-radius: 5px;
+   /* max-width: 30%;  */
+ }
+
+  #jog-up {
+   height: 3em;
+   display: flex;
+   color: sandybrown;
+   background-color: maroon;
+   border-color: maroon;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5rem;
+ }
+
+  #clock {
+   display: flex;
+   height: 1px;
+   justify-content: flex-end;
+   align-items: center;
+   /* place-content: center; */
+   color: purple;
+   font-size: 0.01px;
+   border-radius: 5px;  
+   padding: .5rem;
+
+ }
+
+  #exercise-cont {
+   height: 15rem;
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: flex-start;
+   align-items: flex-end;
+   text-align: center;
+   column-gap: .5rem;
+   row-gap: 1rem;
+   width: 95vw;
+   /* background-color: yellow; */
+   overflow-y: visible;
+   overflow-x: scroll;
+ }
+
+  .exercise{
+   min-height: 2em;
+   display: flex;
+   color: sandybrown;
+   background-color: maroon;
+   border-color: maroon;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   border-radius: 5px;
+   font-size: 1.5rem;
+   flex: 0 0 30%;
+ }
+ @media screen and (min-width: 499px) {
+
+  #home-page {
+    justify-content: center;
+  }
+
+    #buttons {
+  
+    margin: .5rem;
+    
+  }
+
+    #buttons>* {
+    font-size: 1.5rem;
+    flex: 0 1  15%;
+    align-content: center;
+    justify-content: center;
+    height: 3rem;
+  }
+
+
+     #status-container {
    display: flex;
    justify-self: center;
    /* justify-content: center; */
@@ -622,12 +754,14 @@ table th {
 
  .indicator-container {
    display: flex;
+    flex-direction: row;
    align-items: center;
    /* justify-content: center; */
    /* background-color: blue; */
    height: 10rem;
+   /* column-gap: 1rem; */
    /* flex: 0 1 65% */
-   flex: 0 1 0%
+   /* flex: 0 1 0% */
  }
 
   #round {
@@ -638,7 +772,8 @@ table th {
    font-size: .01px;
    /* height: 5rem; */
    white-space: nowrap;
-   height: 1px;
+   margin-right: 1rem;
+   min-height: 50%;
    flex: 0 0 0%;
    /* padding: 0 1rem; */
    background-color: goldenrod;
@@ -669,29 +804,12 @@ table th {
 
 
 
- .indicator:last-child {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   /* font-size: 3rem; */
-   font-size: .01px;
-   /* height: 5rem; */
-   white-space: nowrap;
-   height: 1px;
-   flex: 0 0 0%;
-   /* padding: 0 1rem; */
-   background-color: goldenrod;
-   border-radius: 0 5px 5px 0;
-   border: none;
-
- }
-
 
 
 
  .exercise,
  #jog-up {
-   height: 30%;
+   height: 10%;
    display: flex;
    color: sandybrown;
    background-color: maroon;
@@ -699,32 +817,32 @@ table th {
    text-align: center;
    align-items: center;
    justify-content: center;
-   border-radius: 5px;
    font-size: 1.5rem;
  }
 
  #jog-up {
-   flex: 0 1 35%;  
+   /* flex: 0 1 35%;   */
    min-height: 3rem;
-   /* margin-left: 1rem; */
+   margin-left: 1rem;
    font-size: 1rem;
    padding: .5rem;
-   width: 25rem;
+   width: 105px;
  }
+
+ 
 
 
  #exercise-cont {
-   height: 5rem;
-   display: flex;
-   flex-wrap: wrap;
+   height: 6rem;
+   flex-wrap: nowrap;
    justify-content: center;
    align-items: flex-start;
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
    width: 90vw;
+   overflow: visible; 
    /* background-color: yellow; */
-
  }
 
  #exercise-cont>* {
@@ -757,9 +875,5 @@ table th {
    margin-left: 4.3em;
  }
 
- @media screen and (max-width: 499px) {
-    .home {
-      /* width: 100vw; */
-      /* background-color: red; */
-    }
+   
  }

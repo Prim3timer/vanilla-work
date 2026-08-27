@@ -8,8 +8,11 @@ const firstContent = document.createElement("p");
 firstCont.className = "home";
   firstCont.id = "home-page";
   firstContent.innerHTML = "home";
-console.log(sec)
-
+  console.log(sec)
+  
+  const current = new Date().getFullYear();
+const footer = document.getElementById("footer")
+footer.innerHTML = `${current} Amalu Productions`
 const doIt = async (id) =>  {
 
   const greeting = document.getElementsByClassName("p");
@@ -31,13 +34,8 @@ const doIt = async (id) =>  {
   rightContainer.className = "right-container";
   let copyRight = document.createElement("span");
   let copyRight2 = document.createElement("span");
-  
   let rounder = document.createElement("p");
-  const current = new Date().getFullYear();
-  copyRight.className = "copy-right";
-  copyRight2.className = "copy-right";
-  copyRight.innerHTML = `&copy;`;
-  copyRight2.innerHTML = `${current} Amalu Productions`;
+
   rightContainer.append(copyRight, copyRight2);
   let begin;
   let alertWindow = document.createElement("p");
@@ -140,13 +138,13 @@ const doIt = async (id) =>  {
   
   
   
-      jogup.style.transitionProperty = "scale(2) translateX(40px) flex width";
-      jogup.style.transform = "scale(2) translateX(40px)";
+      jogup.style.transitionProperty = "scale width flexWidth";
+      jogup.style.transform = "scale(2)";
       jogup.style.color = "yellow";
       jogup.style.backgroundColor = "green";
       jogup.style.border = "2px solid green";
-      jogup.style.flex = "0 0 8rem";
-      jogup.style.width = "25rem";
+      jogup.style.width = "100px";
+      // jogup.style.flex = "0 0 15%";
       jogup.style.boxShadow = "0.6em 0.6em .6em gray";
   
       // change the content of the set element back to  the 'round' variable
@@ -193,7 +191,7 @@ const doIt = async (id) =>  {
           formerItem.style.color = "sandybrown";
           formerItem.style.backgroundColor = "maroon";
   
-          currentItem.style.transform = `scale(3) translate(${translator}, -15px)`;
+          currentItem.style.transform = `scale(2.5) translate(${translator}, -15px)`;
           currentItem.style.fontSize =
             currentItem.innerHTML.length > 7
               ? "1.5rem"

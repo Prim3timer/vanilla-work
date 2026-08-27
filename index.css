@@ -53,8 +53,9 @@
     display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* min-height: 100vh; */
+  max-height: 80vh;
   width: 100%;
+  /* background-color: red; */
   }
 
   /* #main-page {
@@ -85,9 +86,7 @@
     width: 90vw;
     justify-content: flex-start;
     column-gap: 2rem;
-    align-items: center;
     padding: .5rem 0;
-    /* background-color: aqua; */
     
     height: 5rem;
     /* margin: .5rem 0; */
@@ -100,12 +99,12 @@
     flex-wrap: nowrap;
     /* place-content: center;   */
     color: darkslateblue;
-    font-size: .001px;
-    /* flex: 1 1 100%; */
-    height: 1px;
     text-transform: uppercase;
-    width: 80%;
+    flex: 0 0 60%;
+    /* width: 100%; */
    /* background-color: red;  */
+   font-size: 2rem !important;
+   overflow: auto;
   }
   
   #go-container>*:nth-child(2) {
@@ -226,6 +225,7 @@ flex-direction: column;
   padding-top: 2rem;
   width: 100vw;
   /* height: 100vh; */
+
 }
 
 .settings, .user-settings, .change-password, .login, .login-form {
@@ -510,7 +510,7 @@ color: white;
 
  .performance-header {
   display: inline;
-  float: left;
+  /* float: left; */
   /* background-color: red; */
  }
 
@@ -546,6 +546,7 @@ table th {
  .performance {
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   
   width: 10rem;
   width: 100vw;
@@ -619,7 +620,7 @@ table th {
 
 
 .indicator-container {
-  row-gap: 2rem;
+  /* row-gap: 2rem; */
   display: flex;
   flex-direction: column;
   /* row-gap: 2rem; */
@@ -637,10 +638,10 @@ table th {
    /* font-size: 3rem; */
    /* height: 5rem; */
    white-space: nowrap;
-   max-height: 20%;
+   height: 15%;
    flex: 0 0 0%;
-   margin-right: .5rem;
-   /* padding: 0 1rem; */
+   margin: .5rem .5rem .5rem 0;
+   padding: .5rem;
    background-color: goldenrod;
    border-radius: 0 5px 5px 0;
    border: none;
@@ -681,6 +682,7 @@ table th {
    font-size: 0.01px;
    border-radius: 5px;  
    padding: .5rem;
+   /* font-size: 6rem; */
 
  }
 
@@ -689,7 +691,7 @@ table th {
    display: flex;
    flex-wrap: nowrap;
    justify-content: flex-start;
-   align-items: flex-end;
+   align-items: center;
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
@@ -713,6 +715,23 @@ table th {
    flex: 0 0 30%;
  }
  @media screen and (min-width: 499px) {
+  #go-container {
+    align-items: center;
+  }
+
+    #go {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    /* place-content: center;   */
+    color: darkslateblue;
+    font-size: 4rem !important;
+    /* flex: 1 1 100%; */
+    text-transform: uppercase;
+    width: 80%;
+   overflow: visible;
+  }
 
   #home-page {
     justify-content: center;
@@ -838,14 +857,16 @@ table th {
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
-   width: 90vw;
+   max-width: 95%;
    overflow: visible; 
-   /* background-color: yellow; */
+   /* overflow: auto; */
  }
 
  #exercise-cont>* {
-   flex: 0 1 18%;
+  font-size: 1.5rem;
+   /* flex: 0 1 18%; */
    height: 50px;
+   flex:  0 0 20%;
  }
 
  button {

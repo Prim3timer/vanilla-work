@@ -192,12 +192,13 @@ const doIt = async (id) =>  {
           formerItem.style.backgroundColor = "maroon";
   
           currentItem.style.transform = `scale(2.5) translate(${translator}, -15px)`;
-          currentItem.style.fontSize =
-            currentItem.innerHTML.length > 7
-              ? "1.5rem"
-              : currentItem.innerHTML.length > 10
-                ? ".8rem"
-                : "2rem";
+          // currentItem.style.fontSize =
+          //   currentItem.innerHTML.length > 7
+          //     ? "1.5rem"
+          //     : currentItem.innerHTML.length > 10
+          //       ? ".8rem"
+          //       : "2rem";
+          currentItem.style.fontSize = "1.5rem"
           currentItem.style.color = "yellow";
           currentItem.style.backgroundColor = "green";
           currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
@@ -275,8 +276,8 @@ const doIt = async (id) =>  {
           rounder.style.height = "5rem";
           rounder.style.borderRight = "2px solid brown";
           rounder.style.borderTop = "2px solid brown";
-          rounder.style.borderBottom = "2px solid brown";
-          rounder.style.flex = "0 1 20rem";
+          rounder.style.borderTop = "2px solid brown";
+          rounder.style.flex = "0 1 40%";
           // rounder.style.transitionDelay = '.1s'
   
           dashboard.style.transitionProperty = "flex";

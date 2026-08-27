@@ -41,6 +41,8 @@
 #footer {
     height: 2rem;
     bottom: 0;
+     color: white;
+  text-align: center;
 }
 
 #main-page {
@@ -223,7 +225,7 @@ flex-direction: column;
   display: flex;
   padding-top: 2rem;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .settings, .user-settings, .change-password, .login, .login-form {
@@ -614,10 +616,6 @@ table th {
   height: 35vh;
 }
 
-#footer {
-  color: white;
-  text-align: center;
-}
 
 
 .indicator-container {

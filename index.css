@@ -735,12 +735,12 @@ table th {
  }
  @media screen and (min-width: 499px) {
   .performance {
-    width: 100vw;
+    /* width: 80vw; */
   }
 
    .performance table {
   align-self: center;
-  max-width: 800px;
+  width: 90vw;
   /* overflow: ; */
   margin: .5rem 2rem;
 }

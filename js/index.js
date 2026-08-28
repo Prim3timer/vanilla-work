@@ -168,7 +168,8 @@ const login = async (e) => {
   const url = new URL(window.location.href)
   url.searchParams.delete("email")
   url.searchParams.delete("prompt")
-  replyElement.innerHTML = "  "
+  url.searchParams.delete("elapsed")
+  replyElement.remove()
 
   window.history.replaceState({}, document.title, url.toString())
         return;

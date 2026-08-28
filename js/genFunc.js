@@ -47,19 +47,18 @@ function ElementCatcher(pages, mainContainer, guestId) {
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
-          console.log(this.id);
-          console.log(content.className)
-          console.log(this.innerHTML, content.className)
-          console.log(roles.includes(5150))
-          localStorage.setItem("current-page", content.className)
-          if (mainContainer.children.length > 0) {
-            
-            mainContainer.firstElementChild.replaceWith(content);
-            // console.log(content.firstElementChild.innerHTML);
-            return;
+          if (!roles.includes(5150 ) && this.innerHTML == "users"){
+            console.log("unauthorized")
           } else {
-            mainContainer.appendChild(content);
-            return content;
+            localStorage.setItem("current-page", content.className)
+            if (mainContainer.children.length > 0) {
+              
+              mainContainer.firstElementChild.replaceWith(content);
+              return;
+            } else {
+              mainContainer.appendChild(content);
+
+          }
           }
           }
       }

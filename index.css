@@ -730,6 +730,24 @@ table th {
     /* background-color: red; */
   }
 
+  .reply {
+    background-color: gainsboro;
+    width: 100vw;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  
+  .login {
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+    align-items: center !important;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    /* background-color: rebeccapurple; */
+  }
+
   .login-form input {
   font-size: 2rem;
   max-width: 50%;

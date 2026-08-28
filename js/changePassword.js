@@ -40,9 +40,8 @@ changePassword.appendChild(confrimButton);
 const getCred = async (e) => {
   console.log("hiiii");
   // e.preventDefault();
-  const verifyUrl = document.location.search;
-  const urlParams = new URLSearchParams(verifyUrl);
-  const email = urlParams.get("email");
+  const url = new URL(window.location.href)
+  url.searchParams.delete("email")
   try {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",
@@ -61,11 +60,16 @@ const getCred = async (e) => {
   }
 };
 
-const gratherCred = async (e) => {
+const gratherCred = async (e, email) => {
   e.preventDefault();
-  const verifyUrl = document.location.search;
-  const urlParams = new URLSearchParams(verifyUrl);
-  const email = urlParams.get("email");
+//   const verifyUrl = document.location.search;
+//   const urlParams = new URLSearchParams(verifyUrl);
+//   const email = urlParams.get("email");
+// console.log(email)
+// console.log(verifyUrl)
+//     const url = new URL(window.location.href)
+//     console.log(url.searchParams)
+//   url.searchParams.delete("email")
 
   const password = passwordInput.value;
   const confirmPassword = confirmPasswordInput.value;
@@ -93,14 +97,15 @@ const gratherCred = async (e) => {
           }),
         },
       );
-         const url = new URL(window.location.href);
-      url.searchParams.set("prompt", "your password has been updated");
-       window.history.replaceState({}, "", url);
+      //    const url = new URL(window.location.href);
+      // url.searchParams.set("prompt", "your password has been updated");
+      const message = "your password has been updated"
+      //  window.history.replaceState({}, "", url);
           if (mainContainer.children.length > 0) {
-            mainContainer.firstElementChild.replaceWith(loginPage());
+            mainContainer.firstElementChild.replaceWith(loginPage(message));
             return;
           } else {
-            mainContainer.appendChild(loginPage());
+            mainContainer.appendChild(loginPage(message));
           }
 
       console.log(passwordInput.value);
@@ -109,9 +114,8 @@ const gratherCred = async (e) => {
 };
 
 window.addEventListener("load", getCred);
-// window.onload = getCred;
-confrimButton.addEventListener("click", gratherCred);
-const changePage = (username) => {
+const changePage = (username, email) => {
+  confrimButton.addEventListener("click", (e) => gratherCred(e, email));
   changePasswordHeader.innerHTML = `${username} create new password`;
   return changePassword;
 };

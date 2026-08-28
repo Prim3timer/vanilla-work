@@ -28,7 +28,7 @@ emailLabel.append(emailBreak, emailValue);
 forgotForm.append(emailLabel);
 forgotMain.append(forgotForm, forgotButton);
 
-const changePageCont = [changePage()];
+const changePageCont = [changePage];
 
 function ElementCatcher(pages, mainContainer) {
   this.shower = async function (e) {
@@ -43,19 +43,19 @@ function ElementCatcher(pages, mainContainer) {
     const users = await response.json();
     const foundUser = users.find((user) => user.email === emailValue.value);
     console.log(foundUser);
-    if (foundUser) {
-      const url = new URL(window.location.href);
-      url.searchParams.set("email", emailValue.value);
-      window.history.pushState({}, "", url);
-    }
+    // if (foundUser) {
+    //   const url = new URL(window.location.href);
+    //   url.searchParams.set("email", emailValue.value);
+    //   window.history.pushState({}, "", url);
+    // }
     const oneElement = result.map((content) => {
       console.log(this.innerHTML, content.className)
       if (this.innerHTML == content.className) {
         if (mainContainer.children.length > 0) {
-          mainContainer.firstElementChild.replaceWith(content);
+          mainContainer.firstElementChild.replaceWith(content(emailValue.value));
           return;
         } else {
-          mainContainer.appendChild(content);
+          mainContainer.appendChild(content(emailValue.value));
           return;
         }
       }
@@ -103,14 +103,11 @@ const getSpecificPage = async (e, page, mainContainer) => {
   const users = await response.json();
   const foundUser = users.find((user) => user.email === email);
   if (foundUser) {
-       const url = new URL(window.location.href);
-      url.searchParams.set("email", emailValue.value);
-      window.history.pushState({}, "", url);
       if (mainContainer.children.length > 0) {
-            mainContainer.firstElementChild.replaceWith(page(foundUser.username));
+            mainContainer.firstElementChild.replaceWith(page(foundUser.username, email));
             return;
           } else {
-            mainContainer.appendChild(page(foundUser.username));
+            mainContainer.appendChild(page(foundUser.username, email));
           }
   } else {
     alertMessage.innerHTML = "the email entered does not match any in our database";

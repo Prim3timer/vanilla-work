@@ -2,8 +2,8 @@ const loginMain = document.createElement("div");
 loginMain.className = "login";
 const loginHeader = document.createElement("h3");
 loginHeader.innerHTML = "login";
+const resetMessage = document.createElement("p")
 loginMain.append(loginHeader);
-
 
 
 const loginForm = document.createElement("form");
@@ -52,7 +52,9 @@ loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, sub
 
 loginMain.append(loginForm,  loginLinks);
 
-const loginPage = () => {
+const loginPage = (message) => {
+    resetMessage.innerHTML = message
+    message ? loginMain.insertBefore(resetMessage, loginHeader) : ""
     return loginMain;
 } 
 

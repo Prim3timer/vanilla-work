@@ -4,6 +4,7 @@ const settingsCont = document.createElement("div");
 settingsCont.className = "settings";
 const innerSettingsElement = document.createElement("section");
 const settingsHeader = document.createElement("h3");
+settingsHeader.className = "settings-header"
 const settingsIntructions = document.createElement("p");
 settingsIntructions.innerHTML =
   "Please populate the input fields with your exercises of choice";

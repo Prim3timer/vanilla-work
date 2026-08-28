@@ -43,11 +43,13 @@
     bottom: 0;
      color: white;
   text-align: center;
+  align-items: flex-end;
 }
 
 #main-page {
     flex-grow: 1;
 }
+
 
   #home-page {
     padding-top: 1rem;
@@ -84,27 +86,28 @@
   
   #go-container {
     display: flex;
-    width: 90vw;
-    justify-content: flex-start;
+    width: 95%;
+    /* justify-content: flex-start; */
     column-gap: 2rem;
     padding: .5rem 0;
+    /* background-color: red;  */
     
     height: 5rem;
     /* margin: .5rem 0; */
   }
+
+  .saver {}
   
   #go {
     display: flex;
     overflow: hidden;
     white-space: nowrap;
     flex-wrap: nowrap;
-    /* place-content: center;   */
     color: darkslateblue;
     text-transform: uppercase;
-    flex: 0 0 60%;
-    /* width: 100%; */
-   /* background-color: red;  */
-   font-size: 2rem !important;
+    flex: 0 0 70%;
+    /* font-size: 4rem; */
+   /* font-size: 2rem !important; */
    overflow: auto;
   }
   
@@ -179,6 +182,7 @@ flex-direction: column;
 }
 
 .user-setting h3 {
+  font-size: 3rem;
   margin-top: 2rem;
 
 }
@@ -221,7 +225,7 @@ flex-direction: column;
   color: white;
 }
 
-.performance, .login, .activity, .user-settings, .settings, .reset-password, .user-setting, .change-password {
+.performance, .activity, .user-settings, .settings, .reset-password, .user-setting, .change-password {
   display: flex;
   padding-top: 2rem;
   width: 100vw;
@@ -229,7 +233,7 @@ flex-direction: column;
 
 }
 
-.settings, .user-settings, .change-password, .login, .login-form {
+.settings, .user-settings, .change-password, .login-form {
   flex-direction: column;
    align-items: center;
    width: 100vw;
@@ -238,9 +242,11 @@ flex-direction: column;
 
   .login {
   display: flex;
+  flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    font-size: 1.5rem;
+    margin: 1rem 0;
   }
   
   .home {
@@ -266,20 +272,6 @@ flex-direction: column;
      color: white;
      width: 20rem;
   }
-  
-  
-  .login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 100vw;
-  height: 100vh;
- }
-
- .login h3{
-  
- }
 
 
 
@@ -297,10 +289,21 @@ flex-direction: column;
   width: 3rem;
   /* background-color: red;  */
  }
+ 
 
  .settings h3{
   text-align: center;
   margin-bottom: .2rem;
+  
+ }
+ .settings p{
+  text-align: center;
+  margin-bottom: .2rem;
+  /* background-color: green; */
+  font-size: 1.5rem;
+  max-width: 60vw;
+  margin-bottom: 1rem;  
+  text-align: left;
  }
 
  .reset-buttons {
@@ -358,7 +361,7 @@ flex-direction: column;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  font-size: 1.5rem;
   row-gap: 1rem;
 }
 
@@ -410,11 +413,12 @@ input {
   background-color: royalblue;
   border-color: royalblue;
   color: whitesmoke;
-  padding: .5rem;
-  width: 8rem;
+  padding: 1rem .5rem;
+  width: 6em;
   align-self: center;
   margin: 1rem 0;
   border-radius: 5px;
+  font-size: 2rem;
   text-decoration: none;
  }
 
@@ -425,7 +429,7 @@ input {
 
 
  .login-button {
-  font-size: 1.2  rem;
+  font-size: 1.2rem;
   margin: .5rem;
   height: 2.2rem;
   margin: 1rem;
@@ -442,16 +446,21 @@ input {
   margin-top: 1rem;
 }
 
-.login-form input, .email-input {
+.login-form input {
+  font-size: 2rem;
+  width: 80vw;
+  padding: .2rem;
+}
+ .email-input {
    width: 60vw;
    max-width: 300px !important;
    /* padding: .2rem; */
-
  }
 
  .forgot-button {
   width: 15rem;
   margin-top: 1rem;
+  height: 2em;
  }
 
  table {
@@ -629,6 +638,7 @@ table th {
    /* justify-content: center; */
    /* height: 10rem; */
    /* flex: 0 1 65% */
+   width: 100%;
    flex: 0 1 0%
  }
 
@@ -716,8 +726,25 @@ table th {
    flex: 0 0 30%;
  }
  @media screen and (min-width: 499px) {
+  .settings {
+    /* background-color: red; */
+  }
+
+  .login-form input {
+  font-size: 2rem;
+  max-width: 50%;
+  padding: .2rem;
+}
+
+.sign-up-anchor {
+height: 2em;
+  text-decoration: none;
+ }
+
   #go-container {
     align-items: center;
+    width: 80vw;
+    /* background-color: red; */
   }
 
     #go {
@@ -727,7 +754,7 @@ table th {
     flex-wrap: nowrap;
     /* place-content: center;   */
     color: darkslateblue;
-    font-size: 4rem !important;
+    /* font-size: 4rem !important; */
     /* flex: 1 1 100%; */
     text-transform: uppercase;
     width: 80%;
@@ -761,12 +788,10 @@ table th {
    /* padding: .5rem; */
    align-items: center;
    column-gap: 1rem;
-   width: 80%;
+   width: 90%;
    padding: 0 2rem;
    margin-top: .5rem;
    height: 6rem;
-   /* background-color: red; */
-
  }
 
 
@@ -775,9 +800,8 @@ table th {
    display: flex;
     flex-direction: row;
    align-items: center;
-   /* justify-content: center; */
-   /* background-color: blue; */
    height: 10rem;
+   width: 100% !important;
    /* column-gap: 1rem; */
    /* flex: 0 1 65% */
    /* flex: 0 1 0% */
@@ -796,6 +820,7 @@ table th {
    flex: 0 0 0%;
    /* padding: 0 1rem; */
    background-color: goldenrod;
+   visibility: hidden;
    border-radius: 0 5px 5px 0;
    border: none;
 

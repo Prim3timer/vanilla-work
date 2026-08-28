@@ -152,7 +152,7 @@ const doIt = async (id) =>  {
       setTimeout(() => {
         go.style.transitionProperty = "font-size width height";
         go.style.transitionDuration = "400ms";
-        go.style.fontSize = "4rem";
+        go.style.fontSize = "3rem";
         go.style.height = "4rem";
         go.style.whiteSpace = "no-wrap";
         go.style.margin = "1rem 0";
@@ -272,18 +272,20 @@ const doIt = async (id) =>  {
           // rounder.style.transitionDuration = '.5s'
           rounder.style.transitTimingFunction = "ease-in";
   
+          rounder.style.visibility = "visible";
           rounder.style.fontSize = "3rem";
           rounder.style.height = "5rem";
           rounder.style.borderRight = "2px solid brown";
           rounder.style.borderTop = "2px solid brown";
           rounder.style.borderTop = "2px solid brown";
           rounder.style.flex = "0 1 40%";
+          // rounder.style.backgroundColor = "gold";
           // rounder.style.transitionDelay = '.1s'
   
           dashboard.style.transitionProperty = "flex";
           dashboard.style.transitionDuration = "1.2s";
           // dashboard.transitTimingFunction = 'ease-in'
-          dashboard.style.flex = "0 1 20%";
+          // dashboard.style.flex = "0 1 20%";
           // dashboard.style.transitionDelay = '.2s'
         }
       }, 1000);

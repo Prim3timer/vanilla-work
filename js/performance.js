@@ -71,10 +71,10 @@ const dateHeader = document.createElement("th");
 const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
 
-dHeader.innerHTML = "duraton (hr:min:s)";
-rHeader.innerHTML = "round on";
-exHeader.innerHTML = "completed (%)";
-exDetsHeader.innerHTML = "exercises/set";
+dHeader.innerHTML = "duraton";
+rHeader.innerHTML = "rounds completed";
+exHeader.innerHTML = "overall effort (%)";
+exDetsHeader.innerHTML = "exercises per round";
 // markHeader.innerHTML = "mark (%)";
 dateHeader.innerHTML = "date";
 table.appendChild(tableBody);

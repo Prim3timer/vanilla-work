@@ -465,7 +465,7 @@ input {
 
  table {
    border-collapse: collapse;
-   width: 90vw;
+   /* width: 90vw; */
  }
 
  .verify-window {
@@ -557,30 +557,38 @@ table th {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  
+  overflow: auto;
   width: 10rem;
   width: 100vw;
  }
 
- .users {
-  font-display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
-  width: 100vw;
-  padding-top: 2rem;
+ .performance table {
+  align-self: flex-start;
   /* background-color: red; */
-  height: 100vh;
+  width: 130vw;
+  margin: .5rem;
  }
 
- table {
-  max-width: 80vw;
-  align-self: center;
-  justify-self: center;
+ .users {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto;
+  justify-content: flex-start;
+  padding-top: 2rem;
+  /* height: 100vh; */
+}
+
+.users table {
+   width: 130vw;
+
  }
+
 
  .users h3 {
   text-align: center;
+  /* background-color: red; */
+  width: 100vw;
  }
 
 
@@ -726,6 +734,28 @@ table th {
    flex: 0 0 30%;
  }
  @media screen and (min-width: 499px) {
+  .performance {
+    width: 100vw;
+  }
+
+   .performance table {
+  align-self: center;
+  max-width: 800px;
+  /* overflow: ; */
+  margin: .5rem 2rem;
+}
+
+.users {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.users table {
+  width: 80vw;
+  /* align-self: center; */
+   /* background-color: red; */
+  
+ }
   .settings {
     /* background-color: red; */
   }

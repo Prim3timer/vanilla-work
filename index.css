@@ -290,7 +290,7 @@ flex-direction: column;
     padding: .5rem;
     border-radius: 5px;
     /* justify-self: center; */
-    color: red;
+    /* color: red; */
     left: 2%;
   top: 13%;
     /* left: 30%; */
@@ -800,7 +800,7 @@ table th {
     /* background-color: gainsboro; */
     background-color: blue;
     position: fixed;
-    color: red;
+    /* color: red; */
     padding: .5rem;
     border-radius: 5px;
 

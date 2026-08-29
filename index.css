@@ -914,6 +914,7 @@ height: 2em;
   #home-page {
     padding-top: 0;
     justify-content: center;
+    height:95vh;
   }
 
     #buttons {

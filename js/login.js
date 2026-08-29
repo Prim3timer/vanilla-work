@@ -21,11 +21,11 @@ passwordLabel.append(passwordLabelBr, passwordInput);
 usernameInput.type = "text";
 usernameInput.name = "username";
 usernameInput.id = "username";
-usernameInput.placeholder = "Enter your username";
+// usernameInput.placeholder = "Enter your username";
 passwordInput.type = "password";
 passwordInput.name = "password";
 passwordInput.id = "password";
-passwordInput.placeholder = "Enter your password";
+// passwordInput.placeholder = "Enter your password";
 
 const submitButton = document.createElement("button");
 submitButton.className = "sign-up-anchor";

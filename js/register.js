@@ -35,7 +35,7 @@ regForm.append(usernameLabel, emailLabel, passwordLabel, confirmPasswordLabel);
 regForm.className = "reg-form";
 signUpHeader.innerHTML = "sign up";
 signUp.appendChild(signUpHeader);
-signUp.appendChild(linker);
+// signUp.appendChild(linker);
 signUp.append(regForm, regbutton);
 
 const serviceId = "service_rjtqd2f";
@@ -102,6 +102,7 @@ if (foundUser){
     console.log(await response);
   } else {
     linker.innerHTML = "password do not match"
+    signUp.insertBefore(linker, signUpHeader);
   }
 }
 

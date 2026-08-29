@@ -5,10 +5,10 @@ settingsCont.className = "settings";
 const innerSettingsElement = document.createElement("section");
 const settingsHeader = document.createElement("h3");
 settingsHeader.className = "settings-header"
-const settingsIntructions = document.createElement("p");
-settingsIntructions.className = "settings-instructions"
-settingsIntructions.innerHTML =
-  "Please populate the input fields with your exercises of choice";
+const settingsInstructions = document.createElement("p");
+settingsInstructions.innerHTML =
+"Please populate the input fields with your exercises of choice";
+settingsInstructions.className = "settings-instructions"
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
@@ -39,7 +39,7 @@ exerciseDurationLabel.innerHTML = "exercise duration (sec)";
 const exerciseDurationInput = document.createElement("input");
 exerciseDurationLabel.append(breaker2, exerciseDurationInput);
 const numberOfRoundsLabel = document.createElement("label");
-numberOfRoundsLabel.innerHTML = "number of rounds/sets";
+numberOfRoundsLabel.innerHTML = "number of rounds in a sets";
 const numberOfRoundsInput = document.createElement("input");
 numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
 const settingsButton = document.createElement("button");
@@ -60,7 +60,7 @@ const settingsPage = () => {
   settingsCont.append(
     settingsHeader,
     thirdContent,
-    settingsIntructions,
+    settingsInstructions,
     settingsForm,
     settingsButton,
     alertWindow,

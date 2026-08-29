@@ -265,9 +265,9 @@ flex-direction: column;
     background-color: lavender;
     position: absolute;
     color: black;
-    top: 10%;
+    top: 6%;
     left: 2%;
-    width: 20vw;
+    width: 50vw;
     padding: .5rem;
   }
 
@@ -785,6 +785,16 @@ table th {
  @media screen and (min-width: 499px) {
   .performance {
     /* width: 80vw; */
+  }
+
+    .reset-message {
+    background-color: lavender;
+    position: absolute;
+    color: black;
+    top: 12%;
+    left: 2%;
+    width: 30vw;
+    padding: .5rem;
   }
 
   .settings-instructions {

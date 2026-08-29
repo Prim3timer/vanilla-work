@@ -6,7 +6,7 @@ let globalUser = {};
 
 const entryCount = document.createElement("span");
 
-const userId = localStorage.getItem("workoutUserId");
+const userId = localStorage.getItem("workoutUserId") || "6a6695c18889470e03c937ec";
 
 const performanceMain = document.createElement("div");
 performanceMain.className = "performance";
@@ -304,7 +304,6 @@ const getData = async (id) => {
   const navbar = document.getElementsByClassName("navbar")[0];
   const getDatas = document.getElementsByClassName("get-data")[0];
   const perfContainer = document.createElement("section");
-  console.log(userId, id)
 };
 
 

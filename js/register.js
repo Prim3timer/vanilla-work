@@ -3,6 +3,7 @@ const signUp = document.createElement("div");
 
 signUp.className = "register";
 const linker = document.createElement("p");
+linker.className = "register-prompt"
 const signUpHeader = document.createElement("h3");
 const regForm = document.createElement("form");
 const usernameLabel = document.createElement("label");
@@ -65,30 +66,46 @@ const createUserDets = async () => {
       email: emailInput.value.trim().toLowerCase(),
       biz,
       link: `https://prim3timer.github.io/vanilla-work?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
-      // link: `http://localhost:5500/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
+      // link: `http://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
     };
+  const userDataBase = await fetch(`${myUrl}/workout-users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
 
-    const mailSent = await emailjs.send(
-      serviceId,
-      templateId,
-      templateParams,
-      publicKey,
-    );
+  const users = await userDataBase.json()
+  console.log(trimmedEmail)
+  console.log(emailInput.value)
+  console.log(users)
+const foundUser = users.find((user)  => user.email === emailInput.value.trim().toLowerCase())
+console.log(foundUser)
+if (foundUser){
+  linker.innerHTML = "duplicate email"
+} else {
+  const mailSent = await emailjs.send(
+    serviceId,
+    templateId,
+    templateParams,
+    publicKey,
+  );
+  if (passwordInput.value === confirmPasswordInput.value) {
+    linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
+    const response = await fetch(`${myUrl}/workout-register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userDets),
+    });
+    console.log(await response);
+  } else {
+    linker.innerHTML = "password do not match"
+  }
+}
 
     console.log(userDets);
-    if (passwordInput.value === confirmPasswordInput.value) {
-      linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
-      const response = await fetch(`${myUrl}/workout-register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDets),
-      });
-      console.log(await response);
-    } else {
-      console.log("password do not match");
-    }
   } catch (error) {
     console.log(error.message);
   }

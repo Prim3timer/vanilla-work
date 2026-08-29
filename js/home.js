@@ -89,9 +89,11 @@ const doIt = async (id) =>  {
   noExAlertElement.style.minWidth = "80%";
   noExAlertElement.innerHTML =
     `you have not chosen any exercises yet. click on "settings" tab to make entry`;
+    noExAlertElement.style.color = "darkslateblue"
+    noExAlertElement.style.fontSize = "1rem"
   if (exerciseCont.children.length === 0) {
     exerciseCont.appendChild(noExAlertElement);
-    exerciseCont.style.backgroundColor = "darkslateBlue";
+    exerciseCont.style.backgroundColor = "gainsboro";
     exerciseCont.style.justifyContent = "center";
     exerciseCont.style.alignItems = "center";
     exerciseCont.style.color = "white"
@@ -259,7 +261,7 @@ const doIt = async (id) =>  {
             "font-size, height, width, border, grid-template-columns";
           cycle.style.transitionDuration = "2s";
           cycle.style.fontSize = sec > 10000 ? "3.5rem" : "4.5rem";
-          cycle.style.height = "6rem";
+          cycle.style.height = "5rem";
           cycle.style.width = "15rem";
           cycle.style.border = "2px solid brown";
           cycle.style.gridTemplateColumns = "5.5rem";

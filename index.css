@@ -96,7 +96,12 @@
     /* margin: .5rem 0; */
   }
 
-  .saver {}
+  .saver {
+    position: relative;
+    right: 10%;
+    flex: 0 0 20%;
+    height: 2em
+  }
   
   #go {
     display: flex;
@@ -249,6 +254,31 @@ flex-direction: column;
     margin: 1rem 0;
   }
   
+  .reset-message {
+    background-color: gainsboro;
+    color: darkslateblue;
+    padding: .5rem;
+    border-radius: 5px;
+  }
+
+  .register-prompt {
+    background-color: gainsboro;
+    padding: 1rem;
+    width: 95%;
+    color: darkslateblue;
+    white-space: wrap;
+    align-self: center;
+    justify-self: center;
+  }
+  
+  .reset-message-danger {
+    background-color: gainsboro;
+    color: red;
+    padding: .5rem;
+    border-radius: 5px;
+
+  }
+
   .home {
     display: flex;
     /* flex-direction: column; */
@@ -337,9 +367,18 @@ flex-direction: column;
   padding: .5rem;
  }
  .register {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+}
+
+.settings-instructions {
+  background-color: gainsboro;
+  color: darkslateblue;
+  padding: .5rem;
+  min-width: 80vw;
+  border-radius: 5px;
 }
 
 .reg-form {
@@ -664,6 +703,7 @@ table th {
    background-color: goldenrod;
    border-radius: 0 5px 5px 0;
    border: none;
+   visibility: hidden;
 
  }
 
@@ -698,11 +738,8 @@ table th {
    align-items: center;
    /* place-content: center; */
    color: purple;
-   font-size: 0.01px;
    border-radius: 5px;  
    padding: .5rem;
-   /* font-size: 6rem; */
-
  }
 
   #exercise-cont {
@@ -736,6 +773,15 @@ table th {
  @media screen and (min-width: 499px) {
   .performance {
     /* width: 80vw; */
+  }
+
+  .settings-instructions {
+
+  width: 50% !important;
+}
+  
+  .register-prompt {
+    width: 55%;
   }
 
    .performance table {
@@ -805,8 +851,15 @@ height: 2em;
     /* font-size: 4rem !important; */
     /* flex: 1 1 100%; */
     text-transform: uppercase;
+    position: absolute;
     width: 80%;
    overflow: visible;
+  }
+
+  .saver {
+    position: relative;
+    left: 90%;
+    flex:  0 0 2em;
   }
 
   #home-page {

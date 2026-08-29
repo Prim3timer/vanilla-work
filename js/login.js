@@ -52,8 +52,11 @@ loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, sub
 
 loginMain.append(loginForm,  loginLinks);
 
-const loginPage = (message) => {
+const loginPage = (message, errorMessage) => {
+    console.log(errorMessage)
+    console.log(message)
     resetMessage.innerHTML = message
+    errorMessage === undefined ? resetMessage.className = "reset-message" : resetMessage.className = "reset-message-danger"
     message ? loginMain.insertBefore(resetMessage, loginHeader) : ""
     return loginMain;
 } 

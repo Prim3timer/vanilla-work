@@ -144,6 +144,7 @@ const login = async (e) => {
       body: JSON.stringify(cred),
     });
     const reply = await response.json();
+    console.log(reply)
     console.log(reply);
     if (reply.id) {
       localStorage.setItem("workoutUserId", reply.id);
@@ -178,7 +179,8 @@ const login = async (e) => {
         return;
       }
     } else {
-      return;
+      const errorMessage = true 
+       mainContainer.firstElementChild.replaceWith(loginPage(reply.message, errorMessage));
     }
   } catch (error) {
     console.log(error);

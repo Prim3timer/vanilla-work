@@ -6,10 +6,12 @@ const innerSettingsElement = document.createElement("section");
 const settingsHeader = document.createElement("h3");
 settingsHeader.className = "settings-header"
 const settingsIntructions = document.createElement("p");
+settingsIntructions.className = "settings-instructions"
 settingsIntructions.innerHTML =
   "Please populate the input fields with your exercises of choice";
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
+
 
 let alertWindow = document.createElement("p");
 alertWindow.style.fontSize = "1.5rem";
@@ -138,6 +140,18 @@ const editUser = async (e) => {
 
     if (filteredExercise.length < 1) {
       console.log("exercise list is too short. make it at least 2");
+        alertWindow.innerHTML = "exercise list is too short. make it at least 1";
+      alertWindow.className = "verify-window";
+      alertWindow.style.position = "fixed";
+      alertWindow.style.top = "40%";
+    } else if (!intervalInput.value || !exerciseDurationInput.value || !numberOfRoundsInput.value) {
+      alertWindow.innerHTML = `one or more of the fields after the exercise field eg "interval b/w exercises" is not filled out.` 
+            alertWindow.className = "verify-window";
+      alertWindow.style.position = "fixed";
+      alertWindow.style.top = "40%";
+        setTimeout(() => {
+        alertWindow.className = "no-verify-window";
+      }, 5000);
     } else {
       const respone2 = await fetch(`${myUrl}/workout-users/${userId}`, {
         method: "PATCH",
@@ -155,6 +169,7 @@ const editUser = async (e) => {
         alertWindow.className = "no-verify-window";
       }, 3000);
       console.log(reply);
+
     }
   }
 };

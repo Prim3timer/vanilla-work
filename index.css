@@ -261,6 +261,16 @@ flex-direction: column;
     border-radius: 5px;
   }
 
+  .reset-message {
+    background-color: lavender;
+    position: absolute;
+    color: black;
+    top: 10%;
+    left: 2%;
+    width: 20vw;
+    padding: .5rem;
+  }
+
   .register-prompt {
     background-color: gainsboro;
     padding: 1rem;

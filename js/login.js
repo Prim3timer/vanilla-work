@@ -3,6 +3,7 @@ loginMain.className = "login";
 const loginHeader = document.createElement("h3");
 loginHeader.innerHTML = "login";
 const resetMessage = document.createElement("p")
+resetMessage.className = "reset-message"
 loginMain.append(loginHeader);
 
 
@@ -25,7 +26,7 @@ usernameInput.id = "username";
 passwordInput.type = "password";
 passwordInput.name = "password";
 passwordInput.id = "password";
-// passwordInput.placeholder = "Enter your password";
+// passwordInput.placeholder = "Enter your password";l
 
 const submitButton = document.createElement("button");
 submitButton.className = "sign-up-anchor";
@@ -55,7 +56,8 @@ loginMain.append(loginForm,  loginLinks);
 const loginPage = (message, errorMessage) => {
     console.log(errorMessage)
     console.log(message)
-    resetMessage.innerHTML = message
+    resetMessage.innerHTML = message || "Your efficient workout partner."
+    loginMain.append(resetMessage)
     errorMessage === undefined ? resetMessage.className = "reset-message" : resetMessage.className = "reset-message-danger"
     message ? loginMain.insertBefore(resetMessage, loginHeader) : ""
     return loginMain;

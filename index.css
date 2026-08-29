@@ -285,10 +285,16 @@ flex-direction: column;
   
   .reset-message-danger {
     background-color: gainsboro;
-    color: red;
+    position: fixed;
+    /* color: red; */
     padding: .5rem;
     border-radius: 5px;
-
+    /* justify-self: center; */
+    color: red;
+    left: 2%;
+  top: 13%;
+    /* left: 30%; */
+    width: 30vw;
   }
 
   .home {
@@ -786,6 +792,24 @@ table th {
  @media screen and (min-width: 499px) {
   .performance {
     /* width: 80vw; */
+  }
+
+  .reset-message
+
+    .reset-message-danger {
+    /* background-color: gainsboro; */
+    background-color: blue;
+    position: fixed;
+    color: red;
+    padding: .5rem;
+    border-radius: 5px;
+
+  
+    color: black;
+    top: 17%;
+    left: 2%;
+    width: 30vw;
+    padding: .5rem;
   }
 
     .reset-message {

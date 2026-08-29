@@ -269,6 +269,7 @@ flex-direction: column;
     left: 2%;
     width: 50vw;
     padding: .5rem;
+    position: fixed;
   }
 
   .register-prompt {
@@ -789,7 +790,7 @@ table th {
 
     .reset-message {
     background-color: lavender;
-    position: absolute;
+  
     color: black;
     top: 12%;
     left: 2%;

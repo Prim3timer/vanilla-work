@@ -90,6 +90,7 @@ if (foundUser){
     templateParams,
     publicKey,
   );
+  signUp.insertBefore(linker, signUpHeader);
   if (passwordInput.value === confirmPasswordInput.value) {
     linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
     const response = await fetch(`${myUrl}/workout-register`, {
@@ -102,7 +103,6 @@ if (foundUser){
     console.log(await response);
   } else {
     linker.innerHTML = "password do not match"
-    signUp.insertBefore(linker, signUpHeader);
   }
 }
 

@@ -39,7 +39,7 @@ exerciseDurationLabel.innerHTML = "exercise duration (sec)";
 const exerciseDurationInput = document.createElement("input");
 exerciseDurationLabel.append(breaker2, exerciseDurationInput);
 const numberOfRoundsLabel = document.createElement("label");
-numberOfRoundsLabel.innerHTML = "number of rounds in";
+numberOfRoundsLabel.innerHTML = "number of rounds";
 const numberOfRoundsInput = document.createElement("input");
 numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
 const settingsButton = document.createElement("button");

@@ -31,21 +31,34 @@ const breaker = document.createElement("br");
 const breaker2 = document.createElement("br");
 const breaker3 = document.createElement("br");
 const interalLabel = document.createElement("label");
-interalLabel.innerHTML = "interval b/w exercises (sec)";
+interalLabel.innerHTML = "interval b/w exercises";
 const intervalInput = document.createElement("input");
-interalLabel.append(breaker, intervalInput);
+intervalInput.className = "interval-input";
+
+const siUnit = document.createElement("span");
+siUnit.innerHTML = " seconds";
+interalLabel.append(breaker, intervalInput, siUnit );
 const exerciseDurationLabel = document.createElement("label");
-exerciseDurationLabel.innerHTML = "exercise duration (sec)";
+exerciseDurationLabel.innerHTML = "exercise duration";
 const exerciseDurationInput = document.createElement("input");
-exerciseDurationLabel.append(breaker2, exerciseDurationInput);
+exerciseDurationInput.className = "exercise-duration-input";
+exerciseDurationLabel.append(breaker2, exerciseDurationInput, siUnit.cloneNode(true));
+
+// execiseDurationInput.placeholder = "numbers only"
 const numberOfRoundsLabel = document.createElement("label");
 numberOfRoundsLabel.innerHTML = "number of rounds";
 const numberOfRoundsInput = document.createElement("input");
+numberOfRoundsInput.className = "number-of-rounds-input";
 numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
 const settingsButton = document.createElement("button");
 settingsButton.className = "done-settings";
 settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
+
+
+ intervalInput.placeholder = "numbers only";
+  exerciseDurationInput.placeholder = "numbers only";
+  numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(
     firstExercise,
@@ -100,6 +113,7 @@ const populate = async () => {
   intervalInput.value = workSettings.interval || "";
   exerciseDurationInput.value = workSettings.exercisesDuration || "";
   numberOfRoundsInput.value = workSettings.numberOfRounds || "";
+ 
 };
 }
 

@@ -653,7 +653,7 @@ table th {
  .exercise-settings-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   row-gap: .5rem;
   /* background-color: red */
 }
@@ -661,11 +661,6 @@ table th {
 .exercise-settings-form input {
   padding: .2rem;
 }
-/* .exercise-settings-form >*:last-child {
-   width: 20vw;
-  background-color: darkslateblue;
- } */
-
  .exercise-settings-form label {
   font-weight: bold;
  }
@@ -673,7 +668,7 @@ table th {
  .exercise-duration-input, .interval-input, .number-of-rounds-input {
   width: 6rem;
   padding: .2rem;
-  justify-self: left;
+  justify-self: flex-start;
  }
 
  .get-data {

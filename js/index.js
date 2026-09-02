@@ -7,6 +7,7 @@ import { register } from "./register.js";
 import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
 import { loginPage } from "./login.js";
+import { mainSettings } from "./userSettings.js";
 
 console.log(loginPage())
 const greeting = document.getElementsByClassName("greeting")[0];
@@ -80,6 +81,7 @@ const containers = [
   usersPage(),
   register(),
   forgotPage(),
+  mainSettings()
 ];
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);

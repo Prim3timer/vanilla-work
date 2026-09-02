@@ -100,11 +100,15 @@ const doIt = async (id) =>  {
     exerciseCont.style.fontSize = "1.5rem";
   }
   
-  goContainer.append(go, saver);
+  goContainer.append(go);
   jogup.id = "jog-up";
   jogup.innerHTML = "Mark Time";
   const dashboard = document.createElement("div");
   dashboard.className = "indicator-container";
+  const clockAndRound = document.createElement("div");
+  clockAndRound.className = "clock-and-round";
+  clockAndRound.append(cycle, rounder);
+  dashboard.append(clockAndRound, jogup);
   // dashboard.style.backgroundColor = "yellow";
   const statusContainer = document.createElement("section");
   statusContainer.id = "status-container";
@@ -118,7 +122,7 @@ const doIt = async (id) =>  {
   rounder.className = "indicator";
   rounder.id = "round";
   cycle.innerHTML = sec;
-  dashboard.append(cycle, rounder, jogup);
+  // dashboard.append(cycle, rounder, jogup);
   let rewind = document.createElement("button");
   let forward = document.createElement("button");
   let roundUp = document.createElement("button");
@@ -266,6 +270,7 @@ const doIt = async (id) =>  {
           cycle.style.border = "2px solid brown";
           cycle.style.gridTemplateColumns = "5.5rem";
           cycle.transitTimingFunction = "ease-in";
+          cycle.style.visibility = "visible";
           // cycle.style.transitionDelay = '.5s'
   
           rounder.style.transitionProperty =
@@ -493,12 +498,12 @@ const doIt = async (id) =>  {
   forward.id = "foward";
   forward.innerHTML = `<i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i>`;
   roundUp.id = "round-up";
-  roundUp.innerHTML = `R <i class="fa-solid fa-forward-fast">`;
+  roundUp.innerHTML = `<i class="fa-solid fa-forward-fast">`;
 
   const buttonsCont = document.createElement("div");
   for (let i = 0; i < buttonsCont.children.length; i++) {}
 
-  buttonsCont.append(rewind, pauser, forward, roundUp);
+  buttonsCont.append(rewind, pauser, forward, roundUp, saver);
   console.log(buttonsCont.children.length);
   buttonsCont.id = "buttons";
   buttonsCont.style.display = "flex";

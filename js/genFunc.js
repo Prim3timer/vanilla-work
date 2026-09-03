@@ -72,18 +72,19 @@ function ElementCatcher(pages, mainContainer, guestId) {
             localStorage.setItem("current-page", content.className)
             if (mainContainer.children.length > 0) {
               
-              mainContainer.firstElementChild.replaceWith(content);
+              // mainContainer.firstElementChild.replaceWith(content);
 
               return;
             } else {
-              mainContainer.appendChild(content);
+              // mainContainer.appendChild(content);
               
             }
           }
         }
-        observer.observe(rootElement, { childList: true,
-subtree: false
-});
+        window.location.reload();
+//         observer.observe(rootElement, { childList: true,
+// subtree: false
+// });
       }
       return content;
     });

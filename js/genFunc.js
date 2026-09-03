@@ -78,14 +78,14 @@ function ElementCatcher(pages, mainContainer, guestId) {
  });
               return;
             } else {
-              mainContainer.appendChild(content);
-              observer.observe(rootElement, { childList: true,
-  subtree: false
- });
-
+              
+            }
           }
-          }
-          }
+        }
+        mainContainer.appendChild(content);
+        observer.observe(rootElement, { childList: true,
+subtree: false
+});
       }
       return content;
     });

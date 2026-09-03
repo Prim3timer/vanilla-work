@@ -32,6 +32,25 @@ const timeClockings = (sec) => {
   }`;
 };
 
+// 1. Select the root element containing the target child
+const rootElement = document.getElementById('main-page'); 
+
+// 2. Define the callback function to run when a change is detected
+const callback = (mutationsList) => {
+    for (const mutation of mutationsList) {
+        // Check if a child node was added or removed
+        if (mutation.type === 'childList') {
+            console.log('Child element changed. Reloading page...');
+            window.location.reload();
+            break; // Stop looping once we trigger the reload
+        }
+    }
+};
+
+// 3. Create the observer instance
+const observer = new MutationObserver(callback);
+
+
 function ElementCatcher(pages, mainContainer, guestId) {
   this.shower = async function (e) {
    const roles =  JSON.parse(localStorage.getItem("roles"))
@@ -54,9 +73,15 @@ function ElementCatcher(pages, mainContainer, guestId) {
             if (mainContainer.children.length > 0) {
               
               mainContainer.firstElementChild.replaceWith(content);
+              observer.observe(rootElement, { childList: true,
+  subtree: false
+ });
               return;
             } else {
               mainContainer.appendChild(content);
+              observer.observe(rootElement, { childList: true,
+  subtree: false
+ });
 
           }
           }

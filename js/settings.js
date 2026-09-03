@@ -33,6 +33,7 @@ const breaker3 = document.createElement("br");
 const interalLabel = document.createElement("label");
 interalLabel.innerHTML = "interval b/w exercises";
 const intervalInput = document.createElement("input");
+
 intervalInput.className = "interval-input";
 
 const siUnit = document.createElement("span");
@@ -41,6 +42,8 @@ interalLabel.append(breaker, intervalInput, siUnit );
 const exerciseDurationLabel = document.createElement("label");
 exerciseDurationLabel.innerHTML = "exercise duration";
 const exerciseDurationInput = document.createElement("input");
+// exerciseDurationInput.type = "number";
+exerciseDurationInput.required = true;
 exerciseDurationInput.className = "exercise-duration-input";
 exerciseDurationLabel.append(breaker2, exerciseDurationInput, siUnit.cloneNode(true));
 
@@ -145,9 +148,9 @@ const editUser = async (e) => {
   if (users) {
     const workerSettings = {
       exercise: filteredExercise,
-      interval: intervalInput.value,
+      interval: intervalInput.value || 0,
       exercisesDuration: exerciseDurationInput.value,
-      numberOfRounds: numberOfRoundsInput.value,
+      numberOfRounds: numberOfRoundsInput.value || 1,
     };
     console.log(users);
     const user = users.find((user) => user._id === userId);
@@ -158,8 +161,8 @@ const editUser = async (e) => {
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
       alertWindow.style.top = "40%";
-    } else if (!intervalInput.value || !exerciseDurationInput.value || !numberOfRoundsInput.value) {
-      alertWindow.innerHTML = `one or more of the fields after the exercise field eg "interval b/w exercises" is not filled out.` 
+    } else if (!exerciseDurationInput.value) {
+      alertWindow.innerHTML = `the exercise duration field is not filled out.` 
             alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
       alertWindow.style.top = "40%";

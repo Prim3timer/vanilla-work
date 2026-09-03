@@ -119,9 +119,11 @@ yesButton.addEventListener("click", async (e) => {
         "Content-Type": "application/json",
       },
     });
-    mainContainer.replaceChild(usersPage(), userSettingsMain);
-    verifyWindow.className = "no-verify-window";
     const result = await response.json();
+    if (result) {
+      mainContainer.replaceChild(usersPage(), userSettingsMain);
+      verifyWindow.className = "no-verify-window";
+    }
     console.log(result);
   } catch (error) {
     console.log(error);

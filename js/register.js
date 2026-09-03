@@ -52,6 +52,7 @@ const now = Date.now();
 
 // let userDets = {};
 const createUserDets = async () => {
+  linker.innerHTML = "processing...";
   const userDets = {
     username: userNameInput.value.trim(),
     email: emailInput.value.trim().toLowerCase(),
@@ -92,7 +93,6 @@ if (foundUser){
   );
   signUp.insertBefore(linker, signUpHeader);
   if (passwordInput.value === confirmPasswordInput.value) {
-    linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
     const response = await fetch(`${myUrl}/workout-register`, {
       method: "POST",
       headers: {
@@ -100,6 +100,7 @@ if (foundUser){
       },
       body: JSON.stringify(userDets),
     });
+    linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
     console.log(await response);
   } else {
     linker.innerHTML = "password do not match"

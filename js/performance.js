@@ -146,13 +146,13 @@ const deleteEntry = async () => {
         };
         del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
 
-        const getId = async (id) => {
+        const getId = async () => {
           itemId = id;
           verifyWindow.className = "verify-window";
           verifyWindowButtonCont.className = "verify-button-cont";
         };
 
-        del.addEventListener("click", () => getId(perfy._id));
+        del.addEventListener("click", () => getId());
         dets.append(roundCount, endurance, exCount, exDet, date, del);
         userId && performanceMain.append(table);
       }
@@ -307,8 +307,8 @@ const getData = async (id) => {
 };
 
 
-const performancePage = (id) => {
-  getData(id);
+getData();
+const performancePage = () => {
   return performanceMain;
 };
 

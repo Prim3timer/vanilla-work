@@ -108,6 +108,8 @@ noButton.addEventListener("click", () => {
   verifyWindow.className = "no-verify-window";
 });
 
+console.log("hiiiiiiioooo");
+
 deleter.addEventListener("click", removeVerifier);
 
 yesButton.addEventListener("click", async (e) => {
@@ -122,7 +124,7 @@ yesButton.addEventListener("click", async (e) => {
     const result = await response.json();
     if (result) {
       mainContainer.replaceChild(usersPage(), userSettingsMain);
-      verifyWindow.className = "no-verify-window";
+      verifyWindow.className = "no-verify-window";  
     }
     console.log(result);
   } catch (error) {

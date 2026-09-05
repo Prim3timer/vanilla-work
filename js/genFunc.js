@@ -74,6 +74,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
               
               // mainContainer.firstElementChild.replaceWith(content);
 
+              window.location.reload();
               return;
             } else {
               // mainContainer.appendChild(content);
@@ -81,7 +82,6 @@ function ElementCatcher(pages, mainContainer, guestId) {
             }
           }
         }
-        window.location.reload();
 //         observer.observe(rootElement, { childList: true,
 // subtree: false
 // });

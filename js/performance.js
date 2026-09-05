@@ -72,7 +72,7 @@ const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
 
 dHeader.innerHTML = "duraton";
-rHeader.innerHTML = "rounds completed";
+rHeader.innerHTML = "exercise completed";
 exHeader.innerHTML = "overall effort (%)";
 exDetsHeader.innerHTML = "exercises per round";
 // markHeader.innerHTML = "mark (%)";
@@ -236,7 +236,7 @@ const getData = async (id) => {
       // detsExList.replaceChildren();
       const betweenExes = perfy.exerciseTimings[2].interval;
       const exerciseLength = perfy.exerciseTimings[1].exercisesDuration;
-      detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
+      detNumberOfRounds.innerHTML = `total rounds in routine: ${workSettings.numberOfRounds}`;
       detsInterval.innerHTML = `interval b/w exercises: ${timeClockings(betweenExes)}`;
       detExDuration.innerHTML = `duration of each exercise: ${timeClockings(exerciseLength)}`;
       detsDuration.innerHTML = `duration: ${timeClockings(duration)}`;
@@ -261,7 +261,7 @@ const getData = async (id) => {
     roundCount.addEventListener("click", showDetWindow);
     const endurance = document.createElement("td");
     endurance.addEventListener("click", showDetWindow);
-    endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
+    endurance.innerHTML = `${perfy.oneExercise}`;
     const exCount = document.createElement("td");
     exCount.addEventListener("click", showDetWindow);
     const exDet = document.createElement("td");

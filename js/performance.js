@@ -261,7 +261,7 @@ const getData = async (id) => {
     roundCount.addEventListener("click", showDetWindow);
     const endurance = document.createElement("td");
     endurance.addEventListener("click", showDetWindow);
-    endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
+    endurance.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
     const exCount = document.createElement("td");
     exCount.addEventListener("click", showDetWindow);
     const exDet = document.createElement("td");

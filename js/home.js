@@ -204,7 +204,7 @@ const doIt = async (id) =>  {
           //     : currentItem.innerHTML.length > 10
           //       ? ".8rem"
           //       : "2rem";
-          currentItem.style.fontSize = "1.5rem"
+          currentItem.style.fontSize = "2rem"
           currentItem.style.color = "yellow";
           currentItem.style.backgroundColor = "green";
           currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";

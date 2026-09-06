@@ -7,7 +7,7 @@ const settingsHeader = document.createElement("h3");
 settingsHeader.className = "settings-header"
 const settingsInstructions = document.createElement("p");
 settingsInstructions.innerHTML =
-"Please populate the input fields with your exercises of choice";
+"Please setup your exercise routine";
 settingsInstructions.className = "settings-instructions"
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";

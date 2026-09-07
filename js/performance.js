@@ -71,6 +71,8 @@ const dateHeader = document.createElement("th");
 const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
 
+tableBody.className = "performance-tbody"
+
 dHeader.innerHTML = "duraton";
 rHeader.innerHTML = "rounds completed";
 exHeader.innerHTML = "overall effort (%)";
@@ -183,13 +185,13 @@ const getData = async (id) => {
     },
   });
   const users = await response2.json();
-  const user = users.find((user) => user._id == userId);
+  const user = users.find((user) => user._id == id);
   globalUser = user;
   const foundUserRoles = Object.keys(user.roles);
   yesButton.addEventListener("click", deleteEntry);
   let perfData = await response.json();
   globalData = perfData;
-  const filteredData = perfData.filter((data) => data.userId === userId);
+  const filteredData = perfData.filter((data) => data.userId === id);
   entryCount.innerHTML = `(${filteredData.length} entries)`;
 
   for (let i = 0; i < filteredData.length; i++) {
@@ -307,9 +309,12 @@ const getData = async (id) => {
 };
 
 
-getData();
+getData(userId);
 const performancePage = () => {
+  if (performanceMain.children.length > 0){
+    performanceMain.replaceChildren()
+  }
   return performanceMain;
 };
 
-export { performancePage };
+export { performancePage, getData };

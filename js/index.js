@@ -145,10 +145,12 @@ const login = async (e) => {
       },
       body: JSON.stringify(cred),
     });
+  
     const reply = await response.json();
     console.log(reply)
     console.log(reply);
     if (reply.id) {
+        window.location.reload()
       localStorage.setItem("workoutUserId", reply.id);
       if (mainContainer.children.length > 0) {
         console.log(mainContainer.firstElementChild)

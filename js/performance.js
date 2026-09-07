@@ -311,9 +311,7 @@ const getData = async (id) => {
 
 getData(userId);
 const performancePage = () => {
-  if (performanceMain.children.length > 0){
-    performanceMain.replaceChildren()
-  }
+
   return performanceMain;
 };
 

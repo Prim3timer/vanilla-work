@@ -760,6 +760,7 @@ table th {
    height: 15rem;
    display: flex;
    flex-wrap: nowrap;
+   /* position: absolute; */
    justify-content: flex-start;
    align-items: center;
    text-align: center;
@@ -768,7 +769,7 @@ table th {
    width: 95vw;
    /* background-color: yellow; */
    overflow-y: visible;
-   overflow-x: visible;
+   overflow-x: auto;
  }
 
   .exercise{
@@ -783,6 +784,7 @@ table th {
    border-radius: 5px;
    font-size: 2rem;
    flex: 0 0 30%;
+   z-index: 5;
    /* overflow: visible; */
  }
  @media screen and (min-width: 499px) {

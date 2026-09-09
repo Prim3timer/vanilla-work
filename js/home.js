@@ -26,7 +26,7 @@ const doIt = async (id) =>  {
   goContainer.id = "go-container";
   let go = document.createElement("p");
   go.id = "go";
-  let pIndex = 0;
+  let pIndex = 10;
   let saver = document.createElement("button");
   saver.className = "saver";
   saver.innerHTML = `<i class="fa-solid fa-save"></i>`;
@@ -198,12 +198,12 @@ const doIt = async (id) =>  {
           formerItem.style.backgroundColor = "maroon";
   
           currentItem.style.transform = `scale(2.5) translate(${translator}, -15px)`;
-          // currentItem.style.fontSize =
-          //   currentItem.innerHTML.length > 7
-          //     ? "1.5rem"
-          //     : currentItem.innerHTML.length > 10
-          //       ? ".8rem"
-          //       : "2rem";
+          currentItem.style.fontSize =
+            currentItem.innerHTML.length > 7
+              ? "1.5rem"
+              : currentItem.innerHTML.length > 10
+                ? ".8rem"
+                : "2rem";
           currentItem.style.fontSize = "2rem"
           currentItem.style.color = "yellow";
           currentItem.style.backgroundColor = "green";

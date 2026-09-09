@@ -57,9 +57,10 @@ const loginPage = (message, errorMessage) => {
     console.log(errorMessage)
     console.log(message)
     resetMessage.innerHTML = message || "Your efficient workout partner."
+    resetMessage.className = "reset-message"
+    resetMessage.style.color = message ? "red" : "darkslateblue"
     loginMain.append(resetMessage)
-    errorMessage === undefined ? resetMessage.className = "reset-message" : resetMessage.className = "reset-message-danger"
-    message ? loginMain.insertBefore(resetMessage, loginHeader) : ""
+    // message ? loginMain.insertBefore(resetMessage, loginHeader) : ""
     return loginMain;
 } 
 

@@ -129,9 +129,10 @@ const handleRefresh = async () => {
 handleRefresh();
 console.log(submitButton);
 
-
+const resetMessage  = loginPage().getElementsByClassName("reset-message")[0]
 const login = async (e) => {
   e.preventDefault();
+  resetMessage.innerHTML = "processing..."
   const cred = {
     username: usernameInput.value,
     password: passwordInput.value,
@@ -185,9 +186,12 @@ const login = async (e) => {
     } else {
       const errorMessage = true 
        mainContainer.firstElementChild.replaceWith(loginPage(reply.message, errorMessage));
+       errorMessage = false
     }
   } catch (error) {
     console.log(error);
+  }
+  finally {
   }
 };
 

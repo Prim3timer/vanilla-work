@@ -264,8 +264,8 @@ const doIt = async (id) =>  {
           cycle.style.transitionProperty =
             "font-size, height, width, border, grid-template-columns";
           cycle.style.transitionDuration = "2s";
-          cycle.style.fontSize = sec > 10000 ? "3.5rem" : "4.5rem";
-          cycle.style.height = "5rem";
+          cycle.style.fontSize = sec > 10000 ? "3.5rem" : "5.5rem";
+          cycle.style.height = "6rem";
           cycle.style.width = "15rem";
           cycle.style.border = "2px solid brown";
           cycle.style.gridTemplateColumns = "5.5rem";

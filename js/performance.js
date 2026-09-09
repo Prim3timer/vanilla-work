@@ -1,4 +1,4 @@
-import { timeClocking, timeClockings } from "./genFunc.js";
+import { timeClocking, timeToText } from "./genFunc.js";
 import myUrl from "./myUrl.js";
 
 let globalData = [];
@@ -239,9 +239,9 @@ const getData = async (id) => {
       const betweenExes = perfy.exerciseTimings[2].interval;
       const exerciseLength = perfy.exerciseTimings[1].exercisesDuration;
       detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
-      detsInterval.innerHTML = `interval b/w exercises: ${timeClockings(betweenExes)}`;
-      detExDuration.innerHTML = `duration of each exercise: ${timeClockings(exerciseLength)}`;
-      detsDuration.innerHTML = `duration: ${timeClockings(duration)}`;
+      detsInterval.innerHTML = `interval b/w exercises: ${timeToText(betweenExes)}`;
+      detExDuration.innerHTML = `duration of each exercise: ${timeToText(exerciseLength)}`;
+      detsDuration.innerHTML = `duration: ${timeToText(duration)}`;
       detsExHeader.innerHTML = `exercises list:`;
       numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
       detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);

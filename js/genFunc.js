@@ -6,9 +6,9 @@ const timeClocking = (sec) => {
     sec > 3600
       ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
       : sec < 10
-        ? `:0${sec % 60}`
+        ? `0:0${sec % 60}`
         : sec < 60
-          ? ` :${sec % 60}`
+          ? `0:${sec % 60}`
           : sec % 60 >= 10
             ? `${Math.floor(sec / 60)}:${sec % 60}`
             : sec < 10
@@ -16,7 +16,7 @@ const timeClocking = (sec) => {
               : `${Math.floor(sec / 60)}:0${sec % 60}`
   }`;
 };
-const timeClockings = (sec) => {
+const timeToText = (sec) => {
   return ` ${
     // if sec is greater than an hour
     sec > 3600
@@ -102,4 +102,4 @@ const getSpecificPage = (e, page, mainContainer) => {
           }
   }
 
-export { timeClocking, timeClockings, ElementCatcher, getSpecificPage };
+export { timeClocking, timeToText, ElementCatcher, getSpecificPage };

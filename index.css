@@ -935,7 +935,7 @@ height: 2em;
    display: flex;
     flex-direction: row;
    align-items: flex-start;
-   height: 8rem;
+   height: 7rem;
    width: 100% !important;
    column-gap: 2rem;
    /* flex: 0 1 65% */

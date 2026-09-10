@@ -25,17 +25,7 @@ question.innerHTML = "Are you sure you want to delete this entry?";
 let verifyWindowButtonCont = document.createElement("article");
 let alertWindow = document.createElement("p");
 verifyWindow.className = "no-verify-window";
-// verifyWindow.style.padding = ".5rem";
-// verifyWindow.style.display = "flex";
-// verifyWindow.style.flexDirection = "column";
-// verifyWindow.style.rowGap = "1rem";
-// verifyWindow.style.alignItems = "center";
-// verifyWindow.style.backgroundColor = "lavender";
-// verifyWindow.style.position = "fixed";
-// verifyWindow.style.top = "40%";
-
-
-// verifyWindow.append(verifyWindowButtonCont);
+1
 let itemId = "";
 verifyWindowButtonCont.className = "verify-button-cont";
 let noButton = document.createElement("button");
@@ -233,8 +223,12 @@ const getData = async (id) => {
     };
 
     del.addEventListener("click", () => getId(perfy._id));
-    dets.append(endurance, roundCount,  mark, exDet, date, del);
-    // detsWindow.className = "no-verify-window";
+    dets.append(endurance, roundCount,  mark, exDet, date);
+    console.log(perfy)
+    for (const child of dets.children){
+      child.addEventListener("click", () => showDetWindow(perfy, duration, performanceMain))
+    }
+    dets.append(del);
 
     performanceMain.append(table);
   }

@@ -48,9 +48,9 @@ columnElement.className = "column-element"
 const hourLabel = document.createElement("label")
 const minuteLabel = document.createElement("label")
 const secondLabel = document.createElement("label")
-hourLabel.innerHTML = "HH"
-minuteLabel.innerHTML = "MM"
-secondLabel.innerHTML = "SS"
+hourLabel.innerHTML = "hr"
+minuteLabel.innerHTML = "min"
+secondLabel.innerHTML = "s"
 hourLabel.append(breaker, intervalHourInput)
 hourLabel.className = "hour-label"
 minuteLabel.className = "minute-label"

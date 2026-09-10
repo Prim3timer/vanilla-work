@@ -801,7 +801,7 @@ table th {
   /* background-color: red; */
   align-items: center;
   /* font-weight: none; */
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 .hour-label {
    margin-left: .5rem;
@@ -816,7 +816,7 @@ table th {
   /* flex-direction: column; */
   /* justify-content: flex-end; */
   /* width: 75vw; */
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
   align-items: flex-end;
   /* text-align: left; */
   font-size: 1.5rem;
@@ -840,9 +840,10 @@ table th {
   /* background-color: red; */
   height: 40px;
  }
- .duration-label input, .number-of-rounds-input {
+ .duration-label>*:nth-child(2), .number-of-rounds-label input {
   margin-left: .5rem;
  }
+ 
  @media screen and (min-width: 499px) {
 .inner-dets-verify-window{
   top: 15%;

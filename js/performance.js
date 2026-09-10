@@ -170,7 +170,7 @@ const getData = async (id) => {
   const users = await response2.json();
   const user = users.find((user) => user._id == id);
   globalUser = user;
-  const foundUserRoles = Object?.keys(user.roles);
+  // const foundUserRoles = Object?.keys(user.roles);
   yesButton.addEventListener("click", deleteEntry);
   let perfData = await response.json();
   globalData = perfData;

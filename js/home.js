@@ -45,7 +45,7 @@ const doIt = async (id) =>  {
   let integrityCheck = 0;
   alertWindow.style.fontSize = "1.5rem";
   alertWindow.className = "no-verify-window";
-  const userId = localStorage.getItem("workoutUserId");
+  const userId = localStorage.getItem("workoutUserId") || "";
   console.log(userId)
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",

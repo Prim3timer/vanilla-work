@@ -576,9 +576,12 @@ color: white;
  }
 
  .verify-button-cont button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 50%;
   padding: .5rem;
-  height: 2em
+  /* height: 2em */
  }
 
  table th, td {
@@ -800,6 +803,10 @@ table th {
     left: 5px;
 
     width: 20vw;
+  }
+
+  .verify-button-cont button {
+    padding: 2rem;
   }
 
 

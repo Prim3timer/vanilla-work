@@ -189,18 +189,13 @@ const getData = async (id) => {
     const endurance = document.createElement("td");
 
     endurance.innerHTML = timeClocking(duration);
-    endurance.addEventListener("click", showDetWindow);
     const roundCount = document.createElement("td");
-    roundCount.addEventListener("click", showDetWindow);
     roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
     const mark = document.createElement("td");
-    mark.addEventListener("click", showDetWindow);
     const exDet = document.createElement("td");
-    exDet.addEventListener("click", showDetWindow);
     mark.innerHTML = `${parseInt(perfy.mark)}`;
     exDet.innerHTML = `${perfy.exerciseDets.length}`;
     const date = document.createElement("td");
-    date.addEventListener("click", showDetWindow);
     const del = document.createElement("td");
     date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
       day: "numeric",

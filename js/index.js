@@ -174,10 +174,10 @@ const login = async (e) => {
    
    navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
    // remove the email parameter from the url
-  //  const url = new URL(window.location.href)
-  //  url.searchParams.delete("email")
-  //  url.searchParams.delete("prompt")
-  //  url.searchParams.delete("elapsed")
+   const url = new URL(window.location.href)
+   url.searchParams.delete("email")
+   url.searchParams.delete("prompt")
+   url.searchParams.delete("elapsed")
    window.location.reload()
  
 

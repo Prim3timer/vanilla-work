@@ -61,7 +61,7 @@ const doIt = async (id) =>  {
   // greeting.innerHTML = `welcome, ${user.username}`;
   let round = 1;
   const { exercise, interval, exercisesDuration, numberOfRounds } =
-    user?.workSettings;
+    user.workSettings;
   
   rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
   

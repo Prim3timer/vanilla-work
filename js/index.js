@@ -151,31 +151,35 @@ const login = async (e) => {
     console.log(reply)
     console.log(reply);
     if (reply.id) {
-        window.location.reload()
-      localStorage.setItem("workoutUserId", reply.id);
-      if (mainContainer.children.length > 0) {
-        console.log(mainContainer.firstElementChild)
-        mainContainer.firstElementChild.replaceWith(homePage(reply.id));
-
-        // performancePage().addEventListener("click", instanceer.shower);
-        greeting.innerHTML = `hi, ${reply.name}`;
-        localStorage.setItem("roles", JSON.stringify(reply.roles))
-        
-        const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
-        // insert the nav links into the navbar
-   navbar.replaceChildren();
-   homeLInk.addEventListener("click", instanceerInner.shower)
-   perfLInk.addEventListener("click", instanceerInner.shower)
-   settingsLInk.addEventListener("click", instanceerInner.shower)
-   usersLInk.addEventListener("click", instanceerInner.shower)
-  
-  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
-  // remove the email parameter from the url
-  const url = new URL(window.location.href)
+        const url = new URL(window.location.href)
   url.searchParams.delete("email")
   url.searchParams.delete("prompt")
   url.searchParams.delete("elapsed")
-  replyElement.remove()
+  localStorage.setItem("workoutUserId", reply.id);
+  if (mainContainer.children.length > 0) {
+    console.log(mainContainer.firstElementChild)
+    mainContainer.firstElementChild.replaceWith(homePage(reply.id));
+    
+    // performancePage().addEventListener("click", instanceer.shower);
+    greeting.innerHTML = `hi, ${reply.name}`;
+    localStorage.setItem("roles", JSON.stringify(reply.roles))
+    
+    const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
+    // insert the nav links into the navbar
+    navbar.replaceChildren();
+    homeLInk.addEventListener("click", instanceerInner.shower)
+    perfLInk.addEventListener("click", instanceerInner.shower)
+    settingsLInk.addEventListener("click", instanceerInner.shower)
+   usersLInk.addEventListener("click", instanceerInner.shower)
+   
+   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+   // remove the email parameter from the url
+  //  const url = new URL(window.location.href)
+  //  url.searchParams.delete("email")
+  //  url.searchParams.delete("prompt")
+  //  url.searchParams.delete("elapsed")
+   window.location.reload()
+ 
 
   window.history.replaceState({}, document.title, url.toString())
         return;

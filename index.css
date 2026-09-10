@@ -795,11 +795,12 @@ table th {
    /* overflow: visible; */
  }
 
- .interval-label, .duration-label {
+ .interval-label, .duration-label, .number-of-rounds-label {
+  /* background-color: red; */
   text-align: left;
   font-size: 1.5rem;
  }
- .interval-label input, .duration-label input {
+ .interval-label input, .duration-label input, .number-of-rounds-label input {
   width: 2em;
   text-align: right;
  }

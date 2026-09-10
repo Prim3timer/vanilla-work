@@ -32,7 +32,7 @@ const breaker = document.createElement("br");
 const breaker3 = document.createElement("br");
 const intervalLabel = document.createElement("label");
 intervalLabel.className = "interval-label"
-intervalLabel.innerHTML = "interval b/w exercises";
+intervalLabel.innerHTML = "interval b/w exercises:";
 const intervalHourInput = document.createElement("input");
 const intervalMinInput = document.createElement("input");
 const intervalSecInput = document.createElement("input");
@@ -44,11 +44,9 @@ intervalSecInput.className = "interval-input";
 const columnElement = document.createElement("span")
 columnElement.innerHTML = ":"
 
-const siUnit = document.createElement("span");
-siUnit.innerHTML = " seconds";
 intervalLabel.append(breaker, intervalHourInput, columnElement, intervalMinInput, columnElement.cloneNode(true), intervalSecInput);
 const exerciseDurationLabel = document.createElement("label");
-exerciseDurationLabel.innerHTML = "exercise duration";
+exerciseDurationLabel.innerHTML = "exercise duration:";
 exerciseDurationLabel.className = "duration-label"
 const exerciseDurationHourInput = document.createElement("input");
 const exerciseDurationMinInput = document.createElement("input");
@@ -63,7 +61,8 @@ exerciseDurationHourInput.placeholder = "HH"
 exerciseDurationMinInput.placeholder = "MM"
 exerciseDurationSecInput.placeholder = "SS"
 const numberOfRoundsLabel = document.createElement("label");
-numberOfRoundsLabel.innerHTML = "number of rounds";
+numberOfRoundsLabel.className = "number-of-rounds-label"
+numberOfRoundsLabel.innerHTML = "number of rounds:";
 const numberOfRoundsInput = document.createElement("input");
 numberOfRoundsInput.className = "number-of-rounds-input";
 numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
@@ -130,13 +129,13 @@ const populate = async () => {
   exes[3].value = workSettings.exercise[3] || "";
   exes[4].value = workSettings.exercise[4] || "";
   
-  intervalHourInput.value = Math.floor(workSettings.interval / 3600) || 0
-  intervalMinInput.value = Math.floor(workSettings.interval % 3600 / 60) || 0
-  intervalSecInput.value = workSettings.interval % 3600|| "";
+  intervalHourInput.value = Math.floor(workSettings.interval / 3600) || ""
+  intervalMinInput.value = Math.floor(workSettings.interval % 3600 / 60) || ""
+  intervalSecInput.value = workSettings.interval % 3600 || "";
 
-  exerciseDurationHourInput.value =  Math.floor(workSettings.exercisesDuration / 3600) || 0;
-  exerciseDurationMinInput.value = Math.floor(workSettings.exerciseDuration % 3600 / 60) || 0;
-  exerciseDurationSecInput.value = workSettings.exercisesDuration % 3600 || 0;
+  exerciseDurationHourInput.value =  Math.floor(workSettings.exercisesDuration / 3600) || "";
+  exerciseDurationMinInput.value = Math.floor(workSettings.exerciseDuration % 3600 / 60) || "";
+  exerciseDurationSecInput.value = workSettings.exercisesDuration % 3600 || "";
 
   numberOfRoundsInput.value = workSettings.numberOfRounds || "";
  

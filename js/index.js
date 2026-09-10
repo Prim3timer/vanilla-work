@@ -180,13 +180,12 @@ const login = async (e) => {
   window.history.replaceState({}, document.title, url.toString())
         return;
       } else {
-        mainContainer.appendChild(homePage());
+        mainContainer.appendChild(homePage());  
         return;
       }
     } else {
       const errorMessage = true 
        mainContainer.firstElementChild.replaceWith(loginPage(reply.message, errorMessage));
-       errorMessage = false
     }
   } catch (error) {
     console.log(error);
@@ -194,6 +193,11 @@ const login = async (e) => {
   finally {
   }
 };
+
+
+
+
+
 
 submitButton.addEventListener("click", login);
 

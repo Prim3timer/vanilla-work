@@ -130,6 +130,20 @@ const doIt = async (id) =>  {
   jogup.style.transitionDuration = "500ms";
   
   let RoundInspector = 3000;
+
+let wakeLock = null;
+
+async function requestWakeLock() {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log('Wake Lock is active!');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+}
+
+
+
   function general(currentItem, formerItem, nextItem) {
     console.log(currentItem);
     let { complete } = controls;
@@ -227,6 +241,8 @@ const doIt = async (id) =>  {
         // pausing the app.
         cycle.innerHTML = timeClocking(sec);
         if (controls.pause === true) {
+
+            
           return;
         } else {
           sec++;
@@ -300,6 +316,7 @@ const doIt = async (id) =>  {
   }
   
   const saveWork = async () => {
+      releaseWakeLock()
     const end = Date.now();
     let duration = Math.floor((end - begin) / 1000);
     console.log(begin);
@@ -346,10 +363,27 @@ const doIt = async (id) =>  {
   
   saver.addEventListener("click", saveWork);
   let anExercise = 0;
+
+
+  document.addEventListener('visibilitychange', async () => {
+  if (wakeLock !== null && document.visibilityState === 'visible') {
+    await requestWakeLock();
+  }
+});
+
+const releaseWakeLock = async () => {
+  if (wakeLock !== null){
+    wakeLock.relaeas()
+    wakeLock = null
+  }
+}
   
   let reality = async () => {
     controls.runFunc = false;
     try {
+      // Request the lock
+requestWakeLock();
+
       for (let i = 0; i < elements.length; i++) {
         const currentItemIndex = elements[i];
         // if i = 0 subtract array length from index else subtract 1 from index``
@@ -419,7 +453,7 @@ const doIt = async (id) =>  {
         round = numberOfRounds;
         rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
         sec = 0;
-        cycle.innerHTML = ":00";
+        cycle.innerHTML = "0:00";
         pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
         controls.runFunc = true;
         elements.map((element) => {
@@ -442,13 +476,16 @@ const doIt = async (id) =>  {
     if (runFunc === true) {
       begin = Date.now();
       pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
+      // requestWakeLock()
       reality();
     } else if (controls.pause === false) {
       //console.log(runFunc)
       controls.pause = true;
+      releaseWakeLock()
       // cycle.innerHTML = sec;
       pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
     } else {
+      requestWakeLock()
       controls.pause = false;
       pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
     }

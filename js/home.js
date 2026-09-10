@@ -55,7 +55,7 @@ const doIt = async (id) =>  {
   });
   
   const users = await response.json();
-  const user = users.find((user) => user._id === id || userId);
+  const user = users.find((user) => user._id === userId);
   console.log(user);
   
   // greeting.innerHTML = `welcome, ${user.username}`;

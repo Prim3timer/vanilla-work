@@ -1,4 +1,5 @@
 import myUrl from "./myUrl.js";
+import { timeClocking } from "./genFunc.js";
 
 const settingsCont = document.createElement("div");
 settingsCont.className = "settings";
@@ -28,26 +29,39 @@ const fifthExercise = document.createElement("input");
 fifthExercise.placeholder = "enter exercise (optional)";
 settingsCont.className = "settings";
 const breaker = document.createElement("br");
-const breaker2 = document.createElement("br");
 const breaker3 = document.createElement("br");
-const interalLabel = document.createElement("label");
-interalLabel.innerHTML = "interval b/w exercises";
-const intervalInput = document.createElement("input");
+const intervalLabel = document.createElement("label");
+intervalLabel.className = "interval-label"
+intervalLabel.innerHTML = "interval b/w exercises";
+const intervalHourInput = document.createElement("input");
+const intervalMinInput = document.createElement("input");
+const intervalSecInput = document.createElement("input");
 
-intervalInput.className = "interval-input";
+intervalHourInput.className = "interval-input";
+intervalMinInput.className = "interval-input";
+intervalSecInput.className = "interval-input";
+
+const columnElement = document.createElement("span")
+columnElement.innerHTML = ":"
 
 const siUnit = document.createElement("span");
 siUnit.innerHTML = " seconds";
-interalLabel.append(breaker, intervalInput, siUnit );
+intervalLabel.append(breaker, intervalHourInput, columnElement, intervalMinInput, columnElement.cloneNode(true), intervalSecInput);
 const exerciseDurationLabel = document.createElement("label");
 exerciseDurationLabel.innerHTML = "exercise duration";
-const exerciseDurationInput = document.createElement("input");
-// exerciseDurationInput.type = "number";
-exerciseDurationInput.required = true;
-exerciseDurationInput.className = "exercise-duration-input";
-exerciseDurationLabel.append(breaker2, exerciseDurationInput, siUnit.cloneNode(true));
+exerciseDurationLabel.className = "duration-label"
+const exerciseDurationHourInput = document.createElement("input");
+const exerciseDurationMinInput = document.createElement("input");
+const exerciseDurationSecInput = document.createElement("input");
+exerciseDurationSecInput.required = true;
+exerciseDurationHourInput.className = "exercise-duration-input";
+exerciseDurationMinInput.className = "exercise-duration-input";
+exerciseDurationSecInput.className = "exercise-duration-input";
+exerciseDurationLabel.append(breaker.cloneNode(true), exerciseDurationHourInput, columnElement.cloneNode(true), exerciseDurationMinInput, columnElement.cloneNode(true), exerciseDurationSecInput);
 
-// execiseDurationInput.placeholder = "numbers only"
+exerciseDurationHourInput.placeholder = "HH"
+exerciseDurationMinInput.placeholder = "MM"
+exerciseDurationSecInput.placeholder = "SS"
 const numberOfRoundsLabel = document.createElement("label");
 numberOfRoundsLabel.innerHTML = "number of rounds";
 const numberOfRoundsInput = document.createElement("input");
@@ -59,8 +73,10 @@ settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
 
 
- intervalInput.placeholder = "numbers only";
-  exerciseDurationInput.placeholder = "numbers only";
+ intervalHourInput.placeholder = "HH";
+ intervalMinInput.placeholder = "MM";
+ intervalSecInput.placeholder = "SS";
+  // exerciseDurationInput.placeholder = "numbers only";
   numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(
@@ -69,7 +85,7 @@ const settingsPage = () => {
     thirdExercise,
     fourthExercise,
     fifthExercise,
-    interalLabel,
+    intervalLabel,
     exerciseDurationLabel,
     numberOfRoundsLabel,
   );
@@ -113,8 +129,15 @@ const populate = async () => {
   exes[2].value = workSettings.exercise[2] || "";
   exes[3].value = workSettings.exercise[3] || "";
   exes[4].value = workSettings.exercise[4] || "";
-  intervalInput.value = workSettings.interval || "";
-  exerciseDurationInput.value = workSettings.exercisesDuration || "";
+  
+  intervalHourInput.value = Math.floor(workSettings.interval / 3600) || 0
+  intervalMinInput.value = Math.floor(workSettings.interval % 3600 / 60) || 0
+  intervalSecInput.value = workSettings.interval % 3600|| "";
+
+  exerciseDurationHourInput.value =  Math.floor(workSettings.exercisesDuration / 3600) || 0;
+  exerciseDurationMinInput.value = Math.floor(workSettings.exerciseDuration % 3600 / 60) || 0;
+  exerciseDurationSecInput.value = workSettings.exercisesDuration % 3600 || 0;
+
   numberOfRoundsInput.value = workSettings.numberOfRounds || "";
  
 };
@@ -146,13 +169,20 @@ const editUser = async (e) => {
   );
   console.log(filteredExercise);
   if (users) {
+    const hourInterval = intervalHourInput.value === null ? 0 : intervalHourInput.value
+    const minInterval = intervalMinInput.value === null ? 0 : intervalMinInput.value
+    const secInterval = intervalSecInput.value === null ? 0 : intervalSecInput.value
+
+    const hourDuration = exerciseDurationHourInput.value === null ? 0 : exerciseDurationHourInput.value
+    const minDuration = exerciseDurationMinInput.value === null ? 0 : exerciseDurationMinInput.value
+    
     const workerSettings = {
       exercise: filteredExercise,
-      interval: intervalInput.value || 0,
-      exercisesDuration: exerciseDurationInput.value,
+      interval: hourInterval * 60 * 60 + minInterval * 60 + secInterval || 0,
+      exercisesDuration: hourDuration * 60 * 60 + minDuration * 60 + exerciseDurationSecInput.value,
       numberOfRounds: numberOfRoundsInput.value || 1,
     };
-    console.log(users);
+    console.log(workerSettings);
     const user = users.find((user) => user._id === userId);
 
     if (filteredExercise.length < 1) {
@@ -161,7 +191,7 @@ const editUser = async (e) => {
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
       alertWindow.style.top = "40%";
-    } else if (!exerciseDurationInput.value) {
+    } else if (!exerciseDurationSecInput.value) {
       alertWindow.innerHTML = `the exercise duration field is not filled out.` 
             alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";

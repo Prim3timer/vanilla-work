@@ -794,6 +794,15 @@ table th {
    z-index: 5;
    /* overflow: visible; */
  }
+
+ .interval-label, .duration-label {
+  text-align: left;
+  font-size: 1.5rem;
+ }
+ .interval-label input, .duration-label input {
+  width: 2em;
+  text-align: right;
+ }
  @media screen and (min-width: 499px) {
 .inner-dets-verify-window{
   top: 15%;

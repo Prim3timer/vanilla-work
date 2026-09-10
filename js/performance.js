@@ -83,7 +83,7 @@ const deleteEntry = async () => {
     });
     if (response) {
       const reply = await response.json();
-      const filterate = globalData.filter((data) => data.userId === userId);
+      const filterate = globalData.filter((data) => data.userId === userId || "6a90fdb4e28a342a30478194");
       const entryFilterate = filterate.filter((entry) => entry._id != itemId);
       globalData = entryFilterate;
   
@@ -191,10 +191,10 @@ console.log(perfy.exerciseDets.length)
 
     endurance.innerHTML = timeClocking(duration);
     const roundCount = document.createElement("td");
-    roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
+    roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds ? perfy.exerciseTimings[3].numberOfRounds - 1 : 0}` ;
     const mark = document.createElement("td");
     const exDet = document.createElement("td");
-    mark.innerHTML = `${parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2)}`;
+    mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
     exDet.innerHTML = `${perfy.exerciseDets.length}`;
     const date = document.createElement("td");
     const del = document.createElement("td");

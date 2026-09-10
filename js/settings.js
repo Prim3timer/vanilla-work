@@ -120,25 +120,26 @@ const populate = async () => {
   const users = await response.json();
 
   const user = users.find((user) => user._id === userId);
-  console.log(user);
+  console.log(user)
   if (user) {
-  const { workSettings } = user;
-  exes[0].value = workSettings.exercise[0] || "";
+    const { workSettings } = user;
+    exes[0].value = workSettings.exercise[0] || "";
   exes[1].value = workSettings.exercise[1] || "";
   exes[2].value = workSettings.exercise[2] || "";
   exes[3].value = workSettings.exercise[3] || "";
   exes[4].value = workSettings.exercise[4] || "";
   
-  intervalHourInput.value = Math.floor(workSettings.interval / 3600) || ""
-  intervalMinInput.value = Math.floor(workSettings.interval % 3600 / 60) || ""
-  intervalSecInput.value = workSettings.interval % 3600 || "";
-
-  exerciseDurationHourInput.value =  Math.floor(workSettings.exercisesDuration / 3600) || "";
-  exerciseDurationMinInput.value = Math.floor(workSettings.exerciseDuration % 3600 / 60) || "";
-  exerciseDurationSecInput.value = workSettings.exercisesDuration % 3600 || "";
-
+  intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
+  intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;
+  intervalSecInput.value = workSettings.interval % 3600  % 60  < 60 ? Math.floor(workSettings.interval % 3600 % 60)  : 0;
+  
+  exerciseDurationHourInput.value =  workSettings.exercisesDuration >= 3600 ? Math.floor(workSettings.exercisesDuration / 3600) : 0;
+  exerciseDurationMinInput.value =  Math.floor(workSettings.exercisesDuration % 3600) >= 60 && Math.floor(workSettings.exercisesDuration % 3600) < (60 * 60) ?  Math.floor(workSettings.exercisesDuration % 3600 / 60) : 0;
+  exerciseDurationSecInput.value = workSettings.exercisesDuration % 3600  % 60  < 60 ? Math.floor(workSettings.exercisesDuration % 3600 % 60)  : 0;
+  
+  console.log(workSettings.interval)
   numberOfRoundsInput.value = workSettings.numberOfRounds || "";
- 
+  
 };
 }
 
@@ -168,31 +169,34 @@ const editUser = async (e) => {
   );
   console.log(filteredExercise);
   if (users) {
-    const hourInterval = intervalHourInput.value === null ? 0 : intervalHourInput.value
-    const minInterval = intervalMinInput.value === null ? 0 : intervalMinInput.value
-    const secInterval = intervalSecInput.value === null ? 0 : intervalSecInput.value
-
-    const hourDuration = exerciseDurationHourInput.value === null ? 0 : exerciseDurationHourInput.value
-    const minDuration = exerciseDurationMinInput.value === null ? 0 : exerciseDurationMinInput.value
+    const hourInterval = !intervalHourInput.value ? 0 : Number(intervalHourInput.value)
+    const minInterval = !intervalMinInput.value ? 0 : Number(intervalMinInput.value)
+    const secInterval = !intervalSecInput.value ? 0 : Number(intervalSecInput.value)
+    console.log(minInterval)
     
+    const hourDuration = !exerciseDurationHourInput.value ? 0 : Number(exerciseDurationHourInput.value)
+    const minDuration = !exerciseDurationMinInput.value ? 0 : Number(exerciseDurationMinInput.value)
+    console.log(exerciseDurationHourInput.value)
+    console.log(typeof(minDuration))
     const workerSettings = {
       exercise: filteredExercise,
-      interval: hourInterval * 60 * 60 + minInterval * 60 + secInterval || 0,
-      exercisesDuration: hourDuration * 60 * 60 + minDuration * 60 + exerciseDurationSecInput.value,
+      interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
+      exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value),
       numberOfRounds: numberOfRoundsInput.value || 1,
     };
     console.log(workerSettings);
+    console.log(workerSettings);
     const user = users.find((user) => user._id === userId);
-
+    
     if (filteredExercise.length < 1) {
       console.log("exercise list is too short. make it at least 2");
         alertWindow.innerHTML = "exercise list is too short. make it at least 1";
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
       alertWindow.style.top = "40%";
-    } else if (!exerciseDurationSecInput.value) {
-      alertWindow.innerHTML = `the exercise duration field is not filled out.` 
-            alertWindow.className = "verify-window";
+    } else if (Number(exerciseDurationHourInput.value) + Number(exerciseDurationMinInput.value) + Number(exerciseDurationSecInput.value) == 0) {
+      alertWindow.innerHTML = `the exercise duration field must be filled.` 
+      alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
       alertWindow.style.top = "40%";
         setTimeout(() => {
@@ -222,4 +226,4 @@ const editUser = async (e) => {
 
 settingsButton.addEventListener("click", editUser);
 
-export { settingsPage };
+export { settingsPage, populate };

@@ -1,4 +1,5 @@
 import myUrl from "./myUrl.js";
+import { populate } from "./settings.js";
 import { getData, performancePage } from "./performance.js";
 
 const timeClocking = (sec) => {
@@ -67,6 +68,9 @@ function ElementCatcher(pages, mainContainer, guestId) {
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
+          if (this.id == "settings"){
+            populate()
+          }
           if (!roles.includes(5150 ) && this.innerHTML == "users"){
             console.log("unauthorized")
           } else {

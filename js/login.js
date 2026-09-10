@@ -56,7 +56,7 @@ loginMain.append(loginForm,  loginLinks);
 const loginPage = (message, errorMessage) => {
     console.log(errorMessage)
     console.log(message)
-    resetMessage.innerHTML = message || "Your efficient workout partner."
+    resetMessage.innerHTML = message || "Your efficient fitness partner."
     resetMessage.className = "reset-message"
     resetMessage.style.color = message !== undefined  ? "red" :  resetMessage.innerHTML == "processing..." ? "darkslateblue" : "darslateblue"
     // errorMessage = false

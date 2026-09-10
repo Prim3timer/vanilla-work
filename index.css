@@ -509,11 +509,14 @@ input {
   flex-direction: column;
   row-gap: 1rem;
   align-items: center;
-  position: absolute;
+  position: fixed;
   justify-self: center;
   z-index: 10000;
-  /* font-size: 2rem; */
+  top: 40%;
+  font-size: 1.5rem;
  }
+
+ 
  .dets-verify-window {
   background-color: lavender;
   padding: 1rem;
@@ -574,7 +577,8 @@ color: white;
 
  .verify-button-cont button {
   flex: 0 0 50%;
-  height: 40px
+  padding: .5rem;
+  height: 2em
  }
 
  table th, td {

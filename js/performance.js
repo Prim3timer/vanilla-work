@@ -25,30 +25,19 @@ question.innerHTML = "Are you sure you want to delete this entry?";
 let verifyWindowButtonCont = document.createElement("article");
 let alertWindow = document.createElement("p");
 verifyWindow.className = "no-verify-window";
-verifyWindow.style.padding = ".5rem";
-verifyWindow.style.display = "flex";
-verifyWindow.style.flexDirection = "column";
-verifyWindow.style.rowGap = "1rem";
-verifyWindow.style.alignItems = "center";
-verifyWindow.style.backgroundColor = "lavender";
-verifyWindow.style.position = "fixed";
-verifyWindow.style.top = "40%";
+// verifyWindow.style.padding = ".5rem";
+// verifyWindow.style.display = "flex";
+// verifyWindow.style.flexDirection = "column";
+// verifyWindow.style.rowGap = "1rem";
+// verifyWindow.style.alignItems = "center";
+// verifyWindow.style.backgroundColor = "lavender";
+// verifyWindow.style.position = "fixed";
+// verifyWindow.style.top = "40%";
 
-alertWindow.className = "no-verify-window";
-alertWindow.style.padding = "1rem";
-alertWindow.style.fontSize = "1.5rem";
-alertWindow.style.display = "flex";
-alertWindow.style.flexDirection = "column";
-alertWindow.style.rowGap = "1rem";
-alertWindow.style.alignItems = "center";
-alertWindow.style.color = "darkslateblues";
-alertWindow.style.backgroundColor = "gainsboro";
-alertWindow.style.position = "fixed";
-alertWindow.style.top = "40%";
 
 // verifyWindow.append(verifyWindowButtonCont);
 let itemId = "";
-// verifyWindowButtonCont.className = "verify-button-cont";
+verifyWindowButtonCont.className = "verify-button-cont";
 let noButton = document.createElement("button");
 noButton.innerHTML = "No";
 let yesButton = document.createElement("button");
@@ -234,10 +223,6 @@ const getData = async (id) => {
     const removeVerifier = () => {
       verifyWindow.className("veriy-window");
     };
-    // const icon = document.createElement("i");
-    // icon.classList.add("fa-solid", "fa-trash");
-
-    // del.appendChild(icon);
     del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
     del.style.fontSize = "1.5rem";
 

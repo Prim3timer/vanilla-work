@@ -43,11 +43,28 @@ intervalSecInput.className = "interval-input";
 
 const columnElement = document.createElement("span")
 columnElement.innerHTML = ":"
+columnElement.className = "column-element"
 
-intervalLabel.append(breaker, intervalHourInput, columnElement, intervalMinInput, columnElement.cloneNode(true), intervalSecInput);
+const hourLabel = document.createElement("label")
+const minuteLabel = document.createElement("label")
+const secondLabel = document.createElement("label")
+hourLabel.innerHTML = "HH"
+minuteLabel.innerHTML = "MM"
+secondLabel.innerHTML = "SS"
+hourLabel.append(breaker, intervalHourInput)
+hourLabel.className = "hour-label"
+minuteLabel.className = "minute-label"
+secondLabel.className = "second-label"
+minuteLabel.append(intervalMinInput)
+secondLabel.append(intervalSecInput)
+// intervalLabel.append(breaker, intervalHourInput, columnElement, intervalMinInput, columnElement.cloneNode(true), intervalSecInput);
+intervalLabel.append(hourLabel, columnElement, minuteLabel, columnElement.cloneNode(true), secondLabel);
 const exerciseDurationLabel = document.createElement("label");
 exerciseDurationLabel.innerHTML = "exercise duration:";
 exerciseDurationLabel.className = "duration-label"
+
+
+
 const exerciseDurationHourInput = document.createElement("input");
 const exerciseDurationMinInput = document.createElement("input");
 const exerciseDurationSecInput = document.createElement("input");

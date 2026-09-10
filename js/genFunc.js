@@ -146,7 +146,7 @@ const getSpecificPage = (e, page, mainContainer) => {
         detsDuration.innerHTML = `duration: ${timeToText(duration)}`;
         detsExHeader.innerHTML = `exercises list:`;
         numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
-        detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
+        detsWindow.append(detsInterval, detExDuration);
         if (detsWindowCover.contains(detsWindow)) {
           console.log("yes");
           detsWindow.remove();

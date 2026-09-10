@@ -795,9 +795,9 @@ table th {
    /* overflow: visible; */
  }
  @media screen and (min-width: 499px) {
-  .performance {
-    /* width: 80vw; */
-  }
+.inner-dets-verify-window{
+  top: 15%;
+}
 
   .reset-message {
     left: 5px;

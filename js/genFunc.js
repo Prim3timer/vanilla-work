@@ -102,4 +102,60 @@ const getSpecificPage = (e, page, mainContainer) => {
           }
   }
 
-export { timeClocking, timeToText, ElementCatcher, getSpecificPage };
+  const showDetWindow = (perfy, duration, performanceMain) => {
+        let detsWindowCover = document.createElement("section");
+        let detsWindow = document.createElement("div");
+        detsWindow.style.padding = ".5rem";
+        let detsDuration = document.createElement("p");
+        let detsExHeader = document.createElement("h4");
+        let detsExList = document.createElement("ol");
+        let numberOfExercises = document.createElement("p");
+  
+        perfy.exerciseDets.map((exercise) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = exercise;
+          detsExList.append(listItem);
+        });
+        // console
+        let closure = document.createElement("p");
+        closure.style.position = "absolute";
+        closure.style.top = "0px";
+        closure.style.right = "0px";
+        closure.addEventListener("click", () => {
+          // detsWindow.className = "no-verify-window";
+          detsWindowCover.className = "no-verify-window";
+        });
+        closure.style.position = "abolute";
+        closure.innerHTML = `<i class="fa-solid fa-x"></i>`;
+        detsWindowCover.className = "dets-verify-window";
+        detsWindow.className = "inner-dets-verify-window";
+        detsWindow.appendChild(detsDuration);
+        detsWindow.appendChild(closure);
+        detsWindow.appendChild(detsExHeader);
+        detsWindow.appendChild(detsExList);
+        detsWindow.appendChild(numberOfExercises);
+        let detNumberOfRounds = document.createElement("p");
+        let detExDuration = document.createElement("p");
+        let detsInterval = document.createElement("p");
+        // detsExList.replaceChildren();
+        const betweenExes = perfy.exerciseTimings[2].interval;
+        const exerciseLength = perfy.exerciseTimings[1].exercisesDuration;
+        detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
+        detsInterval.innerHTML = `interval b/w exercises: ${timeToText(betweenExes)}`;
+        detExDuration.innerHTML = `duration of each exercise: ${timeToText(exerciseLength)}`;
+        detsDuration.innerHTML = `duration: ${timeToText(duration)}`;
+        detsExHeader.innerHTML = `exercises list:`;
+        numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
+        detsWindow.append(detNumberOfRounds, detsInterval, detExDuration);
+        if (detsWindowCover.contains(detsWindow)) {
+          console.log("yes");
+          detsWindow.remove();
+          detsWindowCover.appendChild(detsWindow);
+        } else {
+          console.log("no");
+          detsWindowCover.appendChild(detsWindow);
+        }
+        performanceMain.appendChild(detsWindowCover);
+      };
+
+export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow };

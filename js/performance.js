@@ -104,7 +104,7 @@ const deleteEntry = async () => {
         const { duration } = perfy.exerciseTimings[0];
         endurance.innerHTML = timeClocking(duration);
         const roundCount = document.createElement("td");
-        roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
+        roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
         const mark = document.createElement("td");
         const exDet = document.createElement("td");
         mark.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
@@ -184,16 +184,17 @@ const getData = async (id) => {
     const perfy = filteredData[i];
     const { duration } = perfy.exerciseTimings[0];
     
-
+console.log(user.workSettings.numberOfRounds)
+console.log(perfy.exerciseDets.length)
     const { workSettings } = user;
     const endurance = document.createElement("td");
 
     endurance.innerHTML = timeClocking(duration);
     const roundCount = document.createElement("td");
-    roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds}`;
+    roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
     const mark = document.createElement("td");
     const exDet = document.createElement("td");
-    mark.innerHTML = `${parseInt(perfy.mark)}`;
+    mark.innerHTML = `${parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2)}`;
     exDet.innerHTML = `${perfy.exerciseDets.length}`;
     const date = document.createElement("td");
     const del = document.createElement("td");

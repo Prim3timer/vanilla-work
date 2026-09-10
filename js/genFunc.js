@@ -140,7 +140,7 @@ const getSpecificPage = (e, page, mainContainer) => {
         // detsExList.replaceChildren();
         const betweenExes = perfy.exerciseTimings[2].interval;
         const exerciseLength = perfy.exerciseTimings[1].exercisesDuration;
-        detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
+        // detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
         detsInterval.innerHTML = `interval b/w exercises: ${timeToText(betweenExes)}`;
         detExDuration.innerHTML = `duration of each exercise: ${timeToText(exerciseLength)}`;
         detsDuration.innerHTML = `duration: ${timeToText(duration)}`;

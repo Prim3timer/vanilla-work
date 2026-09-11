@@ -852,6 +852,13 @@ table th {
   top: 15%;
 }
 
+ .timing-main {
+ 
+  /* background-color: red; */
+  width: 40vw;
+  max-width: 300px;
+ }
+
  .exercise-settings-form {
   align-items: center;
  }

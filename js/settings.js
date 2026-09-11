@@ -63,6 +63,9 @@ const exerciseDurationLabel = document.createElement("label");
 exerciseDurationLabel.innerHTML = "exercise duration:";
 exerciseDurationLabel.className = "duration-label"
 
+const timingMain = document.createElement("div")
+timingMain.className = "timing-main"
+
 
 
 const exerciseDurationHourInput = document.createElement("input");
@@ -88,6 +91,8 @@ settingsButton.className = "done-settings";
 settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
 
+timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
+
 
  intervalHourInput.placeholder = "HH";
  intervalMinInput.placeholder = "MM";
@@ -101,9 +106,7 @@ const settingsPage = () => {
     thirdExercise,
     fourthExercise,
     fifthExercise,
-    intervalLabel,
-    exerciseDurationLabel,
-    numberOfRoundsLabel,
+   timingMain
   );
   settingsCont.append(
     settingsHeader,

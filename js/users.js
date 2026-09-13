@@ -10,12 +10,14 @@ const userBox = document.createElement("div");
 userBox.className = "users";
 const usersHeader = document.createElement("h3");
 usersHeader.innerHTML = "users";
+usersHeader.className = "users-header"
 const entryCount = document.createElement("h3");
-userBox.append(usersHeader);
+userBox.append(usersHeader, entryCount);
 
 const containers = [mainSettings()];
 
-const instanceer = new ElementCatcher(containers, mainContainer);
+const userSettingsId = localStorage.getItem("userSettingsId")
+
 
 const response = await fetch(`${myUrl}/workout-users`, {
   method: "GET",
@@ -46,9 +48,9 @@ const usersPage = () => {
   tableBody.appendChild(headerRow);
   table.appendChild(tableBody);
   userBox.appendChild(table);
-
+  
   //   entryCount.innerHTML = `(${users.length})`;
-
+  
   for (let i = 0; i < users.length; i++) {
     const usersList = document.createElement("tr");
     usersList.style.backgroundColor = `${i % 2 === 0 ? "white" : "palegreen"}`;
@@ -57,9 +59,11 @@ const usersPage = () => {
     const rolesElement = document.createElement("td");
     const settingsElement = document.createElement("td");
     const settingsAnchor = document.createElement("a");
-
+    
+    const instanceer = new ElementCatcher(containers, mainContainer, users[i]._id);
     settingsElement.addEventListener("click", () => {
       localStorage.setItem("userSettingsId", users[i]._id);
+      localStorage.setItem("user", JSON.stringify(users[i]))
     });
     settingsElement.appendChild(settingsAnchor);
     for (let j = 0; j < 4; j++) {

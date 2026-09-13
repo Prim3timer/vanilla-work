@@ -176,6 +176,7 @@
 
 .user-setting {
 /* justify-content: flex-start; */
+/* background-color: red; */
 align-items: center;
 flex-direction: column; 
 }
@@ -359,6 +360,10 @@ flex-direction: column;
  .reply {
   color: darkslateblue;
   padding: .5rem;
+      margin: -3.2rem 0 0 50%;
+      width: 50vw;
+      /* background-color: lavender; */
+  /* background-color: red; */
  }
  .register {
   display: flex;
@@ -618,6 +623,25 @@ table th {
   justify-content: flex-start;
   padding-top: 2rem;
   /* height: 100vh; */
+}
+
+.users-header {
+  float: left;
+
+}
+
+.usersettings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0 1rem;
+  /* justify-content: center; */
+  /* background-color: red; */
+}
+
+.usersettings h3 {
+  margin: 0 0 2rem  0;
+
 }
 
 .users table {
@@ -908,10 +932,13 @@ text-align: center;
   }
 
   .reply {
-    background-color: gainsboro;
-    width: 100vw;
-    margin-bottom: 3rem;
+    /* background-color: gainsboro; */
+    position: absolute;
+    width: 20vw;
+    margin: -2rem 0 0 80%;
+    /* margin-bottom: 3rem; */
     text-align: center;
+    /* background-color: red; */
   }
 
   

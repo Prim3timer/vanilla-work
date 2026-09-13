@@ -30,7 +30,8 @@ selectElement.className = "roles-select";
 // selectElement.value = "roles";
 selectCont.append(selectLabel);
 
-const userId = localStorage.getItem("userSettingsId");
+// const user = JSON.parse(localStorage.getItem("user"))
+// userNameInput.value = user.username
 
 // these are the breaks
 const usernameBreak = document.createElement("br");
@@ -108,26 +109,38 @@ noButton.addEventListener("click", () => {
   verifyWindow.className = "no-verify-window";
 });
 
-console.log("hiiiiiiioooo");
+
 
 deleter.addEventListener("click", removeVerifier);
 
 yesButton.addEventListener("click", async (e) => {
-  e.preventDefault();
+  // e.preventDefault();
+  verifyWindow.className = "no-verify-window";  
+;
+  localStorage.setItem("current-page", "users")
   try {
-    const response = await fetch(`${myUrl}/workout-users/delete/${userId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = await response.json();
-    if (result) {
-      mainContainer.replaceChild(usersPage(), userSettingsMain);
-      verifyWindow.className = "no-verify-window";  
-    }
-    console.log(result);
-  } catch (error) {
+    const userId = localStorage.getItem("userSettingsId");
+    if (userId){
+        usersPage().innerHTML = ""
+        userSettingsMain.remove()
+  mainContainer.append(usersPage())
+      console.log(userId)
+      const response = await fetch(`${myUrl}/workout-users/delete/${userId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      window.location.reload()
+      const result = await response.json();
+      if (result) {
+        
+      }
+      console.log(result);
+    } 
+    
+  }
+  catch (error) {
     console.log(error);
   }
 });

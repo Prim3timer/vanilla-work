@@ -60,7 +60,8 @@ function ElementCatcher(pages, mainContainer, guestId) {
     console.log(roles)
     console.log(guestId)
     const result = await pages;
-    const oneElement = result.map((content) => {
+  
+    const oneElement = result.map( async (content) => {
       if (
         guestId ||
         this.innerHTML == "forgot" ||
@@ -70,8 +71,31 @@ function ElementCatcher(pages, mainContainer, guestId) {
         if (this.id == content.className) {
           if (this.id == "settings"){
             populate()
-          }
-          if (!roles.includes(5150 ) && this.innerHTML == "users"){
+          } else if (this.id == "usersettings"){
+              const response = await fetch(`${myUrl}/workout-users`, {
+      method: "GET"
+    })
+    const users = await response.json()
+    console.log(users)
+            const ROLES = {
+  User: 2001,
+  Manager: 1984,
+  Admin: 5150,
+};
+const rolesArray = Object.keys(ROLES);
+const user = users.find((user) => user._id === guestId)
+console.log(user.username)
+const roles = Object.keys(user.roles)
+console.log(roles)
+            const usernameInput = content.getElementsByClassName("user-setting-name")[0]
+            const activeInput = content.getElementsByClassName("user-setting-verified")[0]
+            const selectElement = content.getElementsByClassName("roles-select")[0]
+            selectElement.value = roles
+
+            usernameInput.value = user.username
+            activeInput.checked = user.active
+          } 
+          if (roles.includes(5150 ) && this.innerHTML == "users"){
             console.log("unauthorized")
           } else {
             localStorage.setItem("current-page", content.className)

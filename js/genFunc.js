@@ -1,6 +1,7 @@
 import myUrl from "./myUrl.js";
 import { populate } from "./settings.js";
 import { getData, performancePage } from "./performance.js";
+// import { mainSettings } from "./userSettings.js";
 
 const timeClocking = (sec) => {
   return ` ${
@@ -186,4 +187,14 @@ const getSpecificPage = (e, page, mainContainer) => {
         performanceMain.appendChild(detsWindowCover);
       };
 
-export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow };
+      const populateUserSettings = async (mainSettings) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const usernameElement = mainSettings.getElementsByClassName("user-setting-name")[0]
+  usernameElement.innerHTML = user.username
+  console.log(usernameElement)
+
+
+}
+
+export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow, populateUserSettings };

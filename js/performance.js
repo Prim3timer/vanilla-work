@@ -198,7 +198,8 @@ const getData = async (id) => {
       roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds ? perfy.exerciseTimings[3].numberOfRounds - 1 : 0}` ;
       const mark = document.createElement("td");
       const exDet = document.createElement("td");
-      mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
+      // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
+      mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.mark).toFixed(2) : 0}`;
       exDet.innerHTML = `${perfy.exerciseDets.length}`;
       const date = document.createElement("td");
       const del = document.createElement("td");

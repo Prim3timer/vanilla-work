@@ -156,9 +156,8 @@ const populate = async () => {
   exerciseDurationHourInput.value =  workSettings.exercisesDuration >= 3600 ? Math.floor(workSettings.exercisesDuration / 3600) : 0;
   exerciseDurationMinInput.value =  Math.floor(workSettings.exercisesDuration % 3600) >= 60 && Math.floor(workSettings.exercisesDuration % 3600) < (60 * 60) ?  Math.floor(workSettings.exercisesDuration % 3600 / 60) : 0;
   exerciseDurationSecInput.value = workSettings.exercisesDuration % 3600  % 60  < 60 ? Math.floor(workSettings.exercisesDuration % 3600 % 60)  : 0;
-  
-  console.log(workSettings.interval)
-  numberOfRoundsInput.value = workSettings.numberOfRounds || "";
+
+  numberOfRoundsInput.value = workSettings.numberOfRounds || 1;
   
 };
 }

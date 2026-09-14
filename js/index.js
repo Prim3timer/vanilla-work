@@ -2,7 +2,7 @@ import { homePage } from "./home.js";
 import { performancePage } from "./performance.js";
 import { settingsPage } from "./settings.js";
 import { usersPage } from "./users.js";
-import { ElementCatcher, getSpecificPage } from "./genFunc.js";
+import { ElementCatcher, getSpecificPage, populateUserSettings } from "./genFunc.js";
 import { register } from "./register.js";
 import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
@@ -87,26 +87,28 @@ const containers = [
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
 const handleRefresh = async () => {
- console.log(document); 
-
- const currentPageInnerText = localStorage.getItem("current-page") || "home"
- const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
- console.log(currentPageInnerText)
- if (guestId) {
+  console.log(document); 
+  const currentPageInnerText = localStorage.getItem("current-page") || "home"
+  const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
+  console.log(currentPageInnerText)
+  if (guestId) {
   console.log(guestId)
   console.log(currentPageInnerText)
   console.log(getCurrentPage)
-   navbar.replaceChildren();
+  navbar.replaceChildren();
   // reassign the eventlistener to the pages.
-    homeLInk.addEventListener("click", instanceer.shower)
-   perfLInk.addEventListener("click", instanceer.shower)
-   settingsLInk.addEventListener("click", instanceer.shower)
+  homeLInk.addEventListener("click", instanceer.shower)
+  perfLInk.addEventListener("click", instanceer.shower)
+  settingsLInk.addEventListener("click", instanceer.shower)
    usersLInk.addEventListener("click", instanceer.shower)
-  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
-
-  console.log(getCurrentPage)
-    if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
-
+   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+   
+   console.log(getCurrentPage)
+   const user = JSON.parse(localStorage.getItem("user"));
+   if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
+     const usernameElement = mainSettings().getElementsByClassName("user-setting-name")[0]
+     usernameElement.innerHTML = user.username
+     
       mainContainer.firstElementChild.replaceWith(getCurrentPage);
       return;
     } else {

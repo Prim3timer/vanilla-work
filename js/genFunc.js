@@ -96,7 +96,7 @@ console.log(roles)
             usernameInput.value = user.username
             activeInput.checked = user.active
           } 
-          if (roles.includes(5150 ) && this.innerHTML == "users"){
+          if (!roles.includes(5150 ) && this.innerHTML == "users"){
             console.log("unauthorized")
           } else {
             localStorage.setItem("current-page", content.className)

@@ -83,7 +83,7 @@ const deleteEntry = async () => {
     });
     if (response) {
       const reply = await response.json();
-      const filterate = globalData.filter((data) => data.userId === userId || "6a90fdb4e28a342a30478194");
+      const filterate = globalData.filter((data) => data.userId === userId);
       const entryFilterate = filterate.filter((entry) => entry._id != itemId);
       globalData = entryFilterate;
       if (userId){
@@ -107,7 +107,7 @@ const deleteEntry = async () => {
           roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
-          mark.innerHTML = `${parseInt(perfy.mark.toFixed(2))}`;
+          mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.mark).toFixed(2) : 0}`;
           exDet.innerHTML = `${globalUser.workSettings?.exercise.length}`;
       
           const date = document.createElement("td");

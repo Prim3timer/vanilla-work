@@ -846,15 +846,13 @@ table th {
   align-items: flex-end;
   /* text-align: left; */
   /* font-size: 1.2rem; */
+  white-space: nowrap;
   overflow: auto;
  }
 
- .duration-label {
-  /* background-color: red; */
-  /* width: 89%; */
-  /* align-self: flex-end; */
-  /* white-space: nowrap; */
- }
+
+
+
  .interval-label input, .duration-label input, .number-of-rounds-label input {
   width: 2em;
   text-align: right;

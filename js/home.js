@@ -89,7 +89,7 @@ const doIt = async (id) =>  {
     const noExAlertElement = document.createElement("p");
     noExAlertElement.style.minWidth = "80%";
     noExAlertElement.innerHTML =
-      `you have not chosen any exercises yet. click on "settings" tab to make entry`;
+      `Click on "settings" tab to set up your exercise routine`;
       noExAlertElement.style.color = "darkslateblue"
       noExAlertElement.style.fontSize = "1rem"
     if (exerciseCont.children.length === 0) {

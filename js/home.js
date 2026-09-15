@@ -91,7 +91,7 @@ const doIt = async (id) =>  {
     noExAlertElement.innerHTML =
       `Click on "settings" tab to set up your exercise routine`;
       noExAlertElement.style.color = "darkslateblue"
-      noExAlertElement.style.fontSize = "1rem"
+      noExAlertElement.style.fontSize = "1.5rem"
     if (exerciseCont.children.length === 0) {
       exerciseCont.appendChild(noExAlertElement);
       exerciseCont.style.backgroundColor = "gainsboro";
@@ -317,7 +317,7 @@ const doIt = async (id) =>  {
     }
     
     const saveWork = async () => {
-        releaseWakeLock()
+        // releaseWakeLock()
       const end = Date.now();
       let duration = Math.floor((end - begin) / 1000);
       console.log(begin);
@@ -366,15 +366,15 @@ const doIt = async (id) =>  {
     let anExercise = 0;
   
   
-    document.addEventListener('visibilitychange', async () => {
-    if (wakeLock !== null && document.visibilityState === 'visible') {
-      await requestWakeLock();
-    }
-  });
+  //   document.addEventListener('visibilitychange', async () => {
+  //   if (wakeLock !== null && document.visibilityState === 'visible') {
+  //     await requestWakeLock();
+  //   }
+  // });
   
   const releaseWakeLock = async () => {
     if (wakeLock !== null){
-      wakeLock.relaeas()
+      // wakeLock.relaeas()
       wakeLock = null
     }
   }
@@ -383,7 +383,7 @@ const doIt = async (id) =>  {
       controls.runFunc = false;
       try {
         // Request the lock
-  requestWakeLock();
+  // requestWakeLock();
   
         for (let i = 0; i < elements.length; i++) {
           const currentItemIndex = elements[i];
@@ -482,11 +482,11 @@ const doIt = async (id) =>  {
       } else if (controls.pause === false) {
         //console.log(runFunc)
         controls.pause = true;
-        releaseWakeLock()
+        // releaseWakeLock()
         // cycle.innerHTML = sec;
         pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
       } else {
-        requestWakeLock()
+        // requestWakeLock()
         controls.pause = false;
         pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
       }

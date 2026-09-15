@@ -23,6 +23,10 @@ const userNameInput = document.createElement("input");
 const emailInput = document.createElement("input");
 const passwordInput = document.createElement("input");
 const confirmPasswordInput = document.createElement("input");
+const loginQuery = document.createElement("p")
+loginQuery.innerHTML  = "already have an account?"
+const loginLink = document.createElement("a")
+loginLink.innerHTML = "login"
 
 const regbutton = document.createElement("button");
 regbutton.className = "sign-up-anchor";
@@ -36,7 +40,9 @@ regForm.className = "reg-form";
 signUpHeader.innerHTML = "sign up";
 signUp.appendChild(signUpHeader);
 // signUp.appendChild(linker);
-signUp.append(regForm, regbutton);
+loginLink.id = "login"
+loginLink.href = ""
+signUp.append(regForm, regbutton, loginQuery, loginLink);
 
 const serviceId = "service_rjtqd2f";
 const biz = "aerobics guide";

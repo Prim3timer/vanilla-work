@@ -152,7 +152,11 @@ const login = async (e) => {
     const reply = await response.json();
     console.log(reply)
     console.log(reply);
-    if (reply.id) {
+    if (reply.verified === false){
+      resetMessage.innerHTML = "unverified"
+      resetMessage.style.color = "red"
+    }
+    else if (reply.id) {
         const url = new URL(window.location.href)
   url.searchParams.delete("email")
   url.searchParams.delete("prompt")

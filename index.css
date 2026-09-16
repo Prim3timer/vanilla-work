@@ -849,12 +849,14 @@ table th {
   align-items: center;
   /* text-align: left; */
   /* font-size: 1.2rem; */
+  align-items: flex-end;
   overflow: auto;
   padding: .5rem;
   width: 95vw;
   align-self: center;
   border-radius: 5px;
   background-color:powderblue;
+  /* font-size: 1.2rem; */
 }
 
 .duration-label, .interval-label {

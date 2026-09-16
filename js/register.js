@@ -1,4 +1,5 @@
 import myUrl from "./myUrl.js";
+import { showHide } from "./genFunc.js";
 const signUp = document.createElement("div");
 
 signUp.className = "register";
@@ -23,6 +24,7 @@ const userNameInput = document.createElement("input");
 const emailInput = document.createElement("input");
 const passwordInput = document.createElement("input");
 const confirmPasswordInput = document.createElement("input");
+confirmPasswordInput.className = "confirm-password-input"
 const loginQuery = document.createElement("p")
 loginQuery.innerHTML  = "already have an account?"
 const loginLink = document.createElement("a")
@@ -35,13 +37,22 @@ usernameLabel.append(usernameBreak, userNameInput);
 emailLabel.append(emailBreak, emailInput);
 passwordLabel.append(passwordBreak, passwordInput);
 confirmPasswordLabel.append(confirmPasswordBreak, confirmPasswordInput);
-regForm.append(usernameLabel, emailLabel, passwordLabel, confirmPasswordLabel);
 regForm.className = "reg-form";
 signUpHeader.innerHTML = "sign up";
 signUp.appendChild(signUpHeader);
 // signUp.appendChild(linker);
 loginLink.id = "login"
 loginLink.href = ""
+
+const passwordVisibilityLabel = document.createElement("label")
+passwordVisibilityLabel.className = "reg-show-password-label"
+passwordVisibilityLabel.innerHTML = "show password:"
+const passwordVisiblityInput = document.createElement("input")
+passwordVisibilityLabel.append(passwordVisiblityInput)
+passwordVisiblityInput.type = "checkbox"
+// passwordVisiblityInput.addEventListener("change", () => showHide(passwordInput))
+passwordVisiblityInput.className = "reg-show-password"
+regForm.append(usernameLabel, emailLabel, passwordLabel, confirmPasswordLabel);
 signUp.append(regForm, regbutton, loginQuery, loginLink);
 
 const serviceId = "service_rjtqd2f";

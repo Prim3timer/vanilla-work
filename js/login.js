@@ -1,3 +1,5 @@
+import { showHide } from "./genFunc.js";
+
 const loginMain = document.createElement("div");
 loginMain.className = "login";
 const loginHeader = document.createElement("h3");
@@ -55,13 +57,7 @@ const needAnaccount = document.createElement("p");
 needAnaccount.innerHTML = "need an account?";
 loginLinks.append(forgotPasswordLink, needAnaccount, signUpLink);
 
-passwordVisiblityInput.addEventListener("change", () => {
-    if (passwordInput.type === "password"){
-        passwordInput.type = "text"
-    } else {
-        passwordInput.type = "password"
-    }
-})
+passwordVisiblityInput.addEventListener("change", () => showHide(passwordInput))
 
 loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, passwordVisibilityLabel, submitButton,);
 

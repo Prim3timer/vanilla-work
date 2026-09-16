@@ -197,4 +197,12 @@ const getSpecificPage = (e, page, mainContainer) => {
 
 }
 
-export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow, populateUserSettings };
+const showHide = (passwordInput) => {
+    if (passwordInput.type === "password"){
+        passwordInput.type = "text"
+    } else {
+        passwordInput.type = "password"
+    }
+}
+
+export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow, populateUserSettings, showHide };

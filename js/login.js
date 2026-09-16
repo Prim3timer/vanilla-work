@@ -26,7 +26,14 @@ usernameInput.id = "username";
 passwordInput.type = "password";
 passwordInput.name = "password";
 passwordInput.id = "password";
-// passwordInput.placeholder = "Enter your password";l
+
+const passwordVisibilityLabel = document.createElement("label")
+passwordVisibilityLabel.className = "show-password-label"
+passwordVisibilityLabel.innerHTML = "show password:"
+const passwordVisiblityInput = document.createElement("input")
+passwordVisibilityLabel.append(passwordVisiblityInput)
+passwordVisiblityInput.type = "checkbox"
+passwordVisiblityInput.className = "show-password"
 
 const submitButton = document.createElement("button");
 submitButton.className = "sign-up-anchor";
@@ -48,7 +55,15 @@ const needAnaccount = document.createElement("p");
 needAnaccount.innerHTML = "need an account?";
 loginLinks.append(forgotPasswordLink, needAnaccount, signUpLink);
 
-loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, submitButton,);
+passwordVisiblityInput.addEventListener("change", () => {
+    if (passwordInput.type === "password"){
+        passwordInput.type = "text"
+    } else {
+        passwordInput.type = "password"
+    }
+})
+
+loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, passwordVisibilityLabel, submitButton,);
 
 
 loginMain.append(loginForm,  loginLinks);

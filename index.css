@@ -227,6 +227,7 @@ flex-direction: column;
 }
 
 .performance, .activity, .user-settings, .settings, .reset-password, .user-setting, .change-password {
+  z-index: 200;
   display: flex;
   padding-top: 2rem;
   width: 100vw;
@@ -367,7 +368,7 @@ flex-direction: column;
       /* background-color: lavender; */
       position: absolute;
   /* background-color: red; */
-  z-index: 100;
+  z-index: 40;
  }
  .register {
   display: flex;

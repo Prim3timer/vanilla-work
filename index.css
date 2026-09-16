@@ -313,11 +313,11 @@ flex-direction: column;
  .user-setting-buttons >* {
   /* text-align: center; */
   width: 3rem;
-  /* background-color: red;  */
- }
- 
+}
 
- .settings h3{
+
+.settings h3{
+   /* background-color: red;  */
   text-align: center;
   margin-bottom: .2rem;
   
@@ -325,11 +325,10 @@ flex-direction: column;
  .settings p{
   text-align: center;
   margin-bottom: .2rem;
-  /* background-color: green; */
+  /* background-color: aqua; */
   font-size: 1.5rem;
   max-width: 60vw;
   margin-bottom: 1rem;  
-  text-align: left;
  }
 
  .reset-buttons {
@@ -374,7 +373,7 @@ flex-direction: column;
 }
 
 .settings-instructions {
-  background-color: gainsboro;
+  background-color: mistyrose;
   color: darkslateblue;
   padding: .5rem;
   min-width: 80vw;
@@ -845,19 +844,30 @@ table th {
   /* column-gap: .2rem; */
   /* flex-direction: column; */
   justify-content: flex-end;
-  width: 80vw;
-  margin: .5rem 0;
-  align-items: flex-end;
+  /* width: 80vw; */
+  /* margin: .5rem 0; */
+  align-items: center;
   /* text-align: left; */
   /* font-size: 1.2rem; */
   overflow: auto;
- }
+  padding: .5rem;
+  width: 95vw;
+  align-self: center;
+  border-radius: 5px;
+  background-color:powderblue;
+}
 
- .duration-label {
+.duration-label, .interval-label {
+  /* padding: 2rem; */
+  /* align-items: flex-end; */
   /* background-color: red; */
-  /* width: 89%; */
-  /* align-self: flex-end; */
   /* white-space: nowrap; */
+}
+
+.number-of-rounds-label {
+  /* background-color: lightpink; */
+  justify-content: center;
+  margin-top: 1rem;
  }
  .interval-label input, .duration-label input, .number-of-rounds-label input {
   width: 2em;
@@ -912,6 +922,10 @@ table th {
   top: 15%;
 }
 
+
+ .interval-label, .duration-label, .number-of-rounds-label {
+  width: 50vw;
+ }
 
 
  .timing-main {

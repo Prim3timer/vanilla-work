@@ -50,7 +50,7 @@ const minuteLabel = document.createElement("label")
 const secondLabel = document.createElement("label")
 hourLabel.innerHTML = "hr"
 minuteLabel.innerHTML = "min"
-secondLabel.innerHTML = "s"
+secondLabel.innerHTML = "sec"
 hourLabel.append(breaker, intervalHourInput)
 hourLabel.className = "hour-label"
 minuteLabel.className = "minute-label"

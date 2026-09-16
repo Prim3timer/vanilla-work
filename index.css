@@ -858,6 +858,7 @@ table th {
   align-self: center;
   border-radius: 5px;
   background-color:powderblue;
+  max-width: 340px;
   /* font-size: 1.2rem; */
 }
 

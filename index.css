@@ -362,10 +362,12 @@ flex-direction: column;
  .reply {
   color: darkslateblue;
   padding: .5rem;
-      margin: -3.2rem 0 0 50%;
+      margin: 8rem 0 0 10%;
       width: 50vw;
       /* background-color: lavender; */
+      position: absolute;
   /* background-color: red; */
+  z-index: 100;
  }
  .register {
   display: flex;
@@ -985,7 +987,7 @@ text-align: center;
     /* background-color: gainsboro; */
     position: absolute;
     width: 20vw;
-    margin: -2rem 0 0 80%;
+    margin: 2rem 0 0 80%;
     /* margin-bottom: 3rem; */
     text-align: center;
     /* background-color: red; */

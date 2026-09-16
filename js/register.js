@@ -83,8 +83,8 @@ const createUserDets = async () => {
       name: userNameInput.value.trim(),
       email: emailInput.value.trim().toLowerCase(),
       biz,
-      link: `https://prim3timer.github.io/vanilla-work?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
-      // link: `http://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
+      // link: `https://prim3timer.github.io/vanilla-work?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
+      link: `http://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
     };
   const userDataBase = await fetch(`${myUrl}/workout-users`, {
     method: "GET",

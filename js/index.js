@@ -231,10 +231,10 @@ const getVerified = async () => {
      
         replyElement.style.color = "black";
         replyElement.style.padding = ".5rem";
-        replyElement.style.position = "fixed";
+        // replyElement.style.position = "fixed";
         replyElement.style.borderRadius = "5px";
-        replyElement.style.top = "5rem";
-        replyElement.style.justifySelf = "center"
+        // replyElement.style.top = "5rem";
+        // replyElement.style.justifySelf = "center"
       motherShip.insertBefore(replyElement, mainContainer)
 
       if (email && message) {

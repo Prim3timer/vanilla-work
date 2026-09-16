@@ -842,15 +842,10 @@ table th {
  .interval-label, .duration-label, .number-of-rounds-label {
   /* background-color: red; */
   display: flex;
-  /* margin-left: 1rem; */
-  /* column-gap: .2rem; */
-  /* flex-direction: column; */
   justify-content: flex-end;
   /* width: 80vw; */
   /* margin: .5rem 0; */
   align-items: center;
-  /* text-align: left; */
-  /* font-size: 1.2rem; */
   align-items: flex-end;
   overflow: auto;
   padding: .5rem;
@@ -858,8 +853,8 @@ table th {
   align-self: center;
   border-radius: 5px;
   background-color:powderblue;
-  max-width: 340px;
-  /* font-size: 1.2rem; */
+  max-width: 400px;
+  font-size: 1.2rem;
 }
 
 .duration-label, .interval-label {
@@ -884,7 +879,6 @@ table th {
   top: 0;
   line-height: 40px;
   /* background-color: red; */
-  height: 40px;
  }
  .duration-label>*:nth-child(2), .number-of-rounds-label input {
   margin-left: .5rem;

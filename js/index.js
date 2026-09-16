@@ -153,7 +153,7 @@ const login = async (e) => {
     console.log(reply)
     console.log(reply);
     if (reply.verified === false){
-      resetMessage.innerHTML = "unverified"
+      resetMessage.innerHTML = "unverified. Open the email sent to you from Uthokoii or reset your password"
       resetMessage.style.color = "red"
     }
     else if (reply.id) {

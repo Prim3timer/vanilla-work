@@ -271,7 +271,7 @@ flex-direction: column;
     justify-self: center;
     width: 60vw;
     top: 3rem;
-    z-index: -1;
+    z-index: 2;
     background-color: lavender;
   }
 
@@ -943,7 +943,6 @@ table th {
 
   .reset-message {
     left: 5px;
-
     width: 20vw;
   }
 

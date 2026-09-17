@@ -71,7 +71,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
       ) {
         if (this.id == content.className) {
           if (this.id == "settings"){
-            populate()
+            // populate()
           } else if (this.id == "usersettings"){
               const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET"
@@ -101,7 +101,6 @@ console.log(roles)
           } else {
             localStorage.setItem("current-page", content.className)
             if (mainContainer.children.length > 0) {
-              
               mainContainer.firstElementChild.replaceWith(content);
 
               return;

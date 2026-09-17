@@ -5,8 +5,9 @@ let globalData = [];
 let globalUser = {};
 
 const entryCount = document.createElement("span");
+entryCount.className = "perf-entry-count"
 
-const userId = localStorage.getItem("workoutUserId") || "6a6695c18889470e03c937ec";
+const userId = localStorage.getItem("workoutUserId");
 
 const performanceMain = document.createElement("div");
 performanceMain.className = "performance";
@@ -189,13 +190,12 @@ const getData = async (id) => {
       const { duration } = perfy.exerciseTimings[0];
       
   console.log(user.workSettings.numberOfRounds)
-  console.log(perfy.exerciseDets.length)
       const { workSettings } = user;
       const endurance = document.createElement("td");
   
       endurance.innerHTML = timeClocking(duration);
       const roundCount = document.createElement("td");
-      roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds ? perfy.exerciseTimings[3].numberOfRounds - 1 : 0}` ;
+      roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds ?  Math.floor(perfy.oneExercise / user.workSettings.numberOfRounds) : 0}` ;
       const mark = document.createElement("td");
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
@@ -203,6 +203,7 @@ const getData = async (id) => {
       exDet.innerHTML = `${perfy.exerciseDets.length}`;
       const date = document.createElement("td");
       const del = document.createElement("td");
+      del.className = "delete-performance"
       date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
         day: "numeric",
         month: "long",

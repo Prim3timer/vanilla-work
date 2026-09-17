@@ -1,6 +1,6 @@
 import { homePage } from "./home.js";
-import { performancePage } from "./performance.js";
-import { settingsPage } from "./settings.js";
+import { getData, performancePage } from "./performance.js";
+import { settingsPage, populate } from "./settings.js";
 import { usersPage } from "./users.js";
 import { ElementCatcher, getSpecificPage, populateUserSettings } from "./genFunc.js";
 import { register } from "./register.js";
@@ -94,6 +94,8 @@ const handleRefresh = async () => {
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
+    // repopulate the exercise setup form fields
+    populate(guestId)
   console.log(guestId)
   console.log(currentPageInnerText)
   console.log(getCurrentPage)
@@ -136,6 +138,8 @@ console.log(submitButton);
 const resetMessage  = loginPage().getElementsByClassName("reset-message")[0]
 const login = async (e) => {
   e.preventDefault();
+  const firstExercise = settingsPage().getElementsByTagName("input")[0]
+  console.log(firstExercise)
   resetMessage.innerHTML = "processing..."
   const cred = {
     username: usernameInput.value,
@@ -167,26 +171,34 @@ const login = async (e) => {
   if (mainContainer.children.length > 0) {
     console.log(mainContainer.firstElementChild)
     mainContainer.firstElementChild.replaceWith(homePage(reply.id));
-    
+    // populate the exercise setup fields
+    populate(reply.id)
+    const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
+    // clear the performance table.
+    tbody.innerHTML = ""
+    // repopulate the performance table.
+    getData(reply.id)
     // performancePage().addEventListener("click", instanceer.shower);
     greeting.innerHTML = `hi, ${reply.name}`;
     localStorage.setItem("roles", JSON.stringify(reply.roles))
     
     const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
-    // insert the nav links into the navbar
+    // clear the navbar
     navbar.replaceChildren();
+
     homeLInk.addEventListener("click", instanceerInner.shower)
     perfLInk.addEventListener("click", instanceerInner.shower)
+    
     settingsLInk.addEventListener("click", instanceerInner.shower)
-   usersLInk.addEventListener("click", instanceerInner.shower)
-   
+    usersLInk.addEventListener("click", instanceerInner.shower)
+    
+    // insert the nav links into the navbar
    navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
    // remove the email parameter from the url
    const url = new URL(window.location.href)
    url.searchParams.delete("email")
    url.searchParams.delete("prompt")
    url.searchParams.delete("elapsed")
-   window.location.reload()
  
 
   window.history.replaceState({}, document.title, url.toString())

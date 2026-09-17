@@ -227,7 +227,6 @@ flex-direction: column;
 }
 
 .performance, .activity, .user-settings, .settings, .reset-password, .user-setting, .change-password {
-  z-index: 200;
   display: flex;
   padding-top: 2rem;
   width: 100vw;

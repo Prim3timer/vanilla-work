@@ -1,5 +1,6 @@
 import myUrl from "./myUrl.js";
 import { timeClocking} from "./genFunc.js";
+import { performancePage } from "./performance.js";
 let ID;
 let sec = 0;
 const condo = localStorage.getItem("workoutUserId")
@@ -315,9 +316,13 @@ const doIt = async (id) =>  {
         }, 1000);
       });
     }
-    
+
+
+ 
+const del = document.createElement("td");
     const saveWork = async () => {
         // releaseWakeLock()
+        
       const end = Date.now();
       let duration = Math.floor((end - begin) / 1000);
       console.log(begin);
@@ -342,6 +347,51 @@ const doIt = async (id) =>  {
             ? (anExercise / (exercise.length * numberOfRounds)) * 100
             : 100,
       };
+console.log(anExercise)
+
+const endurance = document.createElement("td");
+          endurance.innerHTML = timeClocking(duration);
+          const roundCount = document.createElement("td");
+          roundCount.innerHTML = Math.floor(anExercise / numberOfRounds);
+          const mark = document.createElement("td");
+          const exDet = document.createElement("td");
+          mark.innerHTML = anExercise / (exercise.length * numberOfRounds) <= 1
+            ? parseFloat((anExercise / (exercise.length * numberOfRounds)) * 100).toFixed(2)
+            : 100.00;
+          exDet.innerHTML = exercise.length;
+      
+          const date = document.createElement("td");
+          date.innerHTML = new Date().toLocaleString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            // hour: "numeric",
+            // minute: "numeric",
+            // second: "numeric",
+          });
+          del.style.fontSize = "1.5rem";
+      
+          // const removeVerifier = () => {
+          //   verifyWindow.className = "no-veriy-window";
+          // };
+          del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+
+const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
+const entryCount = performancePage().getElementsByClassName("perf-entry-count")[0]
+const newRow = document.createElement("tr")
+
+newRow.append(endurance, roundCount, mark, exDet, date, del)
+tbody.appendChild(newRow)
+entryCount.innerHTML = `(${tbody.children.length - 1} entries)`
+
+for (let i = 1; i < tbody.children.length; i++){
+  tbody.children[i].style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
+}
+console.log(tbody)
+        console.log(tbody.children.length)
+
+
       console.log(workDets);
       console.log(myUrl);
       const response = await fetch(`${myUrl}/performance`, {

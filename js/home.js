@@ -379,11 +379,12 @@ const endurance = document.createElement("td");
 
 const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
 const entryCount = performancePage().getElementsByClassName("perf-entry-count")[0]
+
 const newRow = document.createElement("tr")
 
 newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
 tbody.appendChild(newRow)
-entryCount.innerHTML = `(${tbody.children.length - 1} entries)`
+entryCount.innerHTML = `(${tbody.children.length} entries)`
 
 for (let i = 1; i < tbody.children.length; i++){
   tbody.children[i].style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;

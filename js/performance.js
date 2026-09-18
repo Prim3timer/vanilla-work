@@ -39,7 +39,8 @@ verifyWindow.append(question, verifyWindowButtonCont);
 performanceMain.appendChild(verifyWindow);
 performanceMain.appendChild(alertWindow);
 
-const table = document.createElement("table");
+const perfTable = document.createElement("table");
+perfTable.className = "perf-table"
 const tableBody = document.createElement("tbody");
 const headerRow = document.createElement("tr");
 const dHeader = document.createElement("th");
@@ -59,7 +60,7 @@ exHeader.innerHTML = "overall effort (%)";
 exDetsHeader.innerHTML = "exercises per round";
 // markHeader.innerHTML = "mark (%)";
 dateHeader.innerHTML = "date";
-table.appendChild(tableBody);
+perfTable.appendChild(tableBody);
 // tableBody.appendChild(headerRow);
 headerRow.append(
   dHeader,
@@ -140,7 +141,7 @@ const deleteEntry = async () => {
             child.addEventListener("click", () => showDetWindow(perfy, duration, performanceMain))
           }
           dets.append(del);
-          userId && performanceMain.append(table);
+          userId && performanceMain.append(perfTable);
         }
       
         verifyWindow.className = "no-verify-window";
@@ -232,7 +233,7 @@ const getData = async (id) => {
       }
       dets.append(del);
   
-      performanceMain.append(table);
+      performanceMain.append(perfTable);
     }
     const navbar = document.getElementsByClassName("navbar")[0];
     const getDatas = document.getElementsByClassName("get-data")[0];

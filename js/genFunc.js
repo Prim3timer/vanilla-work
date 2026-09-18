@@ -18,6 +18,8 @@ const timeClocking = (sec) => {
               : `${Math.floor(sec / 60)}:0${sec % 60}`
   }`;
 };
+
+
 const timeToText = (sec) => {
   return ` ${
     // if sec is greater than an hour
@@ -101,6 +103,9 @@ console.log(roles)
           } else {
             localStorage.setItem("current-page", content.className)
             if (mainContainer.children.length > 0) {
+              const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
+console.log(performancePage())
+              // getData(guestId)
               mainContainer.firstElementChild.replaceWith(content);
 
               return;

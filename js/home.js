@@ -624,4 +624,4 @@ const homePage = (id) => {
 
 
 
-export { homePage };
+export { homePage, firstCont };

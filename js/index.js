@@ -20,9 +20,9 @@ const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
  const replyElement = document.createElement("h4");
 
-     const navFirst = document.createElement("h4");
+     const navFirst = document.getElementsByClassName("title-element")[0];
   navFirst.innerHTML = "Aerobics Guide";
-  navFirst.className = "title-element"
+  // navFirst.className = "title-element"
 
 
   const alertMessage = document.createElement("h4")
@@ -30,26 +30,28 @@ const navbar = document.getElementsByClassName("navbar")[0];
 
 console.log(navbar);
 
-const homeLInk = document.createElement("a");
+const homeLInk = document.getElementById("home");
 homeLInk.innerHTML = "home";
 homeLInk.id = "home";
 // homeLInk.className = "home"
 
-const perfLInk = document.createElement("a");
+const perfLInk = document.getElementById("performance");
 perfLInk.innerHTML = "performance";
 perfLInk.id = "performance";
 
-const settingsLInk = document.createElement("a");
+const settingsLInk = document.getElementById("settings");
 settingsLInk.innerHTML = "settings";
 settingsLInk.id = "settings";
 
-const usersLInk = document.createElement("a");
+const usersLInk = document.getElementById("users");
 usersLInk.innerHTML = "users";
 usersLInk.id = "users";
 
-const logoutLInk = document.createElement("a");
+const logoutLInk = document.getElementById("logout");
 logoutLInk.innerHTML = "logout";
 logoutLInk.id = "logout";
+
+
 
 
 
@@ -89,23 +91,29 @@ const containers = [
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
 const handleRefresh = async () => {
+  // navbar.innerHTML = ""
   console.log(document); 
   const currentPageInnerText = localStorage.getItem("current-page") || "home"
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
     // repopulate the exercise setup form fields
+    for (let i = 1; i < navbar.children.length; i++){
+  navbar.children[i].style.display = "inline"
+}
+navFirst.style.display = "none"
     populate(guestId)
   console.log(guestId)
   console.log(currentPageInnerText)
   console.log(getCurrentPage)
-  navbar.replaceChildren();
+  // navbar.replaceChildren();
   // reassign the eventlistener to the pages.
   homeLInk.addEventListener("click", instanceer.shower)
   perfLInk.addEventListener("click", instanceer.shower)
   settingsLInk.addEventListener("click", instanceer.shower)
    usersLInk.addEventListener("click", instanceer.shower)
-   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+  //  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+
    
    console.log(getCurrentPage)
    const user = JSON.parse(localStorage.getItem("user"));
@@ -122,8 +130,12 @@ const handleRefresh = async () => {
     }
   } else {
      // insert the business name in the navbar
-  navbar.replaceChildren();
-  navbar.appendChild(navFirst);
+  // navbar.replaceChildren();
+  // navbar.appendChild(navFirst);
+  navFirst.style.display = "block"
+  for (let i = 1; i < navbar.children.length; i++){
+  navbar.children[i].style.display = "none"
+}
     if (mainContainer.children.length > 0) {
       mainContainer.firstElementChild.replaceWith(loginPage());
     } else {
@@ -163,6 +175,14 @@ const login = async (e) => {
       resetMessage.style.color = "red"
     }
     else if (reply.id) {
+      greeting.innerHTML = `hi, ${reply.name}`;
+         navFirst.style.display = "none"
+         const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
+         getData(reply.id)
+    for (let i = 1; i < navbar.children.length; i++){
+      navbar.children[i].style.display = "inline"
+      navbar.children[i].addEventListener("click", instanceerInner.shower)
+    }
         const url = new URL(window.location.href)
   url.searchParams.delete("email")
   url.searchParams.delete("prompt")
@@ -177,23 +197,20 @@ const login = async (e) => {
     // clear the performance table.
     tbody.innerHTML = ""
     // repopulate the performance table.
-    getData(reply.id)
+ 
     // performancePage().addEventListener("click", instanceer.shower);
-    greeting.innerHTML = `hi, ${reply.name}`;
     localStorage.setItem("roles", JSON.stringify(reply.roles))
     
-    const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
-    // clear the navbar
-    navbar.replaceChildren();
-
-    homeLInk.addEventListener("click", instanceerInner.shower)
-    perfLInk.addEventListener("click", instanceerInner.shower)
+    // homeLInk.addEventListener("click", instanceerInner.shower)
+    // perfLInk.addEventListener("click", instanceerInner.shower)
     
-    settingsLInk.addEventListener("click", instanceerInner.shower)
-    usersLInk.addEventListener("click", instanceerInner.shower)
+    // settingsLInk.addEventListener("click", instanceerInner.shower)
+    // usersLInk.addEventListener("click", instanceerInner.shower)
+    // clear the navbar
+    // navbar.replaceChildren();
     
     // insert the nav links into the navbar
-   navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+  //  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
    // remove the email parameter from the url
    const url = new URL(window.location.href)
    url.searchParams.delete("email")
@@ -310,14 +327,18 @@ console.log(regLink)
 
 const getToHomePage = (e) => {
   e.preventDefault();
+     navFirst.style.display = "block"
+    for (let i = 1; i < navbar.children.length; i++){
+      navbar.children[i].style.display = "none"
+    }
   localStorage.removeItem("userSettingsId");
   if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId")) {
   mainContainer.firstElementChild.replaceWith(loginPage());
   localStorage.removeItem("workoutUserId");
   localStorage.removeItem("current-page");
   greeting.innerHTML = "";
-  navbar.replaceChildren();
-  navbar.appendChild(navFirst);
+
+  // navbar.appendChild(navFirst);
   } else mainContainer.appendChild(loginPage())
 };
 logoutLInk.addEventListener("click", getToHomePage);

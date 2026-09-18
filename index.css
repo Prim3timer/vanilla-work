@@ -226,6 +226,15 @@ flex-direction: column;
   color: white;
 }
 
+.title-element {
+  display: none;
+}
+
+.navbar >* {
+  display: none;
+  
+}
+
 .performance, .activity, .user-settings, .settings, .reset-password, .user-setting, .change-password {
   display: flex;
   padding-top: 2rem;

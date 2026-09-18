@@ -532,6 +532,7 @@ input {
   align-items: center;
   position: fixed;
   justify-self: center;
+  width: 80vw;
   z-index: 10000;
   top: 40%;
   font-size: 1.5rem;
@@ -930,6 +931,10 @@ table th {
  @media screen and (min-width: 499px) {
 .inner-dets-verify-window{
   top: 15%;
+}
+
+.verify-window {
+  max-width: 500px;
 }
 
 

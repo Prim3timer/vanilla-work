@@ -83,24 +83,28 @@ const deleteEntry = async () => {
     const response = await fetch(`${myUrl}/performance/${itemId}`, {
       method: "DELETE",
     });
+    // const replies = await response.json()
     if (response) {
-      const reply = await response.json();
-      const filterate = globalData.filter((data) => data.userId === userId);
-      const entryFilterate = filterate.filter((entry) => entry._id != itemId);
-      globalData = entryFilterate;
+      const replies = await response.json();
+      const {success, entries} = replies
+      console.log(replies)
+      const reply = success;
+      const filterate = entries.filter((data) => data.userId === userId);
+      globalData = filterate;
+      console.log(entries)
       if (userId){
         
         tableBody.replaceChildren();
         tableBody.appendChild(headerRow);
         alertWindow.innerHTML = reply;
         alertWindow.className = "verify-window";
-        entryCount.innerHTML = `(${entryFilterate.length} entries)`;
-        for (let i = 0; i < entryFilterate.length; i++) {
+        entryCount.innerHTML = `(${filterate.length} entries)`;
+        for (let i = 0; i < filterate.length; i++) {
           const dets = document.createElement("tr");
           dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
           tableBody.appendChild(dets);
           // perfy is a document in the performance cluster in the database.
-          const perfy = entryFilterate[i];
+          const perfy = filterate[i];
           const { workSettings } = globalUser;
           const endurance = document.createElement("td");
           const { duration } = perfy.exerciseTimings[0];

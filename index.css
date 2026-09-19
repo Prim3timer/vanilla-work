@@ -267,6 +267,8 @@ flex-direction: column;
     background-color: gainsboro;
     padding: 1rem;
     width: 95%;
+    position: absolute;
+    top: 40%;
     color: darkslateblue;
     white-space: wrap;
     align-self: center;
@@ -972,6 +974,8 @@ text-align: center;
   
   .register-prompt {
     width: 55%;
+    position: absolute;
+    top: 40%;
     text-align: center;
   }
 

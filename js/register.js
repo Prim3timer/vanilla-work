@@ -102,12 +102,12 @@ console.log(foundUser)
 if (foundUser){
   linker.innerHTML = "duplicate email"
 } else {
-  const mailSent = await emailjs.send(
-    serviceId,
-    templateId,
-    templateParams,
-    publicKey,
-  );
+  // const mailSent = await emailjs.send(
+  //   serviceId,
+  //   templateId,
+  //   templateParams,
+  //   publicKey,
+  // );
   signUp.insertBefore(linker, signUpHeader);
   if (passwordInput.value === confirmPasswordInput.value) {
     const response = await fetch(`${myUrl}/workout-register`, {

@@ -87,7 +87,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
 };
 const rolesArray = Object.keys(ROLES);
 const user = users.find((user) => user._id === guestId)
-console.log(user.username)
+console.log(user)
 const roles = Object.keys(user.roles)
 console.log(roles)
             const usernameInput = content.getElementsByClassName("user-setting-name")[0]

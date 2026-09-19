@@ -196,21 +196,41 @@ const login = async (e) => {
     const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
     // clear the performance table.
     tbody.innerHTML = ""
+    // add headers row to the tbody
+    const testElement = document.createElement("h3")
+   const headerRow = document.createElement("tr");
+const dHeader = document.createElement("th");
+const rHeader = document.createElement("th");
+const exHeader = document.createElement("th");
+const exDetsHeader = document.createElement("th");
+const markHeader = document.createElement("th");
+const dateHeader = document.createElement("th");
+const deleteHeader = document.createElement("th");
+// const delet = document.createElement("th");
+
+dHeader.innerHTML = "duraton";
+rHeader.innerHTML = "rounds completed";
+exHeader.innerHTML = "overall effort (%)";
+exDetsHeader.innerHTML = "exercises per round";
+// markHeader.innerHTML = "mark (%)";
+dateHeader.innerHTML = "date";
+// tableBody.appendChild(headerRow);
+headerRow.append(
+  dHeader,
+  rHeader,
+  exHeader,
+  exDetsHeader,
+  // markHeader,
+  dateHeader,
+  deleteHeader,
+);
+tbody.appendChild(headerRow)
     // repopulate the performance table.
  
     // performancePage().addEventListener("click", instanceer.shower);
     localStorage.setItem("roles", JSON.stringify(reply.roles))
     
-    // homeLInk.addEventListener("click", instanceerInner.shower)
-    // perfLInk.addEventListener("click", instanceerInner.shower)
-    
-    // settingsLInk.addEventListener("click", instanceerInner.shower)
-    // usersLInk.addEventListener("click", instanceerInner.shower)
-    // clear the navbar
-    // navbar.replaceChildren();
-    
-    // insert the nav links into the navbar
-  //  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+
    // remove the email parameter from the url
    const url = new URL(window.location.href)
    url.searchParams.delete("email")

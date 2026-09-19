@@ -1,6 +1,6 @@
 import myUrl from "./myUrl.js";
 import { timeClocking } from "./genFunc.js";
-import { firstCont } from "./home.js";
+import { homePage, firstCont } from "./home.js";
 
 const settingsCont = document.createElement("div");
 settingsCont.className = "settings";
@@ -167,8 +167,8 @@ populate();
 
 const editUser = async (e) => {
   e.preventDefault()
-  const exCont = firstCont.getElementsByClassName("exercise-cont")[0]
-  console.log(exCont);
+  console.log(userId)
+  console.log(homePage());
   console.log(userId);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",

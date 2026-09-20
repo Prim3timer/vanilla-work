@@ -79,6 +79,7 @@ noButton.addEventListener("click", () => {
 verifyWindowButtonCont.className = "verify-window-cont";
 
 const deleteEntry = async () => {
+  let reply = "deleting..."
   try {
     const response = await fetch(`${myUrl}/performance/${itemId}`, {
       method: "DELETE",
@@ -88,7 +89,7 @@ const deleteEntry = async () => {
       const replies = await response.json();
       const {success, entries} = replies
       console.log(replies)
-      const reply = success;
+      reply = success;
       const filterate = entries.filter((data) => data.userId === userId);
       globalData = filterate;
       console.log(entries)
@@ -105,12 +106,13 @@ const deleteEntry = async () => {
           tableBody.appendChild(dets);
           // perfy is a document in the performance cluster in the database.
           const perfy = filterate[i];
+          console.log(perfy)
           const { workSettings } = globalUser;
           const endurance = document.createElement("td");
           const { duration } = perfy.exerciseTimings[0];
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
-          roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds - 1}`;
+          roundCount.innerHTML = `${Math.floor(perfy.oneExercise /perfy.exerciseDets.length)}`;
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
           mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.mark).toFixed(2) : 0}`;
@@ -140,7 +142,7 @@ const deleteEntry = async () => {
           };
       
           del.addEventListener("click", () => getId(perfy._id));
-          dets.append(roundCount, endurance, mark, exDet, date);
+          dets.append( endurance, roundCount, mark, exDet, date);
           for (const child of dets.children){
             child.addEventListener("click", () => showDetWindow(perfy, duration, performanceMain))
           }
@@ -201,7 +203,7 @@ const getData = async (id) => {
   
       endurance.innerHTML = timeClocking(duration);
       const roundCount = document.createElement("td");
-      roundCount.innerHTML = `${perfy.exerciseTimings[3].numberOfRounds ?  Math.floor(perfy.oneExercise / user.workSettings.numberOfRounds) : 0}` ;
+      roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0}` ;
       const mark = document.createElement("td");
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;

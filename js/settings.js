@@ -169,7 +169,8 @@ const editUser = async (e) => {
   e.preventDefault()
   console.log(userId)
   console.log(homePage());
-  console.log(userId);
+  // const exCont = homePage(userId).getElementById("exercise-cont")
+  // console.log(exCont);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -211,7 +212,7 @@ const editUser = async (e) => {
     
     if (filteredExercise.length < 1) {
       console.log("exercise list is too short. make it at least 2");
-        alertWindow.innerHTML = "exercise list is too short. make it at least 1";
+        alertWindow.innerHTML = "enter at least 1 exercise";
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
       alertWindow.style.top = "40%";

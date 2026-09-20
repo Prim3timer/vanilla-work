@@ -348,13 +348,15 @@ const del = document.createElement("td");
             : 100,
       };
 console.log(anExercise)
+console.log(17 / 25)
 
 const endurance = document.createElement("td");
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
-          roundCount.innerHTML = Math.floor(anExercise / numberOfRounds);
+          roundCount.innerHTML = Math.floor(anExercise / exercise.length);
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
+          // if the mark is less than or equal to 100%, display it else disply 0
           mark.innerHTML = anExercise / (exercise.length * numberOfRounds) <= 1
             ? parseFloat((anExercise / (exercise.length * numberOfRounds)) * 100).toFixed(2)
             : 100.00;

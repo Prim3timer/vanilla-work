@@ -230,7 +230,7 @@ const editUser = async (e) => {
         alertWindow.className = "no-verify-window";
       }, 5000);
     } else {
-      const respone2 = await fetch(`${myUrl}/workout-users/${userId}`, {
+      const respone2 = await fetch(`${myUrl}/workout-users/${localStorage.getItem("workoutUserId")}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -238,7 +238,8 @@ const editUser = async (e) => {
         body: JSON.stringify(workerSettings),
       });
       const reply = await respone2.json();
-      homePage()
+      // update the home page
+      homePage(userId)
       alertWindow.innerHTML = reply;
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";

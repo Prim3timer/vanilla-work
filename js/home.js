@@ -617,7 +617,7 @@ console.log(tbody)
 
 
 const homePage = (id) => {
-  localStorage.getItem("workoutUserId") && doIt(id)
+localStorage.getItem("workoutUserId")  && doIt(id)
    if (firstCont.children.length > 0) {
       firstCont.replaceChildren()
           } 

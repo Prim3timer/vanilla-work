@@ -100,6 +100,7 @@ console.log(roles)
           } 
           if (!roles.includes(5150 ) && this.innerHTML == "users"){
             console.log("unauthorized")
+            return
           } else {
             localStorage.setItem("current-page", content.className)
             if (mainContainer.children.length > 0) {

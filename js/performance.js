@@ -90,7 +90,7 @@ const deleteEntry = async () => {
       const {success, entries} = replies
       console.log(replies)
       reply = success;
-      const filterate = entries.filter((data) => data.userId === userId);
+      const filterate = entries.filter((data) => data.userId === localStorage.getItem("workoutUserId"));
       globalData = filterate;
       console.log(entries)
       if (userId){

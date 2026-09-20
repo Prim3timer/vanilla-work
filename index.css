@@ -251,7 +251,7 @@ flex-direction: column;
 
 
 
-  .login {
+  .login-sub {
   display: flex;
   flex-direction: column;
     justify-content: center;
@@ -277,15 +277,20 @@ flex-direction: column;
   }
   
   .reset-message {
-    position: absolute;
     padding: .5rem;
     border-radius: 5px;
-    text-align: left;
-    justify-self: center;
+    margin-bottom: 5rem;
     width: 60vw;
-    top: 3rem;
     z-index: 2;
     background-color: lavender;
+  }
+
+  .login h3 {
+    /* background-color: red; */
+    /* text-align: left; */
+    max-width: 400px;
+    justify-self: center;
+    margin-top: 3rem;
   }
 
   .home {
@@ -479,6 +484,10 @@ input {
  label {
   text-align: center;
   font-weight: bold;
+ }
+
+ .login {
+  text-align: center;
  }
 
 
@@ -957,8 +966,14 @@ table th {
  }
 
   .reset-message {
+    position: relative;
+    align-self: flex-start;
     left: 5px;
+    margin-bottom: 2rem;
     width: 20vw;
+    
+    /* background-color: rebeccapurple;   */
+    float: left;
   }
 
   .verify-button-cont button {
@@ -1012,7 +1027,7 @@ text-align: center;
   }
 
   
-  .login {
+  .login-sub {
   display: flex;
   flex-direction: column;
     justify-content: center;

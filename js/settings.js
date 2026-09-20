@@ -14,6 +14,13 @@ settingsInstructions.className = "settings-instructions"
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
+// const getExCont = () => {
+//   getExCont()
+// }
+
+
+// const exCont = homePage(userId).getElementById("exercise-cont")
+// console.log(exCont);
 
 let alertWindow = document.createElement("p");
 alertWindow.style.fontSize = "1.5rem";
@@ -169,8 +176,6 @@ const editUser = async (e) => {
   e.preventDefault()
   console.log(userId)
   console.log(homePage());
-  // const exCont = homePage(userId).getElementById("exercise-cont")
-  // console.log(exCont);
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -233,6 +238,7 @@ const editUser = async (e) => {
         body: JSON.stringify(workerSettings),
       });
       const reply = await respone2.json();
+      homePage()
       alertWindow.innerHTML = reply;
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";
@@ -245,6 +251,7 @@ const editUser = async (e) => {
     }
   }
 };
+// const populate = 10
 
 settingsButton.addEventListener("click", editUser);
 

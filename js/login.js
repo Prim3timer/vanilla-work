@@ -2,13 +2,17 @@ import { showHide } from "./genFunc.js";
 
 const loginMain = document.createElement("div");
 loginMain.className = "login";
+
+const resetMessage = document.createElement("span")
+loginMain.append(resetMessage)
 const loginHeader = document.createElement("h3");
 loginHeader.innerHTML = "login";
-const resetMessage = document.createElement("p")
 resetMessage.className = "reset-message"
 loginMain.append(loginHeader);
 
-
+const loginSub = document.createElement("article")
+loginSub.className = "login-sub"
+loginMain.append(loginSub)
 const loginForm = document.createElement("form");
 loginForm.className = "login-form";
 const usernameLabel = document.createElement("label");
@@ -62,7 +66,7 @@ passwordVisiblityInput.addEventListener("change", () => showHide(passwordInput))
 loginForm.append(usernameLabel, usernameInput, passwordLabel, passwordInput, passwordVisibilityLabel, submitButton,);
 
 
-loginMain.append(loginForm,  loginLinks);
+loginSub.append(loginForm,  loginLinks);
 
 const loginPage = (message, errorMessage) => {
     console.log(errorMessage)
@@ -71,7 +75,6 @@ const loginPage = (message, errorMessage) => {
     resetMessage.className = "reset-message"
     resetMessage.style.color = message !== undefined   ? "red" :  resetMessage.innerHTML == "processing..." ? "darkslateblue" : "darslateblue"
     // errorMessage = false
-    loginMain.append(resetMessage)
     // message ? loginMain.insertBefore(resetMessage, loginHeader) : ""
     return loginMain;
 } 

@@ -170,8 +170,39 @@ const login = async (e) => {
     });
   
     const reply = await response.json();
-    console.log(reply)
-    console.log(reply);
+  const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
+  
+const headerRow = document.createElement("tr");
+const dHeader = document.createElement("th");
+const rHeader = document.createElement("th");
+const exHeader = document.createElement("th");
+const exDetsHeader = document.createElement("th");
+const markHeader = document.createElement("th");
+const dateHeader = document.createElement("th");
+const deleteHeader = document.createElement("th");
+// const delet = document.createElement("th");
+
+// tableBody.className = "performance-tbody"
+
+dHeader.innerHTML = "duraton";
+rHeader.innerHTML = "rounds completed";
+exHeader.innerHTML = "overall effort (%)";
+exDetsHeader.innerHTML = "exercises per round";
+// markHeader.innerHTML = "mark (%)";
+dateHeader.innerHTML = "date";
+// perfTable.appendChild(tableBody);
+// tableBody.appendChild(headerRow);
+headerRow.append(
+  dHeader,
+  rHeader,
+  exHeader,
+  exDetsHeader,
+  // markHeader,
+  dateHeader,
+  deleteHeader,
+);
+// tbody.append(headerRow)
+
     if (reply.verified === false){
       resetMessage.innerHTML = "unverified. Open the email sent to you from Uthokoii or reset your password"
       resetMessage.style.color = "red"
@@ -200,7 +231,7 @@ const login = async (e) => {
     const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
     // clear the performance table.
     if (tbody){
-    tbody.innerHTML = ""
+    tbody.replaceWith(headerRow)
     }
     // repopulate the performance table.
  

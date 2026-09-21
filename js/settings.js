@@ -237,9 +237,9 @@ const editUser = async (e) => {
         },
         body: JSON.stringify(workerSettings),
       });
+      homePage(userId)
       const reply = await respone2.json();
       // update the home page
-      homePage(userId)
       alertWindow.innerHTML = reply;
       alertWindow.className = "verify-window";
       alertWindow.style.position = "fixed";

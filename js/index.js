@@ -83,7 +83,8 @@ const containers = [
   usersPage(),
   register(),
   forgotPage(),
-  mainSettings()
+  mainSettings(),
+
 ];
 
 
@@ -216,6 +217,8 @@ headerRow.append(
       navbar.children[i].style.display = "inline"
       navbar.children[i].addEventListener("click", instanceerInner.shower)
     }
+    history.pushState({id: "home"}, `seleted: "home`, "")
+    localStorage.setItem("current-page", "home")
         const url2 = new URL(window.location.href)
         console.log(url2)
   url2.searchParams.delete("email")
@@ -269,11 +272,13 @@ headerRow.append(
 // listerner for the popstate event
 window.addEventListener("popstate", e =>{ 
   const mainCont = document.getElementById("main-page")
-  localStorage.setItem("current-page", e.state.id)
   containers.map((container) => {
     console.log(e.state.id, container.className)
     if (container.className === e.state.id){
-      mainCont.firstElementChild.replaceWith(container)
+      if (e.state.id !== null){
+        localStorage.setItem("current-page", e.state.id)
+        mainCont.firstElementChild.replaceWith(container)
+      }
     }
   })
 })
@@ -283,10 +288,14 @@ window.addEventListener("popstate", e =>{
 
 submitButton.addEventListener("click", login);
 
-
-
 const getVerified = async () => {
-  
+  // console.log(mainContainer)
+  // console.log(mainContainer.firstElementChild.className)
+  // const idCurrent = mainContainer.firstElementChild.className
+  // if (idCurrent === "login"){
+  //   history.pushState({id: idCurrent}, `selected: ${idCurrent}`, "")
+  //   localStorage.setItem("current-page", "login")
+  // }
   try {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",

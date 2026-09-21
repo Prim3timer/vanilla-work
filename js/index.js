@@ -201,7 +201,7 @@ headerRow.append(
   dateHeader,
   deleteHeader,
 );
-// tbody.append(headerRow)
+tbody.append(headerRow)
 
     if (reply.verified === false){
       resetMessage.innerHTML = "unverified. Open the email sent to you from Uthokoii or reset your password"
@@ -231,7 +231,7 @@ headerRow.append(
     const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
     // clear the performance table.
     if (tbody){
-    tbody.replaceWith(headerRow)
+    tbody.innerHTML = ""
     }
     // repopulate the performance table.
  
@@ -294,7 +294,7 @@ const getVerified = async () => {
     });
     const users = await response.json();
     greeting.innerHTML = guestId
-      ? `Hi, ${users.find((user) => user._id === guestId)?.username}`
+      ? `Hi, ${users.find((user) => user._id === guestId).username}`
       : "";
 
       

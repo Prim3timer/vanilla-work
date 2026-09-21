@@ -92,8 +92,8 @@ const deleteEntry = async () => {
       reply = success;
       const filterate = entries.filter((data) => data.userId === localStorage.getItem("workoutUserId"));
       globalData = filterate;
-      console.log(entries)
-      if (userId){
+      console.log(filterate)
+      if (filterate){
         
         tableBody.replaceChildren();
         tableBody.appendChild(headerRow);

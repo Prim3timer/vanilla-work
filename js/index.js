@@ -83,7 +83,8 @@ const containers = [
   usersPage(),
   register(),
   forgotPage(),
-  mainSettings()
+  mainSettings(),
+
 ];
 
 
@@ -216,6 +217,8 @@ headerRow.append(
       navbar.children[i].style.display = "inline"
       navbar.children[i].addEventListener("click", instanceerInner.shower)
     }
+    history.pushState({id: "home"}, `seleted: "home`, "")
+    localStorage.setItem("current-page", "home")
         const url2 = new URL(window.location.href)
         console.log(url2)
   url2.searchParams.delete("email")
@@ -238,17 +241,7 @@ headerRow.append(
  
     // performancePage().addEventListener("click", instanceer.shower);
     localStorage.setItem("roles", JSON.stringify(reply.roles))
-    
-    // homeLInk.addEventListener("click", instanceerInner.shower)
-    // perfLInk.addEventListener("click", instanceerInner.shower)
-    
-    // settingsLInk.addEventListener("click", instanceerInner.shower)
-    // usersLInk.addEventListener("click", instanceerInner.shower)
-    // clear the navbar
-    // navbar.replaceChildren();
-    
-    // insert the nav links into the navbar
-  //  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+ 
    // remove the email parameter from the url
    const url = new URL(window.location.href)
    url.searchParams.delete("email")
@@ -272,20 +265,37 @@ headerRow.append(
   }
   finally {
     replyElement.innerHTML = ""
+    // window.location.reload()
   }
 };
 
-
+// listerner for the popstate event
+window.addEventListener("popstate", e =>{ 
+  const mainCont = document.getElementById("main-page")
+  containers.map((container) => {
+    console.log(e.state.id, container.className)
+    if (container.className === e.state.id){
+      if (e.state.id !== null){
+        localStorage.setItem("current-page", e.state.id)
+        mainCont.firstElementChild.replaceWith(container)
+      }
+    }
+  })
+})
 
 
 
 
 submitButton.addEventListener("click", login);
 
-
-
 const getVerified = async () => {
-  
+  // console.log(mainContainer)
+  // console.log(mainContainer.firstElementChild.className)
+  // const idCurrent = mainContainer.firstElementChild.className
+  // if (idCurrent === "login"){
+  //   history.pushState({id: idCurrent}, `selected: ${idCurrent}`, "")
+  //   localStorage.setItem("current-page", "login")
+  // }
   try {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",

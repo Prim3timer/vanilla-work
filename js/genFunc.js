@@ -3,6 +3,7 @@ import { populate } from "./settings.js";
 import { getData, performancePage } from "./performance.js";
 // import { mainSettings } from "./userSettings.js";
 
+
 const timeClocking = (sec) => {
   return ` ${
     sec > 3600
@@ -75,17 +76,17 @@ function ElementCatcher(pages, mainContainer, guestId) {
           if (this.id == "settings"){
             // populate()
           } else if (this.id == "usersettings"){
-              const response = await fetch(`${myUrl}/workout-users`, {
-      method: "GET"
-    })
-    const users = await response.json()
-    console.log(users)
+            const response = await fetch(`${myUrl}/workout-users`, {
+              method: "GET"
+            })
+            const users = await response.json()
+            console.log(users)
             const ROLES = {
-  User: 2001,
-  Manager: 1984,
-  Admin: 5150,
-};
-const rolesArray = Object.keys(ROLES);
+              User: 2001,
+              Manager: 1984,
+              Admin: 5150,
+            };
+            const rolesArray = Object.keys(ROLES);
 const user = users.find((user) => user._id === guestId)
 console.log(user)
 const roles = Object.keys(user.roles)
@@ -100,11 +101,14 @@ console.log(roles)
           } 
           if (!roles.includes(5150 ) && this.innerHTML == "users"){
             console.log("unauthorized")
+            
           } else {
+            const id = this.id
+            history.pushState({id}, `Selected: ${id}`, "")
             localStorage.setItem("current-page", content.className)
             if (mainContainer.children.length > 0) {
-              const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
-console.log(performancePage())
+              // const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
+
               // getData(guestId)
               mainContainer.firstElementChild.replaceWith(content);
 
@@ -116,14 +120,16 @@ console.log(performancePage())
           }
         }
         // window.location.reload();
-//         observer.observe(rootElement, { childList: true,
-// subtree: false
-// });
+        //         observer.observe(rootElement, { childList: true,
+        // subtree: false
+        // });
       }
       return content;
     });
+  }
 }
-}
+
+
 
 const getSpecificPage = (e, page, mainContainer) => {
     e.preventDefault()

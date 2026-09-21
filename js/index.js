@@ -294,7 +294,7 @@ const getVerified = async () => {
     });
     const users = await response.json();
     greeting.innerHTML = guestId
-      ? `Hi, ${users.find((user) => user._id === guestId).username}`
+      ? `Hi, ${users.find((user) => user._id === guestId)?.username}`
       : "";
 
       

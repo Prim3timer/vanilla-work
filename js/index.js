@@ -84,6 +84,7 @@ const containers = [
   register(),
   forgotPage(),
   mainSettings(),
+  loginPage()
 
 ];
 
@@ -272,15 +273,25 @@ headerRow.append(
 // listerner for the popstate event
 window.addEventListener("popstate", e =>{ 
   const mainCont = document.getElementById("main-page")
-  containers.map((container) => {
-    console.log(e.state.id, container.className)
-    if (container.className === e.state.id){
-      if (e.state.id !== null){
+  if (e.state !== null){
+    containers.map((container) => {
+      console.log(e.state.id, container.className)
+      if (container.className === e.state.id){
         localStorage.setItem("current-page", e.state.id)
         mainCont.firstElementChild.replaceWith(container)
       }
+    })
+  } else {
+    localStorage.setItem("current-page", "login")
+    greeting.innerHTML = "";
+         navFirst.style.display = "block"
+    for (let i = 1; i < navbar.children.length; i++){
+      navbar.children[i].style.display = "none"
     }
-  })
+    localStorage.removeItem("workoutUserId");
+    mainCont.firstElementChild.replaceWith(loginPage())
+
+  }
 })
 
 

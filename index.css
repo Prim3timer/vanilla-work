@@ -277,9 +277,11 @@ flex-direction: column;
   }
   
   .reset-message {
+    /* margin-top: 1rem; */
     padding: .5rem;
     border-radius: 5px;
     margin-bottom: 5rem;
+    font-size: 1.5rem;
     width: 60vw;
     z-index: 2;
     background-color: lavender;
@@ -488,6 +490,7 @@ input {
 
  .login {
   text-align: center;
+  padding-top: 1rem;
  }
 
 
@@ -969,8 +972,10 @@ table th {
     position: relative;
     align-self: flex-start;
     left: 5px;
+    /* background-color: red; */
+    /* height: 2rem; */
     margin-bottom: 2rem;
-    width: 20vw;
+    width: 40vw;
     
     /* background-color: rebeccapurple;   */
     float: left;

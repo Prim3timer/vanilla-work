@@ -42,6 +42,7 @@ passwordVisiblityInput.type = "checkbox"
 passwordVisiblityInput.className = "show-password"
 
 const submitButton = document.createElement("button");
+submitButton.type = "submit"
 submitButton.className = "sign-up-anchor";
 submitButton.innerHTML = "submit"
 

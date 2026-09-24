@@ -384,7 +384,8 @@ const entryCount = performancePage().getElementsByClassName("perf-entry-count")[
 
 const newRow = document.createElement("tr")
 
-newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
+// newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
+newRow.append(endurance, roundCount, mark, exDet, date)
 if (tbody){
   tbody.appendChild(newRow)
   entryCount.innerHTML = `(${tbody.children.length -1} entries)`

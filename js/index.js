@@ -250,7 +250,7 @@ headerRow.append(
    url.searchParams.delete("elapsed")
  
 
-  window.history.replaceState({}, document.title, url.toString())
+  // window.history.replaceState({}, document.title, url.toString())
         return;
       } else {
         mainContainer.appendChild(homePage());  

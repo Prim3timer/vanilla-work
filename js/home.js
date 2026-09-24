@@ -377,7 +377,7 @@ const endurance = document.createElement("td");
           //   verifyWindow.className = "no-veriy-window";
           // };
           del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-
+console.log(performancePage())
 
 const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
 const entryCount = performancePage().getElementsByClassName("perf-entry-count")[0]
@@ -387,6 +387,7 @@ const newRow = document.createElement("tr")
 // newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
 newRow.append(endurance, roundCount, mark, exDet, date)
 if (tbody){
+  console.log("thers is tbody")
   tbody.appendChild(newRow)
   entryCount.innerHTML = `(${tbody.children.length -1} entries)`
   for (let i = 1; i < tbody.children.length; i++){
@@ -394,6 +395,43 @@ if (tbody){
   }
   console.log(tbody)
   console.log(tbody.children.length) 
+} else {
+  const perTable = document.createElement("table")
+  perTable.className = "perf-table"
+  const headerRow = document.createElement("tr");
+  const dHeader = document.createElement("th");
+const rHeader = document.createElement("th");
+const exHeader = document.createElement("th");
+const exDetsHeader = document.createElement("th");
+const markHeader = document.createElement("th");
+const dateHeader = document.createElement("th");
+
+dHeader.innerHTML = "duraton";
+rHeader.innerHTML = "rounds completed";
+exHeader.innerHTML = "overall effort (%)";
+exDetsHeader.innerHTML = "exercises per round";
+// markHeader.innerHTML = "mark (%)";
+dateHeader.innerHTML = "date";
+
+headerRow.append(
+  dHeader,
+  rHeader,
+  exHeader,
+  exDetsHeader,
+  // markHeader,
+  dateHeader,
+);
+
+  const tbody = document.createElement("tbody")
+  tbody.className = "performance-tbody"
+  tbody.append(headerRow, newRow)
+   entryCount.innerHTML = `(${tbody.children.length -1} entries)`
+  for (let i = 1; i < tbody.children.length; i++){
+    tbody.children[i].style.backgroundColor = `${i % 2 === 0 ? "Khaki" : "white"}`;
+  }
+  perTable.append(tbody)
+  performancePage().appendChild(perTable)
+
 }
 
 

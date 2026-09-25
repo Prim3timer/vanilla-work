@@ -391,7 +391,7 @@ if (tbody){
   tbody.appendChild(newRow)
   entryCount.innerHTML = `(${tbody.children.length -1} entries)`
   for (let i = 1; i < tbody.children.length; i++){
-    tbody.children[i].style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
+    tbody.children[i].style.backgroundColor = `${i % 2 !== 0 ? "white" : "khaki"}`;
   }
   console.log(tbody)
   console.log(tbody.children.length) 

@@ -320,6 +320,7 @@ const doIt = async (id) =>  {
 
  
 const del = document.createElement("td");
+
     const saveWork = async () => {
         // releaseWakeLock()
         
@@ -330,6 +331,7 @@ const del = document.createElement("td");
     
       const { exercise, numberOfRounds, exercisesDuration, interval, oneExercise } =
         user.workSettings;
+        console.log(exercisesDuration)
       const workDets = {
         exerciseTimings: [
           { duration },
@@ -344,22 +346,34 @@ const del = document.createElement("td");
         mark:
           // do not exceed 100% no matter how many times an exercise is repeated.
           anExercise / (exercise.length * numberOfRounds) <= 1
-            ? (anExercise / (exercise.length * numberOfRounds)) * 100
+          // sec - interval is making sure we only taking the spent doing an exercise and excluding the mark time period
+            ? (anExercise * exercisesDuration) + (sec - interval > 0 ? sec - interval : 0) / (exercise.length * numberOfRounds * exercisesDuration)
             : 100,
       };
 console.log(anExercise)
 console.log(17 / 25)
 
 const endurance = document.createElement("td");
+const filteredSec = sec - interval > 0 ? sec - interval : 0
+console.log("sec: ", sec )
+console.log(filteredSec)
+console.log(exercisesDuration)
+console.log(exercise.length)
+console.log(numberOfRounds)
+console.log(anExercise)
+console.log("num: ", ( anExercise * exercisesDuration) + filteredSec)
+console.log("denom: ", exercise.length * numberOfRounds * exercisesDuration)
+console.log(  ( anExercise * exercisesDuration) + filteredSec / (exercise.length * numberOfRounds * exercisesDuration))
+console.log((anExercise * exercisesDuration) + filteredSec / (exercise.length * numberOfRounds * exercisesDuration))
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
           roundCount.innerHTML = Math.floor(anExercise / exercise.length);
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
           // if the mark is less than or equal to 100%, display it else disply 0
-          mark.innerHTML = anExercise / (exercise.length * numberOfRounds) <= 1
-            ? parseFloat((anExercise / (exercise.length * numberOfRounds)) * 100).toFixed(2)
-            : 100.00;
+          mark.innerHTML =  anExercise / (exercise.length * numberOfRounds) <= 1
+            ? (anExercise * exercisesDuration) + filteredSec / (exercise.length * numberOfRounds * exercisesDuration)
+            : 100,
           exDet.innerHTML = exercise.length;
       
           const date = document.createElement("td");

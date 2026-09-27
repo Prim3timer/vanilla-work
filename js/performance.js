@@ -208,7 +208,6 @@ const getData = async (id) => {
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
       mark.innerHTML = parseFloat(perfy.mark).toFixed(2);
-      console.log(perfy.mark)
       exDet.innerHTML = `${perfy.exerciseDets.length}`;
       const date = document.createElement("td");
       const del = document.createElement("td");

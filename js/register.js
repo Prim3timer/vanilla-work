@@ -69,6 +69,7 @@ const now = Date.now();
 
 // let userDets = {};
 const createUserDets = async () => {
+  linker.classList.replace("no-register-prompt", "register-prompt")
   linker.innerHTML = "processing...";
   const userDets = {
     username: userNameInput.value.trim(),
@@ -77,8 +78,7 @@ const createUserDets = async () => {
     joined: rightNow,
     workSettings: {},
   };
-  console.log(userDets);
-  try {
+    try {
     const templateParams = {
       name: userNameInput.value.trim(),
       email: emailInput.value.trim().toLowerCase(),
@@ -86,45 +86,73 @@ const createUserDets = async () => {
       link: `https://prim3timer.github.io/vanilla-work?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
       // link: `http://${window.location.host}/index.html?email=${emailInput.value.trim().toLowerCase()}&elapsed=${now}`,
     };
-  const userDataBase = await fetch(`${myUrl}/workout-users`, {
+
+    const userDataBase = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
     }
   })
 
+  
+
   const users = await userDataBase.json()
   console.log(trimmedEmail)
   console.log(emailInput.value)
   console.log(users)
-const foundUser = users.find((user)  => user.email === emailInput.value.trim().toLowerCase())
-console.log(foundUser)
-if (foundUser){
-  linker.innerHTML = "duplicate email"
-} else {
-  const mailSent = await emailjs.send(
-    serviceId,
-    templateId,
-    templateParams,
-    publicKey,
-  );
+
+
   signUp.insertBefore(linker, signUpHeader);
-  if (passwordInput.value === confirmPasswordInput.value) {
-    const response = await fetch(`${myUrl}/workout-register`, {
+  if (passwordInput.value !== confirmPasswordInput.value) {
+     linker.innerHTML = `passwords do not match`
+  setTimeout(()=> {
+    linker.classList.replace("register-prompt", "no-register-prompt")
+  }, 3000)
+   
+      
+} else {
+       const response = await fetch(`${myUrl}/workout-register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userDets),
     });
+    console.log(response)
+    if (!response.ok){
+      if (response.status == 409){
+        //  const errorData = await response.json()
+      // console.log(errorData)
+      // linker.innerHTML = `${errorData.message} || something went wrong`
+      linker.innerHTML = `duplicate email`
+      // throw new Error("something went wrong");
+      setTimeout(()=> {
+      linker.classList.replace("register-prompt", "no-register-prompt")
+      }, 3000)
+    
+ 
+    } else if (response.status == 400){
+      linker.innerHTML = "all fields are required"
+      setTimeout(()=> {
+      linker.classList.replace("register-prompt", "no-register-prompt")
+      }, 3000)
+    }
+      throw new Error("server error: ", response.message)
+    }
+    else {
+               const mailSent = await emailjs.send(
+      serviceId,
+      templateId,
+      templateParams,
+      publicKey,
+    );
     linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
-    console.log(await response);
-  } else {
-    linker.innerHTML = "password do not match"
-  }
-}
-
+    setTimeout(()=> {
+    linker.classList.replace("register-prompt", "no-register-prompt")
+    }, 3000)
     console.log(userDets);
+    }
+  }
   } catch (error) {
     console.log(error.message);
   }

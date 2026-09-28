@@ -124,7 +124,7 @@ const createUserDets = async () => {
         //  const errorData = await response.json()
       // console.log(errorData)
       // linker.innerHTML = `${errorData.message} || something went wrong`
-      linker.innerHTML = `duplicate email`
+      linker.innerHTML = `email already taken`
       // throw new Error("something went wrong");
       setTimeout(()=> {
       linker.classList.replace("register-prompt", "no-register-prompt")

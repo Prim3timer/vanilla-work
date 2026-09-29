@@ -13,7 +13,7 @@ firstCont.className = "home";
   
   const current = new Date().getFullYear();
 const footer = document.getElementById("footer")
-footer.innerHTML = `${current} Amalu Productions`
+footer.innerHTML = `&copy ${current} Amalu Productions`
 const doIt = async (id) =>  {
 
   const greeting = document.getElementsByClassName("p");

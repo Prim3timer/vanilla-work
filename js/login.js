@@ -7,6 +7,8 @@ const resetMessage = document.createElement("span")
 loginMain.append(resetMessage)
 const loginHeader = document.createElement("h3");
 loginHeader.innerHTML = "login";
+loginHeader.className = "login-header"
+
 resetMessage.className = "reset-message"
 loginMain.append(loginHeader);
 

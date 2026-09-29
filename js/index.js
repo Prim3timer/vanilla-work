@@ -225,6 +225,7 @@ headerRow.append(
   url2.searchParams.delete("email")
   // url2.searchParams.delete("prompt")
   url2.searchParams.delete("elapsed")
+  window.history.pushState(null, "", url2)
   localStorage.setItem("workoutUserId", reply.id);
 
   if (mainContainer.children.length > 0) {

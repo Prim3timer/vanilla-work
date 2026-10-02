@@ -191,7 +191,6 @@ const getSpecificPage = (e, page, mainContainer) => {
           detsWindow.remove();
           detsWindowCover.appendChild(detsWindow);
         } else {
-          console.log("no");
           detsWindowCover.appendChild(detsWindow);
         }
         performanceMain.appendChild(detsWindowCover);

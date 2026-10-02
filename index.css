@@ -839,16 +839,15 @@ table th {
    height: 15rem;
    display: flex;
    flex-wrap: nowrap;
-   /* position: absolute; */
-   justify-content: flex-start;
+   justify-content: center;
    align-items: center;
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
    width: 95vw;
-   /* background-color: yellow; */
-   overflow-y: visible;
-   overflow-x: auto;
+   overflow-y: scroll;
+   overflow-x: scroll;
+   /* background-color: red; */
  }
 
   .exercise{
@@ -857,14 +856,15 @@ table th {
    color: sandybrown;
    background-color: maroon;
    border-color: maroon;
+   position: absolute;
    text-align: center;
    align-items: center;
    justify-content: center;
    border-radius: 5px;
    font-size: 2rem;
-   flex: 0 0 30%;
+   width: 70vw;
+   flex: 0 0 70%;
    z-index: 5;
-   /* overflow: visible; */
  }
 
  .hour-label, .minute-label, .second-label {
@@ -1260,6 +1260,7 @@ height: 2em;
 
  #exercise-cont>* {
   font-size: 2rem;
+  position: relative;
    /* flex: 0 1 18%; */
    height: 50px;
    flex:  0 0 20%;

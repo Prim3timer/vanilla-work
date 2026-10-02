@@ -11,8 +11,9 @@ firstCont.className = "home";
   firstContent.innerHTML = "home";
   console.log(sec)
   
+  const buttonsCont = document.createElement("div");
   const current = new Date().getFullYear();
-const footer = document.getElementById("footer")
+  const footer = document.getElementById("footer")
 footer.innerHTML = `&copy ${current} Amalu Productions`
 const doIt = async (id) =>  {
 
@@ -151,14 +152,22 @@ const doIt = async (id) =>  {
       let { complete } = controls;
       complete = "no";
       return new Promise((resolve, reject) => {
+
+        currentItem.style.transform = "scale(1 )";
+        currentItem.style.backgroundColor = "darkorange";
+        currentItem.style.color = "yellow";
+        currentItem.style.boxShadow = "0em 0em 0em";
+        currentItem.style.zIndex = pIndex;
+        
+        
+        
         formerItem.style.transform = "scale(1 )";
-        formerItem.style.backgroundColor = "darkorange";
-        formerItem.style.color = "yellow";
+        formerItem.style.backgroundColor = "maroon";
+        formerItem.style.color = "sandybrown";
         formerItem.style.boxShadow = "0em 0em 0em";
         formerItem.style.zIndex = pIndex - 1;
-        
-    
-    
+        // exerciseCont.style.justifyContent = "center"
+        // exerciseCont.style.backgroundColor = "yellow"
     
         jogup.style.transitionProperty = "scale width flexWidth";
         jogup.style.transform = "scale(2)";
@@ -186,12 +195,12 @@ const doIt = async (id) =>  {
         const { exercise, interval } = user.workSettings;
         ID = window.setInterval(() => {
           if (sec === interval) {
+          // buttonsCont.style.justifyContent = "center"
             // the current excercise is currentItem
-            currentItem.style.position = "relative";
+            // currentItem.style.position = "relative";
             // It is used to make the current excersise appear above
             //  previous and next excercises
-            currentItem.style.zIndex = pIndex;
-            currentItem.style.left = `${sec * Math.sin(sec * 4 * Math.PI)}px`
+            // currentItem.style.left = `${sec * Math.sin(sec * 4 * Math.PI)}px
     
     
             const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
@@ -212,8 +221,9 @@ const doIt = async (id) =>  {
     
             formerItem.style.color = "sandybrown";
             formerItem.style.backgroundColor = "maroon";
+            console.log(window.innerWidth)
     
-            currentItem.style.transform = `scale(2.5) translate(${translator}, -15px)`;
+            currentItem.style.transform = `scale(${window.innerWidth > 491 ? 2.5 : 1.3}, 3) translate(${window.innerWidth > 491 ? translator : "1%"}, -15px)`;
             currentItem.style.fontSize =
               currentItem.innerHTML.length > 7
                 ? "1.5rem"
@@ -646,7 +656,6 @@ headerRow.append(
     roundUp.id = "round-up";
     roundUp.innerHTML = `<i class="fa-solid fa-forward-fast">`;
   
-    const buttonsCont = document.createElement("div");
     for (let i = 0; i < buttonsCont.children.length; i++) {}
   
     buttonsCont.append(rewind, pauser, forward, roundUp, saver);

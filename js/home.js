@@ -656,7 +656,7 @@ headerRow.append(
     roundUp.id = "round-up";
     roundUp.innerHTML = `<i class="fa-solid fa-forward-fast">`;
   
-    for (let i = 0; i < buttonsCont.children.length; i++) {}
+    // for (let i = 0; i < buttonsCont.children.length; i++) {}
   
     buttonsCont.append(rewind, pauser, forward, roundUp, saver);
     console.log(buttonsCont.children.length);
@@ -681,6 +681,7 @@ headerRow.append(
 
 
 const homePage = (id) => {
+   buttonsCont.replaceChildren();
 localStorage.getItem("workoutUserId")  && doIt(id)
    if (firstCont.children.length > 0) {
       firstCont.replaceChildren()

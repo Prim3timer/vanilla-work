@@ -154,7 +154,7 @@ const doIt = async (id) =>  {
       return new Promise((resolve, reject) => {
 
         currentItem.style.transform = "scale(1 )";
-        currentItem.style.backgroundColor = "darkorange";
+        currentItem.style.backgroundColor = window.innerWidth > 491 ? "darkorange" : "maroon";
         currentItem.style.color = "yellow";
         currentItem.style.boxShadow = "0em 0em 0em";
         currentItem.style.zIndex = pIndex;
@@ -355,9 +355,9 @@ const del = document.createElement("td");
         userId,
         exerciseDets: exercise,
         mark:
-          // do not exceed 100% no matter how many times an exercise is repeated.
+          // do not exceede 100% no matter how many times an exercise is repeated.
           anExercise / (exercise.length * numberOfRounds) <= 1
-          // sec - interval is making sure we only taking the spent doing an exercise and excluding the mark time period
+          // sec - interval is making sure we only taking the time spent doing an exercise and excluding the mark time period
             ? ((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100
             : 100,
       };

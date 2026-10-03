@@ -848,6 +848,11 @@ table th {
    overflow-y: scroll;
    overflow-x: scroll;
    /* background-color: red; */
+
+ }
+
+ #exercise-cont>*:nth-child(1) {
+  z-index: 6;
  }
 
   .exercise{
@@ -864,7 +869,7 @@ table th {
    font-size: 2rem;
    width: 70vw;
    flex: 0 0 70%;
-   /* z-index: 5; */
+   z-index: 5;
  }
 
  .hour-label, .minute-label, .second-label {

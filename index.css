@@ -872,6 +872,21 @@ table th {
    z-index: 5;
  }
 
+ .filter-form {
+  
+   /* background-color: red; */
+ }
+
+ .filter-button {
+  background-color:gainsboro;
+  padding: .5rem;
+  margin-left: .2rem;
+ }
+
+ .users-filter {
+  align-self: center;
+ }
+
  .hour-label, .minute-label, .second-label {
   display: flex;
   flex-direction: column;

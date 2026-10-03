@@ -12,7 +12,15 @@ const usersHeader = document.createElement("h3");
 usersHeader.innerHTML = "users";
 usersHeader.className = "users-header"
 const entryCount = document.createElement("h3");
-userBox.append(usersHeader, entryCount);
+const filterForm = document.createElement("form")
+filterForm.className = "filter-form"
+const usersFilter = document.createElement("input")
+const filterButton = document.createElement("span")
+filterButton.className = "filter-button"
+filterButton.innerHTML = "filter"
+usersFilter.className = "users-filter"
+filterForm.append(usersFilter, filterButton)
+userBox.append(filterForm, usersHeader, entryCount);
 
 const containers = [mainSettings()];
 
@@ -28,6 +36,9 @@ const response = await fetch(`${myUrl}/workout-users`, {
 
 const users = await response.json();
 const usersPage = () => {
+  usersFilter.addEventListener("change", () => {
+  console.log("angiee")
+})
   console.log(users);
   entryCount.innerHTML = `(${users.length})`;
   // const userBox = document.getElementsByClassName("users")[0];
@@ -45,7 +56,7 @@ const usersPage = () => {
   joinedHeader.innerHTML = "joined";
   settingsHeader.innerHTML = "settings";
   headerRow.append(nameHeader, emailHeader, joinedHeader, settingsHeader);
-  tableBody.appendChild(headerRow);
+  tableBody.appendChild( headerRow);
   table.appendChild(tableBody);
   userBox.appendChild(table);
   

@@ -154,7 +154,7 @@ const doIt = async (id) =>  {
       return new Promise((resolve, reject) => {
 
         currentItem.style.transform = "scale(1 )";
-        currentItem.style.backgroundColor = window.innerWidth > 491 ? "darkorange" : "maroon";
+        currentItem.style.backgroundColor = window.innerWidth > 491 ? "teal" : "maroon";
         currentItem.style.color = "yellow";
         currentItem.style.boxShadow = "0em 0em 0em";
         currentItem.style.zIndex = pIndex;

@@ -154,10 +154,11 @@ const doIt = async (id) =>  {
       return new Promise((resolve, reject) => {
 
         currentItem.style.transform = "scale(1 )";
-        currentItem.style.backgroundColor = window.innerWidth > 491 ? "teal" : "maroon";
+        currentItem.style.backgroundColor = window.innerWidth > 491 ? "teal" : "maroon";  
         currentItem.style.color = "yellow";
         currentItem.style.boxShadow = "0em 0em 0em";
         currentItem.style.zIndex = pIndex;
+        currentItem.style.marginLeft = 0
         
         
         
@@ -165,7 +166,9 @@ const doIt = async (id) =>  {
         formerItem.style.backgroundColor = "maroon";
         formerItem.style.color = "sandybrown";
         formerItem.style.boxShadow = "0em 0em 0em";
+        formerItem.classList.replace("alt-ex","exercise")
         formerItem.style.zIndex = pIndex - 1;
+        // currentItem.classList.replace("alt-ex", "exercise")
         // exerciseCont.style.justifyContent = "center"
         // exerciseCont.style.backgroundColor = "yellow"
     
@@ -195,6 +198,7 @@ const doIt = async (id) =>  {
         const { exercise, interval } = user.workSettings;
         ID = window.setInterval(() => {
           if (sec === interval) {
+            // nextItem.style.marginLeft = "8rem"
           // buttonsCont.style.justifyContent = "center"
             // the current excercise is currentItem
             // currentItem.style.position = "relative";
@@ -216,27 +220,33 @@ const doIt = async (id) =>  {
                     (exercise.length === 4 && exerciseIndex === 1)
                   ? "0px"
                   : exerciseIndex > Math.floor(exercise.length / 2)
-                    ? `-${((exerciseIndex + 1) / exercise.length) * exerciseIndex * 15}%`
-                    : "";
-    
-            formerItem.style.color = "sandybrown";
+                  ? `-${((exerciseIndex + 1) / exercise.length) * exerciseIndex * 15}%`
+                  : "";
+                  
+                  formerItem.style.color = "sandybrown";
             formerItem.style.backgroundColor = "maroon";
             console.log(window.innerWidth)
-    
-            currentItem.style.transform = `scale(${window.innerWidth > 491 ? 2.5 : 1.3}, 3) translate(${window.innerWidth > 491 ? translator : "1%"}, -15px)`;
-            currentItem.style.fontSize =
-              currentItem.innerHTML.length > 7
-                ? "1.5rem"
-                : currentItem.innerHTML.length > 10
-                  ? ".8rem"
-                  : "2rem";
-            currentItem.style.fontSize = "2rem"
-            currentItem.style.color = "yellow";
+            console.log(window.innerWidth)
+            
+            // currentItem.style.transform = `scale(${window.innerWidth > 491 ? 2.5 : 1.3}, 3) translate(${window.innerWidth > 491 ? translator : "1%"}, -15%)`;
+            // currentItem.style.fontSize =
+            //   currentItem.innerHTML.length > 7
+            //     ? "1.5rem"
+            //     : currentItem.innerHTML.length > 10
+            //       ? ".8rem"
+            //       : "2rem";
+            // currentItem.style.fontSize = "2rem"
+            // currentItem.style.color = "yellow";
             currentItem.style.backgroundColor = "green";
-            currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
-            currentItem.style.padding = "0 1rem";
-            currentItem.style.justifySelf = "center";
-            currentItem.style.transitionDuration = "500ms";
+            // currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
+            // currentItem.style.padding = "0 1rem";
+            // currentItem.style.justifySelf = "center";
+            // currentItem.style.transitionDuration = "500ms";
+            currentItem.style.zIndex = pIndex;
+            currentItem.classList.replace("exercise", "alt-ex")
+            console.log(currentItem.className)
+            // currentItem.classList.add("alt-ex")
+
     
             jogup.style.transform = "scale(1) translateX(10px)";
             jogup.style.color = "sandybrown";
@@ -508,6 +518,7 @@ headerRow.append(
           // if i = 0 subtract array length from index else subtract 1 from index``
           const formerIemIndex = elements[i == 0 ? i + elements.length - 1 : i - 1];
           const nextItemIndex = elements[i + 1];
+          // elements[i + 1].style.marginLeft = "8rem"
           for (let j = 0; j < elements.length; j++) {
             elements[j].addEventListener("click", () => {
               i = elements.indexOf(elements[j]) - 1;
@@ -518,13 +529,13 @@ headerRow.append(
               elements.map((element) => {
                 if (
                   // if any exercise is Active, deactivate it
-                  element.style.color == "yellow" &&
-                  element.style.backgroundColor == "green"
+                element.className = "alt-ex"
                 ) {
-                  element.style.color = "sandybrown";
-                  element.style.backgroundColor = "maroon";
-                  element.style.transform = "scale(1)";
-                  element.style.boxShadow = "0em 0em 0em";
+                  element.classList.replace("alt-ex", "exercise")
+                  // element.style.color = "sandybrown";
+                  // element.style.backgroundColor = "maroon";
+                  // element.style.transform = "scale(1)";
+                  // element.style.boxShadow = "0em 0em 0em";
                 } else if (
                   // if any exercise is in transition to invactive state, make it instantly inactive
                   element.style.backgroundColor == "darkorange"

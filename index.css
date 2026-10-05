@@ -856,10 +856,12 @@ table th {
  }
 
   .exercise{
+    transition-property: width height scale font-size;
    min-height: 2em;
    display: flex;
    color: sandybrown;
    background-color: maroon;
+   top: 70%;
    border-color: maroon;
    position: absolute;
    text-align: center;
@@ -869,7 +871,24 @@ table th {
    font-size: 2rem;
    width: 70vw;
    flex: 0 0 70%;
+   transition-duration: 200ms;
    z-index: 5;
+ }
+
+ .alt-ex {
+  transition-property: width height scale font-size;
+  /* transform: scale(3, 3); */
+  transition-duration: 200ms;
+  top: 40%;
+background-color: green;
+color: yellow;
+position: absolute;
+  font-size: 4rem;
+  color: white;
+  /* height: 80vh; */
+  height: 30vh;
+  width: 90vw;
+  /* z-index: 1000; */
  }
 
  .filter-form {
@@ -1275,16 +1294,34 @@ height: 2em;
    row-gap: 1rem;
    max-width: 85%;
    overflow: visible; 
+   /* background-color: red; */
    /* overflow: auto; */
  }
 
- #exercise-cont>* {
+ .exercise {
+   transition-property: width height scale font-size  position;
   font-size: 2rem;
   position: relative;
-   /* flex: 0 1 18%; */
-   height: 50px;
-   flex:  0 0 20%;
+  transition-duration: 200ms;
+  top: 0%;
+  /* flex: 0 1 18%; */
+  height: 50px;
+  flex:  0 0 20%;
+}
+
+.alt-ex {
+  background-color: green;
+  color: yellow;
+  transition-property: width height scale font-size position;
+  position: fixed;
+  max-width: 800px;
+  top: 20%;
+    font-size: 4rem;
+    height: 60vh;
+    transition-duration: 200ms;
  }
+
+
 
  button {
    background-color: bisque;

@@ -252,7 +252,7 @@ const doIt = async (id) =>  {
             //       : "2rem";
             // currentItem.style.fontSize = "2rem"
             // currentItem.style.color = "yellow";
-            currentItem.style.backgroundColor = "darkslateblue";
+            currentItem.style.backgroundColor = "green";
             currentItem.appendChild(durationWidth)
             // scrubRate.style.left = 
             // currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";

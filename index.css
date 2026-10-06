@@ -877,7 +877,7 @@ table th {
 
  .alt-ex {
   transition-property: width height scale font-size;
-  /* transform: scale(3, 3); */
+    border-radius: 5px;
   transition-duration: 200ms;
   display: grid;
   /* justify-content: center; */
@@ -910,7 +910,7 @@ position: absolute;
   height: 15px; */
   position: relative;
   /* background-color: red; */
-  border: 2px solid green
+  border: 2px solid sienna
   /* border-radius: 7.5px; */
  }
 
@@ -1336,6 +1336,7 @@ height: 2em;
 .alt-ex {
   transition-property: width height scale font-size position;
   display: grid;
+
   justify-content: center;
   background-color: green;
   color: yellow;

@@ -6,6 +6,12 @@ let sec = 0;
 const condo = localStorage.getItem("workoutUserId")
 const firstCont = document.createElement("div");
 const firstContent = document.createElement("p");
+const durationWidth = document.createElement("article")
+durationWidth.className = "duration-width"
+const scrubRate = document.createElement("p")
+durationWidth.appendChild(scrubRate)
+scrubRate.className = "scrub-rate"
+
 firstCont.className = "home";
   firstCont.id = "home-page";
   firstContent.innerHTML = "home";
@@ -80,9 +86,11 @@ const doIt = async (id) =>  {
     
     // hard coat for now
     const elements = exercise.map((exercise) => {
-      const newP = document.createElement("p");
+      const newP = document.createElement("div");
       newP.className = "exercise";
-      newP.innerHTML = exercise;
+      const exerciseHeader = document.createElement("p")
+      newP.appendChild(exerciseHeader)
+      exerciseHeader.innerHTML = exercise;
       exerciseCont.appendChild(newP);
       return newP;
     });
@@ -155,7 +163,7 @@ const doIt = async (id) =>  {
 
         currentItem.style.transform = "scale(1 )";
         currentItem.style.backgroundColor = window.innerWidth > 491 ? "teal" : "maroon";  
-        currentItem.style.color = "yellow";
+        currentItem.style.color = "yellow"
         currentItem.style.boxShadow = "0em 0em 0em";
         currentItem.style.zIndex = pIndex;
         currentItem.style.marginLeft = 0
@@ -168,6 +176,7 @@ const doIt = async (id) =>  {
         formerItem.style.boxShadow = "0em 0em 0em";
         formerItem.classList.replace("alt-ex","exercise")
         formerItem.style.zIndex = pIndex - 1;
+        durationWidth.remove()
         // currentItem.classList.replace("alt-ex", "exercise")
         // exerciseCont.style.justifyContent = "center"
         // exerciseCont.style.backgroundColor = "yellow"
@@ -195,10 +204,15 @@ const doIt = async (id) =>  {
         // transfrorm the current excercise element after interval elapses
         // an interval to check for when sec exceeds interval
     
-        const { exercise, interval } = user.workSettings;
+        const { exercise, interval, exercisesDuration } = user.workSettings;
+        console.log(exercisesDuration)
         ID = window.setInterval(() => {
           if (sec === interval) {
-            // nextItem.style.marginLeft = "8rem"
+            durationWidth.appendChild(scrubRate)
+            setInterval(() => {
+              scrubRate.style.width = `${((sec - interval) / exercisesDuration) * 100}%`
+            }, 100)
+            // nextItem.style.marginLeft = "8rem  "
           // buttonsCont.style.justifyContent = "center"
             // the current excercise is currentItem
             // currentItem.style.position = "relative";
@@ -225,6 +239,7 @@ const doIt = async (id) =>  {
                   
                   formerItem.style.color = "sandybrown";
             formerItem.style.backgroundColor = "maroon";
+            // formerItem.removeChild(durationWidth)
             console.log(window.innerWidth)
             console.log(window.innerWidth)
             
@@ -237,14 +252,16 @@ const doIt = async (id) =>  {
             //       : "2rem";
             // currentItem.style.fontSize = "2rem"
             // currentItem.style.color = "yellow";
-            currentItem.style.backgroundColor = "green";
+            currentItem.style.backgroundColor = "darkslateblue";
+            currentItem.appendChild(durationWidth)
+            // scrubRate.style.left = 
             // currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
             // currentItem.style.padding = "0 1rem";
             // currentItem.style.justifySelf = "center";
             // currentItem.style.transitionDuration = "500ms";
             currentItem.style.zIndex = pIndex;
             currentItem.classList.replace("exercise", "alt-ex")
-            console.log(currentItem.className)
+            console.log(currentItem)
             // currentItem.classList.add("alt-ex")
 
     

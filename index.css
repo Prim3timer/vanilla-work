@@ -879,6 +879,9 @@ table th {
   transition-property: width height scale font-size;
     border-radius: 5px;
   transition-duration: 200ms;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
   display: grid;
   /* justify-content: center; */
   top: 40%;

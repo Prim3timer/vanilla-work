@@ -89,6 +89,9 @@ const doIt = async (id) =>  {
       const newP = document.createElement("div");
       newP.className = "exercise";
       const exerciseHeader = document.createElement("p")
+      const exGif = document.createElement("img")
+
+
       newP.appendChild(exerciseHeader)
       exerciseHeader.innerHTML = exercise;
       exerciseCont.appendChild(newP);
@@ -252,7 +255,8 @@ const doIt = async (id) =>  {
             //       : "2rem";
             // currentItem.style.fontSize = "2rem"
             // currentItem.style.color = "yellow";
-            currentItem.style.backgroundColor = "green";
+            // currentItem.style.backgroundColor = "green";
+            currentItem.style.backgroundImage = `url("images/Woman_Doing_Push_Ups.gif")`
             currentItem.appendChild(durationWidth)
             // scrubRate.style.left = 
             // currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";

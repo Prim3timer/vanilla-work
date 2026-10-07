@@ -861,7 +861,7 @@ table th {
    display: flex;
    color: sandybrown;
    background-color: maroon;
-   top: 85%;
+   top: 15%;
    border-color: maroon;
    position: absolute;
    text-align: center;
@@ -1217,12 +1217,15 @@ height: 2em;
   }
 
     #buttons {
-  
+      display: flex;
+      align-items: flex-end;
+  /* background-color: lightcyan; */
     margin: .5rem;
     
   }
 
     #buttons>* {
+      z-index: 10;
     font-size: 1.5rem;
     flex: 0 0  10%;
     align-content: center;
@@ -1351,14 +1354,15 @@ height: 2em;
    overflow: visible; 
    /* background-color: red; */
    /* overflow: auto; */
+   z-index: 10;
  }
 
  .exercise {
    transition-property: width height scale font-size  position;
-  font-size: 2rem;
+   font-size: 2rem;
   position: relative;
   transition-duration: 300ms;
-  top:0%;
+  top:10%;
   /* flex: 0 1 18%; */
   height: 50px;
   flex:  0 0 20%;
@@ -1371,17 +1375,17 @@ height: 2em;
   justify-content: center;
   background-color: green;
   color: yellow;
-  position: fixed;
-  max-width: 800px;
-  top: 30%;
+  position: absolute;
+  max-width: 600px;
+  top: 35%;
     font-size: 2rem;
-    height: 60vh;
+    height: 45vh;
     transition-duration: 300ms;
  }
 
  .duration-width-container {
   position: absolute;
-  top: 80%;
+  top: 75%;
   width: 100%;
   display: flex;
   justify-content: center;

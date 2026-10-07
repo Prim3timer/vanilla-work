@@ -249,17 +249,9 @@ const doIt = async (id) =>  {
             currentItem.style.backgroundImage = `url("images/Woman_Doing_Push_Ups.gif")`
             currentItem.appendChild(durationWidthContainer)
             currentItem.style.backgroundColor = "teal";
-            // currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
-            // currentItem.style.padding = "0 1rem";
-            // currentItem.style.justifySelf = "center";
-            // currentItem.style.transitionDuration = "500ms";
             currentItem.style.zIndex = pIndex;
             currentItem.classList.replace("exercise", "alt-ex")
-            console.log(currentItem)
-            // currentItem.style.position = "absolute";
-            // currentItem.style.top = "-30%";
-
-            // currentItem.classList.add("alt-ex")
+       
             
             
             jogup.style.transform = "scale(1) translateX(10px)";
@@ -693,11 +685,11 @@ headerRow.append(
   
   
     firstCont.append(
-      buttonsCont,
+      exerciseCont,
       statusContainer,
       goContainer,
       rightContainer,
-      exerciseCont,
+      buttonsCont,
       alertWindow,
     );
     

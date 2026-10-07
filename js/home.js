@@ -6,23 +6,30 @@ let sec = 0;
 const condo = localStorage.getItem("workoutUserId")
 const firstCont = document.createElement("div");
 const firstContent = document.createElement("p");
+const durationWidthContainer = document.createElement("div");
+durationWidthContainer.className = "duration-width-container"
 const durationWidth = document.createElement("article")
 durationWidth.className = "duration-width"
 const scrubRate = document.createElement("p")
-durationWidth.appendChild(scrubRate)
 scrubRate.className = "scrub-rate"
+const beginner = document.createElement("p");
+const ender = document.createElement("p");
+beginner.className = "beginner";
+ender.className = "ender";
 
+durationWidth.append(scrubRate)
+durationWidthContainer.append(beginner, durationWidth, ender)
 firstCont.className = "home";
-  firstCont.id = "home-page";
-  firstContent.innerHTML = "home";
-  console.log(sec)
-  
-  const buttonsCont = document.createElement("div");
-  const current = new Date().getFullYear();
-  const footer = document.getElementById("footer")
+firstCont.id = "home-page";
+firstContent.innerHTML = "home";
+console.log(sec)
+
+const buttonsCont = document.createElement("div");
+const current = new Date().getFullYear();
+const footer = document.getElementById("footer")
 footer.innerHTML = `&copy ${current} Amalu Productions`
 const doIt = async (id) =>  {
-
+  
   const greeting = document.getElementsByClassName("p");
   greeting.className = "greeting";
   let pauser = document.createElement("button");
@@ -43,7 +50,7 @@ const doIt = async (id) =>  {
   let copyRight = document.createElement("span");
   let copyRight2 = document.createElement("span");
   let rounder = document.createElement("p");
-
+  
   rightContainer.append(copyRight, copyRight2);
   let begin;
   let alertWindow = document.createElement("p");
@@ -70,7 +77,7 @@ const doIt = async (id) =>  {
   let round = 1;
   if (user){
     const { exercise, interval, exercisesDuration, numberOfRounds } =
-      user.workSettings;
+    user.workSettings;
     
     rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
     
@@ -90,8 +97,8 @@ const doIt = async (id) =>  {
       newP.className = "exercise";
       const exerciseHeader = document.createElement("p")
       const exGif = document.createElement("img")
-
-
+      
+      
       newP.appendChild(exerciseHeader)
       exerciseHeader.innerHTML = exercise;
       exerciseCont.appendChild(newP);
@@ -102,9 +109,9 @@ const doIt = async (id) =>  {
     const noExAlertElement = document.createElement("p");
     noExAlertElement.style.minWidth = "80%";
     noExAlertElement.innerHTML =
-      `Click on "settings" tab to set up your exercise routine`;
-      noExAlertElement.style.color = "darkslateblue"
-      noExAlertElement.style.fontSize = "1.5rem"
+    `Click on "settings" tab to set up your exercise routine`;
+    noExAlertElement.style.color = "darkslateblue"
+    noExAlertElement.style.fontSize = "1.5rem"
     if (exerciseCont.children.length === 0) {
       exerciseCont.appendChild(noExAlertElement);
       exerciseCont.style.backgroundColor = "gainsboro";
@@ -144,26 +151,26 @@ const doIt = async (id) =>  {
     jogup.style.transitionDuration = "500ms";
     
     let RoundInspector = 3000;
-  
-  let wakeLock = null;
-  
-  async function requestWakeLock() {
-    try {
-      wakeLock = await navigator.wakeLock.request('screen');
-      console.log('Wake Lock is active!');
-    } catch (err) {
-      console.error(`${err.name}, ${err.message}`);
+    
+    let wakeLock = null;
+    
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active!');
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
     }
-  }
-  
-  
-  
+    
+    
+    
     function general(currentItem, formerItem, nextItem) {
       console.log(currentItem);
       let { complete } = controls;
       complete = "no";
       return new Promise((resolve, reject) => {
-
+        
         currentItem.style.transform = "scale(1 )";
         currentItem.style.backgroundColor = window.innerWidth > 491 ? "teal" : "maroon";  
         currentItem.style.color = "yellow"
@@ -179,11 +186,11 @@ const doIt = async (id) =>  {
         formerItem.style.boxShadow = "0em 0em 0em";
         formerItem.classList.replace("alt-ex","exercise")
         formerItem.style.zIndex = pIndex - 1;
-        durationWidth.remove()
+        durationWidthContainer.remove()
         // currentItem.classList.replace("alt-ex", "exercise")
         // exerciseCont.style.justifyContent = "center"
         // exerciseCont.style.backgroundColor = "yellow"
-    
+        
         jogup.style.transitionProperty = "scale width flexWidth";
         jogup.style.transform = "scale(2)";
         jogup.style.color = "yellow";
@@ -192,7 +199,7 @@ const doIt = async (id) =>  {
         jogup.style.width = "100px";
         // jogup.style.flex = "0 0 15%";
         jogup.style.boxShadow = "0.6em 0.6em .6em gray";
-    
+        
         // change the content of the set element back to  the 'round' variable
         // after 3 seconds
         setTimeout(() => {
@@ -206,59 +213,42 @@ const doIt = async (id) =>  {
         }, RoundInspector);
         // transfrorm the current excercise element after interval elapses
         // an interval to check for when sec exceeds interval
-    
+        
         const { exercise, interval, exercisesDuration } = user.workSettings;
         console.log(exercisesDuration)
         ID = window.setInterval(() => {
           if (sec === interval) {
+            ender.innerHTML = timeClocking(exercisesDuration);
             durationWidth.appendChild(scrubRate)
             setInterval(() => {
+              beginner.innerHTML = timeClocking(sec - interval);
               scrubRate.style.width = `${((sec - interval) / exercisesDuration) * 100}%`
             }, 100)
             // nextItem.style.marginLeft = "8rem  "
-          // buttonsCont.style.justifyContent = "center"
+            // buttonsCont.style.justifyContent = "center"
             // the current excercise is currentItem
             // currentItem.style.position = "relative";
             // It is used to make the current excersise appear above
             //  previous and next excercises
             // currentItem.style.left = `${sec * Math.sin(sec * 4 * Math.PI)}px
-    
-    
+            
+            
             const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
             console.log(exerciseIndex);
             const indexDiff =
-              exercise.length - exercise.indexOf(currentItem.innerHTML);
+            exercise.length - exercise.indexOf(currentItem.innerHTML);
             const indexSum =
-              exercise.length - exercise.indexOf(currentItem.innerHTML);
-            const translator =
-              exerciseIndex < Math.floor(exercise.length / 2)
-                ? `${((exercise.length - exerciseIndex) / exercise.length) * (exercise.length - exerciseIndex * 2) * 15}px`
-                : exerciseIndex === Math.floor(exercise.length / 2) ||
-                    (exercise.length === 4 && exerciseIndex === 1)
-                  ? "0px"
-                  : exerciseIndex > Math.floor(exercise.length / 2)
-                  ? `-${((exerciseIndex + 1) / exercise.length) * exerciseIndex * 15}%`
-                  : "";
+            exercise.length - exercise.indexOf(currentItem.innerHTML);
                   
-                  formerItem.style.color = "sandybrown";
+            formerItem.style.color = "sandybrown";
             formerItem.style.backgroundColor = "maroon";
             // formerItem.removeChild(durationWidth)
             console.log(window.innerWidth)
             console.log(window.innerWidth)
-            
-            // currentItem.style.transform = `scale(${window.innerWidth > 491 ? 2.5 : 1.3}, 3) translate(${window.innerWidth > 491 ? translator : "1%"}, -15%)`;
-            // currentItem.style.fontSize =
-            //   currentItem.innerHTML.length > 7
-            //     ? "1.5rem"
-            //     : currentItem.innerHTML.length > 10
-            //       ? ".8rem"
-            //       : "2rem";
-            // currentItem.style.fontSize = "2rem"
-            // currentItem.style.color = "yellow";
-            // currentItem.style.backgroundColor = "green";
+            nextItem.style.marginLeft = window.innerWidth > 491 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
             currentItem.style.backgroundImage = `url("images/Woman_Doing_Push_Ups.gif")`
-            currentItem.appendChild(durationWidth)
-            // scrubRate.style.left = 
+            currentItem.appendChild(durationWidthContainer)
+            currentItem.style.backgroundColor = "teal";
             // currentItem.style.boxShadow = "0.2em 0.3em 0.4em gray";
             // currentItem.style.padding = "0 1rem";
             // currentItem.style.justifySelf = "center";
@@ -267,25 +257,25 @@ const doIt = async (id) =>  {
             currentItem.classList.replace("exercise", "alt-ex")
             console.log(currentItem)
             // currentItem.classList.add("alt-ex")
-
-    
+            
+            
             jogup.style.transform = "scale(1) translateX(10px)";
             jogup.style.color = "sandybrown";
             jogup.style.backgroundColor = "maroon";
             jogup.style.border = "2px solid maroon";
             jogup.style.boxShadow = "0em 0em 0em";
-    
+            
             // the variable for the z-index.
             pIndex++;
             let round = 1;
             //clearInterval(planks);
           }
-    
+          
           // pausing the app.
           cycle.innerHTML = timeClocking(sec);
           if (controls.pause === true) {
-  
-              
+            
+            
             return;
           } else {
             sec++;
@@ -538,7 +528,7 @@ headerRow.append(
           const currentItemIndex = elements[i];
           // if i = 0 subtract array length from index else subtract 1 from index``
           const formerIemIndex = elements[i == 0 ? i + elements.length - 1 : i - 1];
-          const nextItemIndex = elements[i + 1];
+          const nextItemIndex =  elements.indexOf(elements[i + 1]) !== -1 ? elements[i + 1] : elements[0];
           // elements[i + 1].style.marginLeft = "8rem"
           for (let j = 0; j < elements.length; j++) {
             elements[j].addEventListener("click", () => {

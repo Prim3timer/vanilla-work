@@ -1339,8 +1339,8 @@ height: 2em;
 
  #exercise-cont {
    height: 6rem;
-   position: relative;
-   top: -30%;
+   /* position: relative; */
+   /* top: -30%;s */
    flex-wrap: nowrap;
    justify-content: center;
    align-items: flex-start;
@@ -1358,7 +1358,7 @@ height: 2em;
   font-size: 2rem;
   position: relative;
   transition-duration: 300ms;
-  top:100%;
+  top:0%;
   /* flex: 0 1 18%; */
   height: 50px;
   flex:  0 0 20%;

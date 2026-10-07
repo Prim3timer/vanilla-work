@@ -256,6 +256,9 @@ const doIt = async (id) =>  {
             currentItem.style.zIndex = pIndex;
             currentItem.classList.replace("exercise", "alt-ex")
             console.log(currentItem)
+            // currentItem.style.position = "absolute";
+            // currentItem.style.top = "-30%";
+
             // currentItem.classList.add("alt-ex")
             
             
@@ -534,13 +537,14 @@ headerRow.append(
             elements[j].addEventListener("click", () => {
               i = elements.indexOf(elements[j]) - 1;
               // get to the end of the exercise so the next one can quickly begin
+              elements[j + 1 < elements.length ? j + 1 : 0].style.marginLeft = "0rem";
               console.log(integrityCheck);
               sec = interval + exercisesDuration;
               // reverse many other events at the push of any axercise
               elements.map((element) => {
                 if (
                   // if any exercise is Active, deactivate it
-                element.className = "alt-ex"
+                element.className === "alt-ex"
                 ) {
                   element.classList.replace("alt-ex", "exercise")
                   // element.style.color = "sandybrown";

@@ -199,11 +199,12 @@ const getData = async (id) => {
       
   console.log(user.workSettings.numberOfRounds)
       const { workSettings } = user;
+      console.log(workSettings)
       const endurance = document.createElement("td");
   
       endurance.innerHTML = timeClocking(duration);
       const roundCount = document.createElement("td");
-      roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0}` ;
+      roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${workSettings.numberOfRounds}`; ;
       const mark = document.createElement("td");
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;

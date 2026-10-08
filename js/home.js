@@ -393,7 +393,7 @@ console.log("denom: ", exercise.length * numberOfRounds * exercisesDuration)
 console.log(((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration))
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
-          roundCount.innerHTML = Math.floor(anExercise / exercise.length);
+          roundCount.innerHTML = Math.floor(anExercise / exercise.length) + " of " + numberOfRounds;
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
           // if the mark is less than or equal to 100%, display it else disply 0

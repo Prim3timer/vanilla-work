@@ -112,7 +112,7 @@ const deleteEntry = async () => {
           const { duration } = perfy.exerciseTimings[0];
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
-          roundCount.innerHTML = `${Math.floor(perfy.oneExercise /perfy.exerciseDets.length)}`;
+          roundCount.innerHTML = `${Math.floor(perfy.oneExercise /perfy.exerciseDets.length)} of ${workSettings.numberOfRounds}`;
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
           mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.mark).toFixed(2) : 0}`;

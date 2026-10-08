@@ -690,6 +690,28 @@ table th {
 
 }
 
+.add-exercise {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  background-color: white;
+  width: 100%;
+}
+
+.exercise-header {
+  /* background-color: darkslateblue; */
+}
+
+.add-exercise-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: .5rem;
+  /* background-color: red; */
+  width: 90vw;
+}
+
 .users table {
    width: 130vw;
 
@@ -1218,7 +1240,7 @@ height: 2em;
 
     #buttons {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
   /* background-color: lightcyan; */
     margin: .5rem;
     
@@ -1342,8 +1364,8 @@ height: 2em;
 
  #exercise-cont {
    height: 6rem;
-   /* position: relative; */
-   /* top: -30%;s */
+   position: relative;
+   top: -13%;
    flex-wrap: nowrap;
    justify-content: center;
    align-items: flex-start;

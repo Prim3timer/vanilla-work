@@ -8,6 +8,7 @@ import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
 import { loginPage } from "./login.js";
 import { mainSettings } from "./userSettings.js";
+import { addExercisePage } from "./addExercise.js";
 
 console.log(loginPage())
 const greeting = document.getElementsByClassName("greeting")[0];
@@ -84,8 +85,8 @@ const containers = [
   register(),
   forgotPage(),
   mainSettings(),
-  loginPage()
-
+  loginPage(),
+  addExercisePage()
 ];
 
 

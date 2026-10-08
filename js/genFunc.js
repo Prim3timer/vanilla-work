@@ -63,6 +63,9 @@ function ElementCatcher(pages, mainContainer, guestId) {
    e.preventDefault();
     console.log(roles)
     console.log(guestId)
+    console.log(this.id)
+    console.log(pages[0].className)
+  
     const result = await pages;
   
     const oneElement = result.map( async (content) => {

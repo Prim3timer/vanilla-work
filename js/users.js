@@ -1,11 +1,16 @@
 import myUrl from "./myUrl.js";
 import { mainSettings } from "./userSettings.js";
+import {addExercisePage} from "./addExercise.js";
 import { ElementCatcher } from "./genFunc.js";
 
 const usersettingsPage = mainSettings();
 console.log(mainSettings());
 
+const pages = [addExercisePage()];
+
 const mainContainer = document.getElementById("main-page");
+const instanceer = new ElementCatcher(pages, mainContainer, localStorage.getItem("workoutUserId"));
+
 const userBox = document.createElement("div");
 userBox.className = "users";
 const usersHeader = document.createElement("h3");
@@ -16,10 +21,14 @@ const filterForm = document.createElement("form")
 filterForm.className = "filter-form"
 const usersFilter = document.createElement("input")
 const filterButton = document.createElement("span")
+const addExerciseButton = document.createElement("button")
+addExerciseButton.addEventListener("click", instanceer.shower)
+addExerciseButton.id = "add-exercise"
+addExerciseButton.innerHTML = "add exercise"
 filterButton.className = "filter-button"
 filterButton.innerHTML = "filter"
 usersFilter.className = "users-filter"
-filterForm.append(usersFilter, filterButton)
+filterForm.append(addExerciseButton, usersFilter, filterButton)
 userBox.append(filterForm, usersHeader, entryCount);
 
 const containers = [mainSettings()];

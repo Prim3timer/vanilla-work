@@ -528,9 +528,10 @@ headerRow.append(
           for (let j = 0; j < elements.length; j++) {
             elements[j].addEventListener("click", () => {
               i = elements.indexOf(elements[j]) - 1;
-              // get to the end of the exercise so the next one can quickly begin
+              // remove marginLeft from the element after the clicked element
               elements[j + 1 < elements.length ? j + 1 : 0].style.marginLeft = "0rem";
               console.log(integrityCheck);
+              // get to the end of the exercise so the next one can quickly begin
               sec = interval + exercisesDuration;
               // reverse many other events at the push of any axercise
               elements.map((element) => {
@@ -539,13 +540,9 @@ headerRow.append(
                 element.className === "alt-ex"
                 ) {
                   element.classList.replace("alt-ex", "exercise")
-                  // element.style.color = "sandybrown";
-                  // element.style.backgroundColor = "maroon";
-                  // element.style.transform = "scale(1)";
-                  // element.style.boxShadow = "0em 0em 0em";
                 } else if (
                   // if any exercise is in transition to invactive state, make it instantly inactive
-                  element.style.backgroundColor == "darkorange"
+                  element.style.backgroundColor == "teal"
                   // elements.indexOf(element) != i - 1
                 ) {
                   element.style.backgroundColor = "maroon";

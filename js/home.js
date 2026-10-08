@@ -172,7 +172,7 @@ const doIt = async (id) =>  {
       return new Promise((resolve, reject) => {
         
         currentItem.style.transform = "scale(1 )";
-        currentItem.style.backgroundColor = window.innerWidth > 491 ? "teal" : "maroon";  
+        currentItem.style.backgroundColor = window.innerWidth > 499 ? "teal" : "maroon";  
         currentItem.style.color = "yellow"
         currentItem.style.boxShadow = "0em 0em 0em";
         currentItem.style.zIndex = pIndex;
@@ -245,7 +245,7 @@ const doIt = async (id) =>  {
             // formerItem.removeChild(durationWidth)
             console.log(window.innerWidth)
             console.log(window.innerWidth)
-            nextItem.style.marginLeft = window.innerWidth > 491 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
+            nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
             currentItem.style.backgroundImage = `url("images/Woman_Doing_Push_Ups.gif")`
             currentItem.appendChild(durationWidthContainer)
             currentItem.style.backgroundColor = "teal";

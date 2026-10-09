@@ -117,8 +117,10 @@
   }
   
   #buttons {
-    display: flex;
+    /* display: flex; */
     row-gap: 10px;
+    position: relative;
+    top: -15%;
     flex-wrap: nowrap;
     /* font-weight: bold; */
     column-gap: 1rem;

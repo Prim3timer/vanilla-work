@@ -95,10 +95,11 @@ const settingsButton = document.createElement("button");
 settingsButton.className = "done-settings";
 settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
-
+const exMain = document.createElement("section")
+exMain.className = "ex-main"
 const exercisesContainer = document.createElement("div");
 exercisesContainer.className = "exercises-container";
-const getExercis = async () => {
+const getExercise = async () => {
   const response = await fetch(`${myUrl}/exercise`, {
     method: "GET",
     headers: {
@@ -110,9 +111,24 @@ const getExercis = async () => {
   return exercises;
 }
 
-const exerciseList = await getExercis()
-
-
+const exerciseList = await getExercise()
+const addExercise = async (box, checker, array) => {
+  const innArray = array.find((item) => item === checker.innerHTML)
+  console.log(box.checked)
+  if (box.checked){
+    if (innArray){
+      return
+    }else {
+      array.push(checker.innerHTML)
+    }
+  } else {
+    const index = array.indexOf(checker.innerHTML)
+    array.splice(index, 1)
+    
+  }
+    console.log(checker.innerHTML)
+}
+const addArray = []
 exerciseList.map((ex) => {
   const exercise = document.createElement("article")
   exercise.className = "single-exercise"
@@ -120,11 +136,12 @@ exerciseList.map((ex) => {
   exerciseName.innerHTML = ex.name
   // console.log(ex.name)
   const selector = document.createElement("input")
+  selector.addEventListener("change", (e) => addExercise(selector, exerciseName, addArray))
   selector.type = "checkbox"
   selector.className = "exercise-selector"
   exercise.append(selector, exerciseName)
+  // exercise.style.backgroundImage = `url("images/${ex.name}.gif")`
   console.log(exercise)
-  exercise.style.backgroundImage = `url("images/${ex.name}.gif")`
   // exerciseList.map((ex) => {
   //   switch (ex.name) {
   //     case "Push-ups":
@@ -142,9 +159,8 @@ exerciseList.map((ex) => {
   // })
   // exerciseImage.className = "exercise-image"
   exercisesContainer.appendChild(exercise)
-  // exercisesContainer.appendChild(exercise)
 })
-
+exMain.append(exercisesContainer)
 timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
 
 
@@ -155,7 +171,7 @@ timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
   numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(
-    exercisesContainer,
+    exMain,
     // firstExercise,
     // secondExercise,
     // thirdExercise,
@@ -185,7 +201,8 @@ const exes = [
 // const userId = "6a6695c18889470e03c937ec";
 const userId = localStorage.getItem("workoutUserId");
 const populate = async (userId) => {
-  console.log(userId);
+  const exerciseList = await getExercise()
+  console.log(exerciseList)
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -198,11 +215,15 @@ const populate = async (userId) => {
   console.log(user)
   if (user) {
     const { workSettings } = user;
-    exes[0].value = workSettings.exercise[0] || "";
-  exes[1].value = workSettings.exercise[1] || "";
-  exes[2].value = workSettings.exercise[2] || "";
-  exes[3].value = workSettings.exercise[3] || "";
-  exes[4].value = workSettings.exercise[4] || "";
+  //   exes[0].value = workSettings.exercise[0] || "";
+  // exes[1].value = workSettings.exercise[1] || "";
+  // exes[2].value = workSettings.exercise[2] || "";
+  // exes[3].value = workSettings.exercise[3] || "";
+  // exes[4].value = workSettings.exercise[4] || "";
+
+
+
+  
   
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;
@@ -221,6 +242,7 @@ populate();
 
 const editUser = async (e) => {
   e.preventDefault()
+  console.log(addArray)
   console.log(userId)
   console.log(homePage());
   const response = await fetch(`${myUrl}/workout-users`, {
@@ -230,18 +252,6 @@ const editUser = async (e) => {
     },
   });
   const users = await response.json();
-
-  const rawExercise = [
-    exes[0].value,
-    exes[1].value,
-    exes[2].value,
-    exes[3].value,
-    exes[4].value,
-  ];
-  const filteredExercise = rawExercise.filter(
-    (item) => item !== "undefined" && item !== "",
-  );
-  console.log(filteredExercise);
   if (users) {
     const hourInterval = !intervalHourInput.value ? 0 : Number(intervalHourInput.value)
     const minInterval = !intervalMinInput.value ? 0 : Number(intervalMinInput.value)
@@ -253,7 +263,7 @@ const editUser = async (e) => {
     console.log(exerciseDurationHourInput.value)
     console.log(typeof(minDuration))
     const workerSettings = {
-      exercise: filteredExercise,
+      exercise: addArray,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
       exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value),
       numberOfRounds: numberOfRoundsInput.value || 1,
@@ -262,7 +272,7 @@ const editUser = async (e) => {
     console.log(workerSettings);
     const user = users.find((user) => user._id === userId);
     
-    if (filteredExercise.length < 1) {
+    if (addArray.length < 1) {
       console.log("exercise list is too short. make it at least 2");
         alertWindow.innerHTML = "enter at least 1 exercise";
       alertWindow.className = "verify-window";

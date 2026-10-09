@@ -787,6 +787,8 @@ table th {
 
 .indicator-container {
   /* row-gap: 2rem; */
+  position: relative;
+  top: -20%;
   display: flex;
   flex-direction: column;
   row-gap: .5rem;
@@ -794,6 +796,7 @@ table th {
    justify-content: flex-start;
    /* height: 10rem; */
    /* flex: 0 1 65% */
+   /* background-color: red; */
    width: 100%;
    flex: 0 1 0%
  }
@@ -867,14 +870,15 @@ table th {
    height: 15rem;
    display: flex;
    flex-wrap: nowrap;
+   position:relative;
    justify-content: center;
    align-items: center;
    text-align: center;
    column-gap: .5rem;
    row-gap: 1rem;
    width: 95vw;
-   overflow-y: scroll;
-   overflow-x: scroll;
+   /* overflow-y: scroll;
+   overflow-x: scroll; */
    /* background-color: red; */
 
  }
@@ -889,7 +893,7 @@ table th {
    display: flex;
    color: sandybrown;
    background-color: maroon;
-   top: 15%;
+   top: 10%;
    border-color: maroon;
    position: absolute;
    text-align: center;
@@ -912,7 +916,7 @@ table th {
   background-position: bottom;
   display: grid;
   /* justify-content: center; */
-  top: 40%;
+  top: 60%;
 background-color: green;
 /* color: yellow; */
 position: absolute;

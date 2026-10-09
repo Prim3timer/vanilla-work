@@ -789,7 +789,7 @@ table th {
 .indicator-container {
   /* row-gap: 2rem; */
   position: relative;
-  top: -40%;
+  top: -30%;
   display: flex;
   flex-direction: column;
   row-gap: .5rem;

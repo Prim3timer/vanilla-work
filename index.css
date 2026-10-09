@@ -1085,7 +1085,7 @@ position: absolute;
   justify-content: center;
   width: 80vw;
   overflow: auto;
-  height: 12rem;
+  max-height: 10rem;
  }
  
  
@@ -1121,7 +1121,7 @@ position: absolute;
     }
     .single-exercise {
       flex: 0 0 20%;
-    height: 10rem;
+    height: 8rem;
    }
    .login-header {
      /* background-color: red; */

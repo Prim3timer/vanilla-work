@@ -1262,6 +1262,7 @@ height: 2em;
     align-items: center;
     width: 80vw;
     /* background-color: red; */
+    top: .5%;
   }
 
     #go {
@@ -1296,7 +1297,7 @@ height: 2em;
       align-items: flex-start;
   /* background-color: lightcyan; */
     margin: .5rem;
-    top: -6%;
+    top: -10%;
   }
 
     #buttons>* {
@@ -1336,7 +1337,7 @@ height: 2em;
     flex-direction: row;
    align-items: flex-end;
    height: 7rem;
-   /* top: 10%; */
+   top: 10%;
    width: 100% !important;
    column-gap: 2rem;
    /* flex: 0 1 65% */

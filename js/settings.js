@@ -200,6 +200,8 @@ const exes = [
 ];
 // const userId = "6a6695c18889470e03c937ec";
 const userId = localStorage.getItem("workoutUserId");
+
+
 const populate = async (userId) => {
   const exerciseList = await getExercise()
   console.log(exerciseList)

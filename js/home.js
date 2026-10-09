@@ -101,6 +101,7 @@ const doIt = async (id) =>  {
       
       newP.appendChild(exerciseHeader)
       exerciseHeader.innerHTML = exercise;
+      newP.style.backgroundImage = `url("images/Mt-Climbers.gif")`;
       exerciseCont.appendChild(newP);
       return newP;
     });
@@ -166,7 +167,8 @@ const doIt = async (id) =>  {
     
     
     function general(currentItem, formerItem, nextItem) {
-      console.log(currentItem);
+      console.log(currentItem.firstElementChild.innerHTML.trim());
+      console.log(`url("images/${currentItem.firstElementChild.innerHTML.trim()}.gif")`)
       let { complete } = controls;
       complete = "no";
       return new Promise((resolve, reject) => {
@@ -177,6 +179,8 @@ const doIt = async (id) =>  {
         currentItem.style.boxShadow = "0em 0em 0em";
         currentItem.style.zIndex = pIndex;
         currentItem.style.marginLeft = 0
+
+        console.log(currentItem.innerHTML)
         
         
         
@@ -246,7 +250,9 @@ const doIt = async (id) =>  {
             console.log(window.innerWidth)
             console.log(window.innerWidth)
             nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
-            currentItem.style.backgroundImage = `url("images/Woman_Doing_Push_Ups.gif")`
+            console.log(currentItem)
+            const imageName = currentItem.firstElementChild.innerHTML.trim()
+            currentItem.style.backgroundImage = `url("images/${imageName.trim()}.gif")`
             currentItem.appendChild(durationWidthContainer)
             currentItem.style.backgroundColor = "teal";
             currentItem.style.zIndex = pIndex;
@@ -377,20 +383,7 @@ const del = document.createElement("td");
             ? ((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100
             : 100,
       };
-console.log(anExercise)
-console.log(17 / 25)
 
-const endurance = document.createElement("td");
-console.log("sec: ", sec )
-console.log(filteredSec)
-console.log(exercisesDuration)
-console.log(exercise.length)
-console.log(numberOfRounds)
-console.log(anExercise)
-console.log("num: ", ( anExercise * exercisesDuration) + filteredSec)
-console.log("denom: ", exercise.length * numberOfRounds * exercisesDuration)
-
-console.log(((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration))
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
           roundCount.innerHTML = Math.floor(anExercise / exercise.length) + " of " + numberOfRounds;

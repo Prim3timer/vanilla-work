@@ -14,9 +14,6 @@ settingsInstructions.className = "settings-instructions"
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
-// const getExCont = () => {
-//   getExCont()
-// }
 
 
 // const exCont = homePage(userId).getElementById("exercise-cont")
@@ -99,6 +96,55 @@ settingsButton.className = "done-settings";
 settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
 
+const exercisesContainer = document.createElement("div");
+exercisesContainer.className = "exercises-container";
+const getExercis = async () => {
+  const response = await fetch(`${myUrl}/exercise`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  const exercises = await response.json();
+  console.log(exercises)
+  return exercises;
+}
+
+const exerciseList = await getExercis()
+
+
+exerciseList.map((ex) => {
+  const exercise = document.createElement("article")
+  exercise.className = "single-exercise"
+  const exerciseName = document.createElement("p")
+  exerciseName.innerHTML = ex.name
+  // console.log(ex.name)
+  const selector = document.createElement("input")
+  selector.type = "checkbox"
+  selector.className = "exercise-selector"
+  exercise.append(selector, exerciseName)
+  console.log(exercise)
+  exercise.style.backgroundImage = `url("images/${ex.name}.gif")`
+  // exerciseList.map((ex) => {
+  //   switch (ex.name) {
+  //     case "Push-ups":
+  //       exercise.style.backgroundImage = `url("images/push-up.gif")`
+  //       break;
+  //     case "Mt. Climbers":
+  //       exercise.style.backgroundImage = `url("images/Mt-Climbers.gif")`
+  //       break;
+  //       case "Burpees":
+  //       exercise.style.backgroundImage = `url("images/Burpees.gif")`
+  //       break;
+  //     default:
+  //       exercise.style.backgroundImage = "images/push-up.gif"
+  //   }
+  // })
+  // exerciseImage.className = "exercise-image"
+  exercisesContainer.appendChild(exercise)
+  // exercisesContainer.appendChild(exercise)
+})
+
 timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
 
 
@@ -109,11 +155,12 @@ timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
   numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(
-    firstExercise,
-    secondExercise,
-    thirdExercise,
-    fourthExercise,
-    fifthExercise,
+    exercisesContainer,
+    // firstExercise,
+    // secondExercise,
+    // thirdExercise,
+    // fourthExercise,
+    // fifthExercise,
    timingMain
   );
   settingsCont.append(

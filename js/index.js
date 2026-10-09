@@ -16,19 +16,20 @@ greeting.style.position = "fixed";
 greeting.style.padding = ".5rem";
 greeting.style.borderRadius = "5px";
 
+
 const motherShip = document.getElementById("root")
 const mainContainer = document.getElementById("main-page");
 const navbar = document.getElementsByClassName("navbar")[0];
- const replyElement = document.createElement("h4");
+const replyElement = document.createElement("h4");
 
-     const navFirst = document.getElementsByClassName("title-element")[0];
-  navFirst.innerHTML = "Aerobics Guide";
+const navFirst = document.getElementsByClassName("title-element")[0];
+navFirst.innerHTML = "Aerobics Guide";
   // navFirst.className = "title-element"
-
-
+  
+  
   const alertMessage = document.createElement("h4")
 
-
+  
 console.log(navbar);
 
 const homeLInk = document.getElementById("home");
@@ -62,7 +63,7 @@ const verifyUrl = document.location.search;
 const guestId = localStorage.getItem("workoutUserId");
 // const loginPage = document.getElementsByClassName("login")[0];
 
-  const url = window.location.href
+const url = window.location.href
 const urlParamsPrompt = new URLSearchParams(url)
 const message = urlParamsPrompt.get("prompt") || ""
 
@@ -88,8 +89,6 @@ const containers = [
   loginPage(),
   addExercisePage()
 ];
-
-
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 

@@ -92,16 +92,17 @@
     column-gap: 2rem;
     padding: .5rem 0;
     
-    height: 5rem;
+    /* height: 15rem; */
     /* background-color: red */
     /* margin: .5rem 0; */
+    position: relative;
+    /* background-color: red;  */
+  top: -10%;
   }
   
   #go {
-    /* background-color: red;  */
     display: flex;
     overflow: hidden;
-    position: relative;
     white-space: nowrap;
     flex-wrap: nowrap;
     color: darkslateblue;
@@ -109,7 +110,7 @@
     flex: 0 0 100%;
     /* font-size: 4rem; */
    /* font-size: 2rem !important; */
-   top: -30%;
+   /* top: -30%; */
    z-index: -1;
    overflow: auto;
   }
@@ -123,7 +124,7 @@
     /* display: flex; */
     row-gap: 10px;
     position: relative;
-    top: -6%;
+    top: -15%;
     flex-wrap: nowrap;
     /* font-weight: bold; */
     column-gap: 1rem;
@@ -788,7 +789,7 @@ table th {
 .indicator-container {
   /* row-gap: 2rem; */
   position: relative;
-  top: -20%;
+  top: -40%;
   display: flex;
   flex-direction: column;
   row-gap: .5rem;
@@ -1333,8 +1334,9 @@ height: 2em;
  .indicator-container {
    display: flex;
     flex-direction: row;
-   align-items: flex-start;
+   align-items: flex-end;
    height: 7rem;
+   /* top: 10%; */
    width: 100% !important;
    column-gap: 2rem;
    /* flex: 0 1 65% */

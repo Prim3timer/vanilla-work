@@ -95,7 +95,7 @@
     /* height: 15rem; */
     /* background-color: red */
     /* margin: .5rem 0; */
-    position: relative;
+    position: relative;;
     /* background-color: red;  */
   top: -10%;
   }
@@ -1260,6 +1260,7 @@ height: 2em;
 
   #go-container {
     align-items: center;
+/* position: absolute; */
     width: 80vw;
     /* background-color: red; */
     top: .5%;
@@ -1335,9 +1336,9 @@ height: 2em;
  .indicator-container {
    display: flex;
     flex-direction: row;
-   align-items: flex-end;
+   align-items: center;
    height: 7rem;
-   top: 10%;
+   /* top: 10%; */
    width: 100% !important;
    column-gap: 2rem;
    /* flex: 0 1 65% */
@@ -1408,10 +1409,13 @@ height: 2em;
  #jog-up {
    /* flex: 0 1 35%;   */
    min-height: 3rem;
-   margin: 2rem 0 0 1rem;
+   margin: 0rem 0 0 1rem;
    font-size: 1rem;
    padding: .5rem;
    width: 105px;
+   /* position: absolute; */
+   /* top: 10%; */
+   /* background-color: red; */
  }
 
  
@@ -1420,7 +1424,7 @@ height: 2em;
  #exercise-cont {
    height: 6rem;
    position: relative;
-   top: -5%;
+   top: -15%;
    flex-wrap: nowrap;
    justify-content: center;
    align-items: flex-start;

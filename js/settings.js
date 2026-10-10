@@ -111,6 +111,7 @@ const addExercise = async (box, checker, array) => {
       return
     }else {
       array.push(checker.innerHTML)
+      return
     }
   } else {
     const index = array.indexOf(checker.innerHTML)
@@ -221,7 +222,8 @@ populate(userId);
 
 const editUser = async (e) => {
   e.preventDefault()
-  console.log(addArray)
+  const filterate = [ ...new Set(addArray)]
+  console.log(filterate)
   console.log(userId)
   console.log(homePage());
   const response = await fetch(`${myUrl}/workout-users`, {
@@ -242,7 +244,7 @@ const editUser = async (e) => {
     console.log(exerciseDurationHourInput.value)
     console.log(typeof(minDuration))
     const workerSettings = {
-      exercise: addArray,
+      exercise: filterate,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
       exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value),
       numberOfRounds: numberOfRoundsInput.value || 1,
@@ -251,41 +253,41 @@ const editUser = async (e) => {
     console.log(workerSettings);
     const user = users.find((user) => user._id === userId);
     
-    if (addArray.length < 1) {
-      console.log("exercise list is too short. make it at least 2");
-        alertWindow.innerHTML = "enter at least 1 exercise";
-      alertWindow.className = "verify-window";
-      alertWindow.style.position = "fixed";
-      alertWindow.style.top = "40%";
-    } else if (Number(exerciseDurationHourInput.value) + Number(exerciseDurationMinInput.value) + Number(exerciseDurationSecInput.value) == 0) {
-      alertWindow.innerHTML = `the exercise duration field must be filled.` 
-      alertWindow.className = "verify-window";
-      alertWindow.style.position = "fixed";
-      alertWindow.style.top = "40%";
+      if (addArray.length < 1) {
+        console.log("exercise list is too short. make it at least 2");
+          alertWindow.innerHTML = "enter at least 1 exercise";
+        alertWindow.className = "verify-window";
+        alertWindow.style.position = "fixed";
+        alertWindow.style.top = "40%";
+      } else if (Number(exerciseDurationHourInput.value) + Number(exerciseDurationMinInput.value) + Number(exerciseDurationSecInput.value) == 0) {
+        alertWindow.innerHTML = `the exercise duration field must be filled.` 
+        alertWindow.className = "verify-window";
+        alertWindow.style.position = "fixed";
+        alertWindow.style.top = "40%";
+          setTimeout(() => {
+          alertWindow.className = "no-verify-window";
+        }, 5000);
+      } else {
+        const respone2 = await fetch(`${myUrl}/workout-users/${localStorage.getItem("workoutUserId")}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(workerSettings),
+        });
+        homePage(userId)
+        const reply = await respone2.json();
+        // update the home page
+        alertWindow.innerHTML = reply;
+        alertWindow.className = "verify-window";
+        alertWindow.style.position = "fixed";
+        alertWindow.style.top = "40%";
         setTimeout(() => {
-        alertWindow.className = "no-verify-window";
-      }, 5000);
-    } else {
-      const respone2 = await fetch(`${myUrl}/workout-users/${localStorage.getItem("workoutUserId")}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(workerSettings),
-      });
-      homePage(userId)
-      const reply = await respone2.json();
-      // update the home page
-      alertWindow.innerHTML = reply;
-      alertWindow.className = "verify-window";
-      alertWindow.style.position = "fixed";
-      alertWindow.style.top = "40%";
-      setTimeout(() => {
-        alertWindow.className = "no-verify-window";
-      }, 3000);
-      console.log(reply);
+          alertWindow.className = "no-verify-window";
+        }, 3000);
+        console.log(reply);
 
-    }
+      }
   }
 };
 // const populate = 10

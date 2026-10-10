@@ -402,7 +402,6 @@ const getToHomePage = (e) => {
   addArray.length = 0
 
   // navbar.appendChild(navFirst);
-  console.log(addArray)
   } else mainContainer.appendChild(loginPage())
 };
 logoutLInk.addEventListener("click", getToHomePage);

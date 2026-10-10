@@ -699,4 +699,4 @@ localStorage.getItem("workoutUserId")  && doIt(id)
 
 
 
-export { homePage, firstCont };
+export { homePage, firstCont};

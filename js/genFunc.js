@@ -1,5 +1,5 @@
 import myUrl from "./myUrl.js";
-import { populate } from "./settings.js";
+import { populate, addArray } from "./settings.js";
 import { getData, performancePage } from "./performance.js";
 // import { mainSettings } from "./userSettings.js";
 
@@ -77,7 +77,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
       ) {
         if (this.id == content.className) {
           if (this.id == "settings"){
-            // populate()
+            populate(guestId)
           } else if (this.id == "usersettings"){
             const response = await fetch(`${myUrl}/workout-users`, {
               method: "GET"

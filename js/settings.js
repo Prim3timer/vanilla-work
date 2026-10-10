@@ -22,16 +22,7 @@ settingsForm.className = "exercise-settings-form";
 let alertWindow = document.createElement("p");
 alertWindow.style.fontSize = "1.5rem";
 
-const firstExercise = document.createElement("input");
-firstExercise.placeholder = "enter exercise";
-const secondExercise = document.createElement("input");
-secondExercise.placeholder = "enter exercise (optional)";
-const thirdExercise = document.createElement("input");
-thirdExercise.placeholder = "enter exercise (optional)";
-const fourthExercise = document.createElement("input");
-fourthExercise.placeholder = "enter exercise (optional)";
-const fifthExercise = document.createElement("input");
-fifthExercise.placeholder = "enter exercise (optional)";
+
 settingsCont.className = "settings";
 const breaker = document.createElement("br");
 const breaker3 = document.createElement("br");
@@ -126,40 +117,10 @@ const addExercise = async (box, checker, array) => {
     array.splice(index, 1)
     
   }
-    console.log(checker.innerHTML)
+    console.log(array)
 }
 const addArray = []
-exerciseList.map((ex) => {
-  const exercise = document.createElement("article")
-  exercise.className = "single-exercise"
-  const exerciseName = document.createElement("p")
-  exerciseName.innerHTML = ex.name
-  // console.log(ex.name)
-  const selector = document.createElement("input")
-  selector.addEventListener("change", (e) => addExercise(selector, exerciseName, addArray))
-  selector.type = "checkbox"
-  selector.className = "exercise-selector"
-  exercise.append(selector, exerciseName)
-  // exercise.style.backgroundImage = `url("images/${ex.name}.gif")`
-  console.log(exercise)
-  // exerciseList.map((ex) => {
-  //   switch (ex.name) {
-  //     case "Push-ups":
-  //       exercise.style.backgroundImage = `url("images/push-up.gif")`
-  //       break;
-  //     case "Mt. Climbers":
-  //       exercise.style.backgroundImage = `url("images/Mt-Climbers.gif")`
-  //       break;
-  //       case "Burpees":
-  //       exercise.style.backgroundImage = `url("images/Burpees.gif")`
-  //       break;
-  //     default:
-  //       exercise.style.backgroundImage = "images/push-up.gif"
-  //   }
-  // })
-  // exerciseImage.className = "exercise-image"
-  exercisesContainer.appendChild(exercise)
-})
+
 exMain.append(exercisesContainer)
 timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
 
@@ -191,15 +152,28 @@ const settingsPage = () => {
   return settingsCont;
 };
 
-const exes = [
-  firstExercise,
-  secondExercise,
-  thirdExercise,
-  fourthExercise,
-  fifthExercise,
-];
+
 // const userId = "6a6695c18889470e03c937ec";
 const userId = localStorage.getItem("workoutUserId");
+
+
+const creator = exerciseList.map((ex) => {
+  const exercise = document.createElement("article")
+  exercise.className = "single-exercise"
+  const exerciseName = document.createElement("p")
+  exerciseName.innerHTML = ex.name
+  console.log(ex.name)
+  const selector = document.createElement("input")
+  selector.addEventListener("change", (e) => addExercise(selector, exerciseName, addArray))
+  selector.type = "checkbox"
+  selector.className = "exercise-selector"
+  exercise.append(selector, exerciseName)
+
+  exercisesContainer.appendChild(exercise)
+  return {selector, ex}
+})
+
+
 
 
 const populate = async (userId) => {
@@ -223,10 +197,13 @@ const populate = async (userId) => {
   // exes[3].value = workSettings.exercise[3] || "";
   // exes[4].value = workSettings.exercise[4] || "";
 
-
-
-  
-  
+console.log(creator)
+workSettings.exercise.map((userEx) =>{
+  // creator.map(item => item.selector.checked = false)
+ const found = creator.find((item) => item.ex.name == userEx)
+ found.selector.checked = true
+ addArray.push(found.ex.name)
+})
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;
   intervalSecInput.value = workSettings.interval % 3600  % 60  < 60 ? Math.floor(workSettings.interval % 3600 % 60)  : 0;
@@ -240,7 +217,7 @@ const populate = async (userId) => {
 };
 }
 
-populate();
+populate(userId);
 
 const editUser = async (e) => {
   e.preventDefault()
@@ -315,4 +292,4 @@ const editUser = async (e) => {
 
 settingsButton.addEventListener("click", editUser);
 
-export { settingsPage, populate };
+export { settingsPage, populate, addArray };

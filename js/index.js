@@ -1,6 +1,6 @@
 import { homePage } from "./home.js";
 import { getData, performancePage } from "./performance.js";
-import { settingsPage, populate } from "./settings.js";
+import { settingsPage, populate, addArray } from "./settings.js";
 import { usersPage } from "./users.js";
 import { ElementCatcher, getSpecificPage, populateUserSettings } from "./genFunc.js";
 import { register } from "./register.js";
@@ -399,8 +399,10 @@ const getToHomePage = (e) => {
   localStorage.removeItem("workoutUserId");
   localStorage.removeItem("current-page");
   greeting.innerHTML = "";
+  addArray.length = 0
 
   // navbar.appendChild(navFirst);
+  console.log(addArray)
   } else mainContainer.appendChild(loginPage())
 };
 logoutLInk.addEventListener("click", getToHomePage);

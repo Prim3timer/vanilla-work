@@ -1260,10 +1260,10 @@ height: 2em;
 
   #go-container {
     align-items: center;
-/* position: absolute; */
+position: absolute;
     width: 80vw;
     /* background-color: red; */
-    top: .5%;
+    top: 55%;
   }
 
     #go {
@@ -1338,7 +1338,7 @@ height: 2em;
     flex-direction: row;
    align-items: center;
    height: 7rem;
-   /* top: 10%; */
+   top: -70%;
    width: 100% !important;
    column-gap: 2rem;
    /* flex: 0 1 65% */
@@ -1433,9 +1433,9 @@ height: 2em;
    row-gap: 1rem;
    max-width: 85%;
    overflow: visible; 
-   /* background-color: red; */
+   /* background-color: lavender; */
    /* overflow: auto; */
-   z-index: 10;
+   z-index: 8;
  }
 
  .exercise {

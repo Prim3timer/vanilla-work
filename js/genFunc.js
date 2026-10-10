@@ -77,7 +77,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
       ) {
         if (this.id == content.className) {
           if (this.id == "settings"){
-            populate(guestId)
+            // populate(guestId)
           } else if (this.id == "usersettings"){
             const response = await fetch(`${myUrl}/workout-users`, {
               method: "GET"

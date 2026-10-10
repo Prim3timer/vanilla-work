@@ -104,21 +104,37 @@ const getExercise = async () => {
 
 const exerciseList = await getExercise()
 const addExercise = async (box, checker, array) => {
+  console.log(array)
   const innArray = array.find((item) => item === checker.innerHTML)
-  console.log(box.checked)
-  if (box.checked){
-    if (innArray){
-      return
-    }else {
-      array.push(checker.innerHTML)
-      return
+  console.log(innArray)
+  // array.length = 0
+  if (array.length <= 5){
+
+    if (box.checked === true){
+      console.log("checked")
+      if (innArray){
+        return
+      }else {
+        array.push(checker.innerHTML)
+        return
+      }
+      console.log(array)
+    } else {
+      console.log(checker.innerHTML)
+      const index = array.indexOf(checker.innerHTML)
+      console.log(index)
+      array.splice(index, 1)
     }
   } else {
-    const index = array.indexOf(checker.innerHTML)
-    array.splice(index, 1)
-    
+       alertWindow.innerHTML = "You can't have more than 5 exercises"
+        alertWindow.className = "verify-window";
+        alertWindow.style.position = "fixed";
+        alertWindow.style.top = "40%";
+        setTimeout(() => {
+          alertWindow.className = "no-verify-window";
+        }, 3000);
   }
-    console.log(array)
+  console.log(array)
 }
 const addArray = []
 
@@ -180,6 +196,7 @@ const creator = exerciseList.map((ex) => {
 const populate = async (userId) => {
   const exerciseList = await getExercise()
   console.log(exerciseList)
+  console.log(addArray)
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -222,8 +239,9 @@ populate(userId);
 
 const editUser = async (e) => {
   e.preventDefault()
+  // const long = addArray.length
+  // addArray.length = long / 2
   const filterate = [ ...new Set(addArray)]
-  console.log(filterate)
   console.log(userId)
   console.log(homePage());
   const response = await fetch(`${myUrl}/workout-users`, {
@@ -243,6 +261,7 @@ const editUser = async (e) => {
     const minDuration = !exerciseDurationMinInput.value ? 0 : Number(exerciseDurationMinInput.value)
     console.log(exerciseDurationHourInput.value)
     console.log(typeof(minDuration))
+    
     const workerSettings = {
       exercise: filterate,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,

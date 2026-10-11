@@ -155,14 +155,24 @@ const doIt = async (id) =>  {
     
     let wakeLock = null;
     
-    async function requestWakeLock() {
-      try {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Wake Lock is active!');
-      } catch (err) {
-        console.error(`${err.name}, ${err.message}`);
-      }
+async function requestWakeLock() {
+  try {
+    // Check if the API is supported by the browser
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log('Screen Wake Lock is active!');
+      
+      // Listen for the event if the system forces a release
+      wakeLock.addEventListener('release', () => {
+        console.log('Screen Wake Lock was released');
+      });
+    } else {
+      console.warn('Wake Lock API not supported in this browser.');
     }
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+}
     
     
     
@@ -356,7 +366,7 @@ const doIt = async (id) =>  {
 const del = document.createElement("td");
 
     const saveWork = async () => {
-        // releaseWakeLock()
+        releaseWakeLock()
         
       const end = Date.now();
       let duration = Math.floor((end - begin) / 1000);
@@ -512,7 +522,7 @@ headerRow.append(
       controls.runFunc = false;
       try {
         // Request the lock
-  // requestWakeLock();
+  requestWakeLock();
   
         for (let i = 0; i < elements.length; i++) {
           const currentItemIndex = elements[i];
@@ -610,7 +620,7 @@ headerRow.append(
       } else if (controls.pause === false) {
         //console.log(runFunc)
         controls.pause = true;
-        // releaseWakeLock()
+        releaseWakeLock()
         // cycle.innerHTML = sec;
         pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
       } else {

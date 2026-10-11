@@ -413,8 +413,8 @@ flex-direction: column;
 
 
 .settings-instructions {
-  background-color: mistyrose;
-  color: darkslateblue;
+  background-color: paleturquoise;
+  /* color: darkslateblue; */
   padding: .5rem;
   min-width: 80vw;
   border-radius: 5px;
@@ -1016,7 +1016,7 @@ position: absolute;
   width: 95vw;
   align-self: center;
   border-radius: 5px;
-  background-color:powderblue;
+  background-color: paleturquoise;
   max-width: 400px;
   font-size: 1.2rem;
 }

@@ -28,7 +28,7 @@ const breaker = document.createElement("br");
 const breaker3 = document.createElement("br");
 const intervalLabel = document.createElement("label");
 intervalLabel.className = "interval-label"
-intervalLabel.innerHTML = "interval b/w exercises:";
+intervalLabel.innerHTML = "refuel duration:"
 const intervalHourInput = document.createElement("input");
 const intervalMinInput = document.createElement("input");
 const intervalSecInput = document.createElement("input");
@@ -148,7 +148,7 @@ let addArray = []
 let popArray = []
 
 exMain.append(exercisesContainer)
-timingMain.append(timerHeaderCont, intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
+timingMain.append(timerHeaderCont, exerciseDurationLabel, intervalLabel,  numberOfRoundsLabel)
 
 
  intervalHourInput.placeholder = "HH";

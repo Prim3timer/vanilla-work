@@ -1125,7 +1125,7 @@ position: absolute;
 
   .single-exercise p {
     /* background-color: rebeccapurple; */
-    font-size: 1rem;
+    font-size: .8rem;
   }
   
   
@@ -1145,6 +1145,10 @@ position: absolute;
       flex: 0 0 20%;
     height: 8rem;
    }
+
+   .single-exercise p{
+    font-size: 1.5rem;
+   }
    .login-header {
      /* background-color: red; */
    }
@@ -1159,12 +1163,13 @@ position: absolute;
 
  .interval-label, .duration-label, .number-of-rounds-label {
   width: 50vw;
+  /* background-color: red; */
+
  }
 
 
  .timing-main {
  
-  /* background-color: red; */
   width: 40vw;
   max-width: 300px;
  }

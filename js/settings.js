@@ -9,7 +9,7 @@ const settingsHeader = document.createElement("h3");
 settingsHeader.className = "settings-header"
 const settingsInstructions = document.createElement("p");
 settingsInstructions.innerHTML =
-"Please setup your exercise routine";
+"Please setup your exercise routine.";
 settingsInstructions.className = "settings-instructions"
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
@@ -182,6 +182,8 @@ const userId = localStorage.getItem("workoutUserId");
 
 const creator = exerciseList.map((ex) => {
   const exercise = document.createElement("article")
+  exercise.style.backgroundImage = `url(images/Push up.gif)`
+
   exercise.className = "single-exercise"
   const exerciseName = document.createElement("p")
   exerciseName.innerHTML = ex.name
@@ -191,16 +193,27 @@ const creator = exerciseList.map((ex) => {
   selector.type = "checkbox"
   selector.className = "exercise-selector"
   exercise.append(selector, exerciseName)
+  exercise.style.backgroundImage = `url(images/Push up.gif)`
+  console.log(exercise)
 
   exercisesContainer.appendChild(exercise)
-  return {selector, ex}
+  return {selector, ex, exercise}
+})
+creator.map(item => {
+  console.log(item.exercise)
+item.exercise.style.backgroundImage = `url(images/Push up.gif)`
+// item.exercise.style.backgroundColor = "red"
 })
 
 
 
 
+
+
 const populate = async (userId) => {
-  const exerciseList = await getExercise()
+  creator.map((item) => {
+    item.selector.checked = false
+  })
   // console.log(exerciseList)
   console.log(addArray)
   const response = await fetch(`${myUrl}/workout-users`, {
@@ -215,22 +228,18 @@ const populate = async (userId) => {
   console.log(user)
   if (user) {
     const { workSettings } = user;
-  //   exes[0].value = workSettings.exercise[0] || "";
-  // exes[1].value = workSettings.exercise[1] || "";
-  // exes[2].value = workSettings.exercise[2] || "";
-  // exes[3].value = workSettings.exercise[3] || "";
-  // exes[4].value = workSettings.exercise[4] || "";
 
 console.log(creator)
 const filArray = workSettings.exercise.map((userEx) =>{
-  // creator.map(item => item.selector.checked = false)
+  // find the item in the general exercise list that matches the user's exercise list
  const found = creator.find((item) => item.ex.name == userEx)
+//  have it checked
  found.selector.checked = true
  
   return found.ex.name
 })
 console.log(filArray)
-popArray = filArray
+// popArray = filArray
 console.log(popArray)
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;
@@ -264,13 +273,10 @@ const editUser = async (e) => {
     const hourInterval = !intervalHourInput.value ? 0 : Number(intervalHourInput.value)
     const minInterval = !intervalMinInput.value ? 0 : Number(intervalMinInput.value)
     const secInterval = !intervalSecInput.value ? 0 : Number(intervalSecInput.value)
-    // console.log(minInterval)
     
     const hourDuration = !exerciseDurationHourInput.value ? 0 : Number(exerciseDurationHourInput.value)
     const minDuration = !exerciseDurationMinInput.value ? 0 : Number(exerciseDurationMinInput.value)
-    // console.log(exerciseDurationHourInput.value)
-    // console.log(typeof(minDuration))
-    
+
     const workerSettings = {
       exercise: popArray,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
@@ -283,7 +289,7 @@ const editUser = async (e) => {
     
       if (popArray.length < 1 || popArray.length > 5) {
         console.log("exercise list is too short. make it at least 2");
-          alertWindow.innerHTML = popArray.length < 1 ?  "enter at least 1 exercise" : popArray.length > 5 ? "you can't have more than five exercises selected" : "";
+          alertWindow.innerHTML = popArray.length < 1 ?  "enter at least 1 exercise" : popArray.length > 5 ? "you can't select more than five exercises" : "";
         alertWindow.className = "verify-window";
         alertWindow.style.position = "fixed";
         alertWindow.style.top = "40%";
@@ -321,7 +327,6 @@ const editUser = async (e) => {
       }
   }
 };
-// const populate = 10
 
 settingsButton.addEventListener("click", editUser);
 

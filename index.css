@@ -416,7 +416,7 @@ flex-direction: column;
   background-color: paleturquoise;
   /* color: darkslateblue; */
   padding: .5rem;
-  min-width: 80vw;
+  min-width: 95vw;
   border-radius: 5px;
   text-align: center;
 }
@@ -1100,7 +1100,7 @@ position: absolute;
   /* background-color: red; */
   display: flex;
   justify-content: center;
-  width: 80vw;
+  width: 95vw;
   overflow: auto;
   
   max-height: 10rem;

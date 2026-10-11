@@ -17,7 +17,7 @@ const ender = document.createElement("p");
 beginner.className = "beginner";
 ender.className = "ender";
 
-durationWidth.append(scrubRate)
+// durationWidth.append(scrubRate)
 durationWidthContainer.append(beginner, durationWidth, ender)
 firstCont.className = "home";
 firstCont.id = "home-page";
@@ -177,7 +177,7 @@ async function requestWakeLock() {
     
     
     function general(currentItem, formerItem, nextItem) {
-      console.log(currentItem.firstElementChild.innerHTML.trim());
+      console.log(sec);
       console.log(`url("images/${currentItem.firstElementChild.innerHTML.trim()}.gif")`)
       let { complete } = controls;
       complete = "no";
@@ -701,6 +701,7 @@ headerRow.append(
 
 
 const homePage = (id) => {
+  sec = 0
    buttonsCont.replaceChildren();
 localStorage.getItem("workoutUserId")  && doIt(id)
    if (firstCont.children.length > 0) {

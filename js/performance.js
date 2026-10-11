@@ -197,9 +197,8 @@ const getData = async (id) => {
       const perfy = filteredData[i];
       const { duration } = perfy.exerciseTimings[0];
       
-  console.log(user.workSettings.numberOfRounds)
+  
       const { workSettings } = user;
-      console.log(workSettings)
       const endurance = document.createElement("td");
   
       endurance.innerHTML = timeClocking(duration);
@@ -235,7 +234,7 @@ const getData = async (id) => {
   
       del.addEventListener("click", () => getId(perfy._id));
       dets.append(endurance, roundCount,  mark, exDet, date);
-      console.log(perfy)
+
       for (const child of dets.children){
         child.addEventListener("click", () => showDetWindow(perfy, duration, performanceMain))
       }

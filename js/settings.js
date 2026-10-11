@@ -40,6 +40,8 @@ intervalSecInput.className = "interval-input";
 const columnElement = document.createElement("span")
 columnElement.innerHTML = ":"
 columnElement.className = "column-element"
+const timerHeaderCont = document.createElement("section")
+timerHeaderCont.className = "timer-header-cont"
 
 const hourLabel = document.createElement("label")
 const minuteLabel = document.createElement("label")
@@ -47,14 +49,15 @@ const secondLabel = document.createElement("label")
 hourLabel.innerHTML = "hr"
 minuteLabel.innerHTML = "min"
 secondLabel.innerHTML = "sec"
-hourLabel.append(breaker, intervalHourInput)
+// hourLabel.append(breaker, intervalHourInput)
+timerHeaderCont.append(hourLabel, minuteLabel, secondLabel)
 hourLabel.className = "hour-label"
 minuteLabel.className = "minute-label"
 secondLabel.className = "second-label"
-minuteLabel.append(intervalMinInput)
-secondLabel.append(intervalSecInput)
-// intervalLabel.append(breaker, intervalHourInput, columnElement, intervalMinInput, columnElement.cloneNode(true), intervalSecInput);
-intervalLabel.append(hourLabel, columnElement, minuteLabel, columnElement.cloneNode(true), secondLabel);
+// minuteLabel.append(intervalMinInput)
+// secondLabel.append(intervalSecInput)
+intervalLabel.append(breaker, intervalHourInput, columnElement, intervalMinInput, columnElement.cloneNode(true), intervalSecInput);
+// intervalLabel.append(hourLabel, columnElement, minuteLabel, columnElement.cloneNode(true), secondLabel);
 const exerciseDurationLabel = document.createElement("label");
 exerciseDurationLabel.innerHTML = "exercise duration:";
 exerciseDurationLabel.className = "duration-label"
@@ -145,7 +148,7 @@ let addArray = []
 let popArray = []
 
 exMain.append(exercisesContainer)
-timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
+timingMain.append(timerHeaderCont, intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
 
 
  intervalHourInput.placeholder = "HH";
@@ -187,22 +190,20 @@ const creator = exerciseList.map((ex) => {
   exercise.className = "single-exercise"
   const exerciseName = document.createElement("p")
   exerciseName.innerHTML = ex.name
-  console.log(ex.name)
+  
   const selector = document.createElement("input")
   selector.addEventListener("change", (e) => addExercise(selector, exerciseName, addArray))
   selector.type = "checkbox"
   selector.className = "exercise-selector"
   exercise.append(selector, exerciseName)
   exercise.style.backgroundImage = `url(images/Push up.gif)`
-  console.log(exercise)
+
 
   exercisesContainer.appendChild(exercise)
   return {selector, ex, exercise}
 })
 creator.map(item => {
-  console.log(item.exercise)
 item.exercise.style.backgroundImage = `url(images/Push up.gif)`
-// item.exercise.style.backgroundColor = "red"
 })
 
 
@@ -239,7 +240,7 @@ const filArray = workSettings.exercise.map((userEx) =>{
   return found.ex.name
 })
 console.log(filArray)
-// popArray = filArray
+popArray = filArray
 console.log(popArray)
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;
@@ -322,8 +323,6 @@ const editUser = async (e) => {
         setTimeout(() => {
           alertWindow.className = "no-verify-window";
         }, 3000);
-        console.log(reply);
-
       }
   }
 };

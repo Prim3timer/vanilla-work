@@ -189,7 +189,7 @@ const doIt = async (id) =>  {
         formerItem.style.color = "sandybrown";
         formerItem.style.boxShadow = "0em 0em 0em";
         formerItem.classList.replace("alt-ex","exercise")
-        formerItem.style.zIndex = pIndex - 1;
+        formerItem.style.zIndex = pIndex - 3;
         durationWidthContainer.remove()
         // currentItem.classList.replace("alt-ex", "exercise")
         // exerciseCont.style.justifyContent = "center"
@@ -257,6 +257,8 @@ const doIt = async (id) =>  {
             currentItem.style.backgroundColor = "teal";
             currentItem.style.zIndex = pIndex;
             currentItem.classList.replace("exercise", "alt-ex")
+            nextItem.style.zIndex = pIndex - 1
+          
        
             
             

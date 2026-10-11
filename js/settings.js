@@ -89,8 +89,12 @@ const settingsButton = document.createElement("button");
 settingsButton.className = "done-settings";
 settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
-const exMain = document.createElement("section")
+const exMain = document.createElement("fieldset")
+const legend = document.createElement("legend")
+legend.className = "select-exercise-legend"
+legend.innerHTML = "select exercises"
 exMain.className = "ex-main"
+
 const exercisesContainer = document.createElement("div");
 exercisesContainer.className = "exercises-container";
 const getExercise = async () => {
@@ -133,28 +137,29 @@ const addExercise = async (box, checker, array) => {
     
   }
   // if (array.length <= 5){
-
+    
   // } else {
-  //      alertWindow.innerHTML = "You can't have more than 5 exercises"
-  //       alertWindow.className = "verify-window";
-  //       alertWindow.style.position = "fixed";
-  //       alertWindow.style.top = "40%";
-  //       setTimeout(() => {
-  //         alertWindow.className = "no-verify-window";
-  //       }, 3000);
-  // }
-}
-let addArray = []
-let popArray = []
-
-exMain.append(exercisesContainer)
-timingMain.append(timerHeaderCont, exerciseDurationLabel, intervalLabel,  numberOfRoundsLabel)
-
-
- intervalHourInput.placeholder = "HH";
- intervalMinInput.placeholder = "MM";
- intervalSecInput.placeholder = "SS";
-  // exerciseDurationInput.placeholder = "numbers only";
+    //      alertWindow.innerHTML = "You can't have more than 5 exercises"
+    //       alertWindow.className = "verify-window";
+    //       alertWindow.style.position = "fixed";
+    //       alertWindow.style.top = "40%";
+    //       setTimeout(() => {
+      //         alertWindow.className = "no-verify-window";
+      //       }, 3000);
+      // }, 
+    }
+    let addArray = []
+    let popArray = []
+    exMain.append(legend)
+    exMain.append(exercisesContainer)
+    // exMain.insertBefore(exercisesContainer)
+    timingMain.append(timerHeaderCont, exerciseDurationLabel, intervalLabel,  numberOfRoundsLabel)
+    
+    
+    intervalHourInput.placeholder = "HH";
+    intervalMinInput.placeholder = "MM";
+    intervalSecInput.placeholder = "SS";
+    // exerciseDurationInput.placeholder = "numbers only";
   numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(

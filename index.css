@@ -1108,7 +1108,7 @@ position: absolute;
  }
 
  .select-exercise-legend {
-  font-size: 1.5rem;
+  font-size: 1rem;
  }
  
  
@@ -1140,8 +1140,11 @@ position: absolute;
   
   
   @media screen and (min-width: 499px) {
+
+    .select-exercise-legend {
+      font-size: 1.5rem;
+    }
     .exercises-container{
-      /* background-color: red; */
       height: 10rem;
     }
     .ex-main {

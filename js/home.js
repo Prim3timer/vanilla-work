@@ -383,7 +383,7 @@ const del = document.createElement("td");
             ? ((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100
             : 100,
       };
-
+const endurance = document.createElement("td")
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
           roundCount.innerHTML = Math.floor(anExercise / exercise.length) + " of " + numberOfRounds;

@@ -103,40 +103,46 @@ const getExercise = async () => {
 }
 
 const exerciseList = await getExercise()
-const addExercise = async (box, checker, array) => {
-  console.log(array)
-  const innArray = array.find((item) => item === checker.innerHTML)
-  console.log(innArray)
-  // array.length = 0
-  if (array.length <= 5){
 
-    if (box.checked === true){
-      console.log("checked")
-      if (innArray){
-        return
-      }else {
-        array.push(checker.innerHTML)
-        return
-      }
-      console.log(array)
-    } else {
-      console.log(checker.innerHTML)
-      const index = array.indexOf(checker.innerHTML)
-      console.log(index)
-      array.splice(index, 1)
+
+const addExercise = async (box, checker, array) => {
+  const innArray = array.find((item) => item === checker.innerHTML)
+  // array.length = 0
+  if (box.checked === true){
+    console.log(innArray)
+    console.log("checked")
+    if (innArray){
+      console.log("inside array")
+      return
+    }else {
+      console.log("not inide array")
+      popArray.push(checker.innerHTML)
+      return
     }
   } else {
-       alertWindow.innerHTML = "You can't have more than 5 exercises"
-        alertWindow.className = "verify-window";
-        alertWindow.style.position = "fixed";
-        alertWindow.style.top = "40%";
-        setTimeout(() => {
-          alertWindow.className = "no-verify-window";
-        }, 3000);
+    console.log("unchecked")
+    console.log(checker.innerHTML)
+    // array = [...new Set(popArray)]
+    const index = popArray.indexOf(checker.innerHTML)
+    console.log(index)
+    popArray.splice(index, 1)
+    console.log(popArray)
+    
   }
-  console.log(array)
+  // if (array.length <= 5){
+
+  // } else {
+  //      alertWindow.innerHTML = "You can't have more than 5 exercises"
+  //       alertWindow.className = "verify-window";
+  //       alertWindow.style.position = "fixed";
+  //       alertWindow.style.top = "40%";
+  //       setTimeout(() => {
+  //         alertWindow.className = "no-verify-window";
+  //       }, 3000);
+  // }
 }
-const addArray = []
+let addArray = []
+let popArray = []
 
 exMain.append(exercisesContainer)
 timingMain.append(intervalLabel, exerciseDurationLabel, numberOfRoundsLabel)
@@ -195,7 +201,7 @@ const creator = exerciseList.map((ex) => {
 
 const populate = async (userId) => {
   const exerciseList = await getExercise()
-  console.log(exerciseList)
+  // console.log(exerciseList)
   console.log(addArray)
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
@@ -216,12 +222,16 @@ const populate = async (userId) => {
   // exes[4].value = workSettings.exercise[4] || "";
 
 console.log(creator)
-workSettings.exercise.map((userEx) =>{
+const filArray = workSettings.exercise.map((userEx) =>{
   // creator.map(item => item.selector.checked = false)
  const found = creator.find((item) => item.ex.name == userEx)
  found.selector.checked = true
- addArray.push(found.ex.name)
+ 
+  return found.ex.name
 })
+console.log(filArray)
+popArray = filArray
+console.log(popArray)
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;
   intervalSecInput.value = workSettings.interval % 3600  % 60  < 60 ? Math.floor(workSettings.interval % 3600 % 60)  : 0;
@@ -239,11 +249,10 @@ populate(userId);
 
 const editUser = async (e) => {
   e.preventDefault()
-  // const long = addArray.length
-  // addArray.length = long / 2
-  const filterate = [ ...new Set(addArray)]
-  console.log(userId)
-  console.log(homePage());
+  console.log(popArray)
+
+  // console.log(userId)
+  // console.log(homePage());
   const response = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -255,29 +264,32 @@ const editUser = async (e) => {
     const hourInterval = !intervalHourInput.value ? 0 : Number(intervalHourInput.value)
     const minInterval = !intervalMinInput.value ? 0 : Number(intervalMinInput.value)
     const secInterval = !intervalSecInput.value ? 0 : Number(intervalSecInput.value)
-    console.log(minInterval)
+    // console.log(minInterval)
     
     const hourDuration = !exerciseDurationHourInput.value ? 0 : Number(exerciseDurationHourInput.value)
     const minDuration = !exerciseDurationMinInput.value ? 0 : Number(exerciseDurationMinInput.value)
-    console.log(exerciseDurationHourInput.value)
-    console.log(typeof(minDuration))
+    // console.log(exerciseDurationHourInput.value)
+    // console.log(typeof(minDuration))
     
     const workerSettings = {
-      exercise: filterate,
+      exercise: popArray,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
       exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value),
       numberOfRounds: numberOfRoundsInput.value || 1,
     };
-    console.log(workerSettings);
-    console.log(workerSettings);
+    // console.log(workerSettings);
+    // console.log(workerSettings);
     const user = users.find((user) => user._id === userId);
     
-      if (addArray.length < 1) {
+      if (popArray.length < 1 || popArray.length > 5) {
         console.log("exercise list is too short. make it at least 2");
-          alertWindow.innerHTML = "enter at least 1 exercise";
+          alertWindow.innerHTML = popArray.length < 1 ?  "enter at least 1 exercise" : popArray.length > 5 ? "you can't have more than five exercises selected" : "";
         alertWindow.className = "verify-window";
         alertWindow.style.position = "fixed";
         alertWindow.style.top = "40%";
+           setTimeout(() => {
+          alertWindow.className = "no-verify-window";
+        }, 5000);
       } else if (Number(exerciseDurationHourInput.value) + Number(exerciseDurationMinInput.value) + Number(exerciseDurationSecInput.value) == 0) {
         alertWindow.innerHTML = `the exercise duration field must be filled.` 
         alertWindow.className = "verify-window";

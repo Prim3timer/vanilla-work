@@ -1104,7 +1104,7 @@ position: absolute;
   overflow: auto;
   
   max-height: 10rem;
-  padding: 1rem;
+  padding: .5rem;
  }
 
  .select-exercise-legend {

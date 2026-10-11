@@ -1010,7 +1010,7 @@ position: absolute;
   justify-content: flex-end;
   /* width: 80vw; */
   /* margin: .5rem 0; */
-  align-items: flex-end;
+  align-items: center;
   overflow: auto;
   padding: .5rem;
   width: 95vw;
@@ -1030,7 +1030,7 @@ position: absolute;
 
 .timer-header-cont {
   width: 95vw;
-  column-gap: 2rem;
+  column-gap: 1.5rem;
   height: 60px;
   align-items: flex-end;
   padding: 0 1rem;

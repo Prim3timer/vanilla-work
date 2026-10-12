@@ -416,10 +416,15 @@ flex-direction: column;
   background-color: paleturquoise;
   /* color: darkslateblue; */
   padding: .5rem;
-  min-width: 95vw;
+  /* min-width: 95vw; */
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
 }
+
+/* .settings-instructions {
+  background-color: green;
+} */
+
 
 .reg-form {
   display: flex;
@@ -1216,7 +1221,7 @@ position: absolute;
   .settings-instructions {
 text-align: center;
 /* background-color: red; */
-  width: 5vw !important;
+  /* width: 5vw !important; */
 }
   
   .register-prompt {

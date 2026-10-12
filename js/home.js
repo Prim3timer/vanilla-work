@@ -259,7 +259,7 @@ async function requestWakeLock() {
             // formerItem.removeChild(durationWidth)
             console.log(window.innerWidth)
             console.log(window.innerWidth)
-            nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
+            // nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
             console.log(currentItem)
             const imageName = currentItem.firstElementChild.innerHTML.trim()
             currentItem.style.backgroundImage = `url("images/${imageName.trim()}.gif")`

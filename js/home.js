@@ -1,707 +1,706 @@
 import myUrl from "./myUrl.js";
 import { timeClocking} from "./genFunc.js";
 import { performancePage } from "./performance.js";
-let ID;
-let sec = 0;
-const condo = localStorage.getItem("workoutUserId")
+
+
 const firstCont = document.createElement("div");
-const firstContent = document.createElement("p");
-const durationWidthContainer = document.createElement("div");
-durationWidthContainer.className = "duration-width-container"
-const durationWidth = document.createElement("article")
-durationWidth.className = "duration-width"
-const scrubRate = document.createElement("p")
-scrubRate.className = "scrub-rate"
-const beginner = document.createElement("p");
-const ender = document.createElement("p");
-beginner.className = "beginner";
-ender.className = "ender";
-
-// durationWidth.append(scrubRate)
-durationWidthContainer.append(beginner, durationWidth, ender)
-firstCont.className = "home";
-firstCont.id = "home-page";
-firstContent.innerHTML = "home";
-console.log(sec)
-
-const buttonsCont = document.createElement("div");
-const current = new Date().getFullYear();
-const footer = document.getElementById("footer")
-footer.innerHTML = `&copy ${current} Amalu Productions`
-const doIt = async (id) =>  {
-  
-  const greeting = document.getElementsByClassName("p");
-  greeting.className = "greeting";
-  let pauser = document.createElement("button");
-  let jogup = document.createElement("p");
-  let goContainer = document.createElement("div");
-  let cycle = document.createElement("p");
-  cycle.className = "indicator";
-  cycle.id = "clock";
-  goContainer.id = "go-container";
-  let go = document.createElement("p");
-  go.id = "go";
-  let pIndex = 10;
-  let saver = document.createElement("button");
-  saver.className = "saver";
-  saver.innerHTML = `<i class="fa-solid fa-save"></i>`;
-  let rightContainer = document.createElement("section");
-  rightContainer.className = "right-container";
-  let copyRight = document.createElement("span");
-  let copyRight2 = document.createElement("span");
-  let rounder = document.createElement("p");
-  
-  rightContainer.append(copyRight, copyRight2);
-  let begin;
-  let alertWindow = document.createElement("p");
-  alertWindow.style.fontSize = "1.5rem";
-  alertWindow.style.position = "fixed";
-  alertWindow.style.top = "40%";
-  let integrityCheck = 0;
-  alertWindow.style.fontSize = "1.5rem";
-  alertWindow.className = "no-verify-window";
-  const userId = localStorage.getItem("workoutUserId") || "";
-  console.log(userId)
-  const response = await fetch(`${myUrl}/workout-users`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  
-  const users = await response.json();
-  const user = users.find((user) => user._id === userId);
-  console.log(user);
-  
-  // greeting.innerHTML = `welcome, ${user.username}`;
-  let round = 1;
-  if (user){
-    const { exercise, interval, exercisesDuration, numberOfRounds } =
-    user.workSettings;
-    
-    rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
-    
-    let controls = {
-      pause: false,
-      rewind: false,
-      complete: "no",
-      runFunc: true,
-    };
-    
-    let exerciseCont = document.createElement("article");
-    exerciseCont.id = "exercise-cont";
-    
-    // hard coat for now
-    const elements = exercise.map((exercise) => {
-      const newP = document.createElement("div");
-      newP.className = "exercise";
-      const exerciseHeader = document.createElement("p")
-      const exGif = document.createElement("img")
-      
-      
-      newP.appendChild(exerciseHeader)
-      exerciseHeader.innerHTML = exercise;
-      newP.style.backgroundImage = `url("images/Mt-Climbers.gif")`;
-      exerciseCont.appendChild(newP);
-      return newP;
-    });
-    console.log(elements[0]);
-    
-    const noExAlertElement = document.createElement("p");
-    noExAlertElement.style.minWidth = "80%";
-    noExAlertElement.innerHTML =
-    `Click on "settings" tab to set up your exercise routine`;
-    noExAlertElement.style.color = "darkslateblue"
-    noExAlertElement.style.fontSize = "1.5rem"
-    if (exerciseCont.children.length === 0) {
-      exerciseCont.appendChild(noExAlertElement);
-      exerciseCont.style.backgroundColor = "gainsboro";
-      exerciseCont.style.justifyContent = "center";
-      exerciseCont.style.alignItems = "center";
-      exerciseCont.style.color = "white"
-      exerciseCont.style.fontSize = "1.5rem";
-    }
-    
-    goContainer.append(go);
-    jogup.id = "jog-up";
-    jogup.innerHTML = "Mark Time";
-    const dashboard = document.createElement("div");
-    dashboard.className = "indicator-container";
-    const clockAndRound = document.createElement("div");
-    clockAndRound.className = "clock-and-round";
-    clockAndRound.append(cycle, rounder);
-    dashboard.append(clockAndRound, jogup);
-    // dashboard.style.backgroundColor = "yellow";
-    const statusContainer = document.createElement("section");
-    statusContainer.id = "status-container";
-    statusContainer.append(dashboard);
-    
-    // clock.style.display = "flex";
-    // clock.style.border = "2px solid brown";
-    
-    // clock.className = "indicator";
-    // clock.id = "clock";
-    rounder.className = "indicator";
-    rounder.id = "round";
-    cycle.innerHTML = sec;
-    // dashboard.append(cycle, rounder, jogup);
-    let rewind = document.createElement("button");
-    let forward = document.createElement("button");
-    let roundUp = document.createElement("button");
-    
-    jogup.style.transitionDuration = "500ms";
-    
-    let RoundInspector = 3000;
-    
-    let wakeLock = null;
-    
-async function requestWakeLock() {
-  try {
-    // Check if the API is supported by the browser
-    if ('wakeLock' in navigator) {
-      wakeLock = await navigator.wakeLock.request('screen');
-      console.log('Screen Wake Lock is active!');
-      
-      // Listen for the event if the system forces a release
-      wakeLock.addEventListener('release', () => {
-        console.log('Screen Wake Lock was released');
-      });
-    } else {
-      console.warn('Wake Lock API not supported in this browser.');
-    }
-  } catch (err) {
-    console.error(`${err.name}, ${err.message}`);
-  }
-}
-    
-    
-    
-    function general(currentItem, formerItem, nextItem) {
-      console.log(sec);
-      console.log(`url("images/${currentItem.firstElementChild.innerHTML.trim()}.gif")`)
-      let { complete } = controls;
-      complete = "no";
-      return new Promise((resolve, reject) => {
-        
-        currentItem.style.transform = "scale(1 )";
-        currentItem.style.backgroundColor = window.innerWidth > 499 ? "teal" : "maroon";  
-        currentItem.style.color = "yellow"
-        currentItem.style.boxShadow = "0em 0em 0em";
-        currentItem.style.zIndex = pIndex;
-        currentItem.style.marginLeft = 0
-
-        console.log(currentItem.innerHTML)
-        
-        
-        
-        formerItem.style.transform = "scale(1 )";
-        formerItem.style.backgroundColor = "maroon";
-        formerItem.style.color = "sandybrown";
-        formerItem.style.boxShadow = "0em 0em 0em";
-        formerItem.classList.replace("alt-ex","exercise")
-        formerItem.style.zIndex = pIndex - 3;
-        durationWidthContainer.remove()
-        // currentItem.classList.replace("alt-ex", "exercise")
-        // exerciseCont.style.justifyContent = "center"
-        // exerciseCont.style.backgroundColor = "yellow"
-        
-        jogup.style.transitionProperty = "scale width flexWidth";
-        jogup.style.transform = "scale(2)";
-        jogup.style.color = "yellow";
-        jogup.style.backgroundColor = "green";
-        jogup.style.border = "2px solid green";
-        jogup.style.width = "100px";
-        // jogup.style.flex = "0 0 15%";
-        jogup.style.boxShadow = "0.6em 0.6em .6em gray";
-        
-        // change the content of the set element back to  the 'round' variable
-        // after 3 seconds
-        setTimeout(() => {
-          go.style.transitionProperty = "font-size width height";
-          go.style.transitionDuration = "400ms";
-          go.style.fontSize = "3rem";
-          go.style.height = "4rem";
-          go.style.whiteSpace = "no-wrap";
-          go.style.margin = "1rem 0";
-          go.innerHTML = `Let's Work!`;
-        }, RoundInspector);
-        // transfrorm the current excercise element after interval elapses
-        // an interval to check for when sec exceeds interval
-        
-        const { exercise, interval, exercisesDuration } = user.workSettings;
-        console.log(exercisesDuration)
-        ID = window.setInterval(() => {
-          if (sec === interval) {
-            ender.innerHTML = timeClocking(exercisesDuration);
-            durationWidth.appendChild(scrubRate)
-            setInterval(() => {
-              beginner.innerHTML = timeClocking(sec - interval);
-              scrubRate.style.width = `${((sec - interval) / exercisesDuration) * 100}%`
-            }, 100)
-            // nextItem.style.marginLeft = "8rem  "
-            // buttonsCont.style.justifyContent = "center"
-            // the current excercise is currentItem
-            // currentItem.style.position = "relative";
-            // It is used to make the current excersise appear above
-            //  previous and next excercises
-            // currentItem.style.left = `${sec * Math.sin(sec * 4 * Math.PI)}px
-            
-            
-            const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
-            console.log(exerciseIndex);
-            const indexDiff =
-            exercise.length - exercise.indexOf(currentItem.innerHTML);
-            const indexSum =
-            exercise.length - exercise.indexOf(currentItem.innerHTML);
-                  
-            formerItem.style.color = "sandybrown";
-            formerItem.style.backgroundColor = "maroon";
-            // formerItem.removeChild(durationWidth)
-            console.log(window.innerWidth)
-            console.log(window.innerWidth)
-            // nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
-            console.log(currentItem)
-            const imageName = currentItem.firstElementChild.innerHTML.trim()
-            currentItem.style.backgroundImage = `url("images/${imageName.trim()}.gif")`
-            currentItem.appendChild(durationWidthContainer)
-            currentItem.style.backgroundColor = "teal";
-            currentItem.style.zIndex = pIndex;
-            currentItem.classList.replace("exercise", "alt-ex")
-            nextItem.style.zIndex = pIndex - 1
-          
-       
-            
-            
-            jogup.style.transform = "scale(1) translateX(10px)";
-            jogup.style.color = "sandybrown";
-            jogup.style.backgroundColor = "maroon";
-            jogup.style.border = "2px solid maroon";
-            jogup.style.boxShadow = "0em 0em 0em";
-            
-            // the variable for the z-index.
-            pIndex++;
-            let round = 1;
-            //clearInterval(planks);
-          }
-          
-          // pausing the app.
-          cycle.innerHTML = timeClocking(sec);
-          if (controls.pause === true) {
-            
-            
-            return;
-          } else {
-            sec++;
-            integrityCheck++;
-          }
-    
-          // giving the athlete notice to start preparing for the next excercise
-          if (
-            (sec > interval - 3 && sec <= interval) ||
-            (sec > exercisesDuration + interval - 3 &&
-              sec <= exercisesDuration + interval - 3)
-          ) {
-            cycle.style.color = "darkorange";
-            //cycle element's color goes back to normal after warning.
-          } else cycle.style.color = "purple";
-    
-          // if one exercise is complete, change controls.complete to "yes" and if controls.complete = 'yes', resolve the promise
-          if (sec > exercisesDuration + interval) {
-            complete = "yes";
-            if (complete === "yes") {
-              resolve(console.log("resolved"));
-              if (integrityCheck / (exercisesDuration + interval) < 1) {
-                anExercise = anExercise;
-                console.log("don't add");
-              } else {
-                anExercise++;
-              }
-              clearInterval(ID);
-            } else reject("not resolved");
-            integrityCheck = 0;
-            sec = 0;
-          }
-          // rate of sec change
-          if (sec > 4) {
-            cycle.style.transitionProperty =
-              "font-size, height, width, border, grid-template-columns";
-            cycle.style.transitionDuration = "2s";
-            cycle.style.fontSize = sec > 10000 ? "3.5rem" : "5.5rem";
-            cycle.style.height = "6rem";
-            cycle.style.width = "15rem";
-            cycle.style.border = "2px solid brown";
-            cycle.style.gridTemplateColumns = "5.5rem";
-            cycle.transitTimingFunction = "ease-in";
-            cycle.style.visibility = "visible";
-            // cycle.style.transitionDelay = '.5s'
-    
-            rounder.style.transitionProperty =
-              "font-size, height, border-right, border-top, border-bottom, flex";
-            rounder.style.transitionDuration = "2s, 2s, .6s, .6s, 2s, 1.5s";
-            // rounder.style.transitionDuration = '.5s'
-            rounder.style.transitTimingFunction = "ease-in";
-    
-            rounder.style.visibility = "visible";
-            rounder.style.fontSize = "3rem";
-            rounder.style.height = "5rem";
-            rounder.style.borderRight = "2px solid brown";
-            rounder.style.borderTop = "2px solid brown";
-            rounder.style.borderTop = "2px solid brown";
-            rounder.style.flex = "0 1 40%";
-            // rounder.style.backgroundColor = "gold";
-            // rounder.style.transitionDelay = '.1s'
-    
-            dashboard.style.transitionProperty = "flex";
-            dashboard.style.transitionDuration = "1.2s";
-            // dashboard.transitTimingFunction = 'ease-in'
-            // dashboard.style.flex = "0 1 20%";
-            // dashboard.style.transitionDelay = '.2s'
-          }
-        }, 1000);
-      });
-    }
-
-
- 
-const del = document.createElement("td");
-
-    const saveWork = async () => {
-        releaseWakeLock()
-        
-      const end = Date.now();
-      let duration = Math.floor((end - begin) / 1000);
-      console.log(begin);
-      console.log(duration);
-    
-      const { exercise, numberOfRounds, exercisesDuration, interval, oneExercise } =
-      user.workSettings;
-      const filteredSec = sec - interval > 0 ? sec - interval : 0
-        console.log(exercisesDuration)
-      const workDets = {
-        exerciseTimings: [
-          { duration },
-          { exercisesDuration },
-          { interval },
-          { numberOfRounds: round },
-        ],
-        oneExercise: anExercise,
-        date: new Date(),
-        userId,
-        exerciseDets: exercise,
-        mark:
-          // do not exceede 100% no matter how many times an exercise is repeated.
-          anExercise / (exercise.length * numberOfRounds) <= 1
-          // sec - interval is making sure we only taking the time spent doing an exercise and excluding the mark time period
-            ? ((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100
-            : 100,
-      };
-const endurance = document.createElement("td")
-          endurance.innerHTML = timeClocking(duration);
-          const roundCount = document.createElement("td");
-          roundCount.innerHTML = Math.floor(anExercise / exercise.length) + " of " + numberOfRounds;
-          const mark = document.createElement("td");
-          const exDet = document.createElement("td");
-          // if the mark is less than or equal to 100%, display it else disply 0
-          mark.innerHTML =  anExercise / (exercise.length * numberOfRounds) <= 1
-            ? parseFloat(((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100).toFixed(2)
-            : 100,
-          exDet.innerHTML = exercise.length;
-      
-          const date = document.createElement("td");
-          date.innerHTML = new Date().toLocaleString("en-US", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-            // hour: "numeric",
-            // minute: "numeric",
-            // second: "numeric",
-          });
-          del.style.fontSize = "1.5rem";
-      
-          // const removeVerifier = () => {
-          //   verifyWindow.className = "no-veriy-window";
-          // };
-          del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-console.log(performancePage())
-
-const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
-const entryCount = performancePage().getElementsByClassName("perf-entry-count")[0]
-
-const newRow = document.createElement("tr")
-
-// newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
-newRow.append(endurance, roundCount, mark, exDet, date)
-if (tbody){
-  console.log("thers is tbody")
-  tbody.appendChild(newRow)
-  entryCount.innerHTML = `(${tbody.children.length -1} entries)`
-  for (let i = 1; i < tbody.children.length; i++){
-    tbody.children[i].style.backgroundColor = `${i % 2 !== 0 ? "white" : "khaki"}`;
-  }
-  console.log(tbody)
-  console.log(tbody.children.length) 
-} else {
-  const perTable = document.createElement("table")
-  perTable.className = "perf-table"
-  const headerRow = document.createElement("tr");
-  const dHeader = document.createElement("th");
-const rHeader = document.createElement("th");
-const exHeader = document.createElement("th");
-const exDetsHeader = document.createElement("th");
-const markHeader = document.createElement("th");
-const dateHeader = document.createElement("th");
-
-dHeader.innerHTML = "duraton";
-rHeader.innerHTML = "rounds completed";
-exHeader.innerHTML = "overall effort (%)";
-exDetsHeader.innerHTML = "exercises per round";
-// markHeader.innerHTML = "mark (%)";
-dateHeader.innerHTML = "date";
-
-headerRow.append(
-  dHeader,
-  rHeader,
-  exHeader,
-  exDetsHeader,
-  // markHeader,
-  dateHeader,
-);
-
-  const tbody = document.createElement("tbody")
-  tbody.className = "performance-tbody"
-  tbody.append(headerRow, newRow)
-   entryCount.innerHTML = `(${tbody.children.length -1} entries)`
-  for (let i = 1; i < tbody.children.length; i++){
-    tbody.children[i].style.backgroundColor = `${i % 2 === 0 ? "Khaki" : "white"}`;
-  }
-  perTable.append(tbody)
-  performancePage().appendChild(perTable)
-
-}
-
-
-
-      console.log(workDets);
-      console.log(myUrl);
-      const response = await fetch(`${myUrl}/performance`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(workDets),
-      });
-      // const content = await response.json();
-      // console.log(content);
-      const reply = await response.json();
-      console.log(reply);
-      alertWindow.innerHTML = reply;
-      alertWindow.className = "verify-window";
-      setTimeout(() => {
-        alertWindow.className = "no-verify-window";
-      }, 3000);
-    };
-    
-    saver.addEventListener("click", saveWork);
-    let anExercise = 0;
-  
-  
-  //   document.addEventListener('visibilitychange', async () => {
-  //   if (wakeLock !== null && document.visibilityState === 'visible') {
-  //     await requestWakeLock();
-  //   }
-  // });
-  
-  const releaseWakeLock = async () => {
-    if (wakeLock !== null){
-      // wakeLock.relaeas()
-      wakeLock = null
-    }
-  }
-    
-    let reality = async () => {
-      controls.runFunc = false;
-      try {
-        // Request the lock
-  requestWakeLock();
-  
-        for (let i = 0; i < elements.length; i++) {
-          const currentItemIndex = elements[i];
-          // if i = 0 subtract array length from index else subtract 1 from index``
-          const formerIemIndex = elements[i == 0 ? i + elements.length - 1 : i - 1];
-          const nextItemIndex =  elements.indexOf(elements[i + 1]) !== -1 ? elements[i + 1] : elements[0];
-          // elements[i + 1].style.marginLeft = "8rem"
-          for (let j = 0; j < elements.length; j++) {
-            elements[j].addEventListener("click", () => {
-              i = elements.indexOf(elements[j]) - 1;
-              // remove marginLeft from the element after the clicked element
-              elements[j + 1 < elements.length ? j + 1 : 0].style.marginLeft = "0rem";
-              console.log(integrityCheck);
-              // get to the end of the exercise so the next one can quickly begin
-              sec = interval + exercisesDuration;
-              // reverse many other events at the push of any axercise
-              elements.map((element) => {
-                if (
-                  // if any exercise is Active, deactivate it
-                element.className === "alt-ex"
-                ) {
-                  element.classList.replace("alt-ex", "exercise")
-                } else if (
-                  // if any exercise is in transition to invactive state, make it instantly inactive
-                  element.style.backgroundColor == "teal"
-                  // elements.indexOf(element) != i - 1
-                ) {
-                  element.style.backgroundColor = "maroon";
-                  element.style.color = "sandybrown";
-                }
-              });
-            });
-          }
-    
-          // looping through the elements in the exercise array
-          await general(currentItemIndex, formerIemIndex, nextItemIndex);
-        }
-      } catch (error) {
-        console.log(error + " at all");
-      } finally {
-        // increase the value of round after a set is complete
-        round++;
-        // temporarily change the content of the set element to 'well done'
-    
-        if (round == numberOfRounds - 1) {
-          go.innerHTML = `the home stretch!`;
-          RoundInspector = 10000;
-        } else if (round === numberOfRounds) {
-          RoundInspector = 15000;
-    
-          go.innerHTML = "one more round!";
-        } else {
-          RoundInspector = 3000;
-          go.innerHTML = `Well Done!`;
-        }
-        // if five sets have not been completed, keep repeating the sets
-        //by invoking the reality function
-        console.log(numberOfRounds, round);
-        if (round <= numberOfRounds) {
-          rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
-          reality();
-          //   round++;
-        } else {
-          // otherwise change the content of the set element to 'congrats'
-          // and shutdown the programm
-          go.innerHTML = "Congrats!";
-          round = numberOfRounds;
-          rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
-          sec = 0;
-          cycle.innerHTML = "0:00";
-          pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
-          controls.runFunc = true;
-          elements.map((element) => {
-            if (element.style.backgroundColor == "green") {
-              element.style.backgroundColor = "maroon";
-              element.style.color = "sandybrown";
-              element.style.boxShadow = "0em 0em 0em";
-              element.style.transform = "scale(1)";
-            }
-          });
-          saveWork();
-        }
-      }
-    };
-    
-    pauser.addEventListener("click", () => {
-      let { runFunc, pause } = controls;
-      //the unique condition is desinged to let this event
-      //handler invoke the reality function just once
-      if (runFunc === true) {
-        begin = Date.now();
-        pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
-        // requestWakeLock()
-        reality();
-      } else if (controls.pause === false) {
-        //console.log(runFunc)
-        controls.pause = true;
-        releaseWakeLock()
-        // cycle.innerHTML = sec;
-        pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
-      } else {
-        // requestWakeLock()
-        controls.pause = false;
-        pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
-      }
-    });
-    
-    roundUp.addEventListener("click", () => {
-      if (round === numberOfRounds) {
-        round = 0;
-        rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
-      }
-      if (round < numberOfRounds) {
-        round++;
-        rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
-      }
-    });
-    
-    rewind.addEventListener("click", decreaser);
-    
-    function decreaser(e) {
-      sec -= 1;
-      setInterval(() => {
-        if (sec < 1) sec = 0;
-        cycle.innerHTML = timeClocking(sec);
-      }, 10);
-    }
-    
-    let increaser = (e) => {
-      sec += 1;
-      setInterval(() => {
-        if (sec > exercisesDuration + interval - 1)
-          sec = exercisesDuration + interval;
-        cycle.innerHTML = timeClocking(sec);
-      }, 10);
-    };
-    
-    forward.addEventListener("click", increaser);
-    //  let controls = {
-    //   pause: false,
-    //   rewind: false,
-    //   complete: "no",
-    //   runFunc: true,
-    // };
-    pauser.id = "halter";
-    pauser.innerHTML = `<i class="fa-solid fa-play">`;
-    rewind.innerHTML = `<i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i>`;
-    rewind.id = "backer";
-    forward.id = "foward";
-    forward.innerHTML = `<i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i>`;
-    roundUp.id = "round-up";
-    roundUp.innerHTML = `<i class="fa-solid fa-forward-fast">`;
-  
-    // for (let i = 0; i < buttonsCont.children.length; i++) {}
-  
-    buttonsCont.append(rewind, pauser, forward, roundUp, saver);
-    console.log(buttonsCont.children.length);
-    buttonsCont.id = "buttons";
-    buttonsCont.style.display = "flex";
-    buttonsCont.style.flex = "0 1 15%";
-    buttonsCont.style.width = "90vw";
-  
-  
-    firstCont.append(
-      exerciseCont,
-      statusContainer,
-      goContainer,
-      rightContainer,
-      buttonsCont,
-      alertWindow,
-    );
-    
-  }
-
-}
-
-
 const homePage = (id) => {
-  sec = 0
+  let ID;
+  let sec = 0;
+  const condo = localStorage.getItem("workoutUserId")
+  const firstContent = document.createElement("p");
+  const durationWidthContainer = document.createElement("div");
+  durationWidthContainer.className = "duration-width-container"
+  const durationWidth = document.createElement("article")
+  durationWidth.className = "duration-width"
+  const scrubRate = document.createElement("p")
+  scrubRate.className = "scrub-rate"
+  const beginner = document.createElement("p");
+  const ender = document.createElement("p");
+  beginner.className = "beginner";
+  ender.className = "ender";
+  
+  // durationWidth.append(scrubRate)
+  durationWidthContainer.append(beginner, durationWidth, ender)
+  firstCont.className = "home";
+  firstCont.id = "home-page";
+  firstContent.innerHTML = "home";
+  console.log(sec)
+  
+  const buttonsCont = document.createElement("div");
+  const current = new Date().getFullYear();
+  const footer = document.getElementById("footer")
+  footer.innerHTML = `&copy ${current} Amalu Productions`
+  const doIt = async (id) =>  {
+    
+    const greeting = document.getElementsByClassName("p");
+    greeting.className = "greeting";
+    let pauser = document.createElement("button");
+    let jogup = document.createElement("p");
+    let goContainer = document.createElement("div");
+    let cycle = document.createElement("p");
+    cycle.className = "indicator";
+    cycle.id = "clock";
+    goContainer.id = "go-container";
+    let go = document.createElement("p");
+    go.id = "go";
+    let pIndex = 10;
+    let saver = document.createElement("button");
+    saver.className = "saver";
+    saver.innerHTML = `<i class="fa-solid fa-save"></i>`;
+    let rightContainer = document.createElement("section");
+    rightContainer.className = "right-container";
+    let copyRight = document.createElement("span");
+    let copyRight2 = document.createElement("span");
+    let rounder = document.createElement("p");
+    
+    rightContainer.append(copyRight, copyRight2);
+    let begin;
+    let alertWindow = document.createElement("p");
+    alertWindow.style.fontSize = "1.5rem";
+    alertWindow.style.position = "fixed";
+    alertWindow.style.top = "40%";
+    let integrityCheck = 0;
+    alertWindow.style.fontSize = "1.5rem";
+    alertWindow.className = "no-verify-window";
+    const userId = localStorage.getItem("workoutUserId") || "";
+    console.log(userId)
+    const response = await fetch(`${myUrl}/workout-users`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    
+    const users = await response.json();
+    const user = users.find((user) => user._id === userId);
+    console.log(user);
+    
+    // greeting.innerHTML = `welcome, ${user.username}`;
+    let round = 1;
+    if (user){
+      const { exercise, interval, exercisesDuration, numberOfRounds } =
+      user.workSettings;
+      
+      rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+      
+      let controls = {
+        pause: false,
+        rewind: false,
+        complete: "no",
+        runFunc: true,
+      };
+      
+      let exerciseCont = document.createElement("article");
+      exerciseCont.id = "exercise-cont";
+      
+      // hard coat for now
+      const elements = exercise.map((exercise) => {
+        const newP = document.createElement("div");
+        newP.className = "exercise";
+        const exerciseHeader = document.createElement("p")
+        const exGif = document.createElement("img")
+        
+        
+        newP.appendChild(exerciseHeader)
+        exerciseHeader.innerHTML = exercise;
+        newP.style.backgroundImage = `url("images/Mt-Climbers.gif")`;
+        exerciseCont.appendChild(newP);
+        return newP;
+      });
+      console.log(elements[0]);
+      
+      const noExAlertElement = document.createElement("p");
+      noExAlertElement.style.minWidth = "80%";
+      noExAlertElement.innerHTML =
+      `Click on "settings" tab to set up your exercise routine`;
+      noExAlertElement.style.color = "darkslateblue"
+      noExAlertElement.style.fontSize = "1.5rem"
+      if (exerciseCont.children.length === 0) {
+        exerciseCont.appendChild(noExAlertElement);
+        exerciseCont.style.backgroundColor = "gainsboro";
+        exerciseCont.style.justifyContent = "center";
+        exerciseCont.style.alignItems = "center";
+        exerciseCont.style.color = "white"
+        exerciseCont.style.fontSize = "1.5rem";
+      }
+      
+      goContainer.append(go);
+      jogup.id = "jog-up";
+      jogup.innerHTML = "Mark Time";
+      const dashboard = document.createElement("div");
+      dashboard.className = "indicator-container";
+      const clockAndRound = document.createElement("div");
+      clockAndRound.className = "clock-and-round";
+      clockAndRound.append(cycle, rounder);
+      dashboard.append(clockAndRound, jogup);
+      // dashboard.style.backgroundColor = "yellow";
+      const statusContainer = document.createElement("section");
+      statusContainer.id = "status-container";
+      statusContainer.append(dashboard);
+      
+      // clock.style.display = "flex";
+      // clock.style.border = "2px solid brown";
+      
+      // clock.className = "indicator";
+      // clock.id = "clock";
+      rounder.className = "indicator";
+      rounder.id = "round";
+      cycle.innerHTML = sec;
+      // dashboard.append(cycle, rounder, jogup);
+      let rewind = document.createElement("button");
+      let forward = document.createElement("button");
+      let roundUp = document.createElement("button");
+      
+      jogup.style.transitionDuration = "500ms";
+      
+      let RoundInspector = 3000;
+      
+      let wakeLock = null;
+      
+  async function requestWakeLock() {
+    try {
+      // Check if the API is supported by the browser
+      if ('wakeLock' in navigator) {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Screen Wake Lock is active!');
+        
+        // Listen for the event if the system forces a release
+        wakeLock.addEventListener('release', () => {
+          console.log('Screen Wake Lock was released');
+        });
+      } else {
+        console.warn('Wake Lock API not supported in this browser.');
+      }
+    } catch (err) {
+      console.error(`${err.name}, ${err.message}`);
+    }
+  }
+      
+      
+      
+      function general(currentItem, formerItem, nextItem) {
+        console.log(sec);
+        console.log(`url("images/${currentItem.firstElementChild.innerHTML.trim()}.gif")`)
+        let { complete } = controls;
+        complete = "no";
+        return new Promise((resolve, reject) => {
+          
+          currentItem.style.transform = "scale(1 )";
+          currentItem.style.backgroundColor = window.innerWidth > 499 ? "teal" : "maroon";  
+          currentItem.style.color = "yellow"
+          currentItem.style.boxShadow = "0em 0em 0em";
+          currentItem.style.zIndex = pIndex;
+          currentItem.style.marginLeft = 0
+  
+          console.log(currentItem.innerHTML)
+          
+          
+          
+          formerItem.style.transform = "scale(1 )";
+          formerItem.style.backgroundColor = "maroon";
+          formerItem.style.color = "sandybrown";
+          formerItem.style.boxShadow = "0em 0em 0em";
+          formerItem.classList.replace("alt-ex","exercise")
+          formerItem.style.zIndex = pIndex - 3;
+          durationWidthContainer.remove()
+          // currentItem.classList.replace("alt-ex", "exercise")
+          // exerciseCont.style.justifyContent = "center"
+          // exerciseCont.style.backgroundColor = "yellow"
+          
+          jogup.style.transitionProperty = "scale width flexWidth";
+          jogup.style.transform = "scale(2)";
+          jogup.style.color = "yellow";
+          jogup.style.backgroundColor = "green";
+          jogup.style.border = "2px solid green";
+          jogup.style.width = "100px";
+          // jogup.style.flex = "0 0 15%";
+          jogup.style.boxShadow = "0.6em 0.6em .6em gray";
+          
+          // change the content of the set element back to  the 'round' variable
+          // after 3 seconds
+          setTimeout(() => {
+            go.style.transitionProperty = "font-size width height";
+            go.style.transitionDuration = "400ms";
+            go.style.fontSize = "3rem";
+            go.style.height = "4rem";
+            go.style.whiteSpace = "no-wrap";
+            go.style.margin = "1rem 0";
+            go.innerHTML = `Let's Work!`;
+          }, RoundInspector);
+          // transfrorm the current excercise element after interval elapses
+          // an interval to check for when sec exceeds interval
+          
+          const { exercise, interval, exercisesDuration } = user.workSettings;
+          console.log(exercisesDuration)
+          ID = window.setInterval(() => {
+            if (sec === interval) {
+              ender.innerHTML = timeClocking(exercisesDuration);
+              durationWidth.appendChild(scrubRate)
+              setInterval(() => {
+                beginner.innerHTML = timeClocking(sec - interval);
+                scrubRate.style.width = `${((sec - interval) / exercisesDuration) * 100}%`
+              }, 100)
+              // nextItem.style.marginLeft = "8rem  "
+              // buttonsCont.style.justifyContent = "center"
+              // the current excercise is currentItem
+              // currentItem.style.position = "relative";
+              // It is used to make the current excersise appear above
+              //  previous and next excercises
+              // currentItem.style.left = `${sec * Math.sin(sec * 4 * Math.PI)}px
+              
+              
+              const exerciseIndex = exercise.indexOf(currentItem.innerHTML);
+              console.log(exerciseIndex);
+              const indexDiff =
+              exercise.length - exercise.indexOf(currentItem.innerHTML);
+              const indexSum =
+              exercise.length - exercise.indexOf(currentItem.innerHTML);
+                    
+              formerItem.style.color = "sandybrown";
+              formerItem.style.backgroundColor = "maroon";
+              // formerItem.removeChild(durationWidth)
+              console.log(window.innerWidth)
+              console.log(window.innerWidth)
+              // nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
+              console.log(currentItem)
+              const imageName = currentItem.firstElementChild.innerHTML.trim()
+              currentItem.style.backgroundImage = `url("images/${imageName.trim()}.gif")`
+              currentItem.appendChild(durationWidthContainer)
+              currentItem.style.backgroundColor = "teal";
+              currentItem.style.zIndex = pIndex;
+              currentItem.classList.replace("exercise", "alt-ex")
+              nextItem.style.zIndex = pIndex - 1
+            
+         
+              
+              
+              jogup.style.transform = "scale(1) translateX(10px)";
+              jogup.style.color = "sandybrown";
+              jogup.style.backgroundColor = "maroon";
+              jogup.style.border = "2px solid maroon";
+              jogup.style.boxShadow = "0em 0em 0em";
+              
+              // the variable for the z-index.
+              pIndex++;
+              let round = 1;
+              //clearInterval(planks);
+            }
+            
+            // pausing the app.
+            cycle.innerHTML = timeClocking(sec);
+            if (controls.pause === true) {
+              
+              
+              return;
+            } else {
+              sec++;
+              integrityCheck++;
+            }
+      
+            // giving the athlete notice to start preparing for the next excercise
+            if (
+              (sec > interval - 3 && sec <= interval) ||
+              (sec > exercisesDuration + interval - 3 &&
+                sec <= exercisesDuration + interval - 3)
+            ) {
+              cycle.style.color = "darkorange";
+              //cycle element's color goes back to normal after warning.
+            } else cycle.style.color = "purple";
+      
+            // if one exercise is complete, change controls.complete to "yes" and if controls.complete = 'yes', resolve the promise
+            if (sec > exercisesDuration + interval) {
+              complete = "yes";
+              if (complete === "yes") {
+                resolve(console.log("resolved"));
+                if (integrityCheck / (exercisesDuration + interval) < 1) {
+                  anExercise = anExercise;
+                  console.log("don't add");
+                } else {
+                  anExercise++;
+                }
+                clearInterval(ID);
+              } else reject("not resolved");
+              integrityCheck = 0;
+              sec = 0;
+            }
+            // rate of sec change
+            if (sec > 4) {
+              cycle.style.transitionProperty =
+                "font-size, height, width, border, grid-template-columns";
+              cycle.style.transitionDuration = "2s";
+              cycle.style.fontSize = sec > 10000 ? "3.5rem" : "5.5rem";
+              cycle.style.height = "6rem";
+              cycle.style.width = "15rem";
+              cycle.style.border = "2px solid brown";
+              cycle.style.gridTemplateColumns = "5.5rem";
+              cycle.transitTimingFunction = "ease-in";
+              cycle.style.visibility = "visible";
+              // cycle.style.transitionDelay = '.5s'
+      
+              rounder.style.transitionProperty =
+                "font-size, height, border-right, border-top, border-bottom, flex";
+              rounder.style.transitionDuration = "2s, 2s, .6s, .6s, 2s, 1.5s";
+              // rounder.style.transitionDuration = '.5s'
+              rounder.style.transitTimingFunction = "ease-in";
+      
+              rounder.style.visibility = "visible";
+              rounder.style.fontSize = "3rem";
+              rounder.style.height = "5rem";
+              rounder.style.borderRight = "2px solid brown";
+              rounder.style.borderTop = "2px solid brown";
+              rounder.style.borderTop = "2px solid brown";
+              rounder.style.flex = "0 1 40%";
+              // rounder.style.backgroundColor = "gold";
+              // rounder.style.transitionDelay = '.1s'
+      
+              dashboard.style.transitionProperty = "flex";
+              dashboard.style.transitionDuration = "1.2s";
+              // dashboard.transitTimingFunction = 'ease-in'
+              // dashboard.style.flex = "0 1 20%";
+              // dashboard.style.transitionDelay = '.2s'
+            }
+          }, 1000);
+        });
+      }
+  
+  
+   
+  const del = document.createElement("td");
+  
+      const saveWork = async () => {
+          releaseWakeLock()
+          
+        const end = Date.now();
+        let duration = Math.floor((end - begin) / 1000);
+        console.log(begin);
+        console.log(duration);
+      
+        const { exercise, numberOfRounds, exercisesDuration, interval, oneExercise } =
+        user.workSettings;
+        const filteredSec = sec - interval > 0 ? sec - interval : 0
+          console.log(exercisesDuration)
+        const workDets = {
+          exerciseTimings: [
+            { duration },
+            { exercisesDuration },
+            { interval },
+            { numberOfRounds: round },
+          ],
+          oneExercise: anExercise,
+          date: new Date(),
+          userId,
+          exerciseDets: exercise,
+          mark:
+            // do not exceede 100% no matter how many times an exercise is repeated.
+            anExercise / (exercise.length * numberOfRounds) <= 1
+            // sec - interval is making sure we only taking the time spent doing an exercise and excluding the mark time period
+              ? ((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100
+              : 100,
+        };
+  const endurance = document.createElement("td")
+            endurance.innerHTML = timeClocking(duration);
+            const roundCount = document.createElement("td");
+            roundCount.innerHTML = Math.floor(anExercise / exercise.length) + " of " + numberOfRounds;
+            const mark = document.createElement("td");
+            const exDet = document.createElement("td");
+            // if the mark is less than or equal to 100%, display it else disply 0
+            mark.innerHTML =  anExercise / (exercise.length * numberOfRounds) <= 1
+              ? parseFloat(((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100).toFixed(2)
+              : 100,
+            exDet.innerHTML = exercise.length;
+        
+            const date = document.createElement("td");
+            date.innerHTML = new Date().toLocaleString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+              // hour: "numeric",
+              // minute: "numeric",
+              // second: "numeric",
+            });
+            del.style.fontSize = "1.5rem";
+        
+            // const removeVerifier = () => {
+            //   verifyWindow.className = "no-veriy-window";
+            // };
+            del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+  console.log(performancePage())
+  
+  const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
+  const entryCount = performancePage().getElementsByClassName("perf-entry-count")[0]
+  
+  const newRow = document.createElement("tr")
+  
+  // newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
+  newRow.append(endurance, roundCount, mark, exDet, date)
+  if (tbody){
+    console.log("thers is tbody")
+    tbody.appendChild(newRow)
+    entryCount.innerHTML = `(${tbody.children.length -1} entries)`
+    for (let i = 1; i < tbody.children.length; i++){
+      tbody.children[i].style.backgroundColor = `${i % 2 !== 0 ? "white" : "khaki"}`;
+    }
+    console.log(tbody)
+    console.log(tbody.children.length) 
+  } else {
+    const perTable = document.createElement("table")
+    perTable.className = "perf-table"
+    const headerRow = document.createElement("tr");
+    const dHeader = document.createElement("th");
+  const rHeader = document.createElement("th");
+  const exHeader = document.createElement("th");
+  const exDetsHeader = document.createElement("th");
+  const markHeader = document.createElement("th");
+  const dateHeader = document.createElement("th");
+  
+  dHeader.innerHTML = "duraton";
+  rHeader.innerHTML = "rounds completed";
+  exHeader.innerHTML = "overall effort (%)";
+  exDetsHeader.innerHTML = "exercises per round";
+  // markHeader.innerHTML = "mark (%)";
+  dateHeader.innerHTML = "date";
+  
+  headerRow.append(
+    dHeader,
+    rHeader,
+    exHeader,
+    exDetsHeader,
+    // markHeader,
+    dateHeader,
+  );
+  
+    const tbody = document.createElement("tbody")
+    tbody.className = "performance-tbody"
+    tbody.append(headerRow, newRow)
+     entryCount.innerHTML = `(${tbody.children.length -1} entries)`
+    for (let i = 1; i < tbody.children.length; i++){
+      tbody.children[i].style.backgroundColor = `${i % 2 === 0 ? "Khaki" : "white"}`;
+    }
+    perTable.append(tbody)
+    performancePage().appendChild(perTable)
+  
+  }
+  
+  
+  
+        console.log(workDets);
+        console.log(myUrl);
+        const response = await fetch(`${myUrl}/performance`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(workDets),
+        });
+        // const content = await response.json();
+        // console.log(content);
+        const reply = await response.json();
+        console.log(reply);
+        alertWindow.innerHTML = reply;
+        alertWindow.className = "verify-window";
+        setTimeout(() => {
+          alertWindow.className = "no-verify-window";
+        }, 3000);
+      };
+      
+      saver.addEventListener("click", saveWork);
+      let anExercise = 0;
+    
+    
+    //   document.addEventListener('visibilitychange', async () => {
+    //   if (wakeLock !== null && document.visibilityState === 'visible') {
+    //     await requestWakeLock();
+    //   }
+    // });
+    
+    const releaseWakeLock = async () => {
+      if (wakeLock !== null){
+        // wakeLock.relaeas()
+        wakeLock = null
+      }
+    }
+      
+      let reality = async () => {
+        controls.runFunc = false;
+        try {
+          // Request the lock
+    requestWakeLock();
+    
+          for (let i = 0; i < elements.length; i++) {
+            const currentItemIndex = elements[i];
+            // if i = 0 subtract array length from index else subtract 1 from index``
+            const formerIemIndex = elements[i == 0 ? i + elements.length - 1 : i - 1];
+            const nextItemIndex =  elements.indexOf(elements[i + 1]) !== -1 ? elements[i + 1] : elements[0];
+            // elements[i + 1].style.marginLeft = "8rem"
+            for (let j = 0; j < elements.length; j++) {
+              elements[j].addEventListener("click", () => {
+                i = elements.indexOf(elements[j]) - 1;
+                // remove marginLeft from the element after the clicked element
+                elements[j + 1 < elements.length ? j + 1 : 0].style.marginLeft = "0rem";
+                console.log(integrityCheck);
+                // get to the end of the exercise so the next one can quickly begin
+                sec = interval + exercisesDuration;
+                // reverse many other events at the push of any axercise
+                elements.map((element) => {
+                  if (
+                    // if any exercise is Active, deactivate it
+                  element.className === "alt-ex"
+                  ) {
+                    element.classList.replace("alt-ex", "exercise")
+                  } else if (
+                    // if any exercise is in transition to invactive state, make it instantly inactive
+                    element.style.backgroundColor == "teal"
+                    // elements.indexOf(element) != i - 1
+                  ) {
+                    element.style.backgroundColor = "maroon";
+                    element.style.color = "sandybrown";
+                  }
+                });
+              });
+            }
+      
+            // looping through the elements in the exercise array
+            await general(currentItemIndex, formerIemIndex, nextItemIndex);
+          }
+        } catch (error) {
+          console.log(error + " at all");
+        } finally {
+          // increase the value of round after a set is complete
+          round++;
+          // temporarily change the content of the set element to 'well done'
+      
+          if (round == numberOfRounds - 1) {
+            go.innerHTML = `the home stretch!`;
+            RoundInspector = 10000;
+          } else if (round === numberOfRounds) {
+            RoundInspector = 15000;
+      
+            go.innerHTML = "one more round!";
+          } else {
+            RoundInspector = 3000;
+            go.innerHTML = `Well Done!`;
+          }
+          // if five sets have not been completed, keep repeating the sets
+          //by invoking the reality function
+          console.log(numberOfRounds, round);
+          if (round <= numberOfRounds) {
+            rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+            reality();
+            //   round++;
+          } else {
+            // otherwise change the content of the set element to 'congrats'
+            // and shutdown the programm
+            go.innerHTML = "Congrats!";
+            round = numberOfRounds;
+            rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+            sec = 0;
+            cycle.innerHTML = "0:00";
+            pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
+            controls.runFunc = true;
+            elements.map((element) => {
+              if (element.style.backgroundColor == "green") {
+                element.style.backgroundColor = "maroon";
+                element.style.color = "sandybrown";
+                element.style.boxShadow = "0em 0em 0em";
+                element.style.transform = "scale(1)";
+              }
+            });
+            saveWork();
+          }
+        }
+      };
+      
+      pauser.addEventListener("click", () => {
+        let { runFunc, pause } = controls;
+        //the unique condition is desinged to let this event
+        //handler invoke the reality function just once
+        if (runFunc === true) {
+          begin = Date.now();
+          pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
+          // requestWakeLock()
+          reality();
+        } else if (controls.pause === false) {
+          //console.log(runFunc)
+          controls.pause = true;
+          releaseWakeLock()
+          // cycle.innerHTML = sec;
+          pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
+        } else {
+          // requestWakeLock()
+          controls.pause = false;
+          pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
+        }
+      });
+      
+      roundUp.addEventListener("click", () => {
+        if (round === numberOfRounds) {
+          round = 0;
+          rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+        }
+        if (round < numberOfRounds) {
+          round++;
+          rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+        }
+      });
+      
+      rewind.addEventListener("click", decreaser);
+      
+      function decreaser(e) {
+        sec -= 1;
+        setInterval(() => {
+          if (sec < 1) sec = 0;
+          cycle.innerHTML = timeClocking(sec);
+        }, 10);
+      }
+      
+      let increaser = (e) => {
+        sec += 1;
+        setInterval(() => {
+          if (sec > exercisesDuration + interval - 1)
+            sec = exercisesDuration + interval;
+          cycle.innerHTML = timeClocking(sec);
+        }, 10);
+      };
+      
+      forward.addEventListener("click", increaser);
+      //  let controls = {
+      //   pause: false,
+      //   rewind: false,
+      //   complete: "no",
+      //   runFunc: true,
+      // };
+      pauser.id = "halter";
+      pauser.innerHTML = `<i class="fa-solid fa-play">`;
+      rewind.innerHTML = `<i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i>`;
+      rewind.id = "backer";
+      forward.id = "foward";
+      forward.innerHTML = `<i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i>`;
+      roundUp.id = "round-up";
+      roundUp.innerHTML = `<i class="fa-solid fa-forward-fast">`;
+    
+      // for (let i = 0; i < buttonsCont.children.length; i++) {}
+    
+      buttonsCont.append(rewind, pauser, forward, roundUp, saver);
+      console.log(buttonsCont.children.length);
+      buttonsCont.id = "buttons";
+      buttonsCont.style.display = "flex";
+      buttonsCont.style.flex = "0 1 15%";
+      buttonsCont.style.width = "90vw";
+    
+    
+      firstCont.append(
+        exerciseCont,
+        statusContainer,
+        goContainer,
+        rightContainer,
+        buttonsCont,
+        alertWindow,
+      );
+      
+    }
+  
+  }
    buttonsCont.replaceChildren();
 localStorage.getItem("workoutUserId")  && doIt(id)
    if (firstCont.children.length > 0) {

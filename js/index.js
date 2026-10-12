@@ -267,7 +267,7 @@ headerRow.append(
   }
   finally {
     replyElement.innerHTML = ""
-    window.location.reload()
+    // window.location.reload()
   }
 };
 

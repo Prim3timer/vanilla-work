@@ -84,21 +84,19 @@ usersFilter.addEventListener("change", (e) => {
         minute: "numeric",
         second: "numeric",
       });
-      // joined.innerHTML = filterate[i]._id;
     }
     settingsAnchor.innerHTML = "usersettings";
     settingsAnchor.id = "usersettings";
     settingsAnchor.addEventListener("click", instanceer.shower);
     usersList.append(nameElement, rolesElement, joined, settingsElement);
-    table.append(usersList);
+    for (let j = 0; j <= users.length; j++){
+      table.children[i].remove()
+    }
+      table.append(headerRow, usersList)
   }
-  console.log(filterate)
-  
 })
 const usersPage = () => {
   entryCount.innerHTML = `(${users.length})`;
-  // const userBox = document.getElementsByClassName("users")[0];
-  // userBox.style.marginTop = "3rem";
 
   const nameHeader = document.createElement("th");
   const emailHeader = document.createElement("th");

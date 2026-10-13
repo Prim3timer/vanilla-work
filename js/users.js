@@ -30,31 +30,73 @@ filterButton.innerHTML = "filter"
 usersFilter.className = "users-filter"
 filterForm.append(addExerciseButton, usersFilter, filterButton)
 userBox.append(filterForm, usersHeader, entryCount);
+const table = document.createElement("table");
+const tableBody = document.createElement("tbody");
+const headerRow = document.createElement("tr");
 
 const containers = [mainSettings()];
 
 const userSettingsId = localStorage.getItem("userSettingsId")
 
+const getUsers = async () => {
+  const response = await fetch(`${myUrl}/workout-users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  
+  });
+  const users = await response.json()
+  return users
 
-const response = await fetch(`${myUrl}/workout-users`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
-const users = await response.json();
-const usersPage = () => {
-  usersFilter.addEventListener("change", () => {
-  console.log("angiee")
+}
+
+const users = await getUsers();
+
+
+usersFilter.addEventListener("change", (e) => {
+  console.log(e.target.value)
+  const filterate = users.filter((user) => user.username.includes(e.target.value))
+    for (let i = 0; i < filterate.length; i++) {
+    const usersList = document.createElement("tr");
+    usersList.style.backgroundColor = `${i % 2 === 0 ? "white" : "palegreen"}`;
+    const nameElement = document.createElement("td");
+    const joined = document.createElement("td");
+    const rolesElement = document.createElement("td");
+    const settingsElement = document.createElement("td");
+    const settingsAnchor = document.createElement("a");
+    
+    const instanceer = new ElementCatcher(containers, mainContainer, filterate[i]._id);
+    settingsElement.addEventListener("click", () => {
+      localStorage.setItem("userSettingsId", filterate[i]._id);
+      localStorage.setItem("user", JSON.stringify(filterate[i]))
+    });
+    settingsElement.appendChild(settingsAnchor);
+    for (let j = 0; j < 4; j++) {
+      nameElement.innerHTML = filterate[i].username;
+      rolesElement.innerHTML = Object.keys(filterate[i].roles).join(", ");
+      joined.innerHTML = new Date(filterate[i].joined).toLocaleString("en-US", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      });
+    }
+    settingsAnchor.innerHTML = "usersettings";
+    settingsAnchor.id = "usersettings";
+    settingsAnchor.addEventListener("click", instanceer.shower);
+    usersList.append(nameElement, rolesElement, joined, settingsElement);
+    for (let j = 0; j <= users.length; j++){
+      table.children[i].remove()
+    }
+      table.append(headerRow, usersList)
+  }
 })
-  console.log(users);
+const usersPage = () => {
   entryCount.innerHTML = `(${users.length})`;
-  // const userBox = document.getElementsByClassName("users")[0];
-  // userBox.style.marginTop = "3rem";
-  const table = document.createElement("table");
-  const tableBody = document.createElement("tbody");
-  const headerRow = document.createElement("tr");
 
   const nameHeader = document.createElement("th");
   const emailHeader = document.createElement("th");
@@ -69,7 +111,6 @@ const usersPage = () => {
   table.appendChild(tableBody);
   userBox.appendChild(table);
   
-  //   entryCount.innerHTML = `(${users.length})`;
   
   for (let i = 0; i < users.length; i++) {
     const usersList = document.createElement("tr");

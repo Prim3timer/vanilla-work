@@ -159,7 +159,7 @@ const addExercise = async (box, checker, array) => {
   numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(
-    filterForm,
+    // filterForm,
     exMain,
    timingMain
   );

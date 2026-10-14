@@ -65,6 +65,13 @@ exerciseDurationLabel.className = "duration-label"
 const timingMain = document.createElement("div")
 timingMain.className = "timing-main"
 
+  const filterForm = document.createElement("form")
+  const filterButton = document.createElement("span")
+  filterButton.className = "filter-button"
+  filterForm.className = "filter-form"
+  filterButton.innerHTML = "filter"
+  const usersFilter = document.createElement("input")
+filterForm.append(usersFilter, filterButton)
 
 
 const exerciseDurationHourInput = document.createElement("input");
@@ -136,17 +143,6 @@ const addExercise = async (box, checker, array) => {
     console.log(popArray)
     
   }
-  // if (array.length <= 5){
-    
-  // } else {
-    //      alertWindow.innerHTML = "You can't have more than 5 exercises"
-    //       alertWindow.className = "verify-window";
-    //       alertWindow.style.position = "fixed";
-    //       alertWindow.style.top = "40%";
-    //       setTimeout(() => {
-      //         alertWindow.className = "no-verify-window";
-      //       }, 3000);
-      // }, 
     }
     let addArray = []
     let popArray = []
@@ -163,12 +159,8 @@ const addExercise = async (box, checker, array) => {
   numberOfRoundsInput.placeholder = "numbers only";
 const settingsPage = () => {
   settingsForm.append(
+    filterForm,
     exMain,
-    // firstExercise,
-    // secondExercise,
-    // thirdExercise,
-    // fourthExercise,
-    // fifthExercise,
    timingMain
   );
   settingsCont.append(
@@ -286,7 +278,7 @@ const editUser = async (e) => {
     const workerSettings = {
       exercise: popArray,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
-      exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value),
+      exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) != 0 ? (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) : 950400,
       numberOfRounds: numberOfRoundsInput.value || 1,
     };
     // console.log(workerSettings);
@@ -300,14 +292,6 @@ const editUser = async (e) => {
         alertWindow.style.position = "fixed";
         alertWindow.style.top = "40%";
            setTimeout(() => {
-          alertWindow.className = "no-verify-window";
-        }, 5000);
-      } else if (Number(exerciseDurationHourInput.value) + Number(exerciseDurationMinInput.value) + Number(exerciseDurationSecInput.value) == 0) {
-        alertWindow.innerHTML = `the exercise duration field must be filled.` 
-        alertWindow.className = "verify-window";
-        alertWindow.style.position = "fixed";
-        alertWindow.style.top = "40%";
-          setTimeout(() => {
           alertWindow.className = "no-verify-window";
         }, 5000);
       } else {

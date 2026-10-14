@@ -235,7 +235,7 @@ const homePage = (id) => {
           console.log(exercisesDuration)
           ID = window.setInterval(() => {
             if (sec === interval) {
-              ender.innerHTML = timeClocking(exercisesDuration);
+              ender.innerHTML = exercisesDuration === 950400 ? "mooch" : timeClocking(exercisesDuration);
               durationWidth.appendChild(scrubRate)
               setInterval(() => {
                 beginner.innerHTML = timeClocking(sec - interval);
@@ -369,7 +369,14 @@ const homePage = (id) => {
   const del = document.createElement("td");
   
       const saveWork = async () => {
-          releaseWakeLock()
+
+  wakeLock.release()
+    .then(() => {
+      wakeLock = null;
+      console.log('Screen Wake Lock released.');
+    });
+
+   
           
         const end = Date.now();
         let duration = Math.floor((end - begin) / 1000);
@@ -514,18 +521,12 @@ const homePage = (id) => {
     //   }
     // });
     
-    const releaseWakeLock = async () => {
-      if (wakeLock !== null){
-        // wakeLock.relaeas()
-        wakeLock = null
-      }
-    }
-      
+   
       let reality = async () => {
         controls.runFunc = false;
         try {
           // Request the lock
-    requestWakeLock();
+  
     
           for (let i = 0; i < elements.length; i++) {
             const currentItemIndex = elements[i];
@@ -586,6 +587,7 @@ const homePage = (id) => {
           console.log(numberOfRounds, round);
           if (round <= numberOfRounds) {
             rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
+            
             reality();
             //   round++;
           } else {
@@ -612,18 +614,29 @@ const homePage = (id) => {
       };
       
       pauser.addEventListener("click", () => {
+          // requestWakeLock();
+         if (wakeLock !== null) {
+  wakeLock.release()
+    .then(() => {
+      wakeLock = null;
+      console.log('Screen Wake Lock released.');
+    });
+}
         let { runFunc, pause } = controls;
         //the unique condition is desinged to let this event
         //handler invoke the reality function just once
         if (runFunc === true) {
+         
           begin = Date.now();
           pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
-          // requestWakeLock()
+          requestWakeLock()
           reality();
         } else if (controls.pause === false) {
+          
           //console.log(runFunc)
           controls.pause = true;
-          releaseWakeLock()
+       
+   
           // cycle.innerHTML = sec;
           pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
         } else {

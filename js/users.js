@@ -17,11 +17,11 @@ const usersHeader = document.createElement("h3");
 usersHeader.innerHTML = "users";
 usersHeader.className = "users-header"
 const entryCount = document.createElement("h3");
-const filterForm = document.createElement("form")
-filterForm.className = "filter-form"
-const usersFilter = document.createElement("input")
-const filterButton = document.createElement("span")
-const addExerciseButton = document.createElement("button")
+  const filterForm = document.createElement("form")
+  filterForm.className = "filter-form"
+  const usersFilter = document.createElement("input")
+  const filterButton = document.createElement("span")
+  const addExerciseButton = document.createElement("button")
 addExerciseButton.addEventListener("click", instanceer.shower)
 addExerciseButton.id = "add-exercise"
 addExerciseButton.innerHTML = "add exercise"
@@ -55,9 +55,10 @@ const getUsers = async () => {
 const users = await getUsers();
 
 
-usersFilter.addEventListener("change", (e) => {
-  console.log(e.target.value)
+usersFilter.addEventListener("input", (e) => {
   const filterate = users.filter((user) => user.username.includes(e.target.value))
+  console.log(filterate)
+  entryCount.innerHTML = `(${filterate.length})`
     for (let i = 0; i < filterate.length; i++) {
     const usersList = document.createElement("tr");
     usersList.style.backgroundColor = `${i % 2 === 0 ? "white" : "palegreen"}`;
@@ -90,10 +91,12 @@ usersFilter.addEventListener("change", (e) => {
     settingsAnchor.addEventListener("click", instanceer.shower);
     usersList.append(nameElement, rolesElement, joined, settingsElement);
     for (let j = 0; j <= users.length; j++){
-      table.children[i].remove()
+      // console.log(table.children[j])
+      table.children[i]?.remove()
     }
       table.append(headerRow, usersList)
   }
+  // users = filterate
 })
 const usersPage = () => {
   entryCount.innerHTML = `(${users.length})`;

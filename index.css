@@ -1061,8 +1061,9 @@ position: absolute;
   line-height: 40px;
   /* background-color: red; */
  }
- .duration-label>*:nth-child(2), .number-of-rounds-label input {
+ .duration-label>*:nth-child(2), .interval-label>*:nth-child(2), .number-of-rounds-label input {
   margin-left: .5rem;
+/* background-color: red; */
  }
 
  .show-password-label {
@@ -1146,7 +1147,7 @@ position: absolute;
   
   
   
-  @media screen and (min-width: 499px) {
+  @media screen and (min-width: 740px) {
 
     .select-exercise-legend {
       font-size: 1.5rem;
@@ -1336,7 +1337,7 @@ position: absolute;
 
     #buttons {
       display: flex;
-      align-items: flex-start;
+      align-items: flex-end;
   /* background-color: lightcyan; */
     margin: .5rem;
     top: 8%;
@@ -1465,7 +1466,7 @@ position: absolute;
  #exercise-cont {
    height: 6rem;
    position: relative;
-   top: -15%;
+   top: -20%;
    flex-wrap: nowrap;
    justify-content: center;
    align-items: flex-start;
@@ -1477,6 +1478,7 @@ position: absolute;
    /* background-color: lavender; */
    /* overflow: auto; */
    z-index: 8;
+   /* background-color: red; */
  }
 
  .exercise {

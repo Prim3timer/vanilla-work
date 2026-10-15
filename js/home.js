@@ -259,10 +259,7 @@ const homePage = (id) => {
                     
               formerItem.style.color = "sandybrown";
               formerItem.style.backgroundColor = "maroon";
-              // formerItem.removeChild(durationWidth)
-              console.log(window.innerWidth)
-              console.log(window.innerWidth)
-              // nextItem.style.marginLeft = window.innerWidth > 499 ? currentItem.getBoundingClientRect().width + "px" : "0rem";
+
               console.log(currentItem)
               const imageName = currentItem.firstElementChild.innerHTML.trim()
               currentItem.style.backgroundImage = `url("images/${imageName.trim()}.gif")`
@@ -601,11 +598,10 @@ const homePage = (id) => {
             pauser.innerHTML = `<i class="fa-solid fa-play"></i>`;
             controls.runFunc = true;
             elements.map((element) => {
-              if (element.style.backgroundColor == "green") {
-                element.style.backgroundColor = "maroon";
-                element.style.color = "sandybrown";
-                element.style.boxShadow = "0em 0em 0em";
-                element.style.transform = "scale(1)";
+              if (element.className == "alt-ex") {
+                  durationWidthContainer.remove()
+          element.classList.replace("alt-ex", "exercise")
+
               }
             });
             saveWork();

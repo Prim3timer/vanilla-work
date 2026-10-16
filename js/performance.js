@@ -14,7 +14,7 @@ performanceMain.className = "performance";
 const performanceHeader = document.createElement("h3");
 //   performanceHeader.className = "performance-header";
 //   performanceHeader.style.marginTop = "4rem";
-performanceHeader.innerHTML = "performance";
+// performanceHeader.innerHTML = "performance";
 performanceHeader.className = "performance-header";
 performanceMain.appendChild(performanceHeader);
 performanceMain.appendChild(entryCount);

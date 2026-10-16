@@ -171,7 +171,7 @@ const settingsPage = () => {
     settingsButton,
     alertWindow,
   );
-  settingsHeader.innerHTML = "settings";
+  // settingsHeader.innerHTML = "settings";
   return settingsCont;
 };
 

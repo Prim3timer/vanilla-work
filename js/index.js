@@ -102,6 +102,9 @@ const handleRefresh = async () => {
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
   navbar.children[i].style.display = "inline"
+  if (navbar.children[i].id == currentPageInnerText){
+    navbar.children[i].style.textDecoration = "underline"
+  }
 }
 navFirst.style.display = "none"
     populate(guestId)
@@ -271,7 +274,7 @@ headerRow.append(
   }
 };
 
-// listerner for the popstate event
+// listening for the popstate event
 window.addEventListener("popstate", e =>{ 
   const mainCont = document.getElementById("main-page")
   if (e.state !== null){

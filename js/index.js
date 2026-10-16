@@ -101,6 +101,7 @@ const handleRefresh = async () => {
   if (guestId) {
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
+  
   navbar.children[i].style.display = "inline"
   if (navbar.children[i].id == currentPageInnerText){
     navbar.children[i].style.textDecoration = "underline"
@@ -218,6 +219,8 @@ headerRow.append(
          const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
          getData(reply.id)
     for (let i = 1; i < navbar.children.length; i++){
+            navbar.children[i].style.textDecoration = "none"
+
       navbar.children[i].style.display = "inline"
       navbar.children[i].addEventListener("click", instanceerInner.shower)
     }
@@ -257,6 +260,7 @@ headerRow.append(
   // window.history.replaceState({}, document.title, url.toString())
         return;
       } else {
+        // homePage().style.textDecoration = "underline"
         mainContainer.appendChild(homePage());  
         return;
       }
@@ -289,6 +293,7 @@ window.addEventListener("popstate", e =>{
     greeting.innerHTML = "";
          navFirst.style.display = "block"
     for (let i = 1; i < navbar.children.length; i++){
+    
       navbar.children[i].style.display = "none"
     }
     localStorage.removeItem("workoutUserId");

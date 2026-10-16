@@ -66,19 +66,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
 const usersElement = Array.from(navbar.children).forEach((child) => child.id == "users")
 console.log(usersElement)
 console.log(this.id)
-for (let i = 0; i < navbar.children.length; i++){
-  const navChild = navbar.children[i]
-  if (navChild.id == previousElementClassName ){
-    navChild.style.textDecoration = "none"
-  }
-    if (this.id !== "users"){
-        if (navChild.id == "users"){
 
-          navChild.style.textDecoration = "none"
-        }
-      }
-
-    }
     const roles =  JSON.parse(localStorage.getItem("roles"))
     e.preventDefault();
 
@@ -92,7 +80,7 @@ for (let i = 0; i < navbar.children.length; i++){
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
-          this.style.textDecoration = "underline"
+       
           if (this.id == "settings"){
             // populate(guestId)
           
@@ -131,6 +119,22 @@ console.log(roles)
             if (mainContainer.children.length > 0) {
               // const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
 
+              for (let i = 0; i < navbar.children.length; i++){
+  const navChild = navbar.children[i]
+  if (navChild.id == previousElementClassName ){
+    navChild.style.textDecoration = "none"
+  }
+    if (this.id !== "users"){
+        if (navChild.id == "users"){
+
+          navChild.style.textDecoration = "none"
+        }
+      }
+
+    }
+
+
+   this.style.textDecoration = "underline"
               // getData(guestId)
               console.log(mainContainer)
               mainContainer.firstElementChild.replaceWith(content);

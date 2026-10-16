@@ -63,11 +63,18 @@ function ElementCatcher(pages, mainContainer, guestId) {
   const navbar = root.getElementsByClassName("navbar")[0]
   this.shower = async function (e) {
     const previousElementClassName = mainContainer.firstElementChild.className
-
+const usersElement = Array.from(navbar.children).forEach((child) => child.id == "users")
+console.log(usersElement)
+console.log(this.id)
+for (let i = 0; i < navbar.children.length; i++){
+  const navChild = navbar.children[i]
+  if (navChild.id == previousElementClassName ){
+    navChild.style.textDecoration = "none"
+  }
     if (this.id !== "users"){
-      for (let i = 0; i < navbar.children.length; i++){
-        if (navbar.children[i].id == previousElementClassName ){
-          navbar.children[i].style.textDecoration = "none"
+        if (navChild.id == "users"){
+
+          navChild.style.textDecoration = "none"
         }
       }
 

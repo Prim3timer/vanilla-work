@@ -278,7 +278,7 @@ const editUser = async (e) => {
     const workerSettings = {
       exercise: popArray,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
-      exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) != 0 ? (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) : 950400,
+      exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) != 0 ? (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) : 604800,
       numberOfRounds: numberOfRoundsInput.value || 1,
     };
     // console.log(workerSettings);

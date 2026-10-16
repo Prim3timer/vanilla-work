@@ -4,6 +4,7 @@ import { getData, performancePage } from "./performance.js";
 // import { mainSettings } from "./userSettings.js";
 
 
+
 const timeClocking = (sec) => {
   return ` ${
     sec > 3600
@@ -58,17 +59,25 @@ const observer = new MutationObserver(callback);
 
 
 function ElementCatcher(pages, mainContainer, guestId) {
+  const root = document.getElementById("root")
+  const navbar = root.getElementsByClassName("navbar")[0]
   this.shower = async function (e) {
-   const roles =  JSON.parse(localStorage.getItem("roles"))
-   e.preventDefault();
-    console.log(roles)
-    console.log(guestId)
-    console.log(this.id)
-    console.log(pages[0].className)
-  
+    const previousElementClassName = mainContainer.firstElementChild.className
+
+    if (this.id !== "users"){
+      for (let i = 0; i < navbar.children.length; i++){
+        if (navbar.children[i].id == previousElementClassName ){
+          navbar.children[i].style.textDecoration = "none"
+        }
+      }
+
+    }
+    const roles =  JSON.parse(localStorage.getItem("roles"))
+    e.preventDefault();
+
     const result = await pages;
-  
-    const oneElement = result.map( async (content) => {
+
+    const oneElement = result.map( async (content) => {  
       if (
         guestId ||
         this.innerHTML == "forgot" ||
@@ -76,8 +85,10 @@ function ElementCatcher(pages, mainContainer, guestId) {
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
+          this.style.textDecoration = "underline"
           if (this.id == "settings"){
             // populate(guestId)
+          
           } else if (this.id == "usersettings"){
             const response = await fetch(`${myUrl}/workout-users`, {
               method: "GET"
@@ -107,12 +118,14 @@ console.log(roles)
             
           } else {
             const id = this.id
+            console.log(id)
             history.pushState({id}, `Selected: ${id}`, "")
             localStorage.setItem("current-page", content.className)
             if (mainContainer.children.length > 0) {
               // const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
 
               // getData(guestId)
+              console.log(mainContainer)
               mainContainer.firstElementChild.replaceWith(content);
 
               return;
@@ -121,6 +134,11 @@ console.log(roles)
               
             }
           }
+        } else {
+          
+            // this.style.textDecoration = "none"
+
+          
         }
         // window.location.reload();
         //         observer.observe(rootElement, { childList: true,

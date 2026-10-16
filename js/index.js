@@ -276,7 +276,6 @@ window.addEventListener("popstate", e =>{
   const mainCont = document.getElementById("main-page")
   if (e.state !== null){
     containers.map((container) => {
-      console.log(e.state.id, container.className)
       if (container.className === e.state.id){
         localStorage.setItem("current-page", e.state.id)
         mainCont.firstElementChild.replaceWith(container)
@@ -301,13 +300,6 @@ window.addEventListener("popstate", e =>{
 submitButton.addEventListener("click", login);
 
 const getVerified = async () => {
-  // console.log(mainContainer)
-  // console.log(mainContainer.firstElementChild.className)
-  // const idCurrent = mainContainer.firstElementChild.className
-  // if (idCurrent === "login"){
-  //   history.pushState({id: idCurrent}, `selected: ${idCurrent}`, "")
-  //   localStorage.setItem("current-page", "login")
-  // }
   try {
     const response = await fetch(`${myUrl}/workout-users`, {
       method: "GET",

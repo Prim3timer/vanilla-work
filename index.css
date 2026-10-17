@@ -59,16 +59,16 @@
   justify-content: center;
   /* max-height: 90vh; */
   width: 100%;
-  /* background-color: red; */
-  }
+}
 
-  /* #main-page {
-    display: flex;
-    height: 100vh;
-  } */
-  
-  button {
-    background-color: bisque;
+/* #main-page {
+  display: flex;
+  height: 100vh;
+} */
+
+button {
+  background-color: bisque;
+  /* background-color: red; */
     border-color: bisque;
     /* width: 10rem; */
     /* height: 2.5rem; */
@@ -121,7 +121,7 @@
   }
   
   #buttons {
-    /* display: flex; */
+    display: flex;
     row-gap: 10px;
     position: relative;
     top: -15%;
@@ -132,6 +132,7 @@
     /* background-color: yellow; */
     height: 3.5rem;
     margin-top: 1.5rem;
+    align-items: flex-end;
     overflow: visible;
     
   }
@@ -1536,7 +1537,7 @@ position: absolute;
 
  .duration-width {
   /* position: absolute; */
-  justify-self: center;
+    justify-self: center;
   top: 90%;
   width: 90%;
  }

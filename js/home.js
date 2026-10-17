@@ -366,7 +366,7 @@ const homePage = (id) => {
   const del = document.createElement("td");
   
       const saveWork = async () => {
-
+        alertWindow.innerHTML = "saving..."
   wakeLock.release()
     .then(() => {
       wakeLock = null;

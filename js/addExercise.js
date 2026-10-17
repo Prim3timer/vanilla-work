@@ -18,23 +18,38 @@ const addExerciseButton = document.createElement("button")
 addExerciseButton.innerHTML = "Add"
 addExerciseButton.type = "submit"
 
+const alertWindow = document.createElement("p")
+alertWindow.className = "no-verify-window"
+
 addForm.appendChild(exerciseName)
 addForm.appendChild(caloriesBurned)
 addForm.appendChild(addExerciseButton)
-exerciseMain.appendChild(addForm)
+exerciseMain.appendChild(addForm, alertWindow)
 
 const addExercise = async (e) => {
     e.preventDefault();
-    const name = exerciseName.value
+    const name = exerciseName.value.trim()
     console.log(name)
-    const calories = caloriesBurned.value
+    const calories = caloriesBurned.value.trim()
    const response = await fetch(`${myUrl}/exercise`, {
      method: "POST",
      headers: {
        "Content-Type": "application/json"
      },
-     body: JSON.stringify({ name, calories })
+     body: JSON.stringify({ name: name.trim(), calories: calories.trim() })
    })
+   const cookedRes = await response.json()
+   if (cookedRes){
+     alertWindow.innerHTML = await cookedRes
+     alertWindow.className = "verify-window"
+     console.log(cookedRes)
+     setTimeout(() => {
+      alertWindow.className = "no-verify-window"
+     }, 3000)
+
+   }
+
+
 }
 
 addExerciseButton.addEventListener("click",  (e) => addExercise(e))

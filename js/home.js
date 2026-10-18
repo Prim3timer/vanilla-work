@@ -235,7 +235,7 @@ const homePage = (id) => {
           console.log(exercisesDuration)
           ID = window.setInterval(() => {
             if (sec === interval) {
-              ender.innerHTML = exercisesDuration === 604800 ? "zach" : timeClocking(exercisesDuration);
+              ender.innerHTML = timeClocking(exercisesDuration);
               durationWidth.appendChild(scrubRate)
               setInterval(() => {
                 beginner.innerHTML = timeClocking(sec - interval);

@@ -367,7 +367,7 @@ const homePage = (id) => {
   
       const saveWork = async () => {
         alertWindow.innerHTML = "saving..."
-  wakeLock.release()
+  wakeLock?.release()
     .then(() => {
       wakeLock = null;
       console.log('Screen Wake Lock released.');
@@ -390,6 +390,7 @@ const homePage = (id) => {
             { exercisesDuration },
             { interval },
             { numberOfRounds: round },
+            {actualRounds: numberOfRounds}
           ],
           oneExercise: anExercise,
           date: new Date(),

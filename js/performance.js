@@ -112,7 +112,7 @@ const deleteEntry = async () => {
           const { duration } = perfy.exerciseTimings[0];
           endurance.innerHTML = timeClocking(duration);
           const roundCount = document.createElement("td");
-          roundCount.innerHTML = `${Math.floor(perfy.oneExercise /perfy.exerciseDets.length)} of ${workSettings.numberOfRounds}`;
+          roundCount.innerHTML = `${Math.floor(perfy.oneExercise /perfy.exerciseDets.length)} of ${perfy.exerciseTimings[4]?.actualRounds}`;
           const mark = document.createElement("td");
           const exDet = document.createElement("td");
           mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.mark).toFixed(2) : 0}`;
@@ -195,6 +195,7 @@ const getData = async (id) => {
       dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
       tableBody.appendChild(dets);
       const perfy = filteredData[i];
+      console.log(perfy)
       const { duration } = perfy.exerciseTimings[0];
       
   
@@ -203,7 +204,8 @@ const getData = async (id) => {
   
       endurance.innerHTML = timeClocking(duration);
       const roundCount = document.createElement("td");
-      roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${workSettings.numberOfRounds}`; ;
+      console.log(perfy)
+      roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${perfy.exerciseTimings[4]?.actualRounds}`; ;
       const mark = document.createElement("td");
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;

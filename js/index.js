@@ -27,8 +27,8 @@ navFirst.innerHTML = "Aerobics Guide";
   // navFirst.className = "title-element"
   
   
-  const alertMessage = document.createElement("h4")
-  alertMessage.innerHTML = "On top"
+  const alertMessage = document.createElement("h1")
+  // alertMessage.innerHTML = "On top"
   motherShip.append(alertMessage)
   alertMessage.className = "verify-window"
   alertMessage.style.visibility = "hidden"

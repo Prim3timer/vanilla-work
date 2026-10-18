@@ -1040,7 +1040,7 @@ position: absolute;
 .timer-header-cont {
   width: 95vw;
   column-gap: 1.5rem;
-  height: 60px;
+  /* height: 60px; */
   align-items: flex-end;
   padding: 0 1rem;
   /* justify-content: flex-start; */
@@ -1197,6 +1197,8 @@ position: absolute;
  
   width: 40vw;
   max-width: 300px;
+  /* background-color: red; */
+  padding: .5rem;
  }
 
  .exercise-settings-form {

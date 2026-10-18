@@ -62,8 +62,14 @@ const exerciseDurationLabel = document.createElement("label");
 exerciseDurationLabel.innerHTML = "exercise duration:";
 exerciseDurationLabel.className = "duration-label"
 
-const timingMain = document.createElement("div")
+const timingMain = document.createElement("fieldset")
+const legend2 = document.createElement("legend")
+legend2.innerHTML = "set timings"
+legend2.className = "select-exercise-legend"
+// timingMain.style.backgroundColor = "red"
+// timingMain.style.minwidth = "80vw"
 timingMain.className = "timing-main"
+timingMain.appendChild(legend2)
 
   const filterForm = document.createElement("form")
   const filterButton = document.createElement("span")
@@ -164,9 +170,9 @@ const settingsPage = () => {
    timingMain
   );
   settingsCont.append(
-    settingsHeader,
-    thirdContent,
-    settingsInstructions,
+    // settingsHeader,
+    // thirdContent,
+    // settingsInstructions,
     settingsForm,
     settingsButton,
     alertWindow,

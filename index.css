@@ -258,6 +258,12 @@ flex-direction: column;
    width: 100vw;
   }
 
+  .settings {
+    row-gap: 2rem;
+  }
+  
+ 
+
 
 
   .login-sub {
@@ -743,7 +749,7 @@ table th {
   display: flex;
   flex-direction: column;
   align-items:center;
-  row-gap: .5rem;
+  row-gap: 2rem;
   /* background-color: red; */
   width: 90vw;
 }

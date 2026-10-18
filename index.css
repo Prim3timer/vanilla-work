@@ -1115,15 +1115,17 @@ position: absolute;
   
   max-height: 10rem;
   padding: .5rem;
+  /* box-shadow: -1em 1em 1em gray; */
  }
 
  .ex-main,.timing-main {
-   border: 2px solid brown;
+   border: 2px solid teal;
 
  }
 
  .select-exercise-legend {
   font-size: 1rem;
+
  }
  
  

@@ -279,11 +279,11 @@ const editUser = async (e) => {
     const workerSettings = {
       exercise: popArray,
       interval: (hourInterval * 60 * 60) + (Number(minInterval) * 60) + Number(secInterval) || 0,
-      exercisesDuration: (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(secDuration) != 0 || (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(secDuration) != null  ? (hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) : 20,
+      exercisesDuration: (Number(hourDuration) * 60 * 60) + (Number(minDuration) * 60) + Number(secDuration) != 0   ? (Number(hourDuration) * 60 * 60) + (Number(minDuration) * 60) + Number(exerciseDurationSecInput.value) : 20,
       numberOfRounds: numberOfRoundsInput.value || 1,
     };
-    // console.log(workerSettings);
-    // console.log(workerSettings);
+    console.log(workerSettings.exercisesDuration);
+    console.log((hourDuration * 60 * 60) + (Number(minDuration) * 60) + Number(secDuration));
     const user = users.find((user) => user._id === userId);
     
       if (popArray.length < 1 || popArray.length > 5) {

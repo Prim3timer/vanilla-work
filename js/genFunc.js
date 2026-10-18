@@ -62,6 +62,8 @@ function ElementCatcher(pages, mainContainer, guestId) {
   const root = document.getElementById("root")
   const navbar = root.getElementsByClassName("navbar")[0]
   this.shower = async function (e) {
+    const alertMeassage = document.getElementsByClassName("verify-window")[0]
+    console.log(alertMeassage)
     const previousElementClassName = mainContainer.firstElementChild.className
 const usersElement = Array.from(navbar.children).forEach((child) => child.id == "users")
 console.log(usersElement)
@@ -110,6 +112,16 @@ console.log(roles)
           } 
           if (!roles.includes(5150 ) && this.innerHTML == "users"){
             console.log("unauthorized")
+            alertMeassage.className = "verify-window"
+            alertMeassage.style.visibility = "visible"
+            alertMeassage.style.maxWidth = "800px"
+            
+            // alertMeassage.style.flexDirection = "column"
+            alertMeassage.innerHTML = `<p>Unauthorized!</p> You not authorized to view the requested page`
+            setTimeout(() => {
+              // alertMeassage.className = "no-verify-window"
+              alertMeassage.style.visibility = "hidden"
+            }, 3000)
             
           } else {
             const id = this.id

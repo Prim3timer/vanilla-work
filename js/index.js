@@ -28,6 +28,10 @@ navFirst.innerHTML = "Aerobics Guide";
   
   
   const alertMessage = document.createElement("h4")
+  alertMessage.innerHTML = "On top"
+  motherShip.append(alertMessage)
+  alertMessage.className = "verify-window"
+  alertMessage.style.visibility = "hidden"
 
   
 console.log(navbar);
@@ -38,7 +42,7 @@ homeLInk.id = "home";
 // homeLInk.className = "home"
 
 const perfLInk = document.getElementById("performance");
-perfLInk.innerHTML = "performance";
+perfLInk.innerHTML = "activity";
 perfLInk.id = "performance";
 
 const settingsLInk = document.getElementById("settings");

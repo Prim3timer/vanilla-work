@@ -1117,6 +1117,11 @@ position: absolute;
   padding: .5rem;
  }
 
+ .ex-main,.timing-main {
+   border: 2px solid brown;
+
+ }
+
  .select-exercise-legend {
   font-size: 1rem;
  }

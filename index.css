@@ -1525,10 +1525,10 @@ position: absolute;
   background-color: green;
   color: yellow;
   position: absolute;
-  max-width: 600px;
+  max-width: 500px;
   top: 35%;
     font-size: 2rem;
-    height: 45vh;
+    height: 55vh;
     transition-duration: 300ms;
  }
 

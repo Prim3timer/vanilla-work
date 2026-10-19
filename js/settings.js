@@ -269,6 +269,7 @@ populate(userId);
 
 const editUser = async (e) => {
   e.preventDefault()
+  alertWindow.innerHTML = "updating..."
   console.log(popArray)
 
   // console.log(userId)

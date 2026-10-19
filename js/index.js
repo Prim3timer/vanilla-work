@@ -9,6 +9,7 @@ import { forgotPage } from "./forgotPassword.js";
 import { loginPage } from "./login.js";
 import { mainSettings } from "./userSettings.js";
 import { addExercisePage } from "./addExercise.js";
+import { analyticsPage } from "./analytics.js";
 
 console.log(loginPage())
 const greeting = document.getElementsByClassName("greeting")[0];
@@ -91,7 +92,8 @@ const containers = [
   forgotPage(),
   mainSettings(),
   loginPage(),
-  addExercisePage()
+  addExercisePage(),
+  analyticsPage()
 ];
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
@@ -100,6 +102,7 @@ const handleRefresh = async () => {
   // navbar.innerHTML = ""
   console.log(document); 
   const currentPageInnerText = localStorage.getItem("current-page") || "home"
+
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
@@ -118,14 +121,10 @@ navFirst.style.display = "none"
   console.log(getCurrentPage)
   // navbar.replaceChildren();
   // reassign the eventlistener to the pages.
-  homeLInk.addEventListener("click", instanceer.shower)
-  perfLInk.addEventListener("click", instanceer.shower)
-  settingsLInk.addEventListener("click", instanceer.shower)
-   usersLInk.addEventListener("click", instanceer.shower)
-  //  navbar.append(homeLInk, perfLInk, settingsLInk, usersLInk, logoutLInk);
+  for (let i = 0; i < navbar.children.length; i++){
+    navbar.children[i].addEventListener("click", instanceer.shower)
+  }
 
-   
-   console.log(getCurrentPage)
    const user = JSON.parse(localStorage.getItem("user"));
    if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId") !== null) {
      const usernameElement = mainSettings().getElementsByClassName("user-setting-name")[0]

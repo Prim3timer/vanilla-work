@@ -188,7 +188,7 @@ const userId = localStorage.getItem("workoutUserId");
 
 const creator = exerciseList.map((ex) => {
   const exercise = document.createElement("article")
-  exercise.style.backgroundImage = `url(images/Push up.gif)`
+  exercise.style.backgroundImage = `${myUrl}/url(images/Push up.gif)`
 
   exercise.className = "single-exercise"
   const exerciseName = document.createElement("p")

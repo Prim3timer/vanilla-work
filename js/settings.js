@@ -30,8 +30,11 @@ const intervalLabel = document.createElement("label");
 intervalLabel.className = "interval-label"
 intervalLabel.innerHTML = "refuel duration:"
 const intervalHourInput = document.createElement("input");
+intervalHourInput.type = "number"
 const intervalMinInput = document.createElement("input");
+intervalMinInput.type = "number"
 const intervalSecInput = document.createElement("input");
+intervalSecInput.type = "number"
 
 intervalHourInput.className = "interval-input";
 intervalMinInput.className = "interval-input";
@@ -81,9 +84,12 @@ filterForm.append(usersFilter, filterButton)
 
 
 const exerciseDurationHourInput = document.createElement("input");
+exerciseDurationHourInput.type = "number"
 const exerciseDurationMinInput = document.createElement("input");
+exerciseDurationMinInput.type = "number"
 const exerciseDurationSecInput = document.createElement("input");
 exerciseDurationSecInput.required = true;
+exerciseDurationSecInput.type = "number"
 exerciseDurationHourInput.className = "exercise-duration-input";
 exerciseDurationMinInput.className = "exercise-duration-input";
 exerciseDurationSecInput.className = "exercise-duration-input";
@@ -96,6 +102,7 @@ const numberOfRoundsLabel = document.createElement("label");
 numberOfRoundsLabel.className = "number-of-rounds-label"
 numberOfRoundsLabel.innerHTML = "number of rounds:";
 const numberOfRoundsInput = document.createElement("input");
+numberOfRoundsInput.type = "number"
 numberOfRoundsInput.className = "number-of-rounds-input";
 numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
 const settingsButton = document.createElement("button");

@@ -115,9 +115,10 @@ console.log(roles)
             alertMeassage.className = "verify-window"
             alertMeassage.style.visibility = "visible"
             alertMeassage.style.maxWidth = "800px"
+            // alertMeassage.style.fontSize = "1rem"
             
             // alertMeassage.style.flexDirection = "column"
-            alertMeassage.innerHTML = `<p>Unauthorized!</p> You are not authorized to view the requested page`
+            alertMeassage.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style=" color: darkgoldenrod"></i>Unauthorized! You are not authorized to view the requested page   `
             setTimeout(() => {
               // alertMeassage.className = "no-verify-window"
               alertMeassage.style.visibility = "hidden"

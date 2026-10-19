@@ -29,9 +29,10 @@
 
 
 .navbar {
+  display: flex;
     padding: .5rem;
     top: 0;
-    grid-template-columns: repeat(10, 1fr);
+    /* grid-template-columns: repeat(10, 1fr); */
     column-gap: .5rem;
     color: white;
     justify-content: start;

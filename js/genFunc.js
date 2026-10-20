@@ -185,10 +185,11 @@ const getSpecificPage = (e, page, mainContainer) => {
             mainContainer.appendChild(page());
           }
   }
-
-  const showDetWindow = (perfy, duration, performanceMain) => {
-        let detsWindowCover = document.createElement("section");
-        let detsWindow = document.createElement("div");
+const performanceMain = performancePage()
+let detsWindowCover = document.createElement("section");
+performanceMain.appendChild(detsWindowCover);
+  const showDetWindow = (perfy, duration) => {
+    let detsWindow = document.createElement("div");
         detsWindow.style.padding = ".5rem";
         let detsDuration = document.createElement("p");
         let detsExHeader = document.createElement("h4");
@@ -213,6 +214,7 @@ const getSpecificPage = (e, page, mainContainer) => {
         closure.innerHTML = `<i class="fa-solid fa-x"></i>`;
         detsWindowCover.className = "dets-verify-window";
         detsWindow.className = "inner-dets-verify-window";
+      
         detsWindow.appendChild(detsDuration);
         detsWindow.appendChild(closure);
         detsWindow.appendChild(detsExHeader);
@@ -231,14 +233,18 @@ const getSpecificPage = (e, page, mainContainer) => {
         detsExHeader.innerHTML = `exercises list:`;
         numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
         detsWindow.append(detsInterval, detExDuration);
-        if (detsWindowCover.contains(detsWindow)) {
+        console.log(detsWindow)
+      
+        if (detsWindowCover.children.length) {
           console.log("yes");
-          detsWindow.remove();
-          detsWindowCover.appendChild(detsWindow);
+          // detsWindow.remove();
+          detsWindowCover.firstElementChild.replaceWith(detsWindow);
         } else {
+          console.log("no");
           detsWindowCover.appendChild(detsWindow);
+          console.log(detsWindowCover)
         }
-        performanceMain.appendChild(detsWindowCover);
+        console.log(detsWindowCover.children.length)
       };
 
       const populateUserSettings = async (mainSettings) => {

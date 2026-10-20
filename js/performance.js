@@ -144,7 +144,7 @@ const deleteEntry = async () => {
           del.addEventListener("click", () => getId(perfy._id));
           dets.append( endurance, roundCount, mark, exDet, date);
           for (const child of dets.children){
-            child.addEventListener("click", () => showDetWindow(perfy, duration, performanceMain))
+            child.addEventListener("click", () => showDetWindow(perfy, duration))
           }
           dets.append(del);
           userId && performanceMain.append(perfTable);
@@ -238,7 +238,7 @@ const getData = async (id) => {
       dets.append(endurance, roundCount,  mark, exDet, date);
 
       for (const child of dets.children){
-        child.addEventListener("click", () => showDetWindow(perfy, duration, performanceMain))
+        child.addEventListener("click", () => showDetWindow(perfy, duration))
       }
       dets.append(del);
   

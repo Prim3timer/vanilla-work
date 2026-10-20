@@ -770,8 +770,8 @@ table th {
   align-items: flex-end;
   /* background-color: red; */
   /* max-width: 800px; */
-    padding: .5rem;
-  width: 80vw;
+    padding: .5rem 0;
+  width: 65vw;
 
  }
 
@@ -1135,7 +1135,7 @@ position: absolute;
  }
 
  .ex-main,.timing-main {
-   border: 2px solid teal;
+   border: 1px solid teal;
 
  }
 
@@ -1226,7 +1226,7 @@ position: absolute;
 
  .timing-main {
  padding: .5rem;
-  width: 40vw;
+  width: 50vw;
   max-width: 300px;
  }
 

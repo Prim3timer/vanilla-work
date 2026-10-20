@@ -770,7 +770,7 @@ table th {
   align-items: flex-end;
   /* background-color: red; */
   /* max-width: 800px; */
-  height: 32vh;
+    padding: .5rem;
   width: 80vw;
 
  }
@@ -1014,7 +1014,7 @@ position: absolute;
  }
 
  .hour-label, .minute-label, .second-label {
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   /* background-color: red; */
   align-items: center;
@@ -1035,24 +1035,27 @@ position: absolute;
   align-items: center;
   overflow: auto;
   padding: .5rem;
-  width: 95vw;
+  width: 90vw;
   align-self: center;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   background-color: paleturquoise;
   max-width: 400px;
   font-size: 1.2rem;
 }
 
-.duration-label, .interval-label {
-  /* padding: 2rem; */
-  /* align-items: flex-end; */
-  /* background-color: red; */
-  /* white-space: nowrap; */
+.duration-label {
+ border-top-left-radius: 5px;
+ border-top-right-radius: 5px;
+}
+
+.interval-label {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .timer-header-cont {
   width: 95vw;
-  column-gap: 1.5rem;
+  column-gap: 2.5rem;
   /* height: 60px; */
   align-items: flex-end;
   padding: 0 1rem;
@@ -1215,19 +1218,16 @@ position: absolute;
 
 
  .interval-label, .duration-label, .number-of-rounds-label {
-  width: 50vw;
+  /* width: 45vw; */
   /* background-color: red; */
 
  }
 
 
  .timing-main {
- 
+ padding: .5rem;
   width: 40vw;
   max-width: 300px;
-  /* background-color: red; */
-  height: 70vh;
-  padding: .5rem;
  }
 
  .exercise-settings-form {

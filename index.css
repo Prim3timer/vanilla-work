@@ -1138,6 +1138,11 @@ position: absolute;
   font-size: 1rem;
 
  }
+
+ input[type="number"]{
+  /* background-color: red; */
+  width: 3.5rem;
+ }
  
  
  .exercises-container {

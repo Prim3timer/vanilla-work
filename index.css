@@ -770,7 +770,9 @@ table th {
   align-items: flex-end;
   /* background-color: red; */
   /* max-width: 800px; */
+  height: 32vh;
   width: 80vw;
+
  }
 
  .get-data {
@@ -1224,6 +1226,7 @@ position: absolute;
   width: 40vw;
   max-width: 300px;
   /* background-color: red; */
+  height: 70vh;
   padding: .5rem;
  }
 

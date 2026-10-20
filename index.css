@@ -1134,7 +1134,7 @@ position: absolute;
   /* box-shadow: -1em 1em 1em gray; */
  }
 
- .ex-main,.timing-main {
+ .ex-main, .timing-main {
    border: 1px solid teal;
 
  }

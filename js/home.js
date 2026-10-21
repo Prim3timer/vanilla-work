@@ -104,7 +104,7 @@ const homePage = (id) => {
         
         newP.appendChild(exerciseHeader)
         exerciseHeader.innerHTML = exercise;
-        newP.style.backgroundImage = `url("images/Mt-Climbers.gif")`;
+        newP.style.backgroundImage = `url("images/Mt. Climber.gif")`;
         exerciseCont.appendChild(newP);
         return newP;
       });

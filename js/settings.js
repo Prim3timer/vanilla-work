@@ -195,9 +195,9 @@ const userId = localStorage.getItem("workoutUserId");
 
 const creator = exerciseList.map((ex) => {
   const exercise = document.createElement("article")
-  exercise.style.backgroundImage = `${myUrl}/url(images/Push up.gif)`
-
   exercise.className = "single-exercise"
+  // exercise.style.backgroundImage = `url("images/Plank.gif")`
+
   const exerciseName = document.createElement("p")
   exerciseName.innerHTML = ex.name
   
@@ -206,14 +206,14 @@ const creator = exerciseList.map((ex) => {
   selector.type = "checkbox"
   selector.className = "exercise-selector"
   exercise.append(selector, exerciseName)
-  exercise.style.backgroundImage = `url(images/Push up.gif)`
+  exercise.style.backgroundImage = `url("images/Push up.gif")`
 
 
   exercisesContainer.appendChild(exercise)
   return {selector, ex, exercise}
 })
 creator.map(item => {
-item.exercise.style.backgroundImage = `url(images/Push up.gif)`
+item.exercise.style.backgroundImage = `url("images/Push up.gif")`
 })
 
 

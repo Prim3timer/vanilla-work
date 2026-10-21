@@ -611,7 +611,7 @@ input {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  align-items: center;
+  /* align-items: center; */
   position: fixed;
   top: 20%;
   justify-self: center;

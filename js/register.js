@@ -146,10 +146,10 @@ const createUserDets = async () => {
       templateParams,
       publicKey,
     );
-    linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}". Head over there to verify your email`;
-    setTimeout(()=> {
-    linker.classList.replace("register-prompt", "no-register-prompt")
-    }, 3000)
+    linker.innerHTML = `A link has been sent to "${emailInput.value.trim().toLowerCase()}" from "uthokoii". Head over there to verify your email`;
+    // setTimeout(()=> {
+    // linker.classList.replace("register-prompt", "no-register-prompt")
+    // }, 3000)
     console.log(userDets);
     }
   }

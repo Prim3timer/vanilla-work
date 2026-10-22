@@ -282,12 +282,12 @@ flex-direction: column;
 
 
   .register-prompt {
-    background-color: lightcyan;
+    background-color: mediumseagreen;
     padding: 1rem;
     width: 95%;
-    position: absolute;
+    position: fixed;
     top: 40%;
-    color: darkslateblue;
+    color: white;
     white-space: wrap;
     align-self: center;
     text-align: center;
@@ -1263,7 +1263,7 @@ text-align: center;
   
   .register-prompt {
     width: 55%;
-    position: absolute;
+    /* position: absolute; */
     top: 40%;
     text-align: center;
   }

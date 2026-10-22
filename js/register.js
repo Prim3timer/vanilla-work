@@ -22,6 +22,7 @@ const confirmPasswordBreak = document.createElement("br");
 
 const userNameInput = document.createElement("input");
 const emailInput = document.createElement("input");
+emailInput.type = "email"
 const passwordInput = document.createElement("input");
 const confirmPasswordInput = document.createElement("input");
 confirmPasswordInput.className = "confirm-password-input"

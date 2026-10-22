@@ -1011,6 +1011,7 @@ position: absolute;
 
  .users-filter {
   align-self: center;
+  margin: .5rem;
  }
 
  .hour-label, .minute-label, .second-label {

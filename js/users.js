@@ -28,7 +28,8 @@ addExerciseButton.innerHTML = "add exercise"
 filterButton.className = "filter-button"
 filterButton.innerHTML = "filter"
 usersFilter.className = "users-filter"
-filterForm.append(addExerciseButton, usersFilter, filterButton)
+usersFilter.placeholder = "find a user"
+filterForm.append(usersFilter)
 userBox.append(filterForm, usersHeader, entryCount);
 const table = document.createElement("table");
 const tableBody = document.createElement("tbody");
@@ -52,7 +53,7 @@ const getUsers = async () => {
 
 }
 
-const users = await getUsers();
+let users = await getUsers();
 
 
 usersFilter.addEventListener("input", (e) => {
@@ -94,9 +95,8 @@ usersFilter.addEventListener("input", (e) => {
       // console.log(table.children[j])
       table.children[i]?.remove()
     }
-      table.append(headerRow, usersList)
+      table.append(usersList)
   }
-  // users = filterate
 })
 const usersPage = () => {
   entryCount.innerHTML = `(${users.length})`;

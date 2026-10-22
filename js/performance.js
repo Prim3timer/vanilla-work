@@ -1,4 +1,4 @@
-import { timeClocking, timeToText, showDetWindow } from "./genFunc.js";
+import { timeClocking, timeToText, showDetWindow} from "./genFunc.js";
 import myUrl from "./myUrl.js";
 
 let globalData = [];
@@ -7,6 +7,11 @@ let globalUser = {};
 const entryCount = document.createElement("span");
 entryCount.className = "perf-entry-count"
 
+
+
+const windowCloser = () => {
+  verifyWindow.className = "no-verify-window";
+}
 const userId = localStorage.getItem("workoutUserId");
 
 const performanceMain = document.createElement("div");
@@ -72,9 +77,7 @@ headerRow.append(
   deleteHeader,
 );
 
-noButton.addEventListener("click", () => {
-  verifyWindow.className = "no-verify-window";
-});
+noButton.addEventListener("click", windowCloser);
 
 verifyWindowButtonCont.className = "verify-window-cont";
 
@@ -146,6 +149,7 @@ const deleteEntry = async () => {
           for (const child of dets.children){
             child.addEventListener("click", () => showDetWindow(perfy, duration))
           }
+      
           dets.append(del);
           userId && performanceMain.append(perfTable);
         }

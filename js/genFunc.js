@@ -91,10 +91,19 @@ console.log(this.id)
               
             }else {
             searcher.classList.replace("no-searcher", "searcher")
+            if (this.id == "performance"){
+              searcher.placeholder = "search entries by date eg. 2002/01/06"
+            } else if(this.id == "settings"){
+              searcher.placeholder = "search exercises"
+            }else if (this.id == "users"){
+              searcher.placeholder = "search users"
+            } else {
+              searcher.placeholder = "search analytics"
+            }
 
           }
           
-          searcher.placeholder = `search ${this.id}`
+          // searcher.placeholder = `search ${this.id}`
        searcher.value = ""
           if (this.id == "settings"){
             // populate(guestId)

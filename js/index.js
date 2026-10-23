@@ -109,6 +109,19 @@ const handleRefresh = async () => {
   console.log(currentPageInnerText)
   if (guestId) {
     searcher.placeholder = `search ${currentPageInnerText}`
+    if (currentPageInnerText == "home"){
+      searcher.className = "no-searcher"
+    }
+      if (currentPageInnerText == "performance"){
+              searcher.placeholder = "search entries by date eg. 2002/01/06"
+            } else if(currentPageInnerText == "settings"){
+              searcher.placeholder = "search exercises"
+            }else if (currentPageInnerText == "users"){
+              searcher.placeholder = "search users"
+            } else {
+              searcher.placeholder = "search analytics"
+            }
+
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
   
@@ -221,7 +234,7 @@ headerRow.append(
     }
     else if (reply.id) {
       greeting.innerHTML = `hi, ${reply.name}`;
-      searcher.classList.replace("no-searcher", "searcher")
+      // searcher.classList.replace("no-searcher", "searcher")
          navFirst.style.display = "none"
          const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
          getData(reply.id)

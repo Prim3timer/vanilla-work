@@ -1130,7 +1130,7 @@ position: absolute;
   width: 95vw;
   overflow: auto;
   
-  max-height: 10rem;
+  max-height: 12rem;
   padding: .5rem;
   /* box-shadow: -1em 1em 1em gray; */
  }

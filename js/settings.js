@@ -127,7 +127,7 @@ const getExercise = async () => {
 }
 
 
-const exerciseList = await getExercise()
+let exerciseList = await getExercise()
 
 console.log(exerciseList)
 
@@ -239,7 +239,7 @@ let creator = exerciseList.map((ex) => {
 usersFilter.addEventListener("input", (e) => {
   e.preventDefault()
   exercisesContainer.replaceChildren()
-  let filterate = exerciseList.filter((ex) => ex.name.includes(e.target.value.toLowerCase()))
+  let filterate = exerciseList.filter((ex) => ex.name.includes(e.target.value))
   console.log(filterate)
   let innerCreator = filterate.map((ex) => {
    console.log(ex)
@@ -283,7 +283,8 @@ found.map((item) => {
    
   })
 }
-filterate = exerciseList
+
+// exerciseList = filterate
 })
 
 const populate = async (userId) => {

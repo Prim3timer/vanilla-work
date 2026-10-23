@@ -15,10 +15,6 @@ const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
 
-
-// const exCont = homePage(userId).getElementById("exercise-cont")
-// console.log(exCont);
-
 let alertWindow = document.createElement("p");
 alertWindow.style.fontSize = "1.5rem";
 
@@ -80,7 +76,8 @@ timingMain.appendChild(legend2)
   filterForm.className = "filter-form"
   filterButton.innerHTML = "filter"
   const usersFilter = document.createElement("input")
-filterForm.append(usersFilter, filterButton)
+  usersFilter.placeholder = "search exercise"
+filterForm.append(usersFilter)
 
 
 const exerciseDurationHourInput = document.createElement("input");
@@ -129,11 +126,17 @@ const getExercise = async () => {
   return exercises;
 }
 
+
 const exerciseList = await getExercise()
+
+console.log(exerciseList)
+
+
 
 
 const addExercise = async (box, checker, array) => {
   const innArray = array.find((item) => item === checker.innerHTML)
+  console.log(box)
   // array.length = 0
   if (box.checked === true){
     console.log(innArray)
@@ -144,6 +147,7 @@ const addExercise = async (box, checker, array) => {
     }else {
       console.log("not inide array")
       popArray.push(checker.innerHTML)
+      console.log(popArray)
       return
     }
   } else {
@@ -157,6 +161,8 @@ const addExercise = async (box, checker, array) => {
     
   }
     }
+
+
     let addArray = []
     let popArray = []
     exMain.append(legend)
@@ -177,6 +183,7 @@ const settingsPage = () => {
    timingMain
   );
   settingsCont.append(
+    filterForm,
     // settingsHeader,
     // thirdContent,
     // settingsInstructions,
@@ -193,7 +200,23 @@ const settingsPage = () => {
 const userId = localStorage.getItem("workoutUserId");
 
 
-const creator = exerciseList.map((ex) => {
+const userExes = async () => {
+   const response = await fetch(`${myUrl}/workout-users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const users = await response.json();
+  return users
+}
+
+let users = await userExes()
+const user = users.find((user) => user._id === userId);
+
+
+
+let creator = exerciseList.map((ex) => {
   const exercise = document.createElement("article")
   exercise.className = "single-exercise"
   // exercise.style.backgroundImage = `url("images/Plank.gif")`
@@ -212,39 +235,74 @@ const creator = exerciseList.map((ex) => {
   exercisesContainer.appendChild(exercise)
   return {selector, ex, exercise}
 })
-creator.map(item => {
-item.exercise.style.backgroundImage = `url("images/Push up.gif")`
+
+usersFilter.addEventListener("input", (e) => {
+  e.preventDefault()
+console.log(popArray)
+  exercisesContainer.replaceChildren()
+let filterate = exerciseList.filter((ex) => ex.name.includes(e.target.value.toLowerCase()))
+console.log(filterate)
+ let innerCreator = filterate.map((ex) => {
+  const exercise = document.createElement("article")
+  exercise.className = "single-exercise"
+  // exercise.style.backgroundImage = `url("images/Plank.gif")`
+
+  const exerciseName = document.createElement("p")
+  exerciseName.innerHTML = ex.name
+  
+  const selector = document.createElement("input")
+  selector.addEventListener("change", (e) => addExercise(selector, exerciseName, addArray))
+  selector.type = "checkbox"
+  selector.className = "exercise-selector"
+  exercise.append(selector, exerciseName)
+  exercise.style.backgroundImage = `url("images/Push up.gif")`
+  
+  
+  exercisesContainer.appendChild(exercise)
+  return {selector, ex, exercise}
+
 })
+const user = users.find((user) => user._id == userId)
+if (user){
+  const {workSettings} = user
+  const filArray = popArray.map((userEx) =>{
+    console.log(innerCreator)
+    // find the item in the general exercise list that matches the user's exercise list
+   const found = innerCreator.filter((item) => item.ex.name == userEx)
+found.map((item) => {
+  item.selector.checked = true
 
+})
+    // return item.ex.name
 
+   console.log(found)
+  //  have it checked
+  // found.map((item) => {
 
-
-
+  // })
+   
+  })
+}
+filterate = exerciseList
+})
 
 const populate = async (userId) => {
   creator.map((item) => {
     item.selector.checked = false
   })
-  // console.log(exerciseList)
+  console.log(exerciseList)
   console.log(addArray)
-  const response = await fetch(`${myUrl}/workout-users`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const users = await response.json();
 
   const user = users.find((user) => user._id === userId);
   console.log(user)
   if (user) {
     const { workSettings } = user;
 
-console.log(creator)
+// console.log(creator)
 const filArray = workSettings.exercise.map((userEx) =>{
   // find the item in the general exercise list that matches the user's exercise list
  const found = creator.find((item) => item.ex.name == userEx)
-//  have it checked
+ //  have it checked
  found.selector.checked = true
  
   return found.ex.name

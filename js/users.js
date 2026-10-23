@@ -57,7 +57,7 @@ let users = await getUsers();
 
 
 usersFilter.addEventListener("input", (e) => {
-  const filterate = users.filter((user) => user.username.includes(e.target.value))
+  const filterate = users.filter((user) => user.username.toLowerCase().includes(e.target.value.toLowerCase()))
   console.log(filterate)
   entryCount.innerHTML = `(${filterate.length})`
     for (let i = 0; i < filterate.length; i++) {

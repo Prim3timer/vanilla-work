@@ -239,7 +239,7 @@ let creator = exerciseList.map((ex) => {
 usersFilter.addEventListener("input", (e) => {
   e.preventDefault()
   exercisesContainer.replaceChildren()
-  let filterate = exerciseList.filter((ex) => ex.name.includes(e.target.value))
+  let filterate = exerciseList.filter((ex) => ex.name.toLowerCase().includes(e.target.value.toLowerCase()))
   console.log(filterate)
   let innerCreator = filterate.map((ex) => {
    console.log(ex)

@@ -15,6 +15,9 @@ const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
 
+const searcher = document.getElementsByClassName("searcher")[0]
+
+
 let alertWindow = document.createElement("p");
 alertWindow.style.fontSize = "1.5rem";
 
@@ -77,7 +80,7 @@ timingMain.appendChild(legend2)
   filterButton.innerHTML = "filter"
   const usersFilter = document.createElement("input")
   usersFilter.placeholder = "search exercise"
-filterForm.append(usersFilter)
+// filterForm.append(usersFilter)
 
 
 const exerciseDurationHourInput = document.createElement("input");
@@ -236,7 +239,7 @@ let creator = exerciseList.map((ex) => {
   return {selector, ex, exercise}
 })
 
-usersFilter.addEventListener("input", (e) => {
+const filterExercise = (e) => {
   e.preventDefault()
   exercisesContainer.replaceChildren()
   let filterate = exerciseList.filter((ex) => ex.name.toLowerCase().includes(e.target.value.toLowerCase()))
@@ -285,7 +288,11 @@ found.map((item) => {
 }
 
 // exerciseList = filterate
-})
+}
+
+searcher.addEventListener("input", filterExercise)
+
+usersFilter.addEventListener("input", filterExercise)
 
 const populate = async (userId) => {
   creator.map((item) => {

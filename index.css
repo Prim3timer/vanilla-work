@@ -14,6 +14,22 @@
 }
 
 
+.nav-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   background-color: #1e293b;
+}
+
+.searcher {
+  display: block;
+  margin-top: .5rem ;
+}
+
+.no-searcher {
+  display: none;
+}
+
 .navbar, #main-page, #footer, .greeting {
     display: grid;
     /* place-content: center; */

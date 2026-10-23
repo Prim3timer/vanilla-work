@@ -98,6 +98,8 @@ const containers = [
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
+const searcher = document.getElementsByClassName("searcher")[0]
+
 const handleRefresh = async () => {
   // navbar.innerHTML = ""
   console.log(document); 
@@ -106,6 +108,7 @@ const handleRefresh = async () => {
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
+    searcher.placeholder = `search ${currentPageInnerText}`
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
   
@@ -218,6 +221,7 @@ headerRow.append(
     }
     else if (reply.id) {
       greeting.innerHTML = `hi, ${reply.name}`;
+      searcher.classList.replace("no-searcher", "searcher")
          navFirst.style.display = "none"
          const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
          getData(reply.id)
@@ -397,6 +401,7 @@ const getToHomePage = (e) => {
       navbar.children[i].style.display = "none"
     }
   localStorage.removeItem("userSettingsId");
+  searcher.classList.replace("searcher", "no-searcher")
   if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId")) {
   mainContainer.firstElementChild.replaceWith(loginPage());
   localStorage.removeItem("workoutUserId");

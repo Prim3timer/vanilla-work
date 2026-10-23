@@ -56,12 +56,13 @@ const callback = (mutationsList) => {
 
 // 3. Create the observer instance
 const observer = new MutationObserver(callback);
-
+const searcher = document.getElementsByClassName("searcher")[0]
 
 function ElementCatcher(pages, mainContainer, guestId) {
   const root = document.getElementById("root")
   const navbar = root.getElementsByClassName("navbar")[0]
   this.shower = async function (e) {
+    console.log(searcher)
     const alertMeassage = document.getElementsByClassName("verify-window")[0]
     console.log(alertMeassage)
     const previousElementClassName = mainContainer.firstElementChild.className
@@ -82,7 +83,19 @@ console.log(this.id)
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
-       
+          if (this.id == "home"){
+    
+
+              searcher.classList.replace("searcher", "no-searcher")
+    
+              
+            }else {
+            searcher.classList.replace("no-searcher", "searcher")
+
+          }
+          
+          searcher.placeholder = `search ${this.id}`
+       searcher.value = ""
           if (this.id == "settings"){
             // populate(guestId)
           

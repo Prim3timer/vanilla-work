@@ -29,7 +29,7 @@ filterButton.className = "filter-button"
 filterButton.innerHTML = "filter"
 usersFilter.className = "users-filter"
 usersFilter.placeholder = "find a user"
-filterForm.append(usersFilter)
+// filterForm.append(usersFilter)
 userBox.append(filterForm, usersHeader, entryCount);
 const table = document.createElement("table");
 const tableBody = document.createElement("tbody");
@@ -55,8 +55,7 @@ const getUsers = async () => {
 
 let users = await getUsers();
 
-
-usersFilter.addEventListener("input", (e) => {
+const FilterUser = (e) => {
   const filterate = users.filter((user) => user.username.toLowerCase().includes(e.target.value.toLowerCase()))
   console.log(filterate)
   entryCount.innerHTML = `(${filterate.length})`
@@ -97,7 +96,12 @@ usersFilter.addEventListener("input", (e) => {
     }
       table.append(usersList)
   }
-})
+}
+
+const searcher = document.getElementsByClassName("searcher")[0]
+searcher.addEventListener("input", FilterUser)
+
+usersFilter.addEventListener("input", FilterUser)
 const usersPage = () => {
   entryCount.innerHTML = `(${users.length})`;
 

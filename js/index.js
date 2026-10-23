@@ -13,7 +13,7 @@ import { analyticsPage } from "./analytics.js";
 
 console.log(loginPage())
 const greeting = document.getElementsByClassName("greeting")[0];
-greeting.style.position = "fixed";
+// greeting.style.position = "fixed";
 greeting.style.padding = ".5rem";
 greeting.style.borderRadius = "5px";
 

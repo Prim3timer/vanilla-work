@@ -238,11 +238,11 @@ let creator = exerciseList.map((ex) => {
 
 usersFilter.addEventListener("input", (e) => {
   e.preventDefault()
-console.log(popArray)
   exercisesContainer.replaceChildren()
-let filterate = exerciseList.filter((ex) => ex.name.includes(e.target.value.toLowerCase()))
-console.log(filterate)
- let innerCreator = filterate.map((ex) => {
+  let filterate = exerciseList.filter((ex) => ex.name.includes(e.target.value.toLowerCase()))
+  console.log(filterate)
+  let innerCreator = filterate.map((ex) => {
+   console.log(ex)
   const exercise = document.createElement("article")
   exercise.className = "single-exercise"
   // exercise.style.backgroundImage = `url("images/Plank.gif")`

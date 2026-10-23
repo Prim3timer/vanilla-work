@@ -510,8 +510,9 @@ input {
 }
 
 .greeting {
-  position: absolute;
-  top: 5rem;
+  /* position: absolute; */
+  width: 100vw;
+  top: 3rem;
   left: 1rem;
 }
 
@@ -1200,6 +1201,9 @@ position: absolute;
   
   @media screen and (min-width: 740px) {
 
+    .greeting {
+      /* top: 5rem; */
+    }
     .select-exercise-legend {
       font-size: 1.5rem;
     }

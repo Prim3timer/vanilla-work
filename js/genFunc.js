@@ -90,6 +90,7 @@ console.log(this.id)
     
               
             }else {
+          
             searcher.classList.replace("no-searcher", "searcher")
             if (this.id == "performance"){
               searcher.placeholder = "search entries by date eg. 2002/01/06"

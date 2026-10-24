@@ -1246,6 +1246,10 @@ position: absolute;
   
 }
 
+.searcher {
+width: 70vw;
+}
+
 
 .timing-main {
    /* background-color: red; */

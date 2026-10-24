@@ -87,7 +87,7 @@ console.log(this.id)
         if (this.id == content.className) {
           if (this.id == "home"){
     
-            greeting.style.top = "2rem"
+            greeting.style.top = "3rem"
             searcher.classList.replace("searcher", "no-searcher")
             
             

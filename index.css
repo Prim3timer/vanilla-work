@@ -510,7 +510,7 @@ input {
 }
 
 .greeting {
-  /* position: absolute; */
+  position: absolute;
   width: 100vw;
   top: 3rem;
   left: 1rem;

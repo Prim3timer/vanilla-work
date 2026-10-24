@@ -58,6 +58,8 @@ const callback = (mutationsList) => {
 const observer = new MutationObserver(callback);
 const searcher = document.getElementsByClassName("searcher")[0]
 
+const greeting = document.getElementsByClassName("greeting")[0]
+
 function ElementCatcher(pages, mainContainer, guestId) {
   const root = document.getElementById("root")
   const navbar = root.getElementsByClassName("navbar")[0]
@@ -85,11 +87,12 @@ console.log(this.id)
         if (this.id == content.className) {
           if (this.id == "home"){
     
-
-              searcher.classList.replace("searcher", "no-searcher")
-    
-              
-            }else {
+            greeting.style.top = "2rem"
+            searcher.classList.replace("searcher", "no-searcher")
+            
+            
+          }else {
+              greeting.style.top = "5rem"
           
             searcher.classList.replace("no-searcher", "searcher")
             if (this.id == "performance"){

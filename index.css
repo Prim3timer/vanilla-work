@@ -512,6 +512,7 @@ input {
 .greeting {
   position: absolute;
   /* width: 100vw; */
+  z-index: 1;
   top: 3rem;
   left: 1rem;
 }

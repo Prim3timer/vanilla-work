@@ -108,7 +108,7 @@ console.log(this.id)
           }
           
           // searcher.placeholder = `search ${this.id}`
-       searcher.value = ""
+      //  searcher.value = ""
           if (this.id == "settings"){
             // populate(guestId)
           

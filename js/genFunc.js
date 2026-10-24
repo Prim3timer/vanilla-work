@@ -85,7 +85,7 @@ console.log(this.id)
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
-          if (this.id == "home" || this.id == "performance"){
+          if (this.id == "home"){
     
             greeting.style.top = "3rem"
             searcher.classList.replace("searcher", "no-searcher")
@@ -100,7 +100,8 @@ console.log(this.id)
             // } else
                if(this.id == "settings"){
               searcher.placeholder = "search exercises"
-            }else if (this.id == "users"){
+            }else
+               if (this.id == "users"){
               searcher.placeholder = "search users"
             } else {
               searcher.placeholder = "search analytics"

@@ -85,7 +85,7 @@ console.log(this.id)
         this.innerHTML == "usersettings" 
       ) {
         if (this.id == content.className) {
-          if (this.id == "home"){
+          if (this.id == "home" || this.id == "performance"){
     
             greeting.style.top = "3rem"
             searcher.classList.replace("searcher", "no-searcher")
@@ -95,9 +95,10 @@ console.log(this.id)
               greeting.style.top = "5rem"
           
             searcher.classList.replace("no-searcher", "searcher")
-            if (this.id == "performance"){
-              searcher.placeholder = "search entries by date eg. 2002/01/06"
-            } else if(this.id == "settings"){
+            // if (this.id == "performance"){
+            //   searcher.placeholder = "search entries by date eg. 2002/01/06"
+            // } else
+               if(this.id == "settings"){
               searcher.placeholder = "search exercises"
             }else if (this.id == "users"){
               searcher.placeholder = "search users"

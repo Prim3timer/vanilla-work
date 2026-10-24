@@ -526,10 +526,14 @@ input {
 
 .greeting {
   color: white;
+  white-space: nowrap;
+  /* background-color: red; */
+  /* font-size: 18rem; */
   /* display: none; */
   /* margin-left: .5rem; */
   /* position: absolute; */
-  /* width: 100vw; */
+  overflow: auto;
+  width: 5rem;
   z-index: 1;
   /* top: 1rem; */
   /* justify-self: left; */
@@ -1222,8 +1226,15 @@ position: absolute;
   
   @media screen and (min-width: 740px) {
 
+    .nav-cont-first {
+  column-gap: 2rem;
+ 
+}
+
     .greeting {
-      /* top: 5rem; */
+      margin-left: .5rem;
+      /* background-color: red; */
+      width: 6rem;
     }
     .select-exercise-legend {
       font-size: 1.5rem;

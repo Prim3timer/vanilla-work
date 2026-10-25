@@ -59,7 +59,7 @@ const deleteHeader = document.createElement("th");
 
 tableBody.className = "performance-tbody"
 
-dHeader.innerHTML = "duraton";
+dHeader.innerHTML = "duration";
 rHeader.innerHTML = "rounds completed";
 exHeader.innerHTML = "overall effort (%)";
 exDetsHeader.innerHTML = "exercises per round";

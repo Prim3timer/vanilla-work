@@ -98,7 +98,7 @@ const containers = [
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
-const searcher = document.getElementsByClassName("searcher")[0]
+// const searcher = document.getElementsByClassName("searcher")[0]
 
 const handleRefresh = async () => {
   // navbar.innerHTML = ""
@@ -108,18 +108,18 @@ const handleRefresh = async () => {
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
-    searcher.placeholder = `search ${currentPageInnerText}`
+    // searcher.placeholder = `search ${currentPageInnerText}`
     if (currentPageInnerText == "home"){
-      searcher.className = "no-searcher"
+      // searcher.className = "no-searcher"
     }
       if (currentPageInnerText == "performance"){
-              searcher.placeholder = "search entries by date eg. 2002/01/06"
+              // searcher.placeholder = "search entries by date eg. 2002/01/06"
             } else if(currentPageInnerText == "settings"){
-              searcher.placeholder = "search exercises"
+              // searcher.placeholder = "search exercises"
             }else if (currentPageInnerText == "users"){
-              searcher.placeholder = "search users"
+              // searcher.placeholder = "search users"
             } else {
-              searcher.placeholder = "search analytics"
+              // searcher.placeholder = "search analytics"
             }
 
     // repopulate the exercise setup form fields
@@ -234,7 +234,7 @@ headerRow.append(
     }
     else if (reply.id) {
       greeting.innerHTML = `hi, ${reply.name}`;
-      // searcher.classList.replace("no-searcher", "searcher")
+      searcher.classList.replace("no-searcher", "searcher")
          navFirst.style.display = "none"
          const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
          getData(reply.id)
@@ -414,7 +414,7 @@ const getToHomePage = (e) => {
       navbar.children[i].style.display = "none"
     }
   localStorage.removeItem("userSettingsId");
-  searcher.classList.replace("searcher", "no-searcher")
+  // searcher.classList.replace("searcher", "no-searcher")
   if (mainContainer.children.length > 0 && localStorage.getItem("workoutUserId")) {
   mainContainer.firstElementChild.replaceWith(loginPage());
   localStorage.removeItem("workoutUserId");

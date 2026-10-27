@@ -98,8 +98,8 @@ const FilterUser = (e) => {
   }
 }
 
-const searcher = document.getElementsByClassName("searcher")[0]
-searcher.addEventListener("input", FilterUser)
+// const searcher = document.getElementsByClassName("searcher")[0]
+// searcher.addEventListener("input", FilterUser)
 
 usersFilter.addEventListener("input", FilterUser)
 const usersPage = () => {

@@ -52,7 +52,6 @@ const dHeader = document.createElement("th");
 const rHeader = document.createElement("th");
 const exHeader = document.createElement("th");
 const exDetsHeader = document.createElement("th");
-const markHeader = document.createElement("th");
 const dateHeader = document.createElement("th");
 const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");

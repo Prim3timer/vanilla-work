@@ -15,7 +15,7 @@ const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
 
-const searcher = document.getElementsByClassName("searcher")[0]
+// const searcher = document.getElementsByClassName("searcher")[0]
 
 
 let alertWindow = document.createElement("p");
@@ -290,7 +290,7 @@ found.map((item) => {
 // exerciseList = filterate
 }
 
-searcher.addEventListener("input", filterExercise)
+// searcher.addEventListener("input", filterExercise)
 
 usersFilter.addEventListener("input", filterExercise)
 

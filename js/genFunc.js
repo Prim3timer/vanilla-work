@@ -56,7 +56,7 @@ const callback = (mutationsList) => {
 
 // 3. Create the observer instance
 const observer = new MutationObserver(callback);
-const searcher = document.getElementsByClassName("searcher")[0]
+// const searcher = document.getElementsByClassName("searcher")[0]
 
 const greeting = document.getElementsByClassName("greeting")[0]
 
@@ -88,23 +88,23 @@ console.log(this.id)
           if (this.id == "home"){
     
             greeting.style.top = "3rem"
-            searcher.classList.replace("searcher", "no-searcher")
+            // searcher.classList.replace("searcher", "no-searcher")
             
             
           }else {
               greeting.style.top = "5rem"
           
-            searcher.classList.replace("no-searcher", "searcher")
+            // searcher.classList.replace("no-searcher", "searcher")
             // if (this.id == "performance"){
             //   searcher.placeholder = "search entries by date eg. 2002/01/06"
             // } else
                if(this.id == "settings"){
-              searcher.placeholder = "search exercises"
+              // searcher.placeholder = "search exercises"
             }else
                if (this.id == "users"){
-              searcher.placeholder = "search users"
+              // searcher.placeholder = "search users"
             } else {
-              searcher.placeholder = "search analytics"
+              // searcher.placeholder = "search analytics"
             }
 
           }

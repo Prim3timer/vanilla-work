@@ -1,8 +1,8 @@
 import { homePage } from "./home.js";
 import { getData, performancePage } from "./performance.js";
-import { settingsPage, populate, addArray } from "./settings.js";
-import { usersPage } from "./users.js";
-import { ElementCatcher, getSpecificPage, populateUserSettings } from "./genFunc.js";
+import { settingsPage, populate, addArray, filterExercise } from "./settings.js";
+import { usersPage, filterUser} from "./users.js";
+import { ElementCatcher, getSpecificPage, insertSearcher } from "./genFunc.js";
 import { register } from "./register.js";
 import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
@@ -98,7 +98,23 @@ const containers = [
 
 const instanceer = new ElementCatcher(containers, mainContainer, guestId);
 
-// const searcher = document.getElementsByClassName("searcher")[0]
+const navContFirst = document.getElementsByClassName("nav-cont-first")[0]
+
+
+const actiSearch = document.createElement("input")
+actiSearch.placeholder = "search entries by date"
+actiSearch.className = "searcher"
+const settingsSearch = document.createElement("input")
+settingsSearch.addEventListener("input", filterExercise)
+settingsSearch.placeholder = "filter exercises"
+settingsSearch.className = "searcher"
+const analyticsSearch = document.createElement("input")
+analyticsSearch.placeholder = "search analytics"
+analyticsSearch.className = "searcher"
+const usersSearch = document.createElement("input")
+usersSearch.addEventListener("input", filterUser)
+usersSearch.placeholder = "filter users"
+usersSearch.className = "searcher"
 
 const handleRefresh = async () => {
   // navbar.innerHTML = ""
@@ -113,14 +129,17 @@ const handleRefresh = async () => {
       // searcher.className = "no-searcher"
     }
       if (currentPageInnerText == "performance"){
-              // searcher.placeholder = "search entries by date eg. 2002/01/06"
+              // insertSearcher(actiSearch)
             } else if(currentPageInnerText == "settings"){
-              // searcher.placeholder = "search exercises"
+              insertSearcher(settingsSearch)
+              // insertSearcher(settingsSearch) 
             }else if (currentPageInnerText == "users"){
+              insertSearcher(usersSearch)
               // searcher.placeholder = "search users"
-            } else {
-              // searcher.placeholder = "search analytics"
-            }
+            } 
+            // else {
+            //   insertSearcher(analyticsSearch)
+            // }
 
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
@@ -234,7 +253,7 @@ headerRow.append(
     }
     else if (reply.id) {
       greeting.innerHTML = `hi, ${reply.name}`;
-      searcher.classList.replace("no-searcher", "searcher")
+      // searcher.classList.replace("no-searcher", "searcher")
          navFirst.style.display = "none"
          const instanceerInner = new ElementCatcher(containers, mainContainer, reply.id);
          getData(reply.id)
@@ -422,7 +441,10 @@ const getToHomePage = (e) => {
   greeting.innerHTML = "";
   addArray.length = 0
 
-  // navbar.appendChild(navFirst);
+     if (navContFirst.children.length > 1){
+      const secondChild = navContFirst.children[1]
+    secondChild.remove()
+    }
   } else mainContainer.appendChild(loginPage())
 };
 logoutLInk.addEventListener("click", getToHomePage);

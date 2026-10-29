@@ -55,7 +55,7 @@ const getUsers = async () => {
 
 let users = await getUsers();
 
-const FilterUser = (e) => {
+const filterUser = (e) => {
   const filterate = users.filter((user) => user.username.toLowerCase().includes(e.target.value.toLowerCase()))
   console.log(filterate)
   entryCount.innerHTML = `(${filterate.length})`
@@ -99,9 +99,9 @@ const FilterUser = (e) => {
 }
 
 // const searcher = document.getElementsByClassName("searcher")[0]
-// searcher.addEventListener("input", FilterUser)
+// searcher.addEventListener("input", filterUser)
 
-usersFilter.addEventListener("input", FilterUser)
+usersFilter.addEventListener("input", filterUser)
 const usersPage = () => {
   entryCount.innerHTML = `(${users.length})`;
 
@@ -158,4 +158,4 @@ const usersPage = () => {
 
 // getUsers();
 
-export { usersPage };
+export { usersPage, filterUser };

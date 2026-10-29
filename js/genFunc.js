@@ -1,7 +1,10 @@
 import myUrl from "./myUrl.js";
 import { populate, addArray } from "./settings.js";
 import { getData, performancePage } from "./performance.js";
+import { analyticsPage } from "./analytics.js";
 // import { mainSettings } from "./userSettings.js";
+import { filterExercise } from "./settings.js";
+import { filterUser } from "./users.js";
 
 
 
@@ -57,14 +60,38 @@ const callback = (mutationsList) => {
 // 3. Create the observer instance
 const observer = new MutationObserver(callback);
 // const searcher = document.getElementsByClassName("searcher")[0]
-
+const navbar = document.getElementsByClassName("navbar")[0]
 const greeting = document.getElementsByClassName("greeting")[0]
+
+const navContFirst = document.getElementsByClassName("nav-cont-first")[0]
+const actiSearch = document.createElement("input")
+actiSearch.placeholder = "search entries by date"
+actiSearch.className = "searcher"
+const settingsSearch = document.createElement("input")
+settingsSearch.addEventListener("input", filterExercise)
+settingsSearch.placeholder = "filter exercises"
+settingsSearch.className = "searcher"
+const analyticsSearch = document.createElement("input")
+analyticsSearch.placeholder = "search analytics"
+analyticsSearch.className = "searcher"
+const usersSearch = document.createElement("input")
+usersSearch.addEventListener("input", filterUser)
+usersSearch.placeholder = "filter users"
+usersSearch.className = "searcher"
+
+const insertSearcher = (element) => {
+  console.log(navContFirst)
+  if (navContFirst.children.length == 1) {
+    navContFirst.append(element)
+  }else {
+    navContFirst.replaceChild(element, navContFirst.children[1])
+  }
+}
 
 function ElementCatcher(pages, mainContainer, guestId) {
   const root = document.getElementById("root")
-  const navbar = root.getElementsByClassName("navbar")[0]
   this.shower = async function (e) {
-    console.log(searcher)
+console.log(navContFirst.children.length)
     const alertMeassage = document.getElementsByClassName("verify-window")[0]
     console.log(alertMeassage)
     const previousElementClassName = mainContainer.firstElementChild.className
@@ -86,22 +113,41 @@ console.log(this.id)
       ) {
         if (this.id == content.className) {
           if (this.id == "home"){
-    
+    if (navContFirst.children.length > 1){
+      const secondChild = navContFirst.children[1]
+    secondChild.remove()
+    }
             greeting.style.top = "3rem"
             // searcher.classList.replace("searcher", "no-searcher")
             
             
           }else {
               greeting.style.top = "5rem"
-          
-            // searcher.classList.replace("no-searcher", "searcher")
-            // if (this.id == "performance"){
-            //   searcher.placeholder = "search entries by date eg. 2002/01/06"
-            // } else
+            if (this.id == "performance"){
+              // temporary
+               if (navContFirst.children.length > 1){
+      const secondChild = navContFirst.children[1]
+    secondChild.remove()
+              // insertSearcher(actiSearch)
+             
+            }
+           } else
                if(this.id == "settings"){
-              // searcher.placeholder = "search exercises"
-            }else
-               if (this.id == "users"){
+                insertSearcher(settingsSearch)
+                // navbar.insertBefore("settingsSearch", "")
+                // searcher.placeholder = "search exercises"
+              }
+              else 
+                if (this.id == "analytics"){
+                  // insertSearcher(analyticsSearch)
+                   if (navContFirst.children.length > 1){
+      const secondChild = navContFirst.children[1]
+    secondChild.remove()
+                }
+              }
+              else
+                if (this.id == "users"){
+                 insertSearcher(usersSearch)
               // searcher.placeholder = "search users"
             } else {
               // searcher.placeholder = "search analytics"
@@ -293,4 +339,4 @@ const showHide = (passwordInput) => {
     }
 }
 
-export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow, populateUserSettings, showHide };
+export { timeClocking, timeToText, ElementCatcher, getSpecificPage, showDetWindow, populateUserSettings, showHide, insertSearcher };

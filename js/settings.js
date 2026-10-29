@@ -399,4 +399,4 @@ const editUser = async (e) => {
 
 settingsButton.addEventListener("click", editUser);
 
-export { settingsPage, populate, addArray };
+export { settingsPage, populate, addArray, filterExercise };

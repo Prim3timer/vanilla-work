@@ -1,4 +1,4 @@
-import { timeClocking, timeToText, showDetWindow} from "./genFunc.js";
+import { timeToText, showDetWindow} from "./genFunc.js";
 import myUrl from "./myUrl.js";
 
 let globalData = [];
@@ -7,7 +7,21 @@ let globalUser = {};
 const entryCount = document.createElement("span");
 entryCount.className = "perf-entry-count"
 
-
+const timeClocking = (sec) => {
+  return ` ${
+    sec > 3600
+      ? `${Math.floor(sec / 3600)}:${Math.floor((sec % 3600) / 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) / 60)}:${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)} `
+      : sec < 10
+        ? `0:0${sec % 60}`
+        : sec < 60
+          ? `0:${sec % 60}`
+          : sec % 60 >= 10
+            ? `${Math.floor(sec / 60)}:${sec % 60}`
+            : sec < 10
+              ? 0`${sec % 60}`
+              : `${Math.floor(sec / 60)}:0${sec % 60}`
+  }`;
+};
 
 const windowCloser = () => {
   verifyWindow.className = "no-verify-window";
@@ -52,6 +66,7 @@ const dHeader = document.createElement("th");
 const rHeader = document.createElement("th");
 const exHeader = document.createElement("th");
 const exDetsHeader = document.createElement("th");
+const markHeader = document.createElement("th");
 const dateHeader = document.createElement("th");
 const deleteHeader = document.createElement("th");
 // const delet = document.createElement("th");
@@ -213,8 +228,7 @@ const getData = async (id) => {
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
       mark.innerHTML = parseFloat(perfy.mark).toFixed(2);
-      exDet.innerHTML = `${perfy.exerciseDets.length}`;
-      const date = document.createElement("td");
+      exDet.innerHTML = `${perfy.exerciseDets.length}`;      const date = document.createElement("td");
       const del = document.createElement("td");
       del.className = "delete-performance"
       date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
@@ -248,6 +262,7 @@ const getData = async (id) => {
       performanceMain.append(perfTable);
     }
     const navbar = document.getElementsByClassName("navbar")[0];
+ 
     const getDatas = document.getElementsByClassName("get-data")[0];
     const perfContainer = document.createElement("section");
   }

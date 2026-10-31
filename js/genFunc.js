@@ -117,10 +117,7 @@ console.log(this.id)
       const secondChild = navContFirst.children[1]
     secondChild.remove()
     }
-            greeting.style.top = "3rem"
-            // searcher.classList.replace("searcher", "no-searcher")
-            
-            
+            greeting.style.top = "3rem"      
           }else {
               greeting.style.top = "5rem"
             if (this.id == "performance"){
@@ -154,9 +151,7 @@ console.log(this.id)
             }
 
           }
-          
-          // searcher.placeholder = `search ${this.id}`
-      //  searcher.value = ""
+  
           if (this.id == "settings"){
             // populate(guestId)
           
@@ -192,7 +187,7 @@ console.log(roles)
             // alertMeassage.style.fontSize = "1rem"
             
             // alertMeassage.style.flexDirection = "column"
-            alertMeassage.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style=" color: darkgoldenrod"></i>Unauthorized! You are not authorized to view the requested page   `
+            alertMeassage.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style=" color: darkgoldenrod"></i>Unauthorized! You are not authorized to view the requested page`
             setTimeout(() => {
               // alertMeassage.className = "no-verify-window"
               alertMeassage.style.visibility = "hidden"
@@ -232,16 +227,7 @@ console.log(roles)
               
             }
           }
-        } else {
-          
-            // this.style.textDecoration = "none"
-
-          
-        }
-        // window.location.reload();
-        //         observer.observe(rootElement, { childList: true,
-        // subtree: false
-        // });
+        } 
       }
       return content;
     });
@@ -277,9 +263,7 @@ performanceMain.appendChild(detsWindowCover);
         });
         // console
         let closure = document.createElement("p");
-        closure.style.position = "absolute";
-        closure.style.top = "0px";
-        closure.style.right = "0px";
+        closure.className = "closure"
         closure.addEventListener("click", () => {
           // detsWindow.className = "no-verify-window";
           detsWindowCover.className = "no-verify-window";
@@ -290,7 +274,7 @@ performanceMain.appendChild(detsWindowCover);
         detsWindow.className = "inner-dets-verify-window";
       
         detsWindow.appendChild(detsDuration);
-        detsWindow.appendChild(closure);
+        // detsWindow.appendChild(closure);
         detsWindow.appendChild(detsExHeader);
         detsWindow.appendChild(detsExList);
         detsWindow.appendChild(numberOfExercises);
@@ -315,8 +299,7 @@ performanceMain.appendChild(detsWindowCover);
           detsWindowCover.firstElementChild.replaceWith(detsWindow);
         } else {
           console.log("no");
-          detsWindowCover.appendChild(detsWindow);
-          console.log(detsWindowCover)
+          detsWindowCover.append(detsWindow, closure);
         }
         console.log(detsWindowCover.children.length)
       };

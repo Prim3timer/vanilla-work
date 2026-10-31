@@ -137,9 +137,6 @@ const handleRefresh = async () => {
               insertSearcher(usersSearch)
               // searcher.placeholder = "search users"
             } 
-            // else {
-            //   insertSearcher(analyticsSearch)
-            // }
 
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
@@ -224,9 +221,6 @@ const exDetsHeader = document.createElement("th");
 const markHeader = document.createElement("th");
 const dateHeader = document.createElement("th");
 const deleteHeader = document.createElement("th");
-// const delet = document.createElement("th");
-
-// tableBody.className = "performance-tbody"
 
 dHeader.innerHTML = "duraton";
 rHeader.innerHTML = "rounds completed";
@@ -234,8 +228,6 @@ exHeader.innerHTML = "overall effort (%)";
 exDetsHeader.innerHTML = "exercises per round";
 // markHeader.innerHTML = "mark (%)";
 dateHeader.innerHTML = "date";
-// perfTable.appendChild(tableBody);
-// tableBody.appendChild(headerRow);
 headerRow.append(
   dHeader,
   rHeader,
@@ -249,7 +241,7 @@ headerRow.append(
 
     if (reply.verified === false){
       resetMessage.innerHTML = "unverified. Open the email sent to you from Uthokoii or reset your password"
-      resetMessage.style.color = "red"
+      // resetMessage.style.color = "red"
     }
     else if (reply.id) {
       greeting.innerHTML = `hi, ${reply.name}`;
@@ -363,10 +355,8 @@ const getVerified = async () => {
      
         replyElement.style.color = "black";
         replyElement.style.padding = ".5rem";
-        // replyElement.style.position = "fixed";
         replyElement.style.borderRadius = "5px";
-        // replyElement.style.top = "5rem";
-        // replyElement.style.justifySelf = "center"
+
       motherShip.insertBefore(replyElement, mainContainer)
 
       if (email && message) {

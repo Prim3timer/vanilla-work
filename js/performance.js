@@ -91,9 +91,38 @@ headerRow.append(
   deleteHeader,
 );
 
+const getPerformance = async () => {
+    const response = await fetch(`${myUrl}/performance`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+console.log(await getPerformance());
+
 noButton.addEventListener("click", windowCloser);
 
 verifyWindowButtonCont.className = "verify-window-cont";
+
+
+const actiSearch = document.createElement("input");
+actiSearch.placeholder = "search performance entries";
+
+const filterEntries = (e) => {
+  e.preventDefault();
+  console.log("filtering entries")
+ tableBody.replaceChildren();
+
+}
+
+// actiSearch.addEventListener("input", filterEntries);
+
+
 
 const deleteEntry = async () => {
   let reply = "deleting..."
@@ -104,9 +133,10 @@ const deleteEntry = async () => {
     // const replies = await response.json()
     if (response) {
       const replies = await response.json();
-      const {success, entries} = replies
+      const {success } = replies
       console.log(replies)
       reply = success;
+      const entries = await getPerformance();
       const filterate = entries.filter((data) => data.userId === localStorage.getItem("workoutUserId"));
       globalData = filterate;
       console.log(filterate)
@@ -184,12 +214,7 @@ const deleteEntry = async () => {
 const getData = async (id) => {
   tableBody.appendChild(headerRow);
   console.log(tableBody)
-  const response = await fetch(`${myUrl}/performance`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+const response = await getPerformance();
   const response2 = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -203,7 +228,7 @@ const getData = async (id) => {
 
     const foundUserRoles = Object.keys(user.roles);
     yesButton.addEventListener("click", deleteEntry);
-    let perfData = await response.json();
+    let perfData = await getPerformance();
     globalData = perfData;
     const filteredData = perfData.filter((data) => data.userId === id);
     entryCount.innerHTML = `(${filteredData.length} entries)`;
@@ -269,10 +294,11 @@ const getData = async (id) => {
 };
 
 
+
 getData(userId);
 const performancePage = () => {
 
   return performanceMain;
 };
 
-export { performancePage, getData };
+export { performancePage, getData, filterEntries };

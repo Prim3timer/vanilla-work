@@ -1,6 +1,6 @@
 import myUrl from "./myUrl.js";
 import { populate, addArray } from "./settings.js";
-import { getData, performancePage } from "./performance.js";
+import { getData, performancePage, filterEntries } from "./performance.js";
 import { analyticsPage } from "./analytics.js";
 // import { mainSettings } from "./userSettings.js";
 import { filterExercise } from "./settings.js";
@@ -67,6 +67,7 @@ const navContFirst = document.getElementsByClassName("nav-cont-first")[0]
 const actiSearch = document.createElement("input")
 actiSearch.placeholder = "search entries by date"
 actiSearch.className = "searcher"
+actiSearch.addEventListener("input", filterEntries)
 const settingsSearch = document.createElement("input")
 settingsSearch.addEventListener("input", filterExercise)
 settingsSearch.placeholder = "filter exercises"
@@ -121,13 +122,10 @@ console.log(this.id)
           }else {
               greeting.style.top = "5rem"
             if (this.id == "performance"){
+              console.log("performance")
               // temporary
-               if (navContFirst.children.length > 1){
-      const secondChild = navContFirst.children[1]
-    secondChild.remove()
-              // insertSearcher(actiSearch)
-             
-            }
+              insertSearcher(actiSearch)
+           
            } else
                if(this.id == "settings"){
                 insertSearcher(settingsSearch)

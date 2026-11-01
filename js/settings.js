@@ -78,9 +78,9 @@ timingMain.appendChild(legend2)
   filterButton.className = "filter-button"
   filterForm.className = "filter-form"
   filterButton.innerHTML = "filter"
-  const usersFilter = document.createElement("input")
-  usersFilter.placeholder = "search exercise"
-// filterForm.append(usersFilter)
+  const settingsSearch = document.createElement("input")
+  settingsSearch.placeholder = "search exercise"
+// filterForm.append(settingsSearch)
 
 
 const exerciseDurationHourInput = document.createElement("input");
@@ -292,7 +292,7 @@ found.map((item) => {
 
 // searcher.addEventListener("input", filterExercise)
 
-usersFilter.addEventListener("input", filterExercise)
+// settingsSearch.addEventListener("input", filterExercise)
 
 const populate = async (userId) => {
   creator.map((item) => {

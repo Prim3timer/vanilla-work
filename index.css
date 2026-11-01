@@ -649,8 +649,10 @@ input {
   /* font-size: 2rem; */
   box-shadow: .2em .3em .7em gray;
   padding: .5rem 2rem;
- }
- .inner-dets-verify-window {
+  opacity: .9;
+}
+.inner-dets-verify-window {
+   opacity: .9;
   /* background-color: gainsboro; */
   /* color: darkslateblue; */
 

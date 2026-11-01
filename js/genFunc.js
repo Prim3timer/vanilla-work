@@ -29,16 +29,16 @@ const timeToText = (sec) => {
   return ` ${
     // if sec is greater than an hour
     sec > 3600
-      ? `${Math.floor(sec / 3600)}hrs, ${Math.floor((sec % 3600) / 60)}min, ${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)}s `
+      ? `${Math.floor(sec / 3600)}hrs, ${Math.floor((sec % 3600) / 60)}min, ${Math.floor((sec % 3600) % 60) < 10 ? 0 : ""}${Math.floor((sec % 3600) % 60)}sec `
       : sec < 10
-        ? `${sec % 60}s`
+        ? `${sec % 60}sec`
         : sec < 60
-          ? ` ${sec % 60}s`
+          ? ` ${sec % 60}sec`
           : sec % 60 >= 10
-            ? `${Math.floor(sec / 60)}min, ${sec % 60}s`
+            ? `${Math.floor(sec / 60)}min, ${sec % 60}sec`
             : sec < 10
-              ? `${sec % 60}s`
-              : `${Math.floor(sec / 60)}min, ${sec % 60}s`
+              ? `${sec % 60}sec`
+              : `${Math.floor(sec / 60)}min, ${sec % 60}sec`
   }`;
 };
 
@@ -287,7 +287,7 @@ performanceMain.appendChild(detsWindowCover);
         // detNumberOfRounds.innerHTML = `number of rounds: ${perfy.exerciseTimings[3].numberOfRounds}`;
         detsInterval.innerHTML = `interval b/w exercises: ${timeToText(betweenExes)}`;
         detExDuration.innerHTML = `duration of each exercise: ${timeToText(exerciseLength)}`;
-        detsDuration.innerHTML = `duration: ${timeToText(duration)}`;
+        detsDuration.innerHTML = `${timeToText(duration)}`;
         detsExHeader.innerHTML = `exercises list:`;
         numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
         detsWindow.append(detsInterval, detExDuration);

@@ -626,16 +626,18 @@ input {
   align-items: center;
   position: fixed;
   justify-self: center;
-  width: 80vw;
+  width: 95vw;
   z-index: 10000;
   margin: auto;
   top: 40%;
   font-size: 1.5rem;
+  opacity: .9;
  }
 
  
  .dets-verify-window {
   background-color: white;
+  /* background-color: red; */
   /* padding: 8rem; */
   display: flex;
   flex-direction: column;
@@ -650,13 +652,16 @@ input {
   box-shadow: .2em .3em .7em gray;
   padding: .5rem 2rem;
   opacity: .9;
+  width: 90vw;
 }
 .inner-dets-verify-window {
+  width: 100%;
    opacity: .9;
   /* background-color: gainsboro; */
   /* color: darkslateblue; */
 
   background-color: white;
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1287,8 +1292,16 @@ position: absolute;
   /* background-color: red; */
 }
 
+.dets-verify-window {
+  background-color: white;
+  /* background-color:red; */
+  opacity: .9;
+  max-width: 50%; 
+
+}
+
 .verify-window {
-  max-width: 500px;
+  max-width: 40%;
 }
 
 

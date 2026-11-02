@@ -30,7 +30,7 @@ filterButton.innerHTML = "filter"
 usersFilter.className = "users-filter"
 usersFilter.placeholder = "find a user"
 // filterForm.append(usersFilter)
-userBox.append(filterForm, usersHeader, entryCount);
+userBox.append(addExerciseButton, filterForm, usersHeader, entryCount);
 const table = document.createElement("table");
 const tableBody = document.createElement("tbody");
 const headerRow = document.createElement("tr");

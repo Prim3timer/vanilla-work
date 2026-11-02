@@ -91,9 +91,96 @@ headerRow.append(
   deleteHeader,
 );
 
+const getPerformance = async () => {
+    const response = await fetch(`${myUrl}/performance`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+console.log(await getPerformance());
+
 noButton.addEventListener("click", windowCloser);
 
 verifyWindowButtonCont.className = "verify-window-cont";
+
+
+const actiSearch = document.createElement("input");
+actiSearch.placeholder = "search performance entries";
+
+const filterEntries = async (e) => {
+  e.preventDefault();
+  const performances = await getPerformance();
+  const searchItem = performances.filter((data) => data.userId === userId);
+  const filterate = searchItem.filter((data) => data.date.includes(e.target.value.toLowerCase())); 
+  console.log(filterate)
+  console.log(searchItem)
+
+ tableBody.replaceChildren();
+   tableBody.appendChild(headerRow);
+        entryCount.innerHTML = `(${filterate.length} entries)`;
+        for (let i = 0; i < filterate.length; i++) {
+          const dets = document.createElement("tr");
+          dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
+          tableBody.appendChild(dets);
+          // perfy is a document in the performance cluster in the database.
+          const perfy = filterate[i];
+          console.log(perfy)
+          const { workSettings } = globalUser;
+          const endurance = document.createElement("td");
+          const { duration } = perfy.exerciseTimings[0];
+          endurance.innerHTML = timeClocking(duration);
+          const roundCount = document.createElement("td");
+          roundCount.innerHTML = `${Math.floor(perfy.oneExercise /perfy.exerciseDets.length)} of ${perfy.exerciseTimings[4]?.actualRounds}`;
+          const mark = document.createElement("td");
+          const exDet = document.createElement("td");
+          mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.mark).toFixed(2) : 0}`;
+          exDet.innerHTML = `${globalUser.workSettings?.exercise.length}`;
+      
+          const date = document.createElement("td");
+          const del = document.createElement("td");
+          date.innerHTML = new Date(perfy.date).toLocaleString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            // hour: "numeric",
+            // minute: "numeric",
+            // second: "numeric",
+          });
+          del.style.fontSize = "1.5rem";
+      
+          const removeVerifier = () => {
+            verifyWindow.className = "no-veriy-window";
+          };
+          del.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+      
+          const getId = async (id) => {
+            itemId = id;
+            verifyWindow.className = "verify-window";
+            verifyWindowButtonCont.className = "verify-button-cont";
+          };
+      
+          del.addEventListener("click", () => getId(perfy._id));
+          dets.append( endurance, roundCount, mark, exDet, date);
+          for (const child of dets.children){
+            child.addEventListener("click", () => showDetWindow(perfy, duration))
+          }
+      
+          dets.append(del);
+          userId && performanceMain.append(perfTable);
+        }
+
+
+}
+
+// actiSearch.addEventListener("input", filterEntries);
+
+
 
 const deleteEntry = async () => {
   let reply = "deleting..."
@@ -104,9 +191,10 @@ const deleteEntry = async () => {
     // const replies = await response.json()
     if (response) {
       const replies = await response.json();
-      const {success, entries} = replies
+      const {success } = replies
       console.log(replies)
       reply = success;
+      const entries = await getPerformance();
       const filterate = entries.filter((data) => data.userId === localStorage.getItem("workoutUserId"));
       globalData = filterate;
       console.log(filterate)
@@ -184,12 +272,7 @@ const deleteEntry = async () => {
 const getData = async (id) => {
   tableBody.appendChild(headerRow);
   console.log(tableBody)
-  const response = await fetch(`${myUrl}/performance`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+const response = await getPerformance();
   const response2 = await fetch(`${myUrl}/workout-users`, {
     method: "GET",
     headers: {
@@ -203,7 +286,7 @@ const getData = async (id) => {
 
     const foundUserRoles = Object.keys(user.roles);
     yesButton.addEventListener("click", deleteEntry);
-    let perfData = await response.json();
+    let perfData = await getPerformance();
     globalData = perfData;
     const filteredData = perfData.filter((data) => data.userId === id);
     entryCount.innerHTML = `(${filteredData.length} entries)`;
@@ -269,10 +352,11 @@ const getData = async (id) => {
 };
 
 
+
 getData(userId);
 const performancePage = () => {
 
   return performanceMain;
 };
 
-export { performancePage, getData };
+export { performancePage, getData, filterEntries };

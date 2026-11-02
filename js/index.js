@@ -1,5 +1,5 @@
 import { homePage } from "./home.js";
-import { getData, performancePage } from "./performance.js";
+import { getData, performancePage, filterEntries } from "./performance.js";
 import { settingsPage, populate, addArray, filterExercise } from "./settings.js";
 import { usersPage, filterUser} from "./users.js";
 import { ElementCatcher, getSpecificPage, insertSearcher } from "./genFunc.js";
@@ -103,6 +103,7 @@ const navContFirst = document.getElementsByClassName("nav-cont-first")[0]
 
 const actiSearch = document.createElement("input")
 actiSearch.placeholder = "search entries by date"
+actiSearch.addEventListener("input", filterEntries)
 actiSearch.className = "searcher"
 const settingsSearch = document.createElement("input")
 settingsSearch.addEventListener("input", filterExercise)
@@ -129,7 +130,7 @@ const handleRefresh = async () => {
       // searcher.className = "no-searcher"
     }
       if (currentPageInnerText == "performance"){
-              // insertSearcher(actiSearch)
+              insertSearcher(actiSearch)
             } else if(currentPageInnerText == "settings"){
               insertSearcher(settingsSearch)
               // insertSearcher(settingsSearch) 

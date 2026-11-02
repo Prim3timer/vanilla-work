@@ -1243,9 +1243,53 @@ position: absolute;
     /* background-color: rebeccapurple; */
     font-size: .8rem;
   }
+
+
+  .y-axis {
+    /* border-left: 80px; */
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    /* background-color: red; */
+    position: relative;
+    /* height: 40vh; */
+    border-left: 4px solid yellowgreen;
+  width: 4px;
+    height: 80%;
+  }
+
+  .y-axis-label {
+    position: absolute;
+    /* margin-top: 1rem; */
+    top: -1rem;
+    left: 2%;
+    /* margin: -5rem 0 0 .5rem; */
+  }
+
+  .x-axis-label {
+position: absolute;
+/* margin-top: 1rem; */
+/* top: 5px; */
+right: 5%;
+    /* margin: -5rem 0 0 .5rem; */
+  }
   
-  
-  
+  /* .x-entries {
+    position: absolute;
+  } */
+
+
+  .x-axis {
+    /* border-left: 80px; */
+    /* margin-top: 1rem; */
+    /* background-color: red; */
+    /* border-left: 4px solid black; */
+    display: flex;
+    flex-direction: row;
+    border-bottom: 4px solid black;
+    width: 80vw;
+  }
   
   
   @media screen and (min-width: 740px) {

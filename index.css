@@ -644,7 +644,7 @@ input {
   row-gap: 1rem;
   align-items: center;
   position: fixed;
-  /* top: 20%; */
+  top: 20%;
   justify-self: center;
   z-index: 10000;
   

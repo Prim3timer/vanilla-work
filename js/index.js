@@ -102,7 +102,7 @@ const navContFirst = document.getElementsByClassName("nav-cont-first")[0]
 
 
 const actiSearch = document.createElement("input")
-actiSearch.placeholder = "search entries by date"
+actiSearch.placeholder = "search entries by date  eg. 2023-01-01"
 actiSearch.addEventListener("input", filterEntries)
 actiSearch.className = "searcher"
 const settingsSearch = document.createElement("input")

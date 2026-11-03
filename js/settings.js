@@ -14,8 +14,9 @@ settingsInstructions.className = "settings-instructions"
 const settingsForm = document.createElement("form");
 settingsForm.className = "exercise-settings-form";
 
+const exCount = document.createElement("p")
 
-// const searcher = document.getElementsByClassName("searcher")[0]
+exCount.className = "exercise-count"  
 
 
 let alertWindow = document.createElement("p");
@@ -73,40 +74,40 @@ legend2.className = "select-exercise-legend"
 timingMain.className = "timing-main"
 timingMain.appendChild(legend2)
 
-  const filterForm = document.createElement("form")
-  const filterButton = document.createElement("span")
-  filterButton.className = "filter-button"
-  filterForm.className = "filter-form"
-  filterButton.innerHTML = "filter"
-  const settingsSearch = document.createElement("input")
+const filterForm = document.createElement("form")
+const filterButton = document.createElement("span")
+filterButton.className = "filter-button"
+filterForm.className = "filter-form"
+filterButton.innerHTML = "filter"
+const settingsSearch = document.createElement("input")
   settingsSearch.placeholder = "search exercise"
-// filterForm.append(settingsSearch)
+  // filterForm.append(settingsSearch)
+  
 
-
-const exerciseDurationHourInput = document.createElement("input");
-exerciseDurationHourInput.type = "number"
-const exerciseDurationMinInput = document.createElement("input");
-exerciseDurationMinInput.type = "number"
-const exerciseDurationSecInput = document.createElement("input");
-exerciseDurationSecInput.required = true;
-exerciseDurationSecInput.type = "number"
-exerciseDurationHourInput.className = "exercise-duration-input";
-exerciseDurationMinInput.className = "exercise-duration-input";
-exerciseDurationSecInput.className = "exercise-duration-input";
-exerciseDurationLabel.append(breaker.cloneNode(true), exerciseDurationHourInput, columnElement.cloneNode(true), exerciseDurationMinInput, columnElement.cloneNode(true), exerciseDurationSecInput);
-
-exerciseDurationHourInput.placeholder = "HH"
-exerciseDurationMinInput.placeholder = "MM"
-exerciseDurationSecInput.placeholder = "SS"
-const numberOfRoundsLabel = document.createElement("label");
-numberOfRoundsLabel.className = "number-of-rounds-label"
-numberOfRoundsLabel.innerHTML = "number of rounds:";
-const numberOfRoundsInput = document.createElement("input");
-numberOfRoundsInput.type = "number"
-numberOfRoundsInput.className = "number-of-rounds-input";
-numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
-const settingsButton = document.createElement("button");
-settingsButton.className = "done-settings";
+  const exerciseDurationHourInput = document.createElement("input");
+  exerciseDurationHourInput.type = "number"
+  const exerciseDurationMinInput = document.createElement("input");
+  exerciseDurationMinInput.type = "number"
+  const exerciseDurationSecInput = document.createElement("input");
+  exerciseDurationSecInput.required = true;
+  exerciseDurationSecInput.type = "number"
+  exerciseDurationHourInput.className = "exercise-duration-input";
+  exerciseDurationMinInput.className = "exercise-duration-input";
+  exerciseDurationSecInput.className = "exercise-duration-input";
+  exerciseDurationLabel.append(breaker.cloneNode(true), exerciseDurationHourInput, columnElement.cloneNode(true), exerciseDurationMinInput, columnElement.cloneNode(true), exerciseDurationSecInput);
+  
+  exerciseDurationHourInput.placeholder = "HH"
+  exerciseDurationMinInput.placeholder = "MM"
+  exerciseDurationSecInput.placeholder = "SS"
+  const numberOfRoundsLabel = document.createElement("label");
+  numberOfRoundsLabel.className = "number-of-rounds-label"
+  numberOfRoundsLabel.innerHTML = "number of rounds:";
+  const numberOfRoundsInput = document.createElement("input");
+  numberOfRoundsInput.type = "number"
+  numberOfRoundsInput.className = "number-of-rounds-input";
+  numberOfRoundsLabel.append(breaker3, numberOfRoundsInput);
+  const settingsButton = document.createElement("button");
+  settingsButton.className = "done-settings";
 settingsButton.innerHTML = "submit";
 const thirdContent = document.createElement("h3");
 const exMain = document.createElement("fieldset")
@@ -151,6 +152,7 @@ const addExercise = async (box, checker, array) => {
       console.log("not inide array")
       popArray.push(checker.innerHTML)
       console.log(popArray)
+      exCount.innerHTML = `(${popArray.length} exercises selected)`
       return
     }
   } else {
@@ -163,6 +165,7 @@ const addExercise = async (box, checker, array) => {
     console.log(popArray)
     
   }
+  exCount.innerHTML = `(${popArray.length} exercises selected)`
     }
 
 
@@ -186,6 +189,7 @@ const settingsPage = () => {
    timingMain
   );
   settingsCont.append(
+    exCount,
     filterForm,
     // settingsHeader,
     // thirdContent,
@@ -317,6 +321,7 @@ const filArray = workSettings.exercise.map((userEx) =>{
 })
 console.log(filArray)
 popArray = filArray
+exCount.innerHTML = `(${filArray.length} exercises selected)`
 console.log(popArray)
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;

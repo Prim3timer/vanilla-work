@@ -293,9 +293,15 @@ flex-direction: column;
   }
 
   .settings {
-    row-gap: 2rem;
+    /* row-gap: 2rem; */
   }
   
+
+  .exercise-count {
+    /* position: absolute; */
+    /* top:10rem; */
+    /* background-color: red */
+  }
  
 
 

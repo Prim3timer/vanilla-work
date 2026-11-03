@@ -75,6 +75,7 @@ const nameCell = document.createElement("th")
 nameCell.innerHTML = "exercise name"
 const caloriesCell = document.createElement("th")
 caloriesCell.innerHTML = "calories burned / 30sec"
+caloriesCell.colSpan = 2
 exHeaderRow.append(nameCell, caloriesCell)
 exTableBody.appendChild(exHeaderRow)
 for (let i = 0; i < exerciseList.length; i++) {

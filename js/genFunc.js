@@ -249,7 +249,7 @@ performanceMain.appendChild(detsWindowCover);
   const showDetWindow = (perfy, duration) => {
     let detsWindow = document.createElement("div");
         detsWindow.style.padding = ".5rem";
-        let detsDuration = document.createElement("p");
+        let detsDuration = document.createElement("h4");
         let detsExHeader = document.createElement("h4");
         let detsExList = document.createElement("ol");
         let numberOfExercises = document.createElement("p");

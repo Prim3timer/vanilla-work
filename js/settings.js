@@ -152,7 +152,7 @@ const addExercise = async (box, checker, array) => {
       console.log("not inide array")
       popArray.push(checker.innerHTML)
       console.log(popArray)
-      exCount.innerHTML = `(${popArray.length} exercises selected)`
+      exCount.innerHTML = `${popArray.length} exercises selected`
       return
     }
   } else {
@@ -165,7 +165,7 @@ const addExercise = async (box, checker, array) => {
     console.log(popArray)
     
   }
-  exCount.innerHTML = `(${popArray.length} exercises selected)`
+  exCount.innerHTML = `${popArray.length} exercises selected`
     }
 
 
@@ -321,7 +321,7 @@ const filArray = workSettings.exercise.map((userEx) =>{
 })
 console.log(filArray)
 popArray = filArray
-exCount.innerHTML = `(${filArray.length} exercises selected)`
+exCount.innerHTML = `${filArray.length} exercises selected`
 console.log(popArray)
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;

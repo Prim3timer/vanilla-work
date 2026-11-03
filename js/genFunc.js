@@ -141,7 +141,7 @@ console.log(this.id)
                 }
               }
               else
-                if (this.id == "users"){
+                if (this.id == "users" && roles.includes(5150)){
                  insertSearcher(usersSearch)
               // searcher.placeholder = "search users"
             } else {
@@ -177,7 +177,7 @@ console.log(roles)
             usernameInput.value = user.username
             activeInput.checked = user.active
           } 
-          if (!roles.includes(5150 ) && this.innerHTML == "users"){
+          if (!roles.includes(5150 ) && (this.innerHTML == "users" || this.innerHTML == "analytics")) {
             console.log("unauthorized")
             alertMeassage.className = "verify-window"
             alertMeassage.style.visibility = "visible"

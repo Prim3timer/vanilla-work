@@ -304,6 +304,11 @@ flex-direction: column;
     font-size: 1rem  !important;
     width: 80%;
   }
+
+  .exercise-table {
+    /* background-color: red; */
+    width: 80%;
+  }
  
 
 
@@ -807,9 +812,9 @@ table th {
 
 .add-exercise-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  row-gap: .5rem;
+  /* flex-direction: column; */
+  justify-content: center;
+  column-gap: .5rem;
   /* background-color: red; */
   width: 90vw;
 }

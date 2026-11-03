@@ -625,7 +625,7 @@ input {
  }
 
  .verify-window {
-  background-color: lightgray;
+  background-color: white;
   padding: 1rem;
   display: flex;
   flex-direction: column;

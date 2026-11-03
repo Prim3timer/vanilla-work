@@ -391,8 +391,8 @@ const editUser = async (e) => {
         homePage(userId)
         const reply = await respone2.json();
         // update the home page
-        alertWindow.style.color = "darksteelblue";
         alertWindow.innerHTML = reply;
+        alertWindow.style.color = "darksteelblue";
         alertWindow.className = "verify-window";
         alertWindow.style.position = "fixed";
         alertWindow.style.top = "40%";

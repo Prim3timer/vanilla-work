@@ -819,6 +819,13 @@ table th {
   width: 90vw;
 }
 
+.add-exercise-form >*:nth-child(1) {
+  width: 60%;
+}
+.add-exercise-form >*:nth-child(2) {
+  width: 40%;
+}
+
 .users table {
    width: 130vw;
 

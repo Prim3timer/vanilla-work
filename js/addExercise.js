@@ -11,7 +11,7 @@ addForm.className = "add-exercise-form"
 const exerciseName = document.createElement("input")
 const caloriesBurned = document.createElement("input")
 caloriesBurned.type = "number"
-caloriesBurned.placeholder = "Calories burned"
+caloriesBurned.placeholder = "Calories burned / 30sec"
 exerciseName.type = "text"
 exerciseName.placeholder = "Exercise Name"
 const addExerciseButton = document.createElement("button")
@@ -74,7 +74,7 @@ const exHeaderRow = document.createElement("tr")
 const nameCell = document.createElement("th")
 nameCell.innerHTML = "exercise name"
 const caloriesCell = document.createElement("th")
-caloriesCell.innerHTML = "calories burned"
+caloriesCell.innerHTML = "calories burned / 30sec"
 exHeaderRow.append(nameCell, caloriesCell)
 exTableBody.appendChild(exHeaderRow)
 for (let i = 0; i < exerciseList.length; i++) {

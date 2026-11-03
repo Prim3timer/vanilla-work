@@ -372,12 +372,12 @@ const editUser = async (e) => {
     const user = users.find((user) => user._id === userId);
     
       if (popArray.length < 1 || popArray.length > 5) {
-        console.log("exercise list is too short. make it at least 2");
-          alertWindow.innerHTML = popArray.length < 1 ?  "enter at least 1 exercise" : popArray.length > 5 ? "you can't select more than five exercises" : "";
+        alertWindow.style.color = "red";
+        alertWindow.innerHTML = popArray.length < 1 ? `<i class="fas fa-exclamation-triangle" style="color: goldenrod";  ></i> enter at least 1 exercise` : popArray.length > 5 ?  `<i class="fas fa-exclamation-triangle" style="color: goldenrod;"></i>maximum of five exercises allowed` : "";
         alertWindow.className = "verify-window";
         alertWindow.style.position = "fixed";
         alertWindow.style.top = "40%";
-           setTimeout(() => {
+        setTimeout(() => {
           alertWindow.className = "no-verify-window";
         }, 5000);
       } else {
@@ -391,6 +391,7 @@ const editUser = async (e) => {
         homePage(userId)
         const reply = await respone2.json();
         // update the home page
+        alertWindow.style.color = "darksteelblue";
         alertWindow.innerHTML = reply;
         alertWindow.className = "verify-window";
         alertWindow.style.position = "fixed";

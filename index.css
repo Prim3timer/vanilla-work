@@ -300,7 +300,8 @@ flex-direction: column;
   .exercise-count {
     /* position: absolute; */
     /* top:10rem; */
-    /* background-color: red */
+    /* background-color: red; */
+    width: 80%;
   }
  
 
@@ -624,7 +625,7 @@ input {
  }
 
  .verify-window {
-  background-color: lavender;
+  background-color: lightgray;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -637,6 +638,8 @@ input {
   margin: auto;
   top: 40%;
   font-size: 1.5rem;
+  box-shadow: .2em .3em .7em gray;
+  border-radius: 5px; 
   opacity: .9;
  }
 

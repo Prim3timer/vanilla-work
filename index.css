@@ -301,6 +301,7 @@ flex-direction: column;
     /* position: absolute; */
     /* top:10rem; */
     /* background-color: red; */
+    font-size: 1rem  !important;
     width: 80%;
   }
  

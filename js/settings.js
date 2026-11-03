@@ -321,7 +321,7 @@ const filArray = workSettings.exercise.map((userEx) =>{
 })
 console.log(filArray)
 popArray = filArray
-exCount.innerHTML = `${filArray.length} exercises selected`
+exCount.innerHTML = `${filArray.length} exercises selected (maximum of 5 exercises allowed)`
 console.log(popArray)
   intervalHourInput.value = workSettings.interval >= 3600 ? Math.floor(workSettings.interval / 3600) : 0;
   intervalMinInput.value = Math.floor(workSettings.interval % 3600) >= 60 && Math.floor(workSettings.interval % 3600) < (60 * 60) ?  Math.floor(workSettings.interval % 3600 / 60) : 0;

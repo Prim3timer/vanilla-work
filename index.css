@@ -119,6 +119,12 @@ button {
    box-shadow: 0em 0em 0em;
    transition-duration: 0.1s;
   }
+
+  .exercise-list-length {
+    /* font-size: 1.5rem; */
+    margin: 1rem 0;
+    /* background-color: red; */
+  }
   
   #go-container {
     display: flex;
@@ -128,9 +134,10 @@ button {
     padding: .5rem 0;
     
     /* height: 15rem; */
-    /* background-color: red */
+    /* background-color: red; */
     /* margin: .5rem 0; */
-    position: relative;;
+    position: relative;
+    overflow: auto;
     /* background-color: red;  */
   top: -10%;
   }
@@ -307,6 +314,7 @@ flex-direction: column;
 
   .exercise-table {
     /* background-color: red; */
+    margin-bottom: 1rem;
     width: 80%;
   }
  

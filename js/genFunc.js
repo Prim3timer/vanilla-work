@@ -80,6 +80,10 @@ usersSearch.addEventListener("input", filterUser)
 usersSearch.placeholder = "filter users"
 usersSearch.className = "searcher"
 
+const addExSearch = document.createElement("input")
+addExSearch.placeholder = "filter exercises"
+addExSearch.className = "searcher"
+
 const insertSearcher = (element) => {
   console.log(navContFirst)
   if (navContFirst.children.length == 1) {
@@ -132,6 +136,10 @@ console.log(this.id)
                 // navbar.insertBefore("settingsSearch", "")
                 // searcher.placeholder = "search exercises"
               }
+              else 
+                if (this.id == "add-exercise"){
+                  insertSearcher(addExSearch)
+                }
               else 
                 if (this.id == "analytics"){
                   // insertSearcher(analyticsSearch)

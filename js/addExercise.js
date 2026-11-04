@@ -18,6 +18,9 @@ const addExerciseButton = document.createElement("button")
 addExerciseButton.innerHTML = "Add"
 addExerciseButton.type = "submit"
 
+const listLength = document.createElement("h4")
+listLength.className = "exercise-list-length"
+
 const alertWindow = document.createElement("p")
 alertWindow.className = "no-verify-window"
 
@@ -26,33 +29,21 @@ addForm.appendChild(caloriesBurned)
 addForm.appendChild(addExerciseButton)
 exerciseMain.appendChild(addForm, alertWindow)
 
+const exTable = document.createElement("table")
+exTable.className = "exercise-table"
+const exTableBody = document.createElement("tbody")
+const exHeaderRow = document.createElement("tr")
+const nameCell = document.createElement("th")
+nameCell.innerHTML = "exercise name"
+const caloriesCell = document.createElement("th")
+caloriesCell.innerHTML = "calories burned / 30sec"
+caloriesCell.colSpan = 2
+exHeaderRow.append(nameCell, caloriesCell)
+exTableBody.appendChild(exHeaderRow)
 
 
-const addExercise = async (e) => {
-    e.preventDefault();
-    const name = exerciseName.value.trim()
-    console.log(name)
-    const calories = caloriesBurned.value.trim()
-   const response = await fetch(`${myUrl}/exercise`, {
-     method: "POST",
-     headers: {
-       "Content-Type": "application/json"
-     },
-     body: JSON.stringify({ name: name.trim(), calories: calories.trim() })
-   })
-   const cookedRes = await response.json()
-   if (cookedRes){
-     alertWindow.innerHTML = await cookedRes
-     alertWindow.className = "verify-window"
-     console.log(cookedRes)
-     setTimeout(() => {
-      alertWindow.className = "no-verify-window"
-     }, 3000)
-
-   }
 
 
-}
 
 const populate = async () => {
   const response = await fetch(`${myUrl}/exercise`, {
@@ -67,41 +58,78 @@ const populate = async () => {
 const exerciseList = await populate()
 console.log(exerciseList)
 
-const exTable = document.createElement("table")
-exTable.className = "exercise-table"
-const exTableBody = document.createElement("tbody")
-const exHeaderRow = document.createElement("tr")
-const nameCell = document.createElement("th")
-nameCell.innerHTML = "exercise name"
-const caloriesCell = document.createElement("th")
-caloriesCell.innerHTML = "calories burned / 30sec"
-caloriesCell.colSpan = 2
-exHeaderRow.append(nameCell, caloriesCell)
-exTableBody.appendChild(exHeaderRow)
+const deleteExercise = async (exerciseList, i, exRow) => {
+    const response = await fetch(`${myUrl}/exercise/${exerciseList[i]._id}`, {
+        method: "DELETE"
+      })
+      const data = await response.json()
+      console.log(data)
+      // Remove the row from the table
+      exRow.remove()
+    }
+
+const addExercise = async (e) => {
+    e.preventDefault();
+    const name = exerciseName.value.trim()
+    const calories = caloriesBurned.value.trim()
+    const response = await fetch(`${myUrl}/exercise`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name: name.trim(), calories: calories.trim() })
+    })
+    console.log(response.status)
+    const cookedRes = await response.json()
+    if (cookedRes){
+      exerciseList.push({name: name.trim(), calories: calories.trim()})
+     console.log(name)
+  const exRow = document.createElement("tr")
+    exRow.style.backgroundColor = `${exerciseList.length % 2 !== 0 ? "white" : "palegreen"}`;
+    const exNameCell = document.createElement("td")
+    exNameCell.innerHTML = name
+    const exCaloriesCell = document.createElement("td")
+    exCaloriesCell.innerHTML = calories
+    if (response.status === 201) {
+      exRow.append(exNameCell, exCaloriesCell)
+    }
+    listLength.innerHTML = `Total exercises: ${exerciseList.length}`
+    exTableBody.appendChild(exRow)
+    console.log(cookedRes.status)
+     alertWindow.innerHTML = await cookedRes
+     alertWindow.className = "verify-window"
+     exerciseMain.appendChild(alertWindow)
+     
+     setTimeout(() => {
+      alertWindow.className = "no-verify-window"
+     }, 3000)
+
+   }
+
+
+}
+
+
+
+
 for (let i = 0; i < exerciseList.length; i++) {
   const exRow = document.createElement("tr")
-  exRow.style.backgroundColor = `${i % 2 === 0 ? "white" : "palegreen"}`;
+  exRow.style.backgroundColor = `${i % 2 !== 0 ? "white" : "palegreen"}`;
   const exNameCell = document.createElement("td")
   exNameCell.innerHTML = exerciseList[i].name
   const exCaloriesCell = document.createElement("td")
   const deleteCell = document.createElement("td")
   deleteCell.innerHTML = "delete"
   deleteCell.className = "delete-cell"
-  deleteCell.addEventListener("click", async () => {
-    const response = await fetch(`${myUrl}/exercise/${exerciseList[i]._id}`, {
-      method: "DELETE"
-    })
-    const data = await response.json()
-    console.log(data)
-    // Remove the row from the table
-    exRow.remove()
-  })
-  exCaloriesCell.innerHTML = exerciseList[i].calories
-  exRow.appendChild(exNameCell)
-  exRow.appendChild(exCaloriesCell)
-  exRow.appendChild(deleteCell)
-  exTableBody.appendChild(exRow)
-}
+  listLength.innerHTML = `Total exercises: ${exerciseList.length}`
+  deleteCell.addEventListener("click", () => deleteExercise(exerciseList, i, exRow))
+    exCaloriesCell.innerHTML = exerciseList[i].calories
+    exRow.appendChild(exNameCell)
+    exRow.appendChild(exCaloriesCell)
+    exRow.appendChild(deleteCell)
+    exTableBody.appendChild(exRow)
+  }
+  exerciseMain.appendChild(listLength)
 exTable.appendChild(exTableBody)
 exerciseMain.appendChild(exTable)
 addExerciseButton.addEventListener("click",  (e) => addExercise(e))

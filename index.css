@@ -315,7 +315,7 @@ flex-direction: column;
   .exercise-table {
     /* background-color: red; */
     margin-bottom: 1rem;
-    width: 80%;
+    width: 120%;
   }
  
 
@@ -809,8 +809,10 @@ table th {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  align-items: center;
+  align-items: flex-start;
   background-color: white;
+  /* background-color: red; */
+  overflow: auto;
   width: 100%;
 }
 
@@ -1320,9 +1322,21 @@ right: 5%;
     border-bottom: 4px solid black;
     width: 80vw;
   }
+
   
   
   @media screen and (min-width: 740px) {
+
+    .add-exercise {
+      align-items: center;
+      width: 100vw;
+      /* background-color: red; */
+    }
+.exercise-table {
+  width: 80%;
+  max-width: 800px;
+}
+
 
     .nav-cont-first {
   column-gap: 2rem;

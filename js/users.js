@@ -1,7 +1,7 @@
 import myUrl from "./myUrl.js";
 import { mainSettings } from "./userSettings.js";
 import {addExercisePage} from "./addExercise.js";
-import { ElementCatcher } from "./genFunc.js";
+import { ElementCatcher, insertSearcher } from "./genFunc.js";
 
 const usersettingsPage = mainSettings();
 console.log(mainSettings());

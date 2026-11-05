@@ -70,7 +70,7 @@ actiSearch.className = "searcher"
 actiSearch.addEventListener("input", filterEntries)
 const settingsSearch = document.createElement("input")
 settingsSearch.addEventListener("input", filterExercise)
-settingsSearch.placeholder = "filter exercises"
+settingsSearch.placeholder = "search exercises"
 settingsSearch.className = "searcher"
 const analyticsSearch = document.createElement("input")
 analyticsSearch.placeholder = "search analytics"

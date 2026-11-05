@@ -316,6 +316,7 @@ flex-direction: column;
 
   .exercise-table {
     /* background-color: red; */
+    /* overflow: auto; */
     margin-bottom: 1rem;
     width: 120%;
   }
@@ -774,7 +775,7 @@ table th {
  .performance table {
   align-self: flex-start;
   /* background-color: red; */
-  width: 190vw;
+  width: 170vw;
   margin: .5rem;
  }
 

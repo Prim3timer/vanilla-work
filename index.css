@@ -124,6 +124,8 @@ button {
     /* font-size: 1.5rem; */
     margin: 1rem 0;
     /* background-color: red; */
+    width: 100%;
+    text-align: center;
   }
   
   #go-container {
@@ -813,11 +815,13 @@ table th {
   background-color: white;
   /* background-color: red; */
   overflow: auto;
-  width: 100%;
+  width: 95vw;
 }
 
 .exercise-header {
-  /* background-color: darkslateblue; */
+  margin: .5rem 0;
+text-align: center;
+  width: 100%;
 }
 
 .add-exercise-form {

@@ -85,7 +85,7 @@ const addExercise = async (e) => {
       exerciseList.push({name: name.trim(), calories: calories.trim()})
      console.log(name)
   const exRow = document.createElement("tr")
-    exRow.style.backgroundColor = `${exerciseList.length % 2 !== 0 ? "white" : "palegreen"}`;
+    exRow.style.backgroundColor = `${exerciseList.length % 2 !== 0 ? "white" : "powderblue"}`;
     const exNameCell = document.createElement("td")
     exNameCell.innerHTML = name
     const exCaloriesCell = document.createElement("td")
@@ -114,7 +114,7 @@ const addExercise = async (e) => {
 
 for (let i = 0; i < exerciseList.length; i++) {
   const exRow = document.createElement("tr")
-  exRow.style.backgroundColor = `${i % 2 !== 0 ? "white" : "palegreen"}`;
+  exRow.style.backgroundColor = `${i % 2 !== 0 ? "white" : "paleturquoise"}`;
   const exNameCell = document.createElement("td")
   exNameCell.innerHTML = exerciseList[i].name
   const exCaloriesCell = document.createElement("td")

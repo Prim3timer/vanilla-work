@@ -6,9 +6,11 @@ analytics.className = "analytics"
 const anaNote = document.createElement("p")
 analyticsHeader.innerHTML = "analytics (in progress)"
 // anaNote.innerHTML = "under construction"
+const aboveX = document.createElement("div")
 const xAxis = document.createElement("div")
 const yAxis = document.createElement("div")
 
+aboveX.className = "above-x"
 xAxis.className = "x-axis"
 yAxis.className = "y-axis"
 
@@ -38,6 +40,7 @@ for (let i = 0; i < userPerformance.length; i++) {
     xEntries.innerHTML = `${perf.date.substring(0, 10)}`
     yEntries.className = "y-entries"  
     yEntries.innerHTML = `${perf.mark}`
+    
     xAxis.append(xEntries)
     yAxis.append(yEntries)   
     yAxis.style.rowGap = '2rem' 
@@ -48,14 +51,15 @@ xAxislabel.className = "x-axis-label"
 xAxislabel.innerHTML = "time"
 yAxisLabel.className = "y-axis-label"
 yAxisLabel.innerHTML = "performance"
+aboveX.append(xAxislabel)
 
-xAxis.append(xAxislabel)
+// xAxis.append(xAxislabel)
 yAxis.append(yAxisLabel)
 
 // yAxis.innerHTML = "date"
 
 const analyticsPage = () => {
-    analytics.append(analyticsHeader, anaNote, yAxis, xAxis)
+    analytics.append(analyticsHeader, anaNote, yAxis, aboveX, xAxis)
         return analytics
 }
 export {analyticsPage}

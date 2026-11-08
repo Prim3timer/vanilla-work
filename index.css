@@ -1312,18 +1312,31 @@ right: 5%;
   }
   
 
-
+.above-x {
+  background-color: red;
+  /* border-bottom: 4px solid yellow; */
+  border-bottom: 4px solid black;
+}
 
   .x-axis {
     /* border-left: 80px; */
     /* margin-top: 1rem; */
     /* background-color: red; */
     /* border-left: 4px solid black; */
+    position: relative;
     display: flex;
+    align-items: flex-end;
     flex-direction: row;
-    border-bottom: 4px solid black;
     margin-left: .5rem;
     width: 80vw;
+  }
+  
+  .x-entries {
+    /* height: 4rem; */
+    position: relative;
+  /* top: 100%; */
+    /* background-color: red; */
+  
   }
 
   

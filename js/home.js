@@ -192,10 +192,6 @@ const homePage = (id) => {
           currentItem.style.boxShadow = "0em 0em 0em";
           currentItem.style.zIndex = pIndex;
           currentItem.style.marginLeft = 0
-  
-          console.log(currentItem.innerHTML)
-          
-          
           
           formerItem.style.transform = "scale(1 )";
           formerItem.style.backgroundColor = "maroon";

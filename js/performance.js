@@ -123,7 +123,7 @@ const filterEntries = async (e) => {
 
  tableBody.replaceChildren();
    tableBody.appendChild(headerRow);
-        entryCount.innerHTML = `(${filterate.length} entries)`;
+        entryCount.innerHTML = `${filterate.length} entries`;
         for (let i = 0; i < filterate.length; i++) {
           const dets = document.createElement("tr");
           dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
@@ -204,7 +204,7 @@ const deleteEntry = async () => {
         tableBody.appendChild(headerRow);
         alertWindow.innerHTML = reply;
         alertWindow.className = "verify-window";
-        entryCount.innerHTML = `(${filterate.length} entries)`;
+        entryCount.innerHTML = `${filterate.length} entries`;
         for (let i = 0; i < filterate.length; i++) {
           const dets = document.createElement("tr");
           dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
@@ -289,7 +289,7 @@ const response = await getPerformance();
     let perfData = await getPerformance();
     globalData = perfData;
     const filteredData = perfData.filter((data) => data.userId === id);
-    entryCount.innerHTML = `(${filteredData.length} entries)`;
+    entryCount.innerHTML = `${filteredData.length} entries`;
   
     for (let i = 0; i < filteredData.length; i++) {
       const dets = document.createElement("tr");

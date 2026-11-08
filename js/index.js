@@ -315,6 +315,7 @@ window.addEventListener("popstate", e =>{
   const mainCont = document.getElementById("main-page")
   if (e.state !== null){
     containers.map((container) => {
+      console.log(container.className)
       if (container.className === e.state.id){
         localStorage.setItem("current-page", e.state.id)
         mainCont.firstElementChild.replaceWith(container)
@@ -331,6 +332,13 @@ window.addEventListener("popstate", e =>{
                 insertSearcher(usersSearch)
                 // searcher.placeholder = "search users"
               }  
+              else if (container.className == "home"){
+                console.log('home')
+             if (navContFirst.children.length > 1){
+      const secondChild = navContFirst.children[1]
+    secondChild.remove()
+    }
+              }
       }
     })
   } else {

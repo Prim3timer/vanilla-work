@@ -105,7 +105,9 @@ const actiSearch = document.createElement("input")
 actiSearch.placeholder = "search entries by date  eg. 2023-01-01"
 actiSearch.addEventListener("input", filterEntries)
 actiSearch.className = "searcher"
+actiSearch.placeholder ="search entries by date  eg. 2023-01-01"
 const settingsSearch = document.createElement("input")
+settingsSearch.placeholder = "search exercises"
 settingsSearch.addEventListener("input", filterExercise)
 settingsSearch.placeholder = "search exercises"
 settingsSearch.className = "searcher"
@@ -133,10 +135,8 @@ const handleRefresh = async () => {
               insertSearcher(actiSearch)
             } else if(currentPageInnerText == "settings"){
               insertSearcher(settingsSearch)
-              // insertSearcher(settingsSearch) 
             }else if (currentPageInnerText == "users"){
               insertSearcher(usersSearch)
-              // searcher.placeholder = "search users"
             } 
 
     // repopulate the exercise setup form fields
@@ -310,7 +310,7 @@ headerRow.append(
   }
 };
 
-// listening for the popstate event
+// listening for the popstate (back button) event 
 window.addEventListener("popstate", e =>{ 
   const mainCont = document.getElementById("main-page")
   if (e.state !== null){
@@ -318,10 +318,27 @@ window.addEventListener("popstate", e =>{
       if (container.className === e.state.id){
         localStorage.setItem("current-page", e.state.id)
         mainCont.firstElementChild.replaceWith(container)
+        console.log(localStorage.getItem("current-page"))
+        if (container.className == "performance"){
+          insertSearcher(actiSearch)
+          console.log("perf")
+        } else if(container.className == "settings"){
+                console.log("settings")
+                insertSearcher(settingsSearch)
+                
+                 
+              }else if (container.className == "users"){
+                insertSearcher(usersSearch)
+                // searcher.placeholder = "search users"
+              }  
       }
     })
   } else {
     localStorage.setItem("current-page", "login")
+     
+            const secondChild = navContFirst.children[1]
+    secondChild.remove()
+      
     greeting.innerHTML = "";
          navFirst.style.display = "block"
     for (let i = 1; i < navbar.children.length; i++){

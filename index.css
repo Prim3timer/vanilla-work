@@ -1283,9 +1283,8 @@ position: absolute;
 
 
   .y-axis {
-    /* border-left: 80px; */
-    background-color: red;
     display: flex;
+    /* top: 1rem; */
     flex-direction: column;
     margin-top: 1rem;
     /* background-color: red; */
@@ -1312,9 +1311,7 @@ right: 5%;
     /* margin: -5rem 0 0 .5rem; */
   }
   
-  /* .x-entries {
-    position: absolute;
-  } */
+
 
 
   .x-axis {
@@ -1325,6 +1322,7 @@ right: 5%;
     display: flex;
     flex-direction: row;
     border-bottom: 4px solid black;
+    margin-left: .5rem;
     width: 80vw;
   }
 

@@ -9,6 +9,9 @@ analyticsHeader.innerHTML = "analytics (in progress)"
 const xAxis = document.createElement("div")
 const yAxis = document.createElement("div")
 
+xAxis.className = "x-axis"
+yAxis.className = "y-axis"
+
 const userId = localStorage.getItem("workoutUserId")
 
 const getUserPerformance = async () => {
@@ -29,11 +32,17 @@ for (let i = 0; i < userPerformance.length; i++) {
     const xEntries = document.createElement("p")
     const yEntries = document.createElement("p")
     const br = document.createElement("br")
+    const perf = userPerformance[i]
+    console.log(perf)
     xEntries.className = "x-entries"
+    xEntries.innerHTML = `${perf.date.substring(0, 10)}`
     yEntries.className = "y-entries"  
-    xEntries.innerHTML = userPerformance[i].date
-    xAxis.append(xEntries, br)
-    yAxis.append(userPerformance[i].mark)    
+    yEntries.innerHTML = `${perf.mark}`
+    xAxis.append(xEntries)
+    yAxis.append(yEntries)   
+    yAxis.style.rowGap = '2rem' 
+    xAxis.style.columnGap = '2rem'
+    // xAxis.style.position = "absolute"
 }
 xAxislabel.className = "x-axis-label"
 xAxislabel.innerHTML = "time"
@@ -42,8 +51,7 @@ yAxisLabel.innerHTML = "performance"
 
 xAxis.append(xAxislabel)
 yAxis.append(yAxisLabel)
-xAxis.className = "x-axis"
-yAxis.className = "y-axis"
+
 // yAxis.innerHTML = "date"
 
 const analyticsPage = () => {

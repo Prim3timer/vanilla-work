@@ -314,9 +314,20 @@ headerRow.append(
 window.addEventListener("popstate", e =>{ 
   const mainCont = document.getElementById("main-page")
   if (e.state !== null){
-    containers.map((container) => {
-      console.log(container.className)
-      if (container.className === e.state.id){
+    for (let i = 0; i < navbar.children.length; i++){
+      if (navbar.children[i].id == e.state.id){
+    navbar.children[i].style.textDecoration = "underline"
+  }
+}
+containers.map((container) => {
+  console.log(container.className)
+  if (container.className === e.state.id){
+        for (let i = 0; i < navbar.children.length; i++){
+          if (navbar.children[i].id == localStorage.getItem("current-page")){
+
+            navbar.children[i].style.textDecoration = 'none'
+          }
+        }
         localStorage.setItem("current-page", e.state.id)
         mainCont.firstElementChild.replaceWith(container)
         console.log(localStorage.getItem("current-page"))

@@ -6,10 +6,10 @@ import { ElementCatcher, insertSearcher } from "./genFunc.js";
 const usersettingsPage = mainSettings();
 console.log(mainSettings());
 
-const pages = [addExercisePage()];
+const container = [addExercisePage()];
 
 const mainContainer = document.getElementById("main-page");
-const instanceer = new ElementCatcher(pages, mainContainer, localStorage.getItem("workoutUserId"));
+const instanceer = new ElementCatcher(container, mainContainer, localStorage.getItem("workoutUserId"));
 
 const userBox = document.createElement("div");
 userBox.className = "users";

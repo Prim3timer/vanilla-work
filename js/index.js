@@ -127,9 +127,7 @@ const handleRefresh = async () => {
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
-    // searcher.placeholder = `search ${currentPageInnerText}`
     if (currentPageInnerText == "home"){
-      // searcher.className = "no-searcher"
     }
       if (currentPageInnerText == "performance"){
               insertSearcher(actiSearch)
@@ -141,7 +139,6 @@ const handleRefresh = async () => {
 
     // repopulate the exercise setup form fields
     for (let i = 1; i < navbar.children.length; i++){
-  
   navbar.children[i].style.display = "inline"
   if (navbar.children[i].id == currentPageInnerText){
     navbar.children[i].style.textDecoration = "underline"

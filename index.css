@@ -705,13 +705,14 @@ input {
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: silver;
+  background-color: darkslategrey;
   font-size: 1.5rem;
    top: -15px;
    right: -15px;
    height: 40px;
    width: 40px;
    border-radius: 20px;
+   color: white;
  }
 
  .done-settings {

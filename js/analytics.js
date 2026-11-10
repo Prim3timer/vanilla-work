@@ -5,6 +5,7 @@ const analyticsHeader = document.createElement("h3")
 analytics.className = "analytics"
 const anaNote = document.createElement("p")
 analyticsHeader.innerHTML = "analytics (in progress)"
+analyticsHeader.className = "analytics-header"
 // anaNote.innerHTML = "under construction"
 const aboveX = document.createElement("div")
 const xAxis = document.createElement("div")
@@ -31,18 +32,24 @@ const xAxislabel = document.createElement("p")
 const yAxisLabel = document.createElement("p")
 
 for (let i = 0; i < userPerformance.length; i++) {
+    const bars = document.createElement("p")
     const xEntries = document.createElement("p")
     const yEntries = document.createElement("p")
     const br = document.createElement("br")
     const perf = userPerformance[i]
     console.log(perf)
+    
     xEntries.className = "x-entries"
     xEntries.innerHTML = `${perf.date.substring(0, 10)}`
     yEntries.className = "y-entries"  
-    yEntries.innerHTML = `${perf.mark}`
-    
+    bars.className = "bars"
+    bars.style.height = '30vh'
+    bars.innerHTML  = perf.mark
+    // yEntries.innerHTML = `${perf.mark}`
+    aboveX.append(bars)
     xAxis.append(xEntries)
     yAxis.append(yEntries)   
+    aboveX.style.columnGap = "6rem"
     yAxis.style.rowGap = '2rem' 
     xAxis.style.columnGap = '2rem'
     // xAxis.style.position = "absolute"
@@ -50,7 +57,7 @@ for (let i = 0; i < userPerformance.length; i++) {
 xAxislabel.className = "x-axis-label"
 xAxislabel.innerHTML = "time"
 yAxisLabel.className = "y-axis-label"
-yAxisLabel.innerHTML = "performance"
+yAxisLabel.innerHTML = "calories"
 aboveX.append(xAxislabel)
 
 // xAxis.append(xAxislabel)

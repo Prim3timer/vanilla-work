@@ -7,9 +7,9 @@ const usersettingsPage = mainSettings();
 console.log(mainSettings());
 
 const container = [addExercisePage()];
-
+const userId = localStorage.getItem("workoutUserId")
 const mainContainer = document.getElementById("main-page");
-const instanceer = new ElementCatcher(container, mainContainer, localStorage.getItem("workoutUserId"));
+const instanceer = new ElementCatcher(container, mainContainer, userId);
 
 const userBox = document.createElement("div");
 userBox.className = "users";
@@ -101,9 +101,9 @@ const filterUser = (e) => {
 // const searcher = document.getElementsByClassName("searcher")[0]
 // searcher.addEventListener("input", filterUser)
 
-usersFilter.addEventListener("input", filterUser)
+// usersFilter.addEventListener("input", filterUser)
 const usersPage = () => {
-  entryCount.innerHTML = `(${users.length})`;
+  entryCount.innerHTML = users.length;
 
   const nameHeader = document.createElement("th");
   const emailHeader = document.createElement("th");

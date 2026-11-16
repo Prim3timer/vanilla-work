@@ -5,6 +5,7 @@ import { analyticsPage } from "./analytics.js";
 // import { mainSettings } from "./userSettings.js";
 import { filterExercise } from "./settings.js";
 import { filterUser } from "./users.js";
+import { filterExerciseList } from "./addExercise.js";
 
 
 
@@ -81,6 +82,7 @@ usersSearch.placeholder = "filter users"
 usersSearch.className = "searcher"
 
 const addExSearch = document.createElement("input")
+addExSearch.addEventListener("input", filterExerciseList)
 addExSearch.placeholder = "filter exercises"
 addExSearch.className = "searcher"
 
@@ -96,25 +98,27 @@ const insertSearcher = (element) => {
 function ElementCatcher(pages, mainContainer, guestId) {
   const root = document.getElementById("root")
   this.shower = async function (e) {
-console.log(navContFirst.children.length)
     const alertMeassage = document.getElementsByClassName("verify-window")[0]
     console.log(alertMeassage)
     const previousElementClassName = mainContainer.firstElementChild.className
-const usersElement = Array.from(navbar.children).forEach((child) => child.id == "users")
-console.log(usersElement)
-console.log(this.id)
-
+    const usersElement = Array.from(navbar.children).forEach((child) => child.id == "users")
+    console.log(usersElement)
+    console.log(this.id)
+    
     const roles =  JSON.parse(localStorage.getItem("roles"))
     e.preventDefault();
-
-    const result = await pages;
-
-    const oneElement = result.map( async (content) => {  
+    
+    // const result = pages;
+    
+    const oneElement = pages.map( async (content) => {  
+      console.log(guestId)
       if (
-        guestId ||
+        guestId 
+        ||
         this.innerHTML == "forgot" ||
         this.innerHTML == "reg-link" ||
-        this.innerHTML == "usersettings" 
+        this.innerHTML == "usersettings"  ||
+        this.id === "add-exercise"
       ) {
         if (this.id == content.className) {
           if (this.id == "home"){
@@ -147,6 +151,8 @@ console.log(this.id)
       const secondChild = navContFirst.children[1]
     secondChild.remove()
                 }
+              } else if (this.id == "add-exercise"){
+                insertSearcher(addExSearch)
               }
               else
                 if (this.id == "users" && roles.includes(5150)){
@@ -190,9 +196,7 @@ console.log(roles)
             alertMeassage.className = "verify-window"
             alertMeassage.style.visibility = "visible"
             alertMeassage.style.maxWidth = "800px"
-            // alertMeassage.style.fontSize = "1rem"
-            
-            // alertMeassage.style.flexDirection = "column"
+
             alertMeassage.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style=" color: darkgoldenrod"></i>Unauthorized! You are not authorized to view the requested page`
             setTimeout(() => {
               // alertMeassage.className = "no-verify-window"

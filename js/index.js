@@ -8,7 +8,7 @@ import myUrl from "./myUrl.js";
 import { forgotPage } from "./forgotPassword.js";
 import { loginPage } from "./login.js";
 import { mainSettings } from "./userSettings.js";
-import { addExercisePage } from "./addExercise.js";
+import { addExercisePage, filterExerciseList } from "./addExercise.js";
 import { analyticsPage } from "./analytics.js";
 
 console.log(loginPage())
@@ -118,6 +118,11 @@ const usersSearch = document.createElement("input")
 usersSearch.addEventListener("input", filterUser)
 usersSearch.placeholder = "filter users"
 usersSearch.className = "searcher"
+const addExSearch = document.createElement("input")
+addExSearch.placeholder = "filter exercises"
+addExSearch.className = "searcher"
+addExSearch.addEventListener('input', filterExerciseList)
+
 
 const handleRefresh = async () => {
   // navbar.innerHTML = ""
@@ -127,7 +132,8 @@ const handleRefresh = async () => {
   const getCurrentPage = containers.find( (page) =>  page.className === currentPageInnerText)
   console.log(currentPageInnerText)
   if (guestId) {
-    if (currentPageInnerText == "home"){
+    if (currentPageInnerText == "add-exercise"){
+      insertSearcher(addExSearch)
     }
       if (currentPageInnerText == "performance"){
               insertSearcher(actiSearch)
@@ -253,6 +259,7 @@ headerRow.append(
       navbar.children[i].style.display = "inline"
       navbar.children[i].addEventListener("click", instanceerInner.shower)
     }
+    
     history.pushState({id: "home"}, `seleted: "home`, "")
     localStorage.setItem("current-page", "home")
         const url2 = new URL(window.location.href)

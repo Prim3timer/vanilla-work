@@ -45,7 +45,7 @@ exTableBody.appendChild(exHeaderRow)
 
 
 
-const populate = async () => {
+const getExercises = async () => {
   const response = await fetch(`${myUrl}/exercise`, {
     method: "GET",
   })
@@ -55,7 +55,7 @@ const populate = async () => {
 }
 
 
-const exerciseList = await populate()
+const exerciseList = await getExercises()
 console.log(exerciseList)
 
 const deleteExercise = async (exerciseList, i, exRow) => {
@@ -69,7 +69,7 @@ const deleteExercise = async (exerciseList, i, exRow) => {
     }
 
 const addExercise = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     const name = exerciseName.value.trim()
     const calories = caloriesBurned.value.trim()
     const response = await fetch(`${myUrl}/exercise`, {
@@ -111,31 +111,43 @@ const addExercise = async (e) => {
 
 
 
+const populate = (list) => {
+  
+  exTableBody.replaceChildren()
+  for (let i = 0; i < list.length; i++) {
+    const exRow = document.createElement("tr")
+    exRow.style.backgroundColor = `${i % 2 !== 0 ? "white" : "paleturquoise"}`;
+    const exNameCell = document.createElement("td")
+    exNameCell.innerHTML = list[i].name
+    const exCaloriesCell = document.createElement("td")
+    const deleteCell = document.createElement("td")
+    deleteCell.innerHTML = "delete"
+    deleteCell.className = "delete-cell"
+    listLength.innerHTML = `Total exercises: ${list.length}`
+    deleteCell.addEventListener("click", () => deleteExercise(list, i, exRow))
+      exCaloriesCell.innerHTML = list[i].calories
+      exRow.appendChild(exNameCell)
+      exRow.appendChild(exCaloriesCell)
+      exRow.appendChild(deleteCell)
+      exTableBody.appendChild(exRow)
+    }
+    exerciseMain.appendChild(listLength)
+  exTable.appendChild(exTableBody)
+  exerciseMain.appendChild(exTable)
+  return exerciseMain
+}
 
-for (let i = 0; i < exerciseList.length; i++) {
-  const exRow = document.createElement("tr")
-  exRow.style.backgroundColor = `${i % 2 !== 0 ? "white" : "paleturquoise"}`;
-  const exNameCell = document.createElement("td")
-  exNameCell.innerHTML = exerciseList[i].name
-  const exCaloriesCell = document.createElement("td")
-  const deleteCell = document.createElement("td")
-  deleteCell.innerHTML = "delete"
-  deleteCell.className = "delete-cell"
-  listLength.innerHTML = `Total exercises: ${exerciseList.length}`
-  deleteCell.addEventListener("click", () => deleteExercise(exerciseList, i, exRow))
-    exCaloriesCell.innerHTML = exerciseList[i].calories
-    exRow.appendChild(exNameCell)
-    exRow.appendChild(exCaloriesCell)
-    exRow.appendChild(deleteCell)
-    exTableBody.appendChild(exRow)
-  }
-  exerciseMain.appendChild(listLength)
-exTable.appendChild(exTableBody)
-exerciseMain.appendChild(exTable)
+const filterExerciseList = (e) => {
+  const filterate = exerciseList.filter((exercise) => exercise.name.toLowerCase().includes(e.target.value.toLowerCase()))
+  console.log(filterate)
+  populate(filterate)
+}
+
 addExerciseButton.addEventListener("click",  (e) => addExercise(e))
 
 const addExercisePage = () => {
-    return exerciseMain
+  return populate(exerciseList)
+    // return exerciseMain
 }
 
-export {addExercisePage}
+export {addExercisePage, filterExerciseList}

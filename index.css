@@ -839,7 +839,7 @@ text-align: center;
   justify-content: center;
   column-gap: .5rem;
   /* background-color: red; */
-  width: 60vw;
+  width: 90vw;
 }
 
 .add-exercise-form >*:nth-child(1) {
@@ -1405,6 +1405,17 @@ right: 5%;
       align-items: center;
       width: 100vw;
     }
+
+    .add-exercise-form {
+      width: 90vw;
+    }
+
+    .add-exercise-form >*:nth-child(1) {
+  width: 40%;
+}
+.add-exercise-form >*:nth-child(2) {
+  width: 20%;
+}
 .exercise-table {
   width: 80%;
   max-width: 800px;

@@ -25,6 +25,7 @@ listLength.className = "exercise-list-length"
 const alertWindow = document.createElement("p")
 alertWindow.className = "no-verify-window"
 
+
 addForm.appendChild(exerciseName)
 addForm.appendChild(caloriesBurned)
 addForm.appendChild(addExerciseButton)
@@ -43,8 +44,34 @@ exHeaderRow.append(nameCell, caloriesCell)
 exTableBody.appendChild(exHeaderRow)
 
 
+let itemId = ""
+
+let verifyWindow = document.createElement("div");
+let question = document.createElement("p");
+question.innerHTML = "Are you sure you want to delete this entry?";
+
+let verifyWindowButtonCont = document.createElement("article");
+// let alertWindow = document.createElement("p");
+
+verifyWindow.className = "no-verify-window";
+
+verifyWindowButtonCont.className = "verify-button-cont";
+let noButton = document.createElement("button");
+noButton.innerHTML = "No";
+let yesButton = document.createElement("button");
+yesButton.innerHTML = `Yes <i class="fa-solid fa-trash"></i>`;
+verifyWindowButtonCont.append(noButton, yesButton);
+verifyWindow.append(question, verifyWindowButtonCont);
+
+exerciseMain.appendChild(verifyWindow);
+exerciseMain.appendChild(alertWindow);
 
 
+const windowCloser = () => {
+  verifyWindow.className = "no-verify-window";
+}
+
+noButton.addEventListener("click", windowCloser);
 
 const getExercises = async () => {
   const response = await fetch(`${myUrl}/exercise`, {
@@ -59,17 +86,29 @@ const getExercises = async () => {
 const exerciseList = await getExercises()
 console.log(exerciseList)
 
-const deleteExercise = async (exerciseList, i, exRow) => {
-    const response = await fetch(`${myUrl}/exercise/${exerciseList[i]._id}`, {
+const deleteExercise = async () => {
+  console.log(itemId)
+    const response = await fetch(`${myUrl}/exercise/${itemId}`, {
         method: "DELETE"
       })
       const data = await response.json()
       console.log(data)
-      // Remove the row from the table
-      exRow.remove()
+     exTableBody.replaceChildren()
+     if (response){
+       const filterate = exerciseList.filter((exercise) => exercise._id !== itemId)
+       populate(filterate)
+       verifyWindow.classList.replace("verify-window", "no-verify-window")
+           alertWindow.innerHTML = "exercise deleted"
+      alertWindow.className = "verify-window"
+      setTimeout(() => {
+        alertWindow.classList.replace("verify-window", "no-verify-window")
+      }, 3000)
+
+     }
     }
 
-const addExercise = async (e) => {
+    
+    const addExercise = async (e) => {
     e.preventDefault(); 
     const name = exerciseName.value.trim()
     const calories = caloriesBurned.value.trim()
@@ -97,9 +136,9 @@ const addExercise = async (e) => {
     listLength.innerHTML = `Total exercises: ${exerciseList.length}`
     exTableBody.appendChild(exRow)
     console.log(cookedRes.status)
-     alertWindow.innerHTML = await cookedRes
-     alertWindow.className = "verify-window"
-     exerciseMain.appendChild(alertWindow)
+    alertWindow.innerHTML = await cookedRes
+    alertWindow.className = "verify-window"
+    exerciseMain.appendChild(alertWindow)
      
      setTimeout(() => {
       alertWindow.className = "no-verify-window"
@@ -125,7 +164,11 @@ const populate = (list) => {
     deleteCell.innerHTML = "delete"
     deleteCell.className = "delete-cell"
     listLength.innerHTML = `Total exercises: ${list.length}`
-    deleteCell.addEventListener("click", () => deleteExercise(list, i, exRow))
+    // yesButton.addEventListener("click", () => deleteExercise(list, i, exRow))
+    deleteCell.addEventListener("click", () => {
+      verifyWindow.classList.replace("no-verify-window", "verify-window")
+      itemId = list[i]._id
+    })
       exCaloriesCell.innerHTML = list[i].calories
       exRow.appendChild(exNameCell)
       exRow.appendChild(exCaloriesCell)
@@ -137,6 +180,8 @@ const populate = (list) => {
   exerciseMain.appendChild(exTable)
   return exerciseMain
 }
+
+yesButton.addEventListener("click", deleteExercise)
 
 const filterExerciseList = (e) => {
   const filterate = exerciseList.filter((exercise) => exercise.name.toLowerCase().includes(e.target.value.toLowerCase()))

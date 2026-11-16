@@ -93,7 +93,6 @@ const deleteExercise = async () => {
       })
       const data = await response.json()
       console.log(data)
-     exTableBody.replaceChildren()
      if (response){
        const filterate = exerciseList.filter((exercise) => exercise._id !== itemId)
        populate(filterate)
@@ -145,11 +144,7 @@ const deleteExercise = async () => {
      }, 3000)
 
    }
-
-
 }
-
-
 
 const populate = (list) => {
   
@@ -161,10 +156,9 @@ const populate = (list) => {
     exNameCell.innerHTML = list[i].name
     const exCaloriesCell = document.createElement("td")
     const deleteCell = document.createElement("td")
-    deleteCell.innerHTML = "delete"
+    deleteCell.innerHTML = '<i class="fa-solid fa-trash"></i>'
     deleteCell.className = "delete-cell"
     listLength.innerHTML = `Total exercises: ${list.length}`
-    // yesButton.addEventListener("click", () => deleteExercise(list, i, exRow))
     deleteCell.addEventListener("click", () => {
       verifyWindow.classList.replace("no-verify-window", "verify-window")
       itemId = list[i]._id
@@ -185,7 +179,6 @@ yesButton.addEventListener("click", deleteExercise)
 
 const filterExerciseList = (e) => {
   const filterate = exerciseList.filter((exercise) => exercise.name.toLowerCase().includes(e.target.value.toLowerCase()))
-  console.log(filterate)
   populate(filterate)
 }
 
@@ -193,7 +186,6 @@ addExerciseButton.addEventListener("click",  (e) => addExercise(e))
 
 const addExercisePage = () => {
   return populate(exerciseList)
-    // return exerciseMain
 }
 
 export {addExercisePage, filterExerciseList}

@@ -2,7 +2,7 @@ import myUrl  from "./myUrl.js"
 const exerciseMain = document.createElement("div")
 const exerciseHeader = document.createElement("h3")
 exerciseHeader.className = "exercise-header"
-exerciseHeader.innerHTML = "add exercise"
+// exerciseHeader.innerHTML = "Add Exercise"
 exerciseMain.appendChild(exerciseHeader)
 exerciseMain.className = "add-exercise"
 
@@ -15,7 +15,8 @@ caloriesBurned.placeholder = "Calories burned / 30sec"
 exerciseName.type = "text"
 exerciseName.placeholder = "Exercise Name"
 const addExerciseButton = document.createElement("button")
-addExerciseButton.innerHTML = "Add"
+addExerciseButton.innerHTML = "Add Exercise"
+addExerciseButton.className = "add-ex-button"
 addExerciseButton.type = "submit"
 
 const listLength = document.createElement("h4")

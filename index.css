@@ -821,6 +821,12 @@ table th {
   width: 95vw;
 }
 
+.add-ex-button {
+  background-color:wheat;
+  padding: .5rem;
+  font-size: 1rem;
+}
+
 .exercise-header {
   margin: .5rem 0;
 text-align: center;
@@ -833,14 +839,14 @@ text-align: center;
   justify-content: center;
   column-gap: .5rem;
   /* background-color: red; */
-  width: 90vw;
+  width: 60vw;
 }
 
 .add-exercise-form >*:nth-child(1) {
-  width: 60%;
+  width: 50%;
 }
 .add-exercise-form >*:nth-child(2) {
-  width: 40%;
+  width: 20%;
 }
 
 .users table {
@@ -1384,6 +1390,13 @@ right: 5%;
 
   }
 
+  #add-exercise {
+    /* ba */
+    background-color:wheat;
+    padding: .5rem;
+    margin-top: .5rem 0;
+  }
+
   
   
   @media screen and (min-width: 740px) {
@@ -1391,7 +1404,6 @@ right: 5%;
     .add-exercise {
       align-items: center;
       width: 100vw;
-      /* background-color: red; */
     }
 .exercise-table {
   width: 80%;

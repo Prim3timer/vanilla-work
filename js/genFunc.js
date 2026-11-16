@@ -225,9 +225,6 @@ console.log(roles)
 
     }
 
-
-   this.style.textDecoration = "underline"
-              // getData(guestId)
               console.log(mainContainer)
               mainContainer.firstElementChild.replaceWith(content);
 

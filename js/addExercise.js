@@ -41,10 +41,24 @@ const caloriesCell = document.createElement("th")
 caloriesCell.innerHTML = "calories burned / 30sec"
 caloriesCell.colSpan = 2
 exHeaderRow.append(nameCell, caloriesCell)
-exTableBody.appendChild(exHeaderRow)
+
 
 
 let itemId = ""
+
+const editWindow = document.createElement("form")
+editWindow.className = "no-verify-window"
+const nameEditLabel = document.createElement("label")
+nameEditLabel.innerHTML = "exercise name"
+const nameEditInput = document.createElement("input")
+const calorieEditInput = document.createElement("input")
+const calorieEditLabel = document.createElement("label")
+calorieEditLabel.innerHTML = "calories"
+nameEditLabel.append(nameEditInput)
+calorieEditLabel.append(calorieEditInput)
+
+editWindow.append(nameEditLabel, calorieEditLabel)
+
 
 let verifyWindow = document.createElement("div");
 let question = document.createElement("p");
@@ -65,6 +79,7 @@ verifyWindow.append(question, verifyWindowButtonCont);
 
 exerciseMain.appendChild(verifyWindow);
 exerciseMain.appendChild(alertWindow);
+exerciseMain.appendChild(editWindow)
 
 
 const windowCloser = () => {
@@ -85,6 +100,12 @@ const getExercises = async () => {
 
 const exerciseList = await getExercises()
 console.log(exerciseList)
+
+
+const editExercise = async () => {
+  console.log(itemId);
+  
+}
 
 const deleteExercise = async () => {
   console.log(itemId)
@@ -149,16 +170,26 @@ const deleteExercise = async () => {
 const populate = (list) => {
   
   exTableBody.replaceChildren()
+  exTableBody.appendChild(exHeaderRow)
   for (let i = 0; i < list.length; i++) {
     const exRow = document.createElement("tr")
     exRow.style.backgroundColor = `${i % 2 !== 0 ? "white" : "paleturquoise"}`;
     const exNameCell = document.createElement("td")
     exNameCell.innerHTML = list[i].name
     const exCaloriesCell = document.createElement("td")
+    const editCell = document.createElement("td")
+    editCell.innerHTML = `<i class="fa-solid fa-square-pen"></i>`
     const deleteCell = document.createElement("td")
     deleteCell.innerHTML = '<i class="fa-solid fa-trash"></i>'
     deleteCell.className = "delete-cell"
     listLength.innerHTML = `Total exercises: ${list.length}`
+    editCell.addEventListener("click", () => {
+      itemId = list[i]._id
+      editWindow.classList.replace("no-verify-window", "verify-window")
+      nameEditInput.value = list[i].name
+      calorieEditInput.value = list[i].calories
+    })
+
     deleteCell.addEventListener("click", () => {
       verifyWindow.classList.replace("no-verify-window", "verify-window")
       itemId = list[i]._id
@@ -166,6 +197,7 @@ const populate = (list) => {
       exCaloriesCell.innerHTML = list[i].calories
       exRow.appendChild(exNameCell)
       exRow.appendChild(exCaloriesCell)
+      exRow.appendChild(editCell)
       exRow.appendChild(deleteCell)
       exTableBody.appendChild(exRow)
     }

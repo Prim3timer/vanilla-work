@@ -53,11 +53,23 @@ nameEditLabel.innerHTML = "exercise name"
 const nameEditInput = document.createElement("input")
 const calorieEditInput = document.createElement("input")
 const calorieEditLabel = document.createElement("label")
+const editButtonContainer = document.createElement("article")
+editButtonContainer.className = "verify-button-cont"
+const cancelButton = document.createElement("button")
+cancelButton.innerHTML = "cancel"
+const editButton = document.createElement("button")
+editButton.innerHTML = "edit"
+editButtonContainer.append(cancelButton, editButton)
 calorieEditLabel.innerHTML = "calories"
 nameEditLabel.append(nameEditInput)
 calorieEditLabel.append(calorieEditInput)
 
-editWindow.append(nameEditLabel, calorieEditLabel)
+cancelButton.addEventListener("click", (e) => {
+  e.preventDefault()
+  editWindow.classList.replace("verify-window", "no-verify-window")
+})
+
+editWindow.append(nameEditLabel, calorieEditLabel, editButtonContainer)
 
 
 let verifyWindow = document.createElement("div");

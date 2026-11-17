@@ -227,6 +227,7 @@ console.log(roles)
 
               console.log(mainContainer)
               mainContainer.firstElementChild.replaceWith(content);
+              this.style.textDecoration = "underline"
 
               return;
             } else {

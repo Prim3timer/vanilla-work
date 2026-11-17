@@ -1397,10 +1397,18 @@ right: 5%;
     margin-top: .5rem 0;
   }
 
+  .edit-buttons {
+    font-size: 1.5rem;
+  }
+
+  #calorie-input {
+    /* background-color: red; */
+    width: 4rem;
+  }
+  
   
   
   @media screen and (min-width: 740px) {
-
     .add-exercise {
       align-items: center;
       width: 100vw;

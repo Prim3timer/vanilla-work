@@ -227,6 +227,7 @@ console.log(roles)
 
               console.log(mainContainer)
               mainContainer.firstElementChild.replaceWith(content);
+              if (this.id !== "add-exercise")
               this.style.textDecoration = "underline"
 
               return;

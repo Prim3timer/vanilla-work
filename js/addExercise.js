@@ -185,19 +185,7 @@ const deleteExercise = async () => {
     const cookedRes = await response.json()
     if (cookedRes){
       exerciseList.push({name: name.trim(), calories: calories.trim()})
-     console.log(name)
-  const exRow = document.createElement("tr")
-    exRow.style.backgroundColor = `${exerciseList.length % 2 !== 0 ? "white" : "powderblue"}`;
-    const exNameCell = document.createElement("td")
-    exNameCell.innerHTML = name
-    const exCaloriesCell = document.createElement("td")
-    exCaloriesCell.innerHTML = calories
-    if (response.status === 201) {
-      exRow.append(exNameCell, exCaloriesCell)
-    }
-    listLength.innerHTML = `Total exercises: ${exerciseList.length}`
-    exTableBody.appendChild(exRow)
-    console.log(cookedRes.status)
+  populate(exerciseList)
     alertWindow.innerHTML = await cookedRes
     alertWindow.className = "verify-window"
     exerciseMain.appendChild(alertWindow)

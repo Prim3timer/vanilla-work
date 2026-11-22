@@ -95,6 +95,10 @@ const insertSearcher = (element) => {
   }
 }
 
+const removeSearcher = () => {
+  navContFirst.replaceChildren()
+}
+
 function ElementCatcher(pages, mainContainer, guestId) {
   const root = document.getElementById("root")
   this.shower = async function (e) {
@@ -159,7 +163,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
                  insertSearcher(usersSearch)
               // searcher.placeholder = "search users"
             } else {
-              // searcher.placeholder = "search analytics"
+              navContFirst.children[1].remove()
             }
 
           }

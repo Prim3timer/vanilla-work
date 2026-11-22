@@ -259,6 +259,7 @@ const homePage = (id) => {
               console.log(currentItem)
               const imageName = currentItem.firstElementChild.innerHTML.trim()
               currentItem.style.backgroundImage = `url("images/${imageName.trim()}.gif")`
+              // currentItem.style.backgroundSize = "contain"
               currentItem.appendChild(durationWidthContainer)
               currentItem.style.backgroundColor = "teal";
               currentItem.style.zIndex = pIndex;
@@ -395,7 +396,7 @@ const homePage = (id) => {
           mark:
             // do not exceede 100% no matter how many times an exercise is repeated.
             anExercise / (exercise.length * numberOfRounds) <= 1
-            // sec - interval is making sure we only taking the time spent doing an exercise and excluding the mark time period
+            // sec - interval is making sure we only taking the time spent doing an exercise and excluding the "mark time" period
               ? ((anExercise * exercisesDuration) + filteredSec) / (exercise.length * numberOfRounds * exercisesDuration) * 100
               : 100,
         };

@@ -181,7 +181,6 @@ const deleteExercise = async () => {
       },
       body: JSON.stringify({ name: name.trim(), calories: calories.trim() })
     })
-    console.log(response.status)
     const cookedRes = await response.json()
     if (cookedRes){
       exerciseList.push({name: name.trim(), calories: calories.trim()})

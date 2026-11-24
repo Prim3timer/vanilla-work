@@ -95,8 +95,10 @@ const insertSearcher = (element) => {
   }
 }
 
-const removeSearcher = () => {
-  navContFirst.replaceChildren()
+const removeSecondChild = (navContFirst) => {
+  if (navContFirst.children.length > 1){
+    navContFirst.children[1].remove()
+  }
 }
 
 function ElementCatcher(pages, mainContainer, guestId) {
@@ -125,13 +127,6 @@ function ElementCatcher(pages, mainContainer, guestId) {
         this.id === "add-exercise"
       ) {
         if (this.id == content.className) {
-          if (this.id == "home"){
-    if (navContFirst.children.length > 1){
-      const secondChild = navContFirst.children[1]
-    secondChild.remove()
-    }
-            greeting.style.top = "3rem"      
-          }else {
               greeting.style.top = "5rem"
             if (this.id == "performance"){
               console.log("performance")
@@ -148,14 +143,7 @@ function ElementCatcher(pages, mainContainer, guestId) {
                 if (this.id == "add-exercise"){
                   insertSearcher(addExSearch)
                 }
-              else 
-                if (this.id == "analytics"){
-                  // insertSearcher(analyticsSearch)
-                   if (navContFirst.children.length > 1){
-      const secondChild = navContFirst.children[1]
-    secondChild.remove()
-                }
-              } else if (this.id == "add-exercise"){
+              else if (this.id == "add-exercise"){
                 insertSearcher(addExSearch)
               }
               else
@@ -163,10 +151,9 @@ function ElementCatcher(pages, mainContainer, guestId) {
                  insertSearcher(usersSearch)
               // searcher.placeholder = "search users"
             } else {
-              navContFirst.children[1].remove()
+              removeSecondChild(navContFirst)
             }
 
-          }
   
           if (this.id == "settings"){
             // populate(guestId)

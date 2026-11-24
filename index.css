@@ -22,6 +22,7 @@
    background-color: #1e293b;
    position: sticky;
    top: 0;
+   padding-left: 1rem;
 }
 
 .nav-cont-first {
@@ -60,7 +61,7 @@
 
 .navbar {
   display: flex;
-    padding: .5rem;
+    /* margin-left: 10rem; */
     /* background-color: red; */
     top: 0;
     /* grid-template-columns: repeat(10, 1fr); */
@@ -68,7 +69,7 @@
     color: white;
     justify-content: start;
     align-items: center;
-    /* height: 2rem; */
+    font-size: 1.5rem;
     z-index: 10;
     width: 100vw;
     overflow: auto;
@@ -1062,6 +1063,10 @@ position: absolute;
   height: 30vh;
   width: 90vw;
   /* z-index: 1000; */
+ }
+
+ table {
+  font-size: 1.5rem;
  }
 
   .duration-width-container {

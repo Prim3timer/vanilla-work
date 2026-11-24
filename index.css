@@ -640,6 +640,11 @@ input {
  table {
    border-collapse: collapse;
    /* width: 90vw; */
+  font-size: 1.5rem;
+ }
+
+ th{
+  font-size: 1rem;
  }
 
  .verify-window {
@@ -1065,9 +1070,7 @@ position: absolute;
   /* z-index: 1000; */
  }
 
- table {
-  font-size: 1.5rem;
- }
+
 
   .duration-width-container {
   position: absolute;

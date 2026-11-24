@@ -85,7 +85,7 @@ headerRow.append(
   dHeader,
   rHeader,
   exHeader,
-  exDetsHeader,
+  // exDetsHeader,
   // markHeader,
   dateHeader,
   deleteHeader,
@@ -335,7 +335,7 @@ const response = await getPerformance();
       };
   
       del.addEventListener("click", () => getId(perfy._id));
-      dets.append(endurance, roundCount,  mark, exDet, date);
+      dets.append(endurance, roundCount,  mark,  date);
 
       for (const child of dets.children){
         child.addEventListener("click", () => showDetWindow(perfy, duration))

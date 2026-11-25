@@ -215,33 +215,7 @@ const login = async (e) => {
     });
   
     const reply = await response.json();
-  const tbody = performancePage().getElementsByClassName("performance-tbody")[0]
-  
-const headerRow = document.createElement("tr");
-const dHeader = document.createElement("th");
-const rHeader = document.createElement("th");
-const exHeader = document.createElement("th");
-const exDetsHeader = document.createElement("th");
-const markHeader = document.createElement("th");
-const dateHeader = document.createElement("th");
-const deleteHeader = document.createElement("th");
 
-dHeader.innerHTML = "duraton";
-rHeader.innerHTML = "rounds completed";
-exHeader.innerHTML = "overall effort (%)";
-exDetsHeader.innerHTML = "exercises per round";
-// markHeader.innerHTML = "mark (%)";
-dateHeader.innerHTML = "date";
-headerRow.append(
-  dHeader,
-  rHeader,
-  exHeader,
-  exDetsHeader,
-  // markHeader,
-  dateHeader,
-  deleteHeader,
-);
-// tbody.append(headerRow)
 
     if (reply.verified === false){
       resetMessage.innerHTML = "unverified. Open the email sent to you from Uthokoii or reset your password"

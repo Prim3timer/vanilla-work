@@ -435,7 +435,7 @@ const homePage = (id) => {
   const newRow = document.createElement("tr")
   
   // newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
-  newRow.append(endurance, roundCount, mark, exDet, date)
+  newRow.append(endurance, roundCount, mark, date)
   if (tbody){
     console.log("thers is tbody")
     tbody.appendChild(newRow)
@@ -467,7 +467,7 @@ const homePage = (id) => {
     dHeader,
     rHeader,
     exHeader,
-    exDetsHeader,
+    // exDetsHeader,
     // markHeader,
     dateHeader,
   );

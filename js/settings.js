@@ -229,6 +229,7 @@ let creator = exerciseList.map((ex) => {
   // exercise.style.backgroundImage = `url("images/Plank.gif")`
 
   const exerciseName = document.createElement("p")
+  exerciseName.className = "exercise-name"
   exerciseName.innerHTML = ex.name
   
   const selector = document.createElement("input")

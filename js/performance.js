@@ -1,8 +1,7 @@
 import { timeToText, showDetWindow} from "./genFunc.js";
 import myUrl from "./myUrl.js";
 
-let globalData = [];
-let globalUser = {};
+
 
 const entryCount = document.createElement("span");
 entryCount.className = "perf-entry-count"
@@ -30,10 +29,6 @@ const userId = localStorage.getItem("workoutUserId");
 
 const performanceMain = document.createElement("div");
 performanceMain.className = "performance";
-const performanceHeader = document.createElement("h3");
-
-performanceHeader.className = "performance-header";
-performanceMain.appendChild(performanceHeader);
 performanceMain.appendChild(entryCount);
 
 let verifyWindow = document.createElement("div");
@@ -73,14 +68,14 @@ const deleteHeader = document.createElement("th");
 tableBody.className = "performance-tbody"
 
 dHeader.innerHTML = "duration";
-rHeader.innerHTML = "rounds completed";
+// rHeader.innerHTML = "rounds completed";
 exHeader.innerHTML = "overall effort (%)";
 exDetsHeader.innerHTML = "exercises per round";
 dateHeader.innerHTML = "date";
 perfTable.appendChild(tableBody);
 headerRow.append(
   dHeader,
-  rHeader,
+  // rHeader,
   exHeader,
   dateHeader,
   deleteHeader,
@@ -111,11 +106,8 @@ const filterEntries = async (e) => {
   // with this await, the app doesn't crash when filtering in the search bar
   const performances = await getPerformance();
   const searchItem = performances.filter((data) => data.userId === userId);
-  const filterate = searchItem.filter((data) => data.date.includes(e.target.value.toLowerCase())); 
-
- 
+  const filterate = searchItem.filter((data) => data.date.includes(e.target.value.toLowerCase()));  
        poper(filterate)
-
 }
 
 
@@ -128,7 +120,6 @@ const poper = (list) => {
       dets.style.backgroundColor = `${i % 2 === 0 ? "white" : "khaki"}`;
       tableBody.appendChild(dets);
       const perfy = list[i];
-      console.log(perfy)
       const { duration } = perfy.exerciseTimings[0];
         entryCount.innerHTML = `${list.length} entries`;
 
@@ -136,8 +127,7 @@ const poper = (list) => {
   
       endurance.innerHTML = timeClocking(duration);
       const roundCount = document.createElement("td");
-      console.log(perfy)
-      roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${perfy.exerciseTimings[4]?.actualRounds}`; ;
+      // roundCount.innerHTML = `${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${perfy.exerciseTimings[4]?.actualRounds}`; ;
       const mark = document.createElement("td");
       const exDet = document.createElement("td");
       // mark.innerHTML = `${perfy.oneExercise ? parseFloat(perfy.oneExercise / (perfy.exerciseDets.length * user.workSettings.numberOfRounds) * 100).toFixed(2) : 0}`;
@@ -165,15 +155,13 @@ const poper = (list) => {
         verifyWindowButtonCont.className = "verify-button-cont";
         verifyWindow.className = "verify-window ";
       };
-  
       del.addEventListener("click", () => getId(perfy._id));
-      dets.append(endurance, roundCount,  mark,  date);
+      dets.append(endurance,  mark,  date);
 
       for (const child of dets.children){
         child.addEventListener("click", () => showDetWindow(perfy, duration))
       }
       dets.append(del);
-  
       performanceMain.append(perfTable);
     }
     return perfTable
@@ -190,17 +178,15 @@ const deleteEntry = async () => {
     if (response) {
       const replies = await response.json();
       const {success } = replies
-      console.log(replies)
       reply = success;
       const entries = await getPerformance();
       const filterate = entries.filter((data) => data.userId === localStorage.getItem("workoutUserId"));
-      globalData = filterate;
      poper(filterate)
      alertWindow.innerHTML = success
      alertWindow.classList.replace("no-verify-window", "verify-window")
       }
     } catch (error) {
-    console.log(error);
+      alertWindow.innerHTML = error
     } finally {
     setTimeout(() => {
       alertWindow.className = "no-verify-window";
@@ -218,24 +204,19 @@ const getData = async (id) => {
   });
   const users = await response2.json();
   const user = users.find((user) => user._id == id);
-  globalUser = user;
+  // globalUser = user;
   if (user){
-
-    const foundUserRoles = Object.keys(user.roles);
     yesButton.addEventListener("click", deleteEntry);
     let perfData = await getPerformance();
-    globalData = perfData;
     const filteredData = perfData.filter((data) => data.userId === id);
-  
     return poper(filteredData)
   }
 };
 
 
 
-getData(userId);
+getData(userId); 
 const performancePage = () => {
-
   return performanceMain;
 };
 

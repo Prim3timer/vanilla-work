@@ -169,7 +169,6 @@ function ElementCatcher(pages, mainContainer, guestId) {
               Manager: 1984,
               Admin: 5150,
             };
-            const rolesArray = Object.keys(ROLES);
 const user = users.find((user) => user._id === guestId)
 console.log(user)
 const roles = Object.keys(user.roles)
@@ -255,6 +254,7 @@ performanceMain.appendChild(detsWindowCover);
         let detsExHeader = document.createElement("h4");
         let detsExList = document.createElement("ol");
         let numberOfExercises = document.createElement("p");
+        let roundsCompleted = document.createElement("p")
   
         perfy.exerciseDets.map((exercise) => {
           const listItem = document.createElement("li");
@@ -290,7 +290,9 @@ performanceMain.appendChild(detsWindowCover);
         detsDuration.innerHTML = `${timeToText(duration)}`;
         detsExHeader.innerHTML = `exercises list:`;
         numberOfExercises.innerHTML = `completed exercises: ${perfy.oneExercise}`;
-        detsWindow.append(detsInterval, detExDuration);
+        roundsCompleted.innerHTML = `completed rounds: ${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${perfy.exerciseTimings[4]?.actualRounds}`
+
+        detsWindow.append(detsInterval, detExDuration, roundsCompleted);
         console.log(detsWindow)
       
         if (detsWindowCover.children.length) {

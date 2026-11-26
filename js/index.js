@@ -85,7 +85,7 @@ console.log(usernameInput.value, passwordInput.value)
 
 const containers = [
   homePage(),
-  performancePage(),
+  await performancePage(),
   settingsPage(),
   usersPage(),
   register(),

@@ -435,11 +435,11 @@ const homePage = (id) => {
   const newRow = document.createElement("tr")
   
   // newRow.append(endurance, roundCount, mark, exDet, date, del.cloneNode(true))
-  newRow.append(endurance, roundCount, mark, date)
+  newRow.append(endurance, mark, date)
   if (tbody){
     console.log("thers is tbody")
     tbody.appendChild(newRow)
-    entryCount.innerHTML = `(${tbody.children.length -1} entries)`
+    entryCount.innerHTML = `${tbody.children.length -1} entries`
     for (let i = 1; i < tbody.children.length; i++){
       tbody.children[i].style.backgroundColor = `${i % 2 !== 0 ? "white" : "khaki"}`;
     }
@@ -620,7 +620,6 @@ const homePage = (id) => {
         //the unique condition is desinged to let this event
         //handler invoke the reality function just once
         if (runFunc === true) {
-         
           begin = Date.now();
           pauser.innerHTML = `<i class="fa-solid fa-pause"/>`;
           requestWakeLock()
@@ -641,11 +640,11 @@ const homePage = (id) => {
       });
       
       roundUp.addEventListener("click", () => {
-        if (round === numberOfRounds) {
-          round = 0;
+        if (round >= numberOfRounds) {
+          round = 1;
           rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
         }
-        if (round < numberOfRounds) {
+        else {
           round++;
           rounder.innerHTML = `R ${round} of ${numberOfRounds}`;
         }

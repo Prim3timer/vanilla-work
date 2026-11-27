@@ -181,7 +181,7 @@ console.log(roles)
             usernameInput.value = user.username
             activeInput.checked = user.active
           } 
-          if (!roles.includes(5150 ) && (this.innerHTML == "users" || this.innerHTML == "analytics")) {
+          if (!roles.includes(5150 ) && this.id == "users") {
             console.log("unauthorized")
             alertMeassage.className = "verify-window"
             alertMeassage.style.visibility = "visible"
@@ -227,6 +227,8 @@ console.log(roles)
             }
           }
         } 
+      } else {
+        
       }
       return content;
     });
@@ -293,14 +295,11 @@ performanceMain.appendChild(detsWindowCover);
         roundsCompleted.innerHTML = `completed rounds: ${perfy.exerciseDets.length ?  Math.floor(perfy.oneExercise / perfy.exerciseDets.length) : 0} of ${perfy.exerciseTimings[4]?.actualRounds}`
 
         detsWindow.append(detsInterval, detExDuration, roundsCompleted);
-        console.log(detsWindow)
-      
+    
         if (detsWindowCover.children.length) {
           console.log("yes");
-          // detsWindow.remove();
           detsWindowCover.firstElementChild.replaceWith(detsWindow);
         } else {
-          console.log("no");
           detsWindowCover.append(detsWindow, closure);
         }
         console.log(detsWindowCover.children.length)

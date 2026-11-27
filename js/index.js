@@ -87,7 +87,7 @@ const containers = [
   homePage(),
   await performancePage(),
   settingsPage(),
-  usersPage(),
+  // usersPage(),
   register(),
   forgotPage(),
   mainSettings(),

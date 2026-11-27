@@ -50,9 +50,9 @@ const settingsLInk = document.getElementById("settings");
 settingsLInk.innerHTML = "settings";
 settingsLInk.id = "settings";
 
-const usersLInk = document.getElementById("users");
-usersLInk.innerHTML = "users";
-usersLInk.id = "users";
+// const usersLInk = document.getElementById("users");
+// usersLInk.innerHTML = "users";
+// usersLInk.id = "users";
 
 const logoutLInk = document.getElementById("logout");
 logoutLInk.innerHTML = "logout";
@@ -87,7 +87,7 @@ const containers = [
   homePage(),
   await performancePage(),
   settingsPage(),
-  // usersPage(),
+  usersPage(),
   register(),
   forgotPage(),
   mainSettings(),

@@ -105,7 +105,8 @@ const filterEntries = async (e) => {
   e.preventDefault();
   // with this await, the app doesn't crash when filtering in the search bar
   const performances = await getPerformance();
-  const searchItem = performances.filter((data) => data.userId === userId);
+  const searchItem = performances.filter((data) => data.userId === localStorage.getItem("workoutUserId"));
+  console.log(userId)
   const filterate = searchItem.filter((data) => data.date.includes(e.target.value.toLowerCase()));  
        poper(filterate)
 }
